@@ -1,0 +1,29 @@
+# ref https://raw.githubusercontent.com/nais/naisd/master/nais_example.yaml
+image: docker.adeo.no:5000/fo/tiltakinfo
+replicas:
+  min: 2
+  max: 4
+  cpuThresholdPercentage: 50
+port: 8080
+healthcheck:
+  # NB: pus-decorator sine helsesjekker
+  liveness:
+    path: tiltakinfo/internal/isAlive
+  readiness:
+    path: tiltakinfo/internal/selftest
+prometheus:
+  # NB: pus-decorator sine metrikker
+  enabled: true
+  path: tiltakinfo/internal/metrics
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+fasitResources:
+  exposed:
+  - alias: tiltakinfoUrl
+    resourceType: restservice
+    path: /tiltakinfo
