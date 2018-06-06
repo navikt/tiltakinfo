@@ -2,6 +2,7 @@
   "name": "tiltakinfo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/tiltakinfo",
   "scripts": {
     "start": "react-scripts start",
     "build:ts": "react-scripts build",

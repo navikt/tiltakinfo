@@ -23,6 +23,9 @@ resources:
     cpu: 200m
     memory: 512Mi
 fasitResources:
+  used:
+  - alias: appres.cms
+    resourceType: baseUrl
   exposed:
   - alias: tiltakinfoUrl
     resourceType: restservice
