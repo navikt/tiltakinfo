@@ -17,7 +17,7 @@ class Innhold extends React.Component<InnholdProps> {
 
     render() {
         return (
-            <>
+            <main className="maincontent">
                 <Switch location={this.props.history.location}>
                     <Route
                         exact={true}
@@ -25,7 +25,7 @@ class Innhold extends React.Component<InnholdProps> {
                         component={Startside}
                     />
                 </Switch>
-            </>
+            </main>
         );
     }
 }
