@@ -20,7 +20,10 @@
   },
   "dependencies": {
     "@nutgaard/react-scripts": "0.0.7",
+    "classnames": "2.2.6",
     "nav-frontend-core": "4.0.5",
+    "nav-frontend-typografi": "2.0.5",
+    "nav-frontend-typografi-style": "1.0.9",
     "react": "16.4.0",
     "react-dom": "16.4.0",
     "react-redux": "5.0.7",

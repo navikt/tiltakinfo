@@ -1,5 +1,5 @@
-import './index.less';
 import 'nav-frontend-core/less/core.less';
+import './index.less';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
