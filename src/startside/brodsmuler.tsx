@@ -1,5 +1,6 @@
 import * as React from 'react';
 import 'nav-frontend-lenker-style';
+import 'nav-frontend-typografi';
 import './brodsmuler.less';
 
 export function Brodsmuler () {
@@ -16,7 +17,6 @@ export function Brodsmuler () {
                 <a href="/sykefravaer/" className="lenke">Ditt sykefravær</a>
                 <span className="brodsmule__skille">/</span>
                 <span>Tiltak</span>
-
             </div>
         </nav>
     );
