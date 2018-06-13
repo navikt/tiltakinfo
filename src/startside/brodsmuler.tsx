@@ -12,13 +12,9 @@ export function Brodsmuler () {
             <div className="brodsmuler__smuler">
 
                 <a href="/dittnav/" className="lenke">Ditt NAV</a>
-
                 <span className="brodsmule__skille">/</span>
-
                 <a href="/sykefravaer/" className="lenke">Ditt sykefravær</a>
-
                 <span className="brodsmule__skille">/</span>
-
                 <span>Tiltak</span>
 
             </div>
