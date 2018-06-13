@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Startside from './startside/startside';
-import { AppState } from './ducks/reducer';
+import { AppState } from './redux/reducer';
 
 interface StateProps {
 }

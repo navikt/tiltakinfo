@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../types';
-import { AppState } from '../ducks/reducer';
+import { AppState } from '../redux/reducer';
 import { Brodsmuler } from './brodsmuler';
 import { FlereTiltak } from './flere-tiltak';
 
