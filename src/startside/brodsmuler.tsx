@@ -15,7 +15,7 @@ export function Brodsmuler () {
                 <span className="brodsmule__skille">/</span>
                 <a href="/sykefravaer/" className="lenke">Ditt sykefravær</a>
                 <span className="brodsmule__skille">/</span>
-                <span>Tiltak</span>
+                <span>Tiltaksinfo</span>
 
             </div>
         </nav>
