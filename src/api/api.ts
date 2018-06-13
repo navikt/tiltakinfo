@@ -1,5 +1,5 @@
 import { fetchToJson } from './fetch-utils';
-import { initialState as unleashInitialState, unleashPrefix, UnleashState } from '../unleash/unleash-duck';
+import { initialState as unleashInitialState, UnleashState } from '../unleash/unleash-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -25,8 +25,8 @@ export const API: ApiProps = {
 
 export function getUnleashFetch(): Promise<UnleashState> {
     const reduceFunc = (acc: string, toggle: string, i: number) =>
-        `${acc}${i === 0 ? '?' : '&'}feature=${unleashPrefix}.${toggle}`;
-    const queryParams: string = Object.keys(unleashInitialState[unleashPrefix]).reduce(reduceFunc, '');
+        `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
+    const queryParams: string = Object.keys(unleashInitialState).reduce(reduceFunc, '');
     return fetchToJson<UnleashState>(`${API.getUnleash}${queryParams}`, requestConfig)
         .catch(() => Promise.resolve(unleashInitialState));
 }
