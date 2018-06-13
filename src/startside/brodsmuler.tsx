@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'nav-frontend-core';
 import 'nav-frontend-lenker-style';
 import './brodsmuler.less';
 
