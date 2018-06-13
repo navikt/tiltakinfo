@@ -1,5 +1,6 @@
 import * as React from 'react';
 import 'nav-frontend-lenker-style';
+import 'nav-frontend-typografi';
 import './brodsmuler.less';
 
 export function Brodsmuler () {
@@ -7,8 +8,8 @@ export function Brodsmuler () {
     const brodsmuleikon = require('../ikoner/person.svg');
 
     return (
-        <nav className="brodsmuler nav-frontend-lenker" aria-label="Du er her:" >
-            <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
+        <nav className="brodsmuler nav-frontend-lenker" aria-label="Du er her:">
+            <img src={brodsmuleikon} alt="" className="brodsmuler__ikon"/>
             <div className="brodsmuler__smuler">
 
                 <a href="/dittnav/" className="lenke">Ditt NAV</a>
@@ -16,7 +17,6 @@ export function Brodsmuler () {
                 <a href="/sykefravaer/" className="lenke">Ditt sykefravær</a>
                 <span className="brodsmule__skille">/</span>
                 <span>Tiltak</span>
-
             </div>
         </nav>
     );
