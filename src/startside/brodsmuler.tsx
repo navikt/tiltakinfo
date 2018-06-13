@@ -11,7 +11,7 @@ export function Brodsmuler () {
             <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
             <div className="brodsmuler__smuler">
 
-                <a href="/dittnav/" className="lenke">Ditt Nav</a>
+                <a href="/dittnav/" className="lenke">Ditt NAV</a>
 
                 <span className="brodsmule__skille">/</span>
 
