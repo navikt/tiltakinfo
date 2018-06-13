@@ -7,8 +7,8 @@ export function Brodsmuler () {
     const brodsmuleikon = require('../ikoner/person.svg');
 
     return (
-        <nav className="brodsmuler nav-frontend-lenker" aria-label="Du er her:">
-            <img src={brodsmuleikon} alt="" className="brodsmuler__ikon"/>
+        <nav className="brodsmuler" aria-label="Du er her:" >
+            <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
             <div className="brodsmuler__smuler">
 
                 <a href="/dittnav/" className="lenke">Ditt NAV</a>
