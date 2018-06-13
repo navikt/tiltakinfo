@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../types';
 import { AppState } from '../ducks/reducer';
+import { Brodsmuler } from './brodsmuler';
 import { FlereTiltak } from './flere-tiltak';
 
 interface StateProps {
@@ -21,6 +22,7 @@ class Startside extends React.Component<StartsideProps> {
     render() {
         return (
             <>
+                <Brodsmuler/>
                 <FlereTiltak />
             </>
         );
