@@ -19,14 +19,16 @@ interface ApiProps {
     getUnleash: string;
 }
 
+export const featureQueryParams = (): string => {
+    const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
+    return Object.keys(unleashInitialState).reduce(reduceFunc, '');
+} ;
+
 export const API: ApiProps = {
-    getUnleash: `/feature/`,
+    getUnleash: `/feature/${() => featureQueryParams()}`,
 };
 
 export function getUnleashFetch(): Promise<UnleashState> {
-    const reduceFunc = (acc: string, toggle: string, i: number) =>
-        `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
-    const queryParams: string = Object.keys(unleashInitialState).reduce(reduceFunc, '');
-    return fetchToJson<UnleashState>(`${API.getUnleash}${queryParams}`, requestConfig)
+    return fetchToJson<UnleashState>(API.getUnleash, requestConfig)
         .catch(() => Promise.resolve(unleashInitialState));
 }
