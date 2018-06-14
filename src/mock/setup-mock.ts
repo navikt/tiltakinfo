@@ -1,7 +1,7 @@
 /* tslint:disable*/
 import * as fetchMock from 'fetch-mock';
 import { erHalvMock, respondWith } from './utils';
-import { API } from '../api/api';
+import { API, featureQueryParams } from '../api/api';
 import { tiltakinfoMvp } from '../unleash/unleash-duck';
 
 export function setupMock() {
@@ -14,8 +14,8 @@ export function setupMock() {
     } else {
         console.log('### FULL MOCK AKTIVERT! ###');
     }
-
-    fetchMock.get(API.getUnleash, respondWith({
+    const unleashUrl = API.getUnleash + featureQueryParams();
+    fetchMock.get(unleashUrl, respondWith({
         [tiltakinfoMvp]: true,
     }));
 }

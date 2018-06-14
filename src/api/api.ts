@@ -25,10 +25,11 @@ export const featureQueryParams = (): string => {
 } ;
 
 export const API: ApiProps = {
-    getUnleash: `/feature/${() => featureQueryParams()}`,
+    getUnleash: '/feature/',
 };
 
 export function getUnleashFetch(): Promise<UnleashState> {
-    return fetchToJson<UnleashState>(API.getUnleash, requestConfig)
+    const unleashUrl = API.getUnleash + featureQueryParams();
+    return fetchToJson<UnleashState>(unleashUrl, requestConfig)
         .catch(() => Promise.resolve(unleashInitialState));
 }
