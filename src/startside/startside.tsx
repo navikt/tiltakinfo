@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from '../types';
+import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { Brodsmuler } from './brodsmuler';
 import { FlereTiltak } from './flere-tiltak';

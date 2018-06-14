@@ -1,7 +1,7 @@
 import {
     ActionType, Handling, HentUnleashFEILETAction, HentUnleashOKAction, HentUnleashPENDINGAction,
 } from '../redux/actions';
-import { Dispatch } from '../types';
+import { Dispatch } from '../redux/dispatch-type';
 import { getUnleashFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 
