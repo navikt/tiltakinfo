@@ -5,7 +5,7 @@ import {
     HentOppfolgingOKAction,
     HentOppfolgingPENDINGAction, Status,
 } from '../redux/actions';
-import { Dispatch } from '../types';
+import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 
