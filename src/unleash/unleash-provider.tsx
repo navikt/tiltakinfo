@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from '../types';
+import { Dispatch } from '../redux/dispatch-type';
 import { hentUnleash, UnleashState } from './unleash-duck';
 import { AppState } from '../redux/reducer';
 
