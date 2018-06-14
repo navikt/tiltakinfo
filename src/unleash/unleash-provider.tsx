@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../types';
-import { hentUnleash, TiltakInfoToggles } from './unleash-duck';
+import { hentUnleash, UnleashState } from './unleash-duck';
 import { AppState } from '../redux/reducer';
 
 interface OwnProps {
@@ -9,7 +9,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-    toggles: TiltakInfoToggles;
+    features: UnleashState;
 }
 
 interface DispatchProps {
@@ -31,7 +31,7 @@ class UnleashProvider extends React.Component<UnleashProviderProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    toggles: state.unleash.tiltakinfo,
+    features: state.unleash,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

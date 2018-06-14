@@ -5,20 +5,14 @@ import { Dispatch } from '../types';
 import { getUnleashFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 
-export interface TiltakInfoToggles {
-    mvp: boolean;
-}
+export const tiltakinfoMvp = 'tiltakinfo.mvp';
 
 export interface UnleashState {
-    tiltakinfo: TiltakInfoToggles;
+    [tiltakinfoMvp]: boolean;
 }
 
-export const unleashPrefix = 'tiltakinfo';
-
 export const initialState: UnleashState = {
-    [unleashPrefix]: {
-        mvp: false,
-    },
+    [tiltakinfoMvp]: false,
 };
 
 //  Reducer
