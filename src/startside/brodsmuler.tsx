@@ -7,7 +7,7 @@ export function Brodsmuler () {
     const brodsmuleikon = require('../ikoner/person.svg');
 
     return (
-        <nav className="brodsmuler nav-frontend-lenker" aria-label="Du er her:" >
+        <nav className="brodsmuler" aria-label="Du er her:" >
             <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
             <div className="brodsmuler__smuler">
 
@@ -15,7 +15,7 @@ export function Brodsmuler () {
                 <span className="brodsmule__skille">/</span>
                 <a href="/sykefravaer/" className="lenke">Ditt sykefravær</a>
                 <span className="brodsmule__skille">/</span>
-                <span>Tiltak</span>
+                <span>Tiltaksinfo</span>
 
             </div>
         </nav>

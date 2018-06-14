@@ -2,7 +2,8 @@
 
 @desktopLimitWidth: 740px;
 
-html {
+html,
+body{
     font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
@@ -16,10 +17,12 @@ body,
 .maincontent {
     position: relative;
     margin: 0 auto;
+    padding: 2rem .5rem 4rem;
 }
 
 @media (min-width: @screen-sm-min) {
     .maincontent {
         width: @desktopLimitWidth;
+        padding: 2rem 0 4rem;
     }
 }
