@@ -14,7 +14,7 @@ export function Tiltak() {
     });
     tiltakListe.push({
         tittel: 'Oppfølging',
-        hvem: 'For deg som trenger omfattende hjelp til å skaffe en jobb',
+        hvem: 'For deg som trenger omfattende hjelp til å skaffe en jobb.',
         mal: 'Styrke kompetansen og motivasjonen din som jobbsøker, og å hjelpe deg med å søke jobb.',
         ikon: require('../ikoner/tiltak-02.svg'),
         style: 'style2',
