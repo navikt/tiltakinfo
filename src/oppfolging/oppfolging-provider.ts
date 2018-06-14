@@ -4,7 +4,6 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { hentOppfolging } from '../oppfolging/oppfolging-duck';
 import { Status } from '../redux/actions';
-import { RouteComponentProps, withRouter } from 'react-router';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -19,7 +18,7 @@ interface DispatchProps {
     doHentOppfolging: () => void;
 }
 
-type OppfolgingProviderProps = OwnProps & StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line
+type OppfolgingProviderProps = OwnProps & StateProps & DispatchProps; // tslint:disable-line
 
 class OppfolgingProvider extends React.Component<OppfolgingProviderProps> {
     constructor(props: OppfolgingProviderProps) {
@@ -47,4 +46,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch)
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OppfolgingProvider));
+export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingProvider);
