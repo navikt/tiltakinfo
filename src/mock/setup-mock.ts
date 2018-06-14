@@ -18,4 +18,7 @@ export function setupMock() {
     fetchMock.get(API.getUnleash, respondWith({
         [tiltakinfoMvp]: true,
     }));
+    fetchMock.get(API.getOppfolging, respondWith(({
+        underOppfolging: true,
+    })));
 }

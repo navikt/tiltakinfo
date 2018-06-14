@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import getStore from './redux/store';
 import Innhold from './innhold';
 import UnleashProvider from './unleash/unleash-provider';
+import OppfolgingProvider from './oppfolging/oppfolging-provider';
 import { erLocalhost, erMock } from './mock/utils';
 import { setupMock } from './mock/setup-mock';
 
@@ -19,7 +20,9 @@ class App extends React.Component {
             <StoreProvider store={store}>
                 <UnleashProvider>
                     <BrowserRouter basename="/tiltakinfo">
-                        <Innhold/>
+                        <OppfolgingProvider>
+                            <Innhold/>
+                        </OppfolgingProvider>
                     </BrowserRouter>
                 </UnleashProvider>
             </StoreProvider>
