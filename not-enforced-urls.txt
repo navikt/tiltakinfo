@@ -1,2 +1,0 @@
-https://${DomainName}/tiltakinfo/*
-https://${DomainName}/tiltakinfo
