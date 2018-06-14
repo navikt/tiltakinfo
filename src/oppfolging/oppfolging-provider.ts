@@ -18,7 +18,7 @@ interface DispatchProps {
     doHentOppfolging: () => void;
 }
 
-type OppfolgingProviderProps = OwnProps & StateProps & DispatchProps; // tslint:disable-line
+type OppfolgingProviderProps = OwnProps & StateProps & DispatchProps;
 
 class OppfolgingProvider extends React.Component<OppfolgingProviderProps> {
     constructor(props: OppfolgingProviderProps) {
