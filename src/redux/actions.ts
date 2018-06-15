@@ -3,7 +3,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 export enum ActionType {
     HENT_UNLEASH_OK = 'HENT_UNLEASH_OK',
     HENT_UNLEASH_FEILET = 'HENT_UNLEASH_FEILET',
-    HENT_UNLEASH_PENDING = 'HENT_UNLEASH_PENDING',
+    HENT_UNLEASH_LASTER = 'HENT_UNLEASH_LASTER',
 }
 
 export interface HentUnleashOKAction {
@@ -12,7 +12,7 @@ export interface HentUnleashOKAction {
 }
 
 export interface HentUnleashPENDINGAction {
-    type: ActionType.HENT_UNLEASH_PENDING;
+    type: ActionType.HENT_UNLEASH_LASTER;
 }
 
 export interface HentUnleashFEILETAction {

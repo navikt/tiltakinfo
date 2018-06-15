@@ -19,17 +19,17 @@ interface ApiProps {
     getUnleash: string;
 }
 
-export const featureQueryParams = (): string => {
+export const featureQueryParams = (features: string[]): string => {
     const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
-    return Object.keys(unleashInitialState).reduce(reduceFunc, '');
+    return features.reduce(reduceFunc, '');
 } ;
 
 export const API: ApiProps = {
     getUnleash: '/feature/',
 };
 
-export function getUnleashFetch(): Promise<UnleashState> {
-    const unleashUrl = API.getUnleash + featureQueryParams();
+export function getUnleashFetch(features: string[]): Promise<UnleashState> {
+    const unleashUrl = API.getUnleash + featureQueryParams(features);
     return fetchToJson<UnleashState>(unleashUrl, requestConfig)
         .catch(() => Promise.resolve(unleashInitialState));
 }

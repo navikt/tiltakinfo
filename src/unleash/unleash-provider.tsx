@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { hentUnleash, UnleashState } from './unleash-duck';
 import { AppState } from '../redux/reducer';
+import Datalaster from '../api/datalaster';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -26,7 +27,11 @@ class UnleashProvider extends React.Component<UnleashProviderProps> {
         this.props.doHentUnleash();
     }
     render() {
-        return this.props.children;
+        return (
+            <Datalaster avhengigheter={[this.props.features]}>
+                {this.props.children}
+            </Datalaster>
+        );
     }
 }
 
