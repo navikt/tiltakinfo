@@ -23,7 +23,7 @@
     "ajv": "6.5.1",
     "classnames": "2.2.6",
     "nav-frontend-core": "4.0.5",
-    "nav-frontend-ikoner-assets": "0.2.27",
+    "nav-frontend-knapper-style": "0.3.9",
     "nav-frontend-lenker-style": "0.2.6",
     "nav-frontend-spinner": "1.0.10",
     "nav-frontend-spinner-style": "0.2.4",
