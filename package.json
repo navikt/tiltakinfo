@@ -23,6 +23,7 @@
     "ajv": "6.5.1",
     "classnames": "2.2.6",
     "nav-frontend-core": "4.0.5",
+    "nav-frontend-knapper-style": "0.3.9",
     "nav-frontend-lenker-style": "0.2.6",
     "nav-frontend-typografi": "2.0.5",
     "nav-frontend-typografi-style": "1.0.9",
@@ -34,7 +35,7 @@
     "redux-thunk": "2.2.0"
   },
   "devDependencies": {
-    "@types/fetch-mock": "^6.0.3",
+    "@types/fetch-mock": "6.0.3",
     "@types/jest": "23.0.0",
     "@types/node": "10.3.1",
     "@types/query-string": "5.1.0",
