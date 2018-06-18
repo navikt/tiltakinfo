@@ -1,5 +1,5 @@
 import {
-    ActionType, Handling, HentUnleashFEILETAction, HentUnleashOKAction, HentUnleashPENDINGAction,
+    ActionType, Handling, HentUnleashFEILETAction, HentUnleashOKAction, HentUnleashLASTERAction,
 } from '../redux/actions';
 import { Dispatch } from '../redux/dispatch-type';
 import { getUnleashFetch } from '../api/api';
@@ -35,7 +35,7 @@ export function hentUnleash(): (dispatch: Dispatch) => Promise<void> {
     return fetchThenDispatch<UnleashState>(() => getUnleashFetch([tiltakinfoMvp]), {
         ok: hentUnleashOK,
         feilet: hentUnleashFEILET,
-        pending: hentUnleashPENDING,
+        pending: hentUnleashLASTER,
     });
 }
 
@@ -52,7 +52,7 @@ function hentUnleashFEILET(): HentUnleashFEILETAction {
     };
 }
 
-function hentUnleashPENDING(): HentUnleashPENDINGAction {
+function hentUnleashLASTER(): HentUnleashLASTERAction {
     return {
         type: ActionType.HENT_UNLEASH_LASTER,
     };

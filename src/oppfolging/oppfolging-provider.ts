@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { hentOppfolging } from '../oppfolging/oppfolging-duck';
-import { Status } from '../redux/actions';
+import { Status } from '../api/datalaster';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
