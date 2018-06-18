@@ -1,41 +1,36 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from '../redux/dispatch-type';
-import { hentUnleash, UnleashState } from './unleash-duck';
-import { AppState } from '../redux/reducer';
+import { Dispatch } from './redux/dispatch-type';
+import { hentUnleash } from './unleash/unleash-duck';
+import { hentOppfolging } from './oppfolging/oppfolging-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
 }
 
-interface StateProps {
-    features: UnleashState;
-}
-
 interface DispatchProps {
     doHentUnleash: () => void;
+    doHentOppfolging: () => void;
 }
 
-type UnleashProviderProps = OwnProps & StateProps & DispatchProps;
+type UnleashProviderProps = OwnProps & DispatchProps;
 
-class UnleashProvider extends React.Component<UnleashProviderProps> {
+class DataProvider extends React.Component<UnleashProviderProps> {
     constructor(props: UnleashProviderProps) {
         super(props);
     }
     componentDidMount() {
         this.props.doHentUnleash();
+        this.props.doHentOppfolging();
     }
     render() {
         return this.props.children;
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
-    features: state.unleash,
-});
-
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentUnleash: () => hentUnleash()(dispatch),
+    doHentOppfolging: () => hentOppfolging()(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UnleashProvider);
+export default connect(null, mapDispatchToProps)(DataProvider);

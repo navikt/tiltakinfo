@@ -4,16 +4,10 @@ import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 export enum ActionType {
     HENT_UNLEASH_OK = 'HENT_UNLEASH_OK',
     HENT_UNLEASH_FEILET = 'HENT_UNLEASH_FEILET',
-    HENT_UNLEASH_PENDING = 'HENT_UNLEASH_PENDING',
+    HENT_UNLEASH_LASTER = 'HENT_UNLEASH_LASTER',
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
-    HENT_OPPFOLGING_PENDING = 'HENT_OPPFOLGING_PENDING',
-}
-
-export enum Status {
-    OK = 'OK',
-    FEILET = 'FEILET',
-    PENDING = 'PENDING',
+    HENT_OPPFOLGING_LASTER = 'HENT_OPPFOLGING_LASTER',
 }
 
 export interface HentUnleashOKAction {
@@ -21,8 +15,8 @@ export interface HentUnleashOKAction {
     unleash: UnleashState;
 }
 
-export interface HentUnleashPENDINGAction {
-    type: ActionType.HENT_UNLEASH_PENDING;
+export interface HentUnleashLASTERAction {
+    type: ActionType.HENT_UNLEASH_LASTER;
 }
 
 export interface HentUnleashFEILETAction {
@@ -34,8 +28,8 @@ export interface HentOppfolgingOKAction {
     oppfolging: OppfolgingState;
 }
 
-export interface HentOppfolgingPENDINGAction {
-    type: ActionType.HENT_OPPFOLGING_PENDING;
+export interface HentOppfolgingLASTERAction {
+    type: ActionType.HENT_OPPFOLGING_LASTER;
 }
 
 export interface HentOppfolgingFEILETAction {
@@ -44,8 +38,8 @@ export interface HentOppfolgingFEILETAction {
 
 export type Handling =
     | HentUnleashOKAction
-    | HentUnleashPENDINGAction
+    | HentUnleashLASTERAction
     | HentUnleashFEILETAction
     | HentOppfolgingOKAction
-    | HentOppfolgingPENDINGAction
+    | HentOppfolgingLASTERAction
     | HentOppfolgingFEILETAction;

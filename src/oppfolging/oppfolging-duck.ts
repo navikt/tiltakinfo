@@ -3,20 +3,20 @@ import {
     Handling,
     HentOppfolgingFEILETAction,
     HentOppfolgingOKAction,
-    HentOppfolgingPENDINGAction, Status,
+    HentOppfolgingLASTERAction,
 } from '../redux/actions';
 import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
+import { DataElement, Status } from '../api/datalaster';
 
-export interface OppfolgingState {
+export interface OppfolgingState extends DataElement {
     underOppfolging: boolean;
-    status: Status;
 }
 
 export const initialState: OppfolgingState = {
     underOppfolging: false,
-    status: Status.PENDING,
+    status: Status.IKKE_STARTET,
 };
 
 //  Reducer
@@ -26,8 +26,8 @@ export default function reducer(state: OppfolgingState = initialState, action: H
             return {...state, status: Status.OK, underOppfolging: action.oppfolging.underOppfolging};
         case ActionType.HENT_OPPFOLGING_FEILET:
             return {...state, status: Status.FEILET};
-        case ActionType.HENT_OPPFOLGING_PENDING:
-            return {...state, status: Status.PENDING};
+        case ActionType.HENT_OPPFOLGING_LASTER:
+            return {...state, status: Status.LASTER};
         default:
             return state;
     }
@@ -54,8 +54,8 @@ function hentOppfolgingFeilet(): HentOppfolgingFEILETAction {
     };
 }
 
-function hentOppfolgingPending(): HentOppfolgingPENDINGAction {
+function hentOppfolgingPending(): HentOppfolgingLASTERAction {
     return {
-        type: ActionType.HENT_OPPFOLGING_PENDING,
+        type: ActionType.HENT_OPPFOLGING_LASTER,
     };
 }

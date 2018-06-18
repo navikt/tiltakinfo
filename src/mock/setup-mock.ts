@@ -14,7 +14,7 @@ export function setupMock() {
     } else {
         console.log('### FULL MOCK AKTIVERT! ###');
     }
-    const unleashUrl = API.getUnleash + featureQueryParams();
+    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoMvp]);
     fetchMock.get(unleashUrl, respondWith({
         [tiltakinfoMvp]: true,
     }));
