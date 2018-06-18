@@ -4,6 +4,8 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { Brodsmuler } from './brodsmuler';
 import { FlereTiltak } from './flere-tiltak';
+import { Tiltak } from './tiltak';
+import { Informasjon } from './informasjon';
 
 interface StateProps {
 }
@@ -23,7 +25,9 @@ class Startside extends React.Component<StartsideProps> {
         return (
             <>
                 <Brodsmuler/>
-                <FlereTiltak />
+                <Informasjon/>
+                <Tiltak/>
+                <FlereTiltak/>
             </>
         );
     }
