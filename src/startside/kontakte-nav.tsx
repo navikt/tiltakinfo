@@ -19,7 +19,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     }
 
     render() {
-        const lenkeAktivitetsplan = '/aktivitetsplan'; // tslint:disable-line
+        const lenkeAktivitetsplan = '/aktivitetsplan';
         const lenkeInfo = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Nyheter/lag-din-egen-aktivitetsplan-p%C3%A5-ditt-nav'; // tslint:disable-line
         const {underOppfolging} = this.props;
         return (
