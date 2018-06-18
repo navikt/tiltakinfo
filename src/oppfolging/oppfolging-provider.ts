@@ -11,7 +11,6 @@ interface OwnProps {
 
 interface StateProps {
     oppfolgingStatus: Status;
-    underOppfolging: boolean;
 }
 
 interface DispatchProps {
@@ -39,7 +38,6 @@ class OppfolgingProvider extends React.Component<OppfolgingProviderProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolgingStatus: state.oppfolging.status,
-    underOppfolging: state.oppfolging.underOppfolging,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
