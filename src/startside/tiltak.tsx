@@ -7,7 +7,8 @@ export function Tiltak() {
     const tiltakListe = [];
     tiltakListe.push({
         tittel: 'Lønnstilskudd',
-        hvem: 'Deg som sliter med å få jobb på vanlige lønnsvilkår, har en kronisk eller langvarig sykdom, eller graviditet.',
+        hvem: 'Deg som sliter med å få jobb på vanlige lønnsvilkår, ' +
+        'har en kronisk eller langvarig sykdom, eller graviditet.',
         mal: 'Styrke kompetansen og motivasjonen din som jobbsøker, og å hjelpe deg med å søke jobb.',
         ikon: require('../ikoner/tiltak-01.svg'),
         style: 'style1',
@@ -23,7 +24,7 @@ export function Tiltak() {
     return (
         <section className="tiltak-oversikt">
             {tiltakListe.map((tiltak) =>
-                <div className="tiltak">
+                <div key={tiltak.tittel} className="tiltak">
                     <div className={`tiltak-header ${tiltak.style}`}>
                         <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
                     </div>
