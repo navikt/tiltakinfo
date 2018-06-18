@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
-import { hentOppfolging } from '../oppfolging/oppfolging-duck';
+import { hentOppfolging } from './oppfolging-duck';
 import { Status } from '../api/datalaster';
 
 interface OwnProps {
