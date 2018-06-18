@@ -1,23 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
-import { hentUnleash, UnleashState } from './unleash-duck';
-import { AppState } from '../redux/reducer';
-import Datalaster from '../api/datalaster';
+import { hentUnleash } from './unleash-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
-}
-
-interface StateProps {
-    features: UnleashState;
 }
 
 interface DispatchProps {
     doHentUnleash: () => void;
 }
 
-type UnleashProviderProps = OwnProps & StateProps & DispatchProps;
+type UnleashProviderProps = OwnProps & DispatchProps;
 
 class UnleashProvider extends React.Component<UnleashProviderProps> {
     constructor(props: UnleashProviderProps) {
@@ -27,20 +21,12 @@ class UnleashProvider extends React.Component<UnleashProviderProps> {
         this.props.doHentUnleash();
     }
     render() {
-        return (
-            <Datalaster avhengigheter={[this.props.features]}>
-                {this.props.children}
-            </Datalaster>
-        );
+        return this.props.children;
     }
 }
-
-const mapStateToProps = (state: AppState): StateProps => ({
-    features: state.unleash,
-});
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentUnleash: () => hentUnleash()(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UnleashProvider);
+export default connect(null, mapDispatchToProps)(UnleashProvider);
