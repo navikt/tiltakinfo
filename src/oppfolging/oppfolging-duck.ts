@@ -8,11 +8,10 @@ import {
 import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
-import { Status } from '../api/datalaster';
+import { DataElement, Status } from '../api/datalaster';
 
-export interface OppfolgingState {
+export interface OppfolgingState extends DataElement {
     underOppfolging: boolean;
-    status: Status;
 }
 
 export const initialState: OppfolgingState = {
