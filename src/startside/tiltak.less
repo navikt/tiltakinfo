@@ -4,9 +4,10 @@
     display: flex;
 
     .tiltak {
-        background-color: @white;
         border-radius: .5rem;
-        width: 50%
+        width: 50%;
+        display: flex;
+        flex-direction: column;
     }
 
     .tiltak-header {
@@ -26,7 +27,9 @@
     }
 
     .tiltak-innhold {
+        background-color: @white;
         padding: 2rem;
+        flex-grow: 2;
     }
 
     .tiltak-ikon {
@@ -39,4 +42,7 @@
         margin-right: 2rem;
     }
 
+    .lenkepanel {
+        margin-top: 0.4rem;
+    }
 }
