@@ -2,11 +2,12 @@
 
 .tiltak-oversikt {
     display: flex;
+    flex-direction: column;
 
     .tiltak {
-        background-color: @white;
         border-radius: .5rem;
-        width: 50%
+        display: flex;
+        flex-direction: column;
     }
 
     .tiltak-header {
@@ -26,7 +27,9 @@
     }
 
     .tiltak-innhold {
+        background-color: @white;
         padding: 2rem;
+        flex-grow: 2;
     }
 
     .tiltak-ikon {
@@ -35,8 +38,30 @@
         bottom: -2.5rem;
     }
 
-    .tiltak:not(:last-child) {
-        margin-right: 2rem;
+    .tiltak:not(:first-child) {
+        margin-top: 2rem;
     }
 
+    .lenkepanel {
+        margin-top: 0.4rem;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .tiltak-oversikt {
+        flex-direction: row;
+
+        .tiltak {
+            width: 50%;
+        }
+
+        .tiltak:not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        .tiltak:not(:first-child) {
+            margin-top: 0;
+        }
+    }
 }

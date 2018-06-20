@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import './tiltak.less';
+import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 
 export function Tiltak() {
 
@@ -12,6 +13,7 @@ export function Tiltak() {
         mal: 'Styrke kompetansen og motivasjonen din som jobbsøker, og å hjelpe deg med å søke jobb.',
         ikon: require('../ikoner/tiltak-01.svg'),
         style: 'style1',
+        url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Tilskudd+til+lonnsutgifter', // tslint:disable-line:max-line-length
     });
     tiltakListe.push({
         tittel: 'Oppfølging',
@@ -19,6 +21,7 @@ export function Tiltak() {
         mal: 'Styrke kompetansen og motivasjonen din som jobbsøker, og å hjelpe deg med å søke jobb.',
         ikon: require('../ikoner/tiltak-02.svg'),
         style: 'style2',
+        url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Relatert+innhold/oppf%C3%B8lging', // tslint:disable-line:max-line-length
     });
 
     return (
@@ -35,6 +38,9 @@ export function Tiltak() {
                         <Element>Mål</Element>
                         <Normaltekst>{tiltak.mal}</Normaltekst>
                     </div>
+                    <Lenkepanel href={tiltak.url} tittelProps="element">
+                        {`Les mer om ${tiltak.tittel.toLowerCase()}`}
+                    </Lenkepanel>
                 </div>
             )}
         </section>
