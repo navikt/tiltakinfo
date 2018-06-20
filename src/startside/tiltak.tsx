@@ -38,7 +38,9 @@ export function Tiltak() {
                         <Element>Mål</Element>
                         <Normaltekst>{tiltak.mal}</Normaltekst>
                     </div>
-                    <Lenkepanel href={tiltak.url} tittelProps="element">Lenke</Lenkepanel>
+                    <Lenkepanel href={tiltak.url} tittelProps="element">
+                        {`Les mer om ${tiltak.tittel.toLowerCase()}`}
+                    </Lenkepanel>
                 </div>
             )}
         </section>
