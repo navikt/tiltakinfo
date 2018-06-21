@@ -7,6 +7,7 @@ import 'nav-frontend-knapper-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import Datalaster from '../api/datalaster';
+import tekst from '../finn-tekst';
 
 interface StateProps {
     oppfolging: OppfolgingState;
@@ -32,26 +33,17 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
                     {oppfolging.underOppfolging && (
                         <>
-                            <Normaltekst>
-                                Ta gjerne kontakt med NAV-kontoret hvis du vil drøfte dine muligheter for tiltak.
-                                På nav.no kan du lage din egen aktivitetsplan og du kan starte en dialog med veilederen
-                                din når du er inne i planen.
-                            </Normaltekst>
+                            <Normaltekst>{tekst('startside-kontaktenav-takontakt-underoppfolging')}</Normaltekst>
                             <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                Gå til aktivitetsplanen
+                                {tekst('startside-kontaktenav-lenke-underoppfolging')}
                             </a>
                         </>
                     )}
                     {!oppfolging.underOppfolging && (
                         <>
-                            <Normaltekst>
-                                Ta gjerne kontakt med NAV-kontoret hvis du vil drøfte dine muligheter for tiltak.
-                                På nav.no kan du lage din egen aktivitetsplan og du kan starte en dialog med veilederen
-                                din
-                                når du er inne i planen.
-                            </Normaltekst>
+                            <Normaltekst>{tekst('startside-kontaktenav-takontakt-ikkeunderoppfolging')}</Normaltekst>
                             <a className="knapp knapp--hoved" href={lenkeInfo}>
-                                Les mer om aktivitetsplanen
+                                {tekst('startside-kontaktenav-lenke-ikkeunderoppfolging')}
                             </a>
                         </>
                     )}

@@ -15,7 +15,6 @@
     "eject": "react-scripts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
     "start-mock:halv": "cross-env REACT_APP_MOCK_HALV=true npm-run-all -p start:*",
-    "build:tekster": "node ./src/utils/build-tekster.js",
     "build": "npm run build:ts"
   },
   "dependencies": {
