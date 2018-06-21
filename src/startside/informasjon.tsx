@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Ingress, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './informasjon.less';
-import tekst from '../tekster-generering/finn-tekst';
+import tekst from '../finn-tekst';
 
 export function Informasjon() {
 

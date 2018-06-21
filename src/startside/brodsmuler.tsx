@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'nav-frontend-lenker-style';
 import './brodsmuler.less';
-import tekst from '../tekster-generering/finn-tekst';
+import tekst from '../finn-tekst';
 
 export function Brodsmuler () {
 

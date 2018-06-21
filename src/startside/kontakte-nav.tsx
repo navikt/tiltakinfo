@@ -7,7 +7,7 @@ import 'nav-frontend-knapper-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import Datalaster from '../api/datalaster';
-import tekst from '../tekster-generering/finn-tekst';
+import tekst from '../finn-tekst';
 
 interface StateProps {
     oppfolging: OppfolgingState;
