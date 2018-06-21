@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "/tiltakinfo",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build:tekster && react-scripts start",
     "build:ts": "react-scripts build",
     "deploy": "npm run build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
@@ -15,8 +15,8 @@
     "eject": "react-scripts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
     "start-mock:halv": "cross-env REACT_APP_MOCK_HALV=true npm-run-all -p start:*",
-    "build:tekster": "node ./src/utils/build-tekster.js",
-    "build": "npm run build:ts"
+    "build:tekster": "node ./src/tekster-generering/build-tekster.js",
+    "build": "npm run build:tekster && npm run build:ts"
   },
   "dependencies": {
     "@nutgaard/react-scripts": "0.0.7",
