@@ -43,7 +43,7 @@ export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
 
 function hentOppfolgingOk(oppfolging: OppfolgingState): HentOppfolgingOKAction {
 
-    (window as any).frontendlogger.event('Tiltakinfo-sidevisning', {'underOppfolging:': oppfolging.underOppfolging}, {}); // tslint:disable-line
+    (window as any).frontendlogger.event('Tiltakinfo-sidevisning', {'underOppfolging': oppfolging.underOppfolging}, {}); // tslint:disable-line
 
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
