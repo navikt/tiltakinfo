@@ -23,7 +23,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
     render() {
         const lenkeAktivitetsplan = '/aktivitetsplan';
-        const lenkeInfo = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Nyheter/lag-din-egen-aktivitetsplan-p%C3%A5-ditt-nav'; // tslint:disable-line
         const {oppfolging} = this.props;
         return (
             <Datalaster avhengigheter={[oppfolging]}>
@@ -42,9 +41,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                     {!oppfolging.underOppfolging && (
                         <>
                             <Normaltekst>{tekst('startside-kontaktenav-takontakt-ikkeunderoppfolging')}</Normaltekst>
-                            <a className="knapp knapp--hoved" href={lenkeInfo}>
-                                {tekst('startside-kontaktenav-lenke-ikkeunderoppfolging')}
-                            </a>
                         </>
                     )}
                 </section>

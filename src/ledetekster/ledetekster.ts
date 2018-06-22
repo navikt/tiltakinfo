@@ -10,9 +10,8 @@ export default {
     'startside-informasjon-ingress': 'Av og til trenger man litt ekstra for å komme i jobb. Snakk med oss, så kan vi sammen vurdere om et tiltak kan passe for deg.',
     'startside-informasjon-totiltak': 'Her er to tiltak som kanskje passer for deg',
     'startside-tiltak-hva': 'Hva er dette tiltaket?',
-    'startside-kontaktenav-lenke-ikkeunderoppfolging': 'Les mer om aktivitetsplanen',
     'startside-kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
     'startside-kontaktenav-snakkmednav': 'Snakk med NAV om tiltak',
-    'startside-kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om tiltak. Du kan også sende en melding til veilederen din via aktivitetsplanen din på nav.no.',
+    'startside-kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om tiltak. Du kan også sende en melding til NAV via aktivitetsplanen på nav.no.',
     'startside-kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om tiltak. Du kan også sende en melding til veilederen din via aktivitetsplanen din på nav.no.'
 };
