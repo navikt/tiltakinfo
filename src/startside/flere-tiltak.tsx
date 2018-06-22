@@ -9,10 +9,10 @@ const lenkeTiltak = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+fo
 export function FlereTiltak() {
     return (
         <section className="flere-tiltak">
-            <Undertittel className="blokk-xs">{tekst('startside-fleretiltak-fleretiltak')}</Undertittel>
+            <Undertittel className="blokk-xs">{tekst('startside-fleretiltak-header')}</Undertittel>
             <Normaltekst>
                 {tekst('startside-fleretiltak-passedeg')}&nbsp;
-                <a className="lenke" href={lenkeTiltak}>{tekst('startside-fleretiltak-lesmer')}</a>
+                <a className="lenke" href={lenkeTiltak}>{tekst('startside-fleretiltak-lenke')}</a>
             </Normaltekst>
         </section>
     );
