@@ -29,7 +29,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav">
 
-                    <Undertittel className="blokk-xs">Snakk med oss om tiltak</Undertittel>
+                    <Undertittel className="blokk-xs">{tekst('startside-kontaktenav-snakkmednav')}</Undertittel>
 
                     {oppfolging.underOppfolging && (
                         <>

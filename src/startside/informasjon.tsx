@@ -7,9 +7,9 @@ export function Informasjon() {
 
     return (
         <section className="informasjon">
-            <Innholdstittel className="blokk-s">{tekst('startside-informasjon-hjelp')}</Innholdstittel>
-            <Ingress className="blokk-s">{tekst('startside-informasjon-registrert')}</Ingress>
-            <Normaltekst>{tekst('startside-informasjon-tiltak')}</Normaltekst>
+            <Innholdstittel className="blokk-s">{tekst('startside-informasjon-header')}</Innholdstittel>
+            <Ingress className="blokk-s">{tekst('startside-informasjon-ingress')}</Ingress>
+            <Normaltekst>{tekst('startside-informasjon-totiltak')}</Normaltekst>
         </section>
     );
 }
