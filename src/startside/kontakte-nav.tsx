@@ -27,7 +27,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
         const {oppfolging} = this.props;
         return (
             <Datalaster avhengigheter={[oppfolging]}>
-                <section className="kontakte-nav">
+                <section className="kontakte-nav blokk-xl">
 
                     <Undertittel className="blokk-xs">{tekst('startside-kontaktenav-snakkmednav')}</Undertittel>
 

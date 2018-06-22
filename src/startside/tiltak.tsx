@@ -23,7 +23,7 @@ export function Tiltak() {
     });
 
     return (
-        <section className="tiltak-oversikt">
+        <section className="tiltak-oversikt blokk-m">
             {tiltakListe.map((tiltak) =>
                 <div key={tiltak.tittel} className="tiltak">
                     <div className={`tiltak-header ${tiltak.style}`}>
