@@ -11,11 +11,15 @@ export function fetchThenDispatch<T>(
     fetchFunction: () => Promise<T>,
     { ok, feilet, pending }: StatusActions<T>
 ): (dispatch: Dispatch) => Promise<void> {
-    return (dispatch: Dispatch): Promise<void> => {
+    return async (dispatch: Dispatch): Promise<void> => {
         dispatch(pending());
-        return fetchFunction()
-            .then(sendResultatTilDispatch<T>(dispatch, ok))
-            .catch(handterFeil(dispatch, feilet));
+        try {
+            const data = await fetchFunction();
+            sendResultatTilDispatch<T>(dispatch, ok)(data);
+
+        } catch (e) {
+            handterFeil(dispatch, feilet)(e);
+        }
     };
 }
 
@@ -37,10 +41,10 @@ function handterFeil(dispatch: Dispatch, feiletAction: () => Handling): (error: 
     };
 }
 
-export function fetchToJson<ResponseInterface>(url: string, config: RequestInit): Promise<ResponseInterface> {
-    return fetch(url, config)
-        .then(sjekkStatuskode)
-        .then(toJson);
+export async function fetchToJson<T>(url: string, config: RequestInit): Promise<T> {
+    const respons = await fetch(url, config);
+    const gyldigRespons = sjekkStatuskode(respons);
+    return await toJson<T>(gyldigRespons);
 }
 
 class FetchError extends Error {
@@ -59,9 +63,6 @@ function sjekkStatuskode(response: Response): Response {
     throw new FetchError(response.statusText || response.type, response);
 }
 
-function toJson(response: Response) {
-    if (response.status !== 204) { // No content
-        return response.json();
-    }
-    return null;
+function toJson<T>(response: Response): Promise<T> {
+    return response.json();
 }
