@@ -11,31 +11,25 @@
     }
 
     .tiltak-header {
-        height: 10rem;
+        height: 15.6rem;
         border-radius: .5rem .5rem 0 0;
-        text-align: center;
+        padding: 24px 24px 0;
     }
 
-    .style1 {
+    .style   {
         background-color: #cce1f3;
-        border-bottom: .5rem solid #99c2e8;
-    }
-
-    .style2 {
-        background-color: #cde7d8;
-        border-bottom: .5rem solid #9db7a8;
+        border-bottom: .2rem solid #99c2e8;
     }
 
     .tiltak-innhold {
         background-color: @white;
-        padding: 2rem 1rem 2rem;
+        padding: 2rem 1.5rem;
         flex-grow: 2;
     }
 
     .tiltak-ikon {
-        height: 7rem;
         position: relative;
-        bottom: -2.5rem;
+        bottom: -3.76rem;
     }
 
     .tiltak:not(:first-child) {
@@ -62,6 +56,9 @@
 
         .tiltak:not(:first-child) {
             margin-top: 0;
+        }
+        .tiltak-ikon {
+            bottom: -1.85rem;
         }
     }
 }
