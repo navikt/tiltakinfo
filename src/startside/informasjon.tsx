@@ -5,7 +5,7 @@ import tekst from '../finn-tekst';
 export function Informasjon() {
 
     return (
-        <section className="blokk-m">
+        <section className="blokk-s">
             <Sidetittel className="blokk-s">{tekst('startside-informasjon-header')}</Sidetittel>
             <Ingress className="blokk-s">{tekst('startside-informasjon-ingress')}</Ingress>
             <Normaltekst>{tekst('startside-informasjon-totiltak')}</Normaltekst>

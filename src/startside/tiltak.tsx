@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Element, EtikettLiten, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
-import tekst from '../finn-tekst';
 import tiltakListe from '../ledetekster/tiltak-config';
 
 export function Tiltak() {
@@ -11,12 +10,10 @@ export function Tiltak() {
             {tiltakListe.map((tiltak) =>
                 <div key={tiltak.tittel} className="tiltak">
                     <div className="tiltak-header">
-                        <EtikettLiten className="blokk-xxs">TILTAK</EtikettLiten>
                         <Innholdstittel className="tiltak-header-tekst">{tiltak.tittel}</Innholdstittel>
                         <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
                     </div>
                     <div className="tiltak-innhold">
-                        <Element className="blokk-xxs">{tekst('startside-tiltak-hva')}</Element>
                         <Normaltekst>{tiltak.hva}</Normaltekst>
                     </div>
                     <Lenkepanel href={tiltak.url} tittelProps="element">
