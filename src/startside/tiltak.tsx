@@ -10,9 +10,9 @@ export function Tiltak() {
         <section className="tiltak-oversikt blokk-m">
             {tiltakListe.map((tiltak) =>
                 <div key={tiltak.tittel} className="tiltak">
-                    <div className={`tiltak-header ${tiltak.style}`}>
-                        <EtikettLiten className="text-align--left blokk-xxs">TILTAK</EtikettLiten>
-                        <Innholdstittel>{tiltak.tittel}</Innholdstittel>
+                    <div className="tiltak-header">
+                        <EtikettLiten className="blokk-xxs">TILTAK</EtikettLiten>
+                        <Innholdstittel className="tiltak-header-tekst">{tiltak.tittel}</Innholdstittel>
                         <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
                     </div>
                     <div className="tiltak-innhold">
