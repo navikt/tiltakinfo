@@ -17,7 +17,7 @@ export function Tiltak() {
                         <Normaltekst>{tiltak.hva}</Normaltekst>
                     </div>
                     <Lenkepanel href={tiltak.url} tittelProps="element">
-                        {`Les mer om ${tiltak.tittel}`}
+                        {`Les mer om ${tiltak.tittel.toLowerCase()}`}
                     </Lenkepanel>
                 </div>
             )}
