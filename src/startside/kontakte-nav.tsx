@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import './kontakte-nav.less';
@@ -28,7 +28,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav blokk-xl">
 
-                    <Innholdstittel className="blokk-xs">{tekst('startside-kontaktenav-snakkmednav')}</Innholdstittel>
+                    <Systemtittel className="blokk-s">{tekst('startside-kontaktenav-snakkmednav')}</Systemtittel>
 
                     {oppfolging.underOppfolging && (
                         <>
