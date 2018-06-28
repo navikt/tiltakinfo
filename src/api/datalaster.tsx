@@ -17,11 +17,16 @@ interface DatalasterProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
 }
 
-const Datalaster = ({avhengigheter, children}: DatalasterProps) => {
-    if (avhengigheter.some(a => a.status === Status.LASTER)) {
-        return <Spinner type="XXL" />;
+class Datalaster extends React.Component<DatalasterProps> {
+    constructor(props: DatalasterProps) {
+        super(props);
     }
-    return children;
-};
+    render() {
+        if (this.props.avhengigheter.every(a => a.status === Status.OK)) {
+            return this.props.children;
+        }
+        return <Spinner type="XXL"/>;
+    }
+}
 
 export default Datalaster;

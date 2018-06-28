@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import { tiltakinfoABTestingLesMerOmTiltaket, UnleashState } from './unleash/unleash-duck';
 import Startside from './startside/startside';
-import { UnleashState } from './unleash/unleash-duck';
 import { AppState } from './redux/reducer';
 import { connect } from 'react-redux';
 import Datalaster from './api/datalaster';
+import Redirect from './redirect';
 
 interface StateProps {
     features: UnleashState;
@@ -22,11 +23,14 @@ class Innhold extends React.Component<InnholdProps> {
         return (
             <Datalaster avhengigheter={[this.props.features]}>
                 <main className="maincontent">
-                    <Switch location={this.props.history.location}>
+                    <div>Test over</div>
+                    <Switch location={this.props.location}>
+                        <Route path={'/1'} component={Startside}/>
+                        <Route path={'/2'} component={Startside}/>
                         <Route
-                            exact={true}
-                            path="/"
-                            component={Startside}
+                            path={'/'}
+                            component={() => this.props.features[tiltakinfoABTestingLesMerOmTiltaket] === true ?
+                                <Redirect path={'/1'}/> : <Redirect path={'/2'}/>}
                         />
                     </Switch>
                 </main>
