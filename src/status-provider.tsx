@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
-import { hentStatus } from './oppfolging/status-duck';
+import Spinner from 'nav-frontend-spinner';
+import { hentStatus, StatusState } from './oppfolging/status-duck';
 import { AppState } from './redux/reducer';
-import Datalaster, { DataElement } from './api/datalaster';
+import Datalaster from './api/datalaster';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
 }
 
 interface StateProps {
-    status: DataElement;
+    status: StatusState;
 }
 
 interface DispatchProps {
@@ -29,11 +30,16 @@ class StatusProvider extends React.Component<StatusProviderProps> {
     }
 
     render() {
-        return (
-            <Datalaster avhengigheter={[this.props.status]}>
-                {this.props.children}
-            </Datalaster>
-        );
+        if (!this.props.status.harGyldigOidcToken) {
+            location.href = '/veilarbstepup/oidc?url=/tiltakinfo';
+            return (<Spinner type="XXL"/>);
+        } else {
+            return (
+                <Datalaster avhengigheter={[this.props.status]}>
+                    {this.props.children}
+                </Datalaster>
+            );
+        }
     }
 }
 
