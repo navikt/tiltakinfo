@@ -3,6 +3,7 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 import tiltakListe from '../ledetekster/tiltak-config';
+import { Route } from 'react-router-dom';
 
 export function Tiltak() {
     return (
@@ -16,9 +17,15 @@ export function Tiltak() {
                     <div className="tiltak-innhold">
                         <Normaltekst>{tiltak.hva}</Normaltekst>
                     </div>
-                    <Lenkepanel href={tiltak.url} tittelProps="element">
-                        {`Les mer om ${tiltak.tittel.toLowerCase()}`}
-                    </Lenkepanel>
+                    <Route
+                        path="/1"
+                        render={() => (
+                        <Lenkepanel href={tiltak.url} tittelProps="element">
+                            {`Les mer om ${tiltak.tittel.toLowerCase()}`}
+                        </Lenkepanel>
+                    )}
+                    />
+
                 </div>
             )}
         </section>

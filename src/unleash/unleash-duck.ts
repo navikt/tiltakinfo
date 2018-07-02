@@ -6,14 +6,14 @@ import { getUnleashFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
-export const tiltakinfoMvp = 'tiltakinfo.mvp';
+export const tiltakinfoABTestingLesMerOmTiltaket = 'tiltakinfo.abtesting.lesmeromtiltaket';
 
 export interface UnleashState extends DataElement {
-    [tiltakinfoMvp]: boolean;
+    [tiltakinfoABTestingLesMerOmTiltaket]: boolean;
 }
 
 export const initialState: UnleashState = {
-    [tiltakinfoMvp]: false,
+    [tiltakinfoABTestingLesMerOmTiltaket]: false,
     status: Status.IKKE_STARTET
 };
 
@@ -21,7 +21,10 @@ export const initialState: UnleashState = {
 export default function reducer(state: UnleashState = initialState, action: Handling): UnleashState {
     switch (action.type) {
         case ActionType.HENT_UNLEASH_OK:
-            return { [tiltakinfoMvp]: action.unleash[tiltakinfoMvp], status: Status.OK };
+            return {
+                [tiltakinfoABTestingLesMerOmTiltaket]: action.unleash[tiltakinfoABTestingLesMerOmTiltaket],
+                status: Status.OK
+            };
         case ActionType.HENT_UNLEASH_LASTER:
             return { ...state, status: Status.LASTER };
         case ActionType.HENT_UNLEASH_FEILET:
@@ -32,7 +35,7 @@ export default function reducer(state: UnleashState = initialState, action: Hand
 }
 
 export function hentUnleash(): (dispatch: Dispatch) => Promise<void> {
-    return fetchThenDispatch<UnleashState>(() => getUnleashFetch([tiltakinfoMvp]), {
+    return fetchThenDispatch<UnleashState>(() => getUnleashFetch([tiltakinfoABTestingLesMerOmTiltaket]), {
         ok: hentUnleashOK,
         feilet: hentUnleashFEILET,
         pending: hentUnleashLASTER,

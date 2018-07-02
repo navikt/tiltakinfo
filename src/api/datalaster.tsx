@@ -18,10 +18,10 @@ interface DatalasterProps {
 }
 
 const Datalaster = ({avhengigheter, children}: DatalasterProps) => {
-    if (avhengigheter.some(a => a.status === Status.LASTER)) {
-        return <Spinner type="XXL" />;
+    if (avhengigheter.every(a => a.status === Status.OK)) {
+        return children;
     }
-    return children;
+    return <Spinner type="XXL"/>;
 };
 
 export default Datalaster;

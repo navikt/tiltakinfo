@@ -17,11 +17,11 @@ class App extends React.Component {
     render() {
         return (
             <StoreProvider store={store}>
-                <BrowserRouter basename="/tiltakinfo">
-                    <DataProvider>
+                <DataProvider>
+                    <BrowserRouter basename="/tiltakinfo">
                         <Innhold/>
-                    </DataProvider>
-                </BrowserRouter>
+                    </BrowserRouter>
+                </DataProvider>
             </StoreProvider>
         );
     }
