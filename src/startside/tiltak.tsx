@@ -14,7 +14,7 @@ export function Tiltak() {
                         <Innholdstittel className="tiltak-header-tekst">{tiltak.tittel}</Innholdstittel>
                         <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
                     </div>
-                    <div className="tiltak-innhold">
+                    <div className="tiltak-innhold blokk-xxs">
                         <Normaltekst>{tiltak.hva}</Normaltekst>
                     </div>
                     <Route
