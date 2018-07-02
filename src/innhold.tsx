@@ -23,7 +23,6 @@ class Innhold extends React.Component<InnholdProps> {
         return (
             <Datalaster avhengigheter={[this.props.features]}>
                 <main className="maincontent">
-                    <div>Test over</div>
                     <Switch location={this.props.location}>
                         <Route path={'/1'} component={Startside}/>
                         <Route path={'/2'} component={Startside}/>
