@@ -6,6 +6,7 @@ import Innhold from './innhold';
 import DataProvider from './data-provider';
 import { erLocalhost, erMock } from './mock/utils';
 import { setupMock } from './mock/setup-mock';
+import StatusProvider from './status-provider';
 
 if (erMock() || erLocalhost()) {
     setupMock();
@@ -17,11 +18,13 @@ class App extends React.Component {
     render() {
         return (
             <StoreProvider store={store}>
-                <DataProvider>
-                    <BrowserRouter basename="/tiltakinfo">
-                        <Innhold/>
-                    </BrowserRouter>
-                </DataProvider>
+                <StatusProvider>
+                    <DataProvider>
+                        <BrowserRouter basename="/tiltakinfo">
+                            <Innhold/>
+                        </BrowserRouter>
+                    </DataProvider>
+                </StatusProvider>
             </StoreProvider>
         );
     }

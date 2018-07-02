@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
 import { hentUnleash } from './unleash/unleash-duck';
 import { hentOppfolging } from './oppfolging/oppfolging-duck';
+import { AppState } from './redux/reducer';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -13,16 +14,25 @@ interface DispatchProps {
     doHentOppfolging: () => void;
 }
 
-type UnleashProviderProps = OwnProps & DispatchProps;
+interface StateProps {
+    harGyldigOidcToken: boolean;
+}
+
+type UnleashProviderProps = OwnProps & StateProps & DispatchProps;
 
 class DataProvider extends React.Component<UnleashProviderProps> {
     constructor(props: UnleashProviderProps) {
         super(props);
     }
+
     componentDidMount() {
+        if (!this.props.harGyldigOidcToken) {
+            location.href = '/veilarbstepup/oidc?url=/tiltakinfo';
+        }
         this.props.doHentUnleash();
         this.props.doHentOppfolging();
     }
+
     render() {
         return this.props.children;
     }
@@ -33,4 +43,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(DataProvider);
+const mapStateToProps = (state: AppState): StateProps => ({
+    harGyldigOidcToken: state.status.harGyldigOidcToken,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

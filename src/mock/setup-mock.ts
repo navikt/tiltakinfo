@@ -21,4 +21,7 @@ export function setupMock() {
     fetchMock.get(API.getOppfolging, respondWith(({
         underOppfolging: true,
     })));
+    fetchMock.get(API.getStatus, respondWith(({
+        harGyldigOidcToken: true,
+    })));
 }

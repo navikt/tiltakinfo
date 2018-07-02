@@ -1,6 +1,7 @@
 import { fetchToJson } from './fetch-utils';
 import { initialState as unleashInitialState, UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
+import { StatusState } from '../oppfolging/status-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -19,16 +20,18 @@ const requestConfig: RequestInit = {
 interface ApiProps {
     getUnleash: string;
     getOppfolging: string;
+    getStatus: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
     const reduceFunc = (acc: string, toggle: string, i: number) => `${acc}${i === 0 ? '?' : '&'}feature=${toggle}`;
     return features.reduce(reduceFunc, '');
-} ;
+};
 
 export const API: ApiProps = {
     getUnleash: '/feature/',
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
+    getStatus: '/veilarbstepup/status',
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -39,4 +42,8 @@ export function getUnleashFetch(features: string[]): Promise<UnleashState> {
 
 export function getOppfolgingFetch(): Promise<OppfolgingState> {
     return fetchToJson(API.getOppfolging, requestConfig);
+}
+
+export function getStatusFetch(): Promise<StatusState> {
+    return fetchToJson(API.getStatus, requestConfig);
 }
