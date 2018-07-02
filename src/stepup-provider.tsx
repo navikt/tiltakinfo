@@ -28,8 +28,7 @@ class StepupProvider extends React.Component<StepupProviderProps> {
     render() {
         return !this.props.status.harGyldigOidcToken
             ? <Spinner type="XXL"/>
-            : <Spinner type="XXL"/>;
-            // : this.props.children;
+            : this.props.children;
     }
 }
 
