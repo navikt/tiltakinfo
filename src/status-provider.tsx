@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
-import Spinner from 'nav-frontend-spinner';
 import { hentStatus, StatusState } from './oppfolging/status-duck';
 import { AppState } from './redux/reducer';
 import Datalaster from './api/datalaster';
+import StepupProvider from './stepup-provider';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -30,16 +30,13 @@ class StatusProvider extends React.Component<StatusProviderProps> {
     }
 
     render() {
-        if (!this.props.status.harGyldigOidcToken) {
-            location.href = '/veilarbstepup/oidc?url=/tiltakinfo';
-            return (<Spinner type="XXL"/>);
-        } else {
-            return (
-                <Datalaster avhengigheter={[this.props.status]}>
+        return (
+            <Datalaster avhengigheter={[this.props.status]}>
+                <StepupProvider>
                     {this.props.children}
-                </Datalaster>
-            );
-        }
+                </StepupProvider>
+            </Datalaster>
+        );
     }
 }
 
