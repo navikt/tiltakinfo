@@ -7,7 +7,7 @@ import 'nav-frontend-knapper-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import Datalaster from '../api/datalaster';
-import tekst from '../finn-tekst';
+import Tekst from '../finn-tekst';
 
 interface StateProps {
     oppfolging: OppfolgingState;
@@ -28,19 +28,21 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav blokk-xl">
 
-                    <Systemtittel className="blokk-s">{tekst('startside-kontaktenav-snakkmednav')}</Systemtittel>
+                    <Systemtittel className="blokk-s"><Tekst id={'startside-kontaktenav-snakkmednav'}/></Systemtittel>
 
                     {oppfolging.underOppfolging && (
                         <>
-                            <Normaltekst>{tekst('startside-kontaktenav-takontakt-underoppfolging')}</Normaltekst>
+                            <Normaltekst><Tekst id={'startside-kontaktenav-takontakt-underoppfolging'}/></Normaltekst>
                             <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                {tekst('startside-kontaktenav-lenke-underoppfolging')}
+                                <Tekst id={'startside-kontaktenav-lenke-underoppfolging'}/>
                             </a>
                         </>
                     )}
                     {!oppfolging.underOppfolging && (
                         <>
-                            <Normaltekst>{tekst('startside-kontaktenav-takontakt-ikkeunderoppfolging')}</Normaltekst>
+                            <Normaltekst>
+                                <Tekst id={'startside-kontaktenav-takontakt-ikkeunderoppfolging'}/>
+                            </Normaltekst>
                         </>
                     )}
                 </section>

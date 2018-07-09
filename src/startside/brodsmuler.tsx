@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'nav-frontend-lenker-style';
 import './brodsmuler.less';
-import tekst from '../finn-tekst';
+import Tekst from '../finn-tekst';
 
 export function Brodsmuler () {
 
@@ -12,11 +12,11 @@ export function Brodsmuler () {
             <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
             <div className="brodsmuler__smuler">
 
-                <a href="/dittnav/" className="lenke">{tekst('startside-brodsmuler-dittnav')}</a>
+                <a href="/dittnav/" className="lenke"><Tekst id={'startside-brodsmuler-dittnav'}/></a>
                 <span className="brodsmule__skille">/</span>
-                <a href="/sykefravaer/" className="lenke">{tekst('startside-brodsmuler-dittsykefravaer')}</a>
+                <a href="/sykefravaer/" className="lenke"><Tekst id={'startside-brodsmuler-dittsykefravaer'}/></a>
                 <span className="brodsmule__skille">/</span>
-                <span>{tekst('startside-brodsmuler-tiltak')}</span>
+                <span><Tekst id={'startside-brodsmuler-tiltak'}/></span>
 
             </div>
         </nav>

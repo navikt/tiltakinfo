@@ -5,12 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 You can find the developer guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
 
 ### Editering av tekster direkte i GitHub
-1. For å se tekstnøklene (samsvarer med filnavn), legg på `?vistekster=true` i URL'en.
-F.eks: `https://tjenester-t6.nav.no/tiltakinfo?vistekster=true`.
-2. Finn filen der teksten er definert, under `/src/tekster/tekstfiler`.
-3. Trykk på edit og gjør endringen.
-4. Trykk på `Commit changes` nederst på siden.
-5. På neste side, åpne en pull request (forespørsel om å få gjøre endring) ved å trykke 
-`Create pull request`.
-6. Utviklerne får automatisk beskjed om at pull requesten er oppretter, og aksepterer endringen så fort en
-av dem har mulighet.
+1. For å se tekstnøklene, gå til `https://tjenester.nav.no/tiltakinfo/admin`.
+2. Gå til filen [ledetekster.ts](https://github.com/navikt/tiltakinfo/blob/master/src/ledetekster/ledetekster.ts).
+3. Trykk på blyanten oppe i høyre hjørne for å editere, finn teksten som skal endres, og gjør endringen.
+4. Trykk på `Propose file change` nederst på siden for å opprette en ny branch med endringen.
+5. På neste side under overskrift og ingress, sørg for at `base` er satt til `master` og `compare` er satt til din nye branch, se evt. over endringene, og åpne en pull request (forespørsel om å få ta inn endringen til masterbranchen) ved å trykke `Create pull request`.
+6. Utviklerne får automatisk beskjed om at pull requesten er opprettet, og aksepterer endringen så fort en av dem har mulighet.
