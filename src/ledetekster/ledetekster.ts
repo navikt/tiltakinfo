@@ -12,5 +12,11 @@ export default {
     'startside-kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
     'startside-kontaktenav-snakkmednav': 'Snakk med oss om muligheter',
     'startside-kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',
-    'startside-kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.'
+    'startside-kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',
+    'tiltak-lonnstilskudd-tittel': 'Lønnstilskudd',
+    'tiltak-lonnstilskudd-hva': 'Vet du om en arbeidsgiver som er interessert i å ansette deg? Trenger du litt tid for å komme i gang for fullt? NAV kan dekke deler av lønnen din en stund. Du vurderer sammen med arbeidsgiveren og veilederen din hvor mye NAV skal dekke.',
+    'tiltak-lonnstilskudd-lesmer': 'Les mer om lønnstilskudd',
+    'tiltak-oppfolging-tittel': 'Oppfølging',
+    'tiltak-oppfolging-hva': 'Du kan få veiledning og hjelp til å søke jobb. Kanskje du trenger mer kompetanse eller hjelpt til noen praktiske oppgaver? Ofte kan det også gjøres noen tilpasninger på arbeidsplassen. Du kan få oppfølging både mens du søker og i startfasen etter at du har fått jobb.',
+    'tiltak-oppfolging-lesmer': 'Les mer om oppfølging',
 };
