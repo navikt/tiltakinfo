@@ -42,9 +42,6 @@ export function hentOppfolging(): (dispatch: Dispatch) => Promise<void> {
 }
 
 function hentOppfolgingOk(oppfolging: OppfolgingState): HentOppfolgingOKAction {
-
-    (window as any).frontendlogger.event('tiltaksinfo.underOppfolging', {'underOppfolging': oppfolging.underOppfolging}, {}); // tslint:disable-line
-
     return {
         type: ActionType.HENT_OPPFOLGING_OK,
         oppfolging: oppfolging
