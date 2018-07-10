@@ -1,8 +1,10 @@
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../oppfolging/status-duck';
+import { Data } from './generic-duck';
 
 export enum ActionType {
+    TEST_ACTION = 'TEST_ACTION',
     HENT_UNLEASH_OK = 'HENT_UNLEASH_OK',
     HENT_UNLEASH_FEILET = 'HENT_UNLEASH_FEILET',
     HENT_UNLEASH_LASTER = 'HENT_UNLEASH_LASTER',
@@ -12,6 +14,10 @@ export enum ActionType {
     HENT_STATUS_OK = 'HENT_STATUS_OK',
     HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
     HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
+}
+
+export interface TestAction extends Data {
+    type: ActionType.TEST_ACTION;
 }
 
 export interface HentUnleashOKAction {
@@ -54,6 +60,7 @@ export interface HentStatusFEILETAction {
 }
 
 export type Handling =
+    | TestAction
     | HentUnleashOKAction
     | HentUnleashLASTERAction
     | HentUnleashFEILETAction
