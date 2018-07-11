@@ -28,20 +28,20 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav blokk-xl">
 
-                    <Systemtittel className="blokk-s"><Tekst id={'startside-kontaktenav-snakkmednav'}/></Systemtittel>
+                    <Systemtittel className="blokk-s"><Tekst id={'kontaktenav-snakkmednav'}/></Systemtittel>
 
                     {oppfolging.underOppfolging && (
                         <>
-                            <Normaltekst><Tekst id={'startside-kontaktenav-takontakt-underoppfolging'}/></Normaltekst>
+                            <Normaltekst><Tekst id={'kontaktenav-takontakt-underoppfolging'}/></Normaltekst>
                             <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                <Tekst id={'startside-kontaktenav-lenke-underoppfolging'}/>
+                                <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
                             </a>
                         </>
                     )}
                     {!oppfolging.underOppfolging && (
                         <>
                             <Normaltekst>
-                                <Tekst id={'startside-kontaktenav-takontakt-ikkeunderoppfolging'}/>
+                                <Tekst id={'kontaktenav-takontakt-ikkeunderoppfolging'}/>
                             </Normaltekst>
                         </>
                     )}
