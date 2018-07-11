@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from './redux/dispatch-type';
-import { hentStatus, StatusState } from './oppfolging/status-duck';
-import { AppState } from './redux/reducer';
-import Datalaster from './api/datalaster';
+import { Dispatch } from '../redux/dispatch-type';
+import { hentStatus, StatusState } from './status-duck';
+import { AppState } from '../redux/reducer';
+import Datalaster from '../api/datalaster';
 import StepupProvider from './stepup-provider';
 
 interface OwnProps {

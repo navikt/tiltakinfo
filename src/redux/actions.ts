@@ -1,6 +1,6 @@
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
-import { StatusState } from '../oppfolging/status-duck';
+import { StatusState } from '../status/status-duck';
 import { Data } from './generic-duck';
 
 export enum ActionType {
