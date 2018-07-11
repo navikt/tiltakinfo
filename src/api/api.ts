@@ -2,6 +2,7 @@ import { fetchToJson } from './fetch-utils';
 import { initialState as unleashInitialState, UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
+import { ArbeidsforholdDataState } from '../arbeidsforhold/arbeidsforhold-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -21,6 +22,7 @@ interface ApiProps {
     getUnleash: string;
     getOppfolging: string;
     getStatus: string;
+    getArbeidsforhold: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -32,6 +34,7 @@ export const API: ApiProps = {
     getUnleash: '/feature/',
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
+    getArbeidsforhold: '/syforest'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -46,4 +49,8 @@ export function getOppfolgingFetch(): Promise<OppfolgingState> {
 
 export function getStatusFetch(): Promise<StatusState> {
     return fetchToJson(API.getStatus, requestConfig);
+}
+
+export function getArbeidsforholdFetch(): Promise<ArbeidsforholdDataState> {
+    return fetchToJson(API.getArbeidsforhold, requestConfig);
 }

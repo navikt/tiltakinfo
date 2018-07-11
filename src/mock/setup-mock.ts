@@ -24,4 +24,7 @@ export function setupMock() {
     fetchMock.get(API.getStatus, respondWith(({
         harGyldigOidcToken: true,
     })));
+    fetchMock.get(API.getArbeidsforhold, respondWith(({
+        harArbeidsgiver: true,
+    })));
 }

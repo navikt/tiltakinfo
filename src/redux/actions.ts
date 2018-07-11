@@ -14,6 +14,9 @@ export enum ActionType {
     HENT_STATUS_OK = 'HENT_STATUS_OK',
     HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
     HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
+    HENT_ARBEIDSFORHOLD_OK = 'HENT_ARBEIDSFORHOLD_OK',
+    HENT_ARBEIDSFORHOLD_FEILET = 'HENT_ARBEIDSFORHOLD_FEILET',
+    HENT_ARBEIDSFORHOLD_LASTER = 'HENT_ARBEIDSFORHOLD_LASTER',
 }
 
 export interface TestAction extends Data {
@@ -59,6 +62,18 @@ export interface HentStatusFEILETAction {
     type: ActionType.HENT_STATUS_FEILET;
 }
 
+export interface HentArbeidsforholdOKAction extends Data {
+    type: ActionType.HENT_ARBEIDSFORHOLD_OK;
+}
+
+export interface HentArbeidsforholdLASTERAction {
+    type: ActionType.HENT_ARBEIDSFORHOLD_LASTER;
+}
+
+export interface HentArbeidsforholdFEILETAction {
+    type: ActionType.HENT_ARBEIDSFORHOLD_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -69,4 +84,7 @@ export type Handling =
     | HentOppfolgingFEILETAction
     | HentStatusOKAction
     | HentStatusFEILETAction
-    | HentStatusLASTERAction;
+    | HentStatusLASTERAction
+    | HentArbeidsforholdOKAction
+    | HentArbeidsforholdFEILETAction
+    | HentArbeidsforholdLASTERAction;
