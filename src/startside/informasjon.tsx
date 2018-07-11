@@ -6,9 +6,9 @@ export function Informasjon() {
 
     return (
         <section className="blokk-s">
-            <Sidetittel className="blokk-xs"><Tekst id={'startside-informasjon-header'}/></Sidetittel>
-            <Ingress className="blokk-l"><Tekst id={'startside-informasjon-ingress'}/></Ingress>
-            <Normaltekst><Tekst id={'startside-informasjon-totiltak'}/></Normaltekst>
+            <Sidetittel className="blokk-xs"><Tekst id={'informasjon-header'}/></Sidetittel>
+            <Ingress className="blokk-l"><Tekst id={'informasjon-ingress'}/></Ingress>
+            <Normaltekst><Tekst id={'informasjon-totiltak'}/></Normaltekst>
         </section>
     );
 }
