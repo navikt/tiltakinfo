@@ -3,7 +3,7 @@ import 'nav-frontend-lenker-style';
 import './brodsmuler.less';
 import Tekst from '../finn-tekst';
 
-export function Brodsmuler () {
+export default function Brodsmuler () {
 
     const brodsmuleikon = require('../ikoner/person.svg');
 

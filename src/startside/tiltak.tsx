@@ -5,7 +5,7 @@ import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 import tiltakListe from '../ledetekster/tiltak-config';
 import Tekst from '../finn-tekst';
 
-export function Tiltak() {
+export default function Tiltak() {
     return (
         <section className="tiltak-oversikt blokk-m">
             <Normaltekst className="blokk-s"><Tekst id={'informasjon-totiltak'}/></Normaltekst>

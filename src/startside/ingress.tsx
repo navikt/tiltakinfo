@@ -25,7 +25,7 @@ interface IngressState {
     options: string[];
 }
 
-export class Ingress extends React.Component<IngressProps, IngressState> {
+class Ingress extends React.Component<IngressProps, IngressState> {
     constructor(props: IngressProps) {
         super(props);
         this.state = {

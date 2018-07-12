@@ -6,7 +6,7 @@ import Tekst from '../finn-tekst';
 
 const lenkeTiltak = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb'; // tslint:disable-line
 
-export function FlereTiltak() {
+export default function FlereTiltak() {
     return (
         <section className="flere-tiltak">
             <Undertittel className="blokk-xs"><Tekst id={'fleretiltak-header'}/></Undertittel>
