@@ -34,7 +34,7 @@ export const API: ApiProps = {
     getUnleash: '/feature/',
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
-    getArbeidsforhold: '/syforest'
+    getArbeidsforhold: '/syforest/sykmeldinger'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {

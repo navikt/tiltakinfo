@@ -29,7 +29,8 @@ export default function reducer(state: ArbeidsforholdState = initialState, actio
             return {
                 ...state,
                 status: Status.OK,
-                data: action.data,
+                data: action.data[action.data.length - 1].arbeidsgiver ?
+                    { harArbeidsgiver: true } : { harArbeidsgiver: false },
             };
         case ActionType.HENT_ARBEIDSFORHOLD_FEILET:
             return {...state, status: Status.FEILET};

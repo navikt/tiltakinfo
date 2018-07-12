@@ -23,8 +23,13 @@ export function setupMock() {
     })));
     fetchMock.get(API.getStatus, respondWith(({
         harGyldigOidcToken: true,
-    })));
-    fetchMock.get(API.getArbeidsforhold, respondWith(({
-        harArbeidsgiver: true,
-    })));
+    }));
+    fetchMock.get(API.getArbeidsforhold, respondWith([
+        {
+            arbeidsgiver: 'Bekk Consulting As',
+        },
+        {
+            arbeidsgiver: 'Bekk Consulting As',
+        },
+    ]));
 }
