@@ -18,10 +18,10 @@ export function setupMock() {
     fetchMock.get(unleashUrl, respondWith({
         [tiltakinfoABTestingLesMerOmTiltaket]: false,
     }));
-    fetchMock.get(API.getOppfolging, respondWith(({
+    fetchMock.get(API.getOppfolging, respondWith({
         underOppfolging: true,
-    })));
-    fetchMock.get(API.getStatus, respondWith(({
+    }));
+    fetchMock.get(API.getStatus, respondWith({
         harGyldigOidcToken: true,
     }));
     fetchMock.get(API.getArbeidsforhold, respondWith([
