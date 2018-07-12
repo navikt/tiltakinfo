@@ -36,6 +36,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
                 'ingress-maal-4',
             ],
         };
+        this.handleChange = this.handleChange.bind(this);
     }
     componentDidMount() {
         this.props.doSettMaal(this.finnTekst(this.state.options[0]));
