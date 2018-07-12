@@ -7,7 +7,7 @@ describe('generic-reducer', () => {
             feltTo: number;
         }
         const initialState: Type = {feltEn: 'test', feltTo: 2};
-        const duck = genericDuck<Type>(initialState, ActionType.TEST_ACTION);
+        const duck = genericDuck<Type, ActionType.TEST_ACTION>(initialState, ActionType.TEST_ACTION);
         it('skal oppdatere state korrekt', () => {
             const action = duck.actionCreator({feltEn: 'nytest', feltTo: 10});
 

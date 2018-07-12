@@ -6,7 +6,7 @@ import { Brodsmuler } from './brodsmuler';
 import { FlereTiltak } from './flere-tiltak';
 import { Tiltak } from './tiltak';
 import KontakteNAV  from './kontakte-nav';
-import { Ingress } from './ingress';
+import Ingress from './ingress';
 import Tittel from './tittel';
 
 interface StateProps {
