@@ -18,7 +18,7 @@
     "build": "npm run build:ts"
   },
   "dependencies": {
-    "@nutgaard/react-scripts": "0.0.7",
+    "@nutgaard/react-scripts": "0.0.8-beta.4",
     "ajv": "6.5.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
