@@ -6,14 +6,14 @@ import { getUnleashFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
-export const tiltakinfoABTestingLesMerOmTiltaket = 'tiltakinfo.abtesting.lesmeromtiltaket';
+export const tiltakinfoHentarbeidsforhold = 'tiltakinfo.hentarbeidsforhold';
 
 export interface UnleashState extends DataElement {
-    [tiltakinfoABTestingLesMerOmTiltaket]: boolean;
+    [tiltakinfoHentarbeidsforhold]: boolean;
 }
 
 export const initialState: UnleashState = {
-    [tiltakinfoABTestingLesMerOmTiltaket]: false,
+    [tiltakinfoHentarbeidsforhold]: false,
     status: Status.IKKE_STARTET
 };
 
@@ -22,7 +22,7 @@ export default function reducer(state: UnleashState = initialState, action: Hand
     switch (action.type) {
         case ActionType.HENT_UNLEASH_OK:
             return {
-                [tiltakinfoABTestingLesMerOmTiltaket]: action.unleash[tiltakinfoABTestingLesMerOmTiltaket],
+                [tiltakinfoHentarbeidsforhold]: action.unleash[tiltakinfoHentarbeidsforhold],
                 status: Status.OK
             };
         case ActionType.HENT_UNLEASH_LASTER:
@@ -35,7 +35,8 @@ export default function reducer(state: UnleashState = initialState, action: Hand
 }
 
 export function hentUnleash(): (dispatch: Dispatch) => Promise<void> {
-    return fetchThenDispatch<UnleashState>(() => getUnleashFetch([tiltakinfoABTestingLesMerOmTiltaket]), {
+    return fetchThenDispatch<UnleashState>(
+        () => getUnleashFetch([tiltakinfoHentarbeidsforhold]), {
         ok: hentUnleashOK,
         feilet: hentUnleashFEILET,
         pending: hentUnleashLASTER,

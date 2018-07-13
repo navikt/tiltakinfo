@@ -7,7 +7,13 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { getArbeidsforholdFetch } from '../api/api';
 
-export interface ArbeidsforholdDataState {
+export interface Sykemelding {
+    arbeidsgiver: string;
+}
+
+export type SyfoState = Sykemelding[];
+
+interface ArbeidsforholdDataState {
     harArbeidsgiver: boolean;
 }
 
@@ -42,14 +48,14 @@ export default function reducer(state: ArbeidsforholdState = initialState, actio
 }
 
 export function hentArbeidsforhold(): (dispatch: Dispatch) => Promise<void> {
-    return fetchThenDispatch<ArbeidsforholdDataState>(() => getArbeidsforholdFetch(), {
+    return fetchThenDispatch<SyfoState>(() => getArbeidsforholdFetch(), {
         ok: hentArbeidsforholdOK,
         feilet: hentArbeidsforholdFEILET,
         pending: hentArbeidsforholdLASTER,
     });
 }
 
-function hentArbeidsforholdOK(data: ArbeidsforholdDataState): HentArbeidsforholdOKAction {
+export function hentArbeidsforholdOK(data: SyfoState): HentArbeidsforholdOKAction {
     return {
         type: ActionType.HENT_ARBEIDSFORHOLD_OK,
         data,
