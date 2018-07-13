@@ -6,13 +6,13 @@ import Tekst from '../finn-tekst';
 
 const lenkeTiltak = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb'; // tslint:disable-line
 
-export function FlereTiltak() {
+export default function FlereTiltak() {
     return (
         <section className="flere-tiltak">
-            <Undertittel className="blokk-xs"><Tekst id={'startside-fleretiltak-header'}/></Undertittel>
+            <Undertittel className="blokk-xs"><Tekst id={'fleretiltak-header'}/></Undertittel>
             <Normaltekst>
-                <Tekst id={'startside-fleretiltak-passedeg'}/>&nbsp;
-                <a className="lenke" href={lenkeTiltak}><Tekst id={'startside-fleretiltak-lenke'}/></a>
+                <Tekst id={'fleretiltak-passedeg'}/>&nbsp;
+                <a className="lenke" href={lenkeTiltak}><Tekst id={'fleretiltak-lenke'}/></a>
             </Normaltekst>
         </section>
     );

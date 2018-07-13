@@ -3,7 +3,7 @@ import ledetekster from './ledetekster/ledetekster';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { URL_ADMIN } from './innhold';
 
-const tekst = (id: string, erAdmin: boolean): string => {
+export const tekst = (id: string, erAdmin: boolean): string => {
     if (erAdmin) {
         return id;
     }

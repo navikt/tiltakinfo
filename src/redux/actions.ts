@@ -1,8 +1,10 @@
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
-import { StatusState } from '../oppfolging/status-duck';
+import { StatusState } from '../status/status-duck';
+import { Data } from './generic-duck';
 
 export enum ActionType {
+    TEST_ACTION = 'TEST_ACTION',
     HENT_UNLEASH_OK = 'HENT_UNLEASH_OK',
     HENT_UNLEASH_FEILET = 'HENT_UNLEASH_FEILET',
     HENT_UNLEASH_LASTER = 'HENT_UNLEASH_LASTER',
@@ -12,6 +14,14 @@ export enum ActionType {
     HENT_STATUS_OK = 'HENT_STATUS_OK',
     HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
     HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
+    HENT_ARBEIDSFORHOLD_OK = 'HENT_ARBEIDSFORHOLD_OK',
+    HENT_ARBEIDSFORHOLD_FEILET = 'HENT_ARBEIDSFORHOLD_FEILET',
+    HENT_ARBEIDSFORHOLD_LASTER = 'HENT_ARBEIDSFORHOLD_LASTER',
+    SETT_MAAL = 'SETT_MAAL',
+}
+
+export interface TestAction extends Data {
+    type: ActionType.TEST_ACTION;
 }
 
 export interface HentUnleashOKAction {
@@ -53,7 +63,20 @@ export interface HentStatusFEILETAction {
     type: ActionType.HENT_STATUS_FEILET;
 }
 
+export interface HentArbeidsforholdOKAction extends Data {
+    type: ActionType.HENT_ARBEIDSFORHOLD_OK;
+}
+
+export interface HentArbeidsforholdLASTERAction {
+    type: ActionType.HENT_ARBEIDSFORHOLD_LASTER;
+}
+
+export interface HentArbeidsforholdFEILETAction {
+    type: ActionType.HENT_ARBEIDSFORHOLD_FEILET;
+}
+
 export type Handling =
+    | TestAction
     | HentUnleashOKAction
     | HentUnleashLASTERAction
     | HentUnleashFEILETAction
@@ -62,4 +85,7 @@ export type Handling =
     | HentOppfolgingFEILETAction
     | HentStatusOKAction
     | HentStatusFEILETAction
-    | HentStatusLASTERAction;
+    | HentStatusLASTERAction
+    | HentArbeidsforholdOKAction
+    | HentArbeidsforholdFEILETAction
+    | HentArbeidsforholdLASTERAction;

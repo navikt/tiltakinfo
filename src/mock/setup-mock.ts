@@ -18,10 +18,18 @@ export function setupMock() {
     fetchMock.get(unleashUrl, respondWith({
         [tiltakinfoABTestingLesMerOmTiltaket]: false,
     }));
-    fetchMock.get(API.getOppfolging, respondWith(({
+    fetchMock.get(API.getOppfolging, respondWith({
         underOppfolging: true,
-    })));
-    fetchMock.get(API.getStatus, respondWith(({
+    }));
+    fetchMock.get(API.getStatus, respondWith({
         harGyldigOidcToken: true,
-    })));
+    }));
+    fetchMock.get(API.getArbeidsforhold, respondWith([
+        {
+            arbeidsgiver: 'Bekk Consulting As',
+        },
+        {
+            arbeidsgiver: 'Bekk Consulting As',
+        },
+    ]));
 }

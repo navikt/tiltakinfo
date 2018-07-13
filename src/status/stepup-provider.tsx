@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { StatusState } from './oppfolging/status-duck';
-import { AppState } from './redux/reducer';
+import { StatusState } from './status-duck';
+import { AppState } from '../redux/reducer';
 import Spinner from 'nav-frontend-spinner';
 
 interface OwnProps {

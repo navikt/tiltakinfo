@@ -6,7 +6,7 @@ import Innhold from './innhold';
 import DataProvider from './data-provider';
 import { erLocalhost, erMock } from './mock/utils';
 import { setupMock } from './mock/setup-mock';
-import StatusProvider from './status-provider';
+import StatusProvider from './status/status-provider';
 
 if (erMock() || erLocalhost()) {
     setupMock();

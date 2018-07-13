@@ -2,11 +2,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
-import { Brodsmuler } from './brodsmuler';
-import { FlereTiltak } from './flere-tiltak';
-import { Tiltak } from './tiltak';
+import Brodsmuler from './brodsmuler';
+import FlereTiltak from './flere-tiltak';
+import Tiltak from './tiltak';
 import KontakteNAV  from './kontakte-nav';
-import { Informasjon } from './informasjon';
+import Ingress from './ingress';
+import Tittel from './tittel';
 
 interface StateProps {
 }
@@ -26,7 +27,8 @@ class Startside extends React.Component<StartsideProps> {
         return (
             <>
                 <Brodsmuler/>
-                <Informasjon/>
+                <Tittel/>
+                <Ingress/>
                 <Tiltak/>
                 <KontakteNAV/>
                 <FlereTiltak/>
