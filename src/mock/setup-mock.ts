@@ -2,7 +2,7 @@
 import * as fetchMock from 'fetch-mock';
 import { erHalvMock, respondWith } from './utils';
 import { API, featureQueryParams } from '../api/api';
-import { tiltakinfoABTestingLesMerOmTiltaket, tiltakinfoHentarbeidsforhold } from '../unleash/unleash-duck';
+import { tiltakinfoHentarbeidsforhold } from '../unleash/unleash-duck';
 
 export function setupMock() {
     // const realFetch = window.fetch;
@@ -14,9 +14,8 @@ export function setupMock() {
     } else {
         console.log('### FULL MOCK AKTIVERT! ###');
     }
-    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoABTestingLesMerOmTiltaket, tiltakinfoHentarbeidsforhold]);
+    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentarbeidsforhold]);
     fetchMock.get(unleashUrl, respondWith({
-        [tiltakinfoABTestingLesMerOmTiltaket]: false,
         [tiltakinfoHentarbeidsforhold]: false,
     }));
     fetchMock.get(API.getOppfolging, respondWith({
