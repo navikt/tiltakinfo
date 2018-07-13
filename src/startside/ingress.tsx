@@ -9,13 +9,7 @@ import { URL_ADMIN } from '../innhold';
 import Datalaster from '../api/datalaster';
 import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
 import { Dispatch } from '../redux/dispatch-type';
-
-export const MAAL_OPTIONS = [
-    'ingress-maal-1',
-    'ingress-maal-2',
-    'ingress-maal-3',
-    'ingress-maal-4',
-];
+import {  MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
 
 interface StateProps {
     harArbeidsgiver: boolean;
@@ -48,7 +42,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
                 onChange={this.handleChange}
                 label={tekst('ingress-hararbeidsgiver', this.props.match.path === URL_ADMIN)}
             >
-                {MAAL_OPTIONS.map(tekstId => {
+                {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => {
                     return (
                         <option key={tekstId} value={tekstId}>
                             <Tekst id={tekstId}/>

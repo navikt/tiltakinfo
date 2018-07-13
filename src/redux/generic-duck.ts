@@ -16,7 +16,7 @@ export default function genericDuck<I, A>(initialState: I, actionType: A): Gener
         switch (action.type) {
             case actionType:
                 const {type, ...data} = action;
-                return Object.assign(state, data);
+                return Object.assign({}, state, data);
             default:
                 return state;
         }
