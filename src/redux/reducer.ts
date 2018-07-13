@@ -3,14 +3,18 @@ import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import oppfolgingReducer, { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import statusReducer, { StatusState } from '../status/status-duck';
 import arbeidsforholdReducer, { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
-import genericDuck from './generic-duck';
 import { ActionType } from './actions';
+import { MAAL_OPTION, MAAL_OPTIONS_REKKEFOLGE } from '../startside/maal-tiltak-map';
+import genericDuck from './generic-duck';
 
 interface MaalState {
-    maal: string;
+    id: MAAL_OPTION;
 }
 
-export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>({maal: ''}, ActionType.SETT_MAAL);
+export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
+    {id: MAAL_OPTIONS_REKKEFOLGE[0]},
+    ActionType.SETT_MAAL
+);
 
 export interface AppState {
     unleash: UnleashState;

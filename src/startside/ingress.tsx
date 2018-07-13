@@ -9,6 +9,7 @@ import { URL_ADMIN } from '../innhold';
 import Datalaster from '../api/datalaster';
 import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
 import { Dispatch } from '../redux/dispatch-type';
+import {  MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
 
 interface StateProps {
     harArbeidsgiver: boolean;
@@ -16,7 +17,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    doSettMaal: (maal: string) => void;
+    doSettMaalId: (id: string) => void;
 }
 
 type IngressProps = StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line:no-any
@@ -28,38 +29,23 @@ interface IngressState {
 class Ingress extends React.Component<IngressProps, IngressState> {
     constructor(props: IngressProps) {
         super(props);
-        this.state = {
-            options: [
-                'ingress-maal-1',
-                'ingress-maal-2',
-                'ingress-maal-3',
-                'ingress-maal-4',
-            ],
-        };
         this.handleChange = this.handleChange.bind(this);
-    }
-    componentDidMount() {
-        this.props.doSettMaal(this.finnTekst(this.state.options[0]));
-    }
-    finnTekst(tekstId: string): string {
-        return tekst(tekstId, this.props.match.path === URL_ADMIN);
     }
     handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
         e.preventDefault();
-        this.props.doSettMaal(e.target.value);
+        this.props.doSettMaalId(e.target.value);
     }
     render() {
 
         const komponent = () => this.props.harArbeidsgiver ? (
             <SelectKomponent
                 onChange={this.handleChange}
-                label={this.finnTekst('ingress-hararbeidsgiver')}
+                label={tekst('ingress-hararbeidsgiver', this.props.match.path === URL_ADMIN)}
             >
-                {this.state.options.map(tekstId => {
-                    const spm = this.finnTekst(tekstId);
+                {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => {
                     return (
-                        <option key={tekstId} value={spm}>
-                            {spm}
+                        <option key={tekstId} value={tekstId}>
+                            <Tekst id={tekstId}/>
                         </option>
                     );
                 })}
@@ -85,7 +71,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doSettMaal: (maal) => dispatch(maalDuck.actionCreator({maal})),
+    doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Ingress));
