@@ -2,7 +2,7 @@ import { fetchToJson } from './fetch-utils';
 import { initialState as unleashInitialState, UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
-import { ArbeidsforholdDataState } from '../arbeidsforhold/arbeidsforhold-duck';
+import { SyfoState } from '../arbeidsforhold/arbeidsforhold-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -51,6 +51,6 @@ export function getStatusFetch(): Promise<StatusState> {
     return fetchToJson(API.getStatus, requestConfig);
 }
 
-export function getArbeidsforholdFetch(): Promise<ArbeidsforholdDataState> {
+export function getArbeidsforholdFetch(): Promise<SyfoState> {
     return fetchToJson(API.getArbeidsforhold, requestConfig);
 }
