@@ -4,7 +4,8 @@ export enum TiltakId {
     TILRETTELEGGING = 'tiltak-tilrettelegging',
     ARBEIDSRETTET_REHABILITERING = 'tiltak-arbeidsrettet-rehabilitering',
     MENTOR = 'tiltak-mentor',
-    OPPLAERING = 'tiltak-opplaering',
+    OPPLAERING_SAMME_ARBEIDSGIVER = 'tiltak-opplaering-samme-arbeidsgiver',
+    OPPLAERING_NY_ARBEIDSGIVER = 'tiltak-opplaering-ny-arbeidsgiver',
     AVKLARING = 'tiltak-avklaring',
 }
 
@@ -58,10 +59,18 @@ export default (tiltakId: TiltakId): Tiltak => {
                 ikon: require('../ikoner/mentor.svg'),
                 url: '', // tslint:disable-line:max-line-length
             };
-        case TiltakId.OPPLAERING:
+        case TiltakId.OPPLAERING_SAMME_ARBEIDSGIVER:
             return {
                 tittel: 'tiltak-opplaering-tittel',
-                hva: 'tiltak-opplaering-hva',
+                hva: 'tiltak-opplaering-samme-arbeidsgiver-hva',
+                lesmer: 'tiltak-opplaering-lesmer',
+                ikon: require('../ikoner/opplaering.svg'),
+                url: '', // tslint:disable-line:max-line-length
+            };
+        case TiltakId.OPPLAERING_NY_ARBEIDSGIVER:
+            return {
+                tittel: 'tiltak-opplaering-tittel',
+                hva: 'tiltak-opplaering-ny-arbeidsgiver-hva',
                 lesmer: 'tiltak-opplaering-lesmer',
                 ikon: require('../ikoner/opplaering.svg'),
                 url: '', // tslint:disable-line:max-line-length
