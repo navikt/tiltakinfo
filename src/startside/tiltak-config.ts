@@ -17,6 +17,14 @@ export interface Tiltak {
     url: string;
 }
 
+export const tomtTiltak: Tiltak = {
+    tittel: '',
+    hva: '',
+    lesmer: '',
+    ikon: '', // tslint:disable-line:no-any
+    url: '',
+};
+
 export default (tiltakId: TiltakId): Tiltak => {
     switch (tiltakId) {
         case TiltakId.LONNSTILSKUDD:

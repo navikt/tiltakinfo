@@ -1,6 +1,7 @@
 import { TiltakId } from './tiltak-config';
 
 export enum MAAL_OPTION {
+    IKKE_VALGT = 'ingress-maal-ikkevalgt',
     SAMME_STILLING = 'ingress-maal-samme-stilling',
     SAMME_ARBEIDSGIVER = 'ingress-maal-samme-arbeidsgiver',
     NY_ARBEIDSGIVER = 'ingress-maal-ny-arbeidsgiver',
@@ -8,6 +9,7 @@ export enum MAAL_OPTION {
 }
 
 export const MAAL_OPTIONS_REKKEFOLGE = [
+    MAAL_OPTION.IKKE_VALGT,
     MAAL_OPTION.SAMME_STILLING,
     MAAL_OPTION.SAMME_ARBEIDSGIVER,
     MAAL_OPTION.NY_ARBEIDSGIVER,

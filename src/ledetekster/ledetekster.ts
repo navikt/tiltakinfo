@@ -10,6 +10,7 @@ export default {
     'tittel-hararbeidsgiver': 'Trenger du hjelp for å komme tilbake i jobb?',
     'ingress-utenarbeidsgiver': 'Av og til kan man trenge litt ekstra for å komme i jobb. Snakk med oss, så kan vi sammen finne ut hva som passer for deg.',
     'ingress-hararbeidsgiver': 'Hvilken situasjon ønsker du å være i etter sykmeldingsperioden? Ut fra det du svarer, viser vi deg noen alternativer.',
+    'ingress-maal-ikkevalgt': 'Velg situasjon:',
     'ingress-maal-samme-stilling': 'Jeg er tilbake i samme jobb hos arbeidsgiveren min.',
     'ingress-maal-samme-arbeidsgiver': 'Jeg er tilbake i en tilpasset eller ny stilling hos arbeidsgiveren min.',
     'ingress-maal-ny-arbeidsgiver': 'Jeg er i jobb hos en ny arbeidsgiver.',

@@ -3,7 +3,7 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 import Tekst from '../finn-tekst';
-import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
+import tiltakConfig, { Tiltak, tomtTiltak, TiltakId } from './tiltak-config';
 import { MAAL_OPTION, maalTiltakMap } from './maal-tiltak-map';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
@@ -18,31 +18,39 @@ interface StateProps {
 class TiltakKomponent extends React.Component<StateProps> {
     render() {
         const {arbeidsforhold, maalId} = this.props;
-        const tiltakSomVises: Tiltak[] = arbeidsforhold.data.harArbeidsgiver ?
+
+        const tiltakSomVises: Tiltak[] = arbeidsforhold.data.harArbeidsgiver && maalId !== MAAL_OPTION.IKKE_VALGT ?
             maalTiltakMap[maalId].map(tiltakId => tiltakConfig(tiltakId)) :
+            arbeidsforhold.data.harArbeidsgiver && maalId === MAAL_OPTION.IKKE_VALGT ?
+            [tomtTiltak] :
             [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
+
         return (
             <Datalaster avhengigheter={[arbeidsforhold]}>
                 <section className="tiltak-oversikt blokk-m">
-                    <Normaltekst className="blokk-s"><Tekst id={'informasjon-totiltak'}/></Normaltekst>
-                    <div className="tiltak-liste">
-                        {tiltakSomVises.map((tiltak: Tiltak) =>
-                            <div key={tiltak.tittel} className="tiltak">
-                                <div className="tiltak-header">
-                                    <Innholdstittel className="tiltak-header-tekst">
-                                        <Tekst id={tiltak.tittel}/>
-                                    </Innholdstittel>
-                                    <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
-                                </div>
-                                <div className="tiltak-innhold blokk-xxs">
-                                    <Normaltekst><Tekst id={tiltak.hva}/></Normaltekst>
-                                </div>
-                                <Lenkepanel href={tiltak.url} tittelProps="element">
-                                    <Tekst id={tiltak.lesmer}/>
-                                </Lenkepanel>
+                    {(!arbeidsforhold.data.harArbeidsgiver || maalId !== MAAL_OPTION.IKKE_VALGT) && (
+                        <>
+                            <Normaltekst className="blokk-s"><Tekst id={'informasjon-totiltak'}/></Normaltekst>
+                            <div className="tiltak-liste">
+                                {tiltakSomVises.map((tiltak: Tiltak) =>
+                                    <div key={tiltak.tittel} className="tiltak">
+                                        <div className="tiltak-header">
+                                            <Innholdstittel className="tiltak-header-tekst">
+                                                <Tekst id={tiltak.tittel}/>
+                                            </Innholdstittel>
+                                            <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
+                                        </div>
+                                        <div className="tiltak-innhold blokk-xxs">
+                                            <Normaltekst><Tekst id={tiltak.hva}/></Normaltekst>
+                                        </div>
+                                        <Lenkepanel href={tiltak.url} tittelProps="element">
+                                            <Tekst id={tiltak.lesmer}/>
+                                        </Lenkepanel>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
+                       </>
+                    )}
                 </section>
             </Datalaster>
         );
