@@ -49,7 +49,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-tilrettelegging-hva',
                 lesmer: 'tiltak-tilrettelegging-lesmer',
                 ikon: require('../ikoner/tilrettelegging.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Tilrettelegging', // tslint:disable-line:max-line-length
             };
         case TiltakId.ARBEIDSRETTET_REHABILITERING:
             return {
@@ -57,7 +57,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-arbeidsrettet-rehabilitering-hva',
                 lesmer: 'tiltak-arbeidsrettet-rehabilitering-lesmer',
                 ikon: require('../ikoner/arbeidsrettet-rehabilitering.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Arbeidsrettet+rehabilitering', // tslint:disable-line:max-line-length
             };
         case TiltakId.MENTOR:
             return {
@@ -65,7 +65,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-mentor-hva',
                 lesmer: 'tiltak-mentor-lesmer',
                 ikon: require('../ikoner/mentor.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Relatert+innhold/mentor', // tslint:disable-line:max-line-length
             };
         case TiltakId.OPPLAERING_SAMME_ARBEIDSGIVER:
             return {
@@ -73,7 +73,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-opplaering-samme-arbeidsgiver-hva',
                 lesmer: 'tiltak-opplaering-lesmer',
                 ikon: require('../ikoner/opplaering.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Kvalifisering', // tslint:disable-line:max-line-length
             };
         case TiltakId.OPPLAERING_NY_ARBEIDSGIVER:
             return {
@@ -81,7 +81,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-opplaering-ny-arbeidsgiver-hva',
                 lesmer: 'tiltak-opplaering-lesmer',
                 ikon: require('../ikoner/opplaering.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Kvalifisering', // tslint:disable-line:max-line-length
             };
         case TiltakId.AVKLARING:
             return {
@@ -89,7 +89,7 @@ export default (tiltakId: TiltakId): Tiltak => {
                 hva: 'tiltak-avklaring-hva',
                 lesmer: 'tiltak-avklaring-lesmer',
                 ikon: require('../ikoner/avklaring.svg'),
-                url: '', // tslint:disable-line:max-line-length
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/avklaring--894', // tslint:disable-line:max-line-length
             };
         default:
             return {

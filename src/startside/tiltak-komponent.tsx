@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Innholdstittel, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 import Tekst from '../finn-tekst';
@@ -27,10 +27,12 @@ class TiltakKomponent extends React.Component<StateProps> {
 
         return (
             <Datalaster avhengigheter={[arbeidsforhold]}>
-                <section className="tiltak-oversikt blokk-m">
+                <section className="tiltak-oversikt blokk-xl">
                     {(!arbeidsforhold.data.harArbeidsgiver || maalId !== MAAL_OPTION.IKKE_VALGT) && (
                         <>
-                            <Normaltekst className="blokk-s"><Tekst id={'informasjon-totiltak'}/></Normaltekst>
+                            <Undertittel className="tiltak-overskrift blokk-s">
+                                <Tekst id={'informasjon-totiltak'}/>
+                            </Undertittel>
                             <div className="tiltak-liste">
                                 {tiltakSomVises.map((tiltak: Tiltak) =>
                                     <div key={tiltak.tittel} className="tiltak">
