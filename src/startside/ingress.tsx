@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Ingress as Ingresskomponent } from 'nav-frontend-typografi';
+import './ingress.less';
 import Tekst, { tekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
@@ -57,7 +58,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
 
         return (
             <Datalaster avhengigheter={[this.props.arbeidsforhold]}>
-                <section className="blokk-l">
+                <section className="ingresss blokk-l">
                     {komponent()}
                 </section>
             </Datalaster>
