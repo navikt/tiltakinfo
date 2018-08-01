@@ -32,11 +32,12 @@ export const initialState: ArbeidsforholdState = {
 export default function reducer(state: ArbeidsforholdState = initialState, action: Handling): ArbeidsforholdState {
     switch (action.type) {
         case ActionType.HENT_ARBEIDSFORHOLD_OK:
+            const data = action.data;
+            const harArbeidsgiver = data.length > 1 && !!data[data.length - 1].arbeidsgiver;
             return {
                 ...state,
                 status: Status.OK,
-                data: action.data[action.data.length - 1].arbeidsgiver ?
-                    { harArbeidsgiver: true } : { harArbeidsgiver: false },
+                data: {harArbeidsgiver},
             };
         case ActionType.HENT_ARBEIDSFORHOLD_FEILET:
             return {...state, status: Status.FEILET};
