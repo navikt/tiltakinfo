@@ -10,7 +10,7 @@ import { URL_ADMIN } from '../innhold';
 import Datalaster from '../api/datalaster';
 import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
 import { Dispatch } from '../redux/dispatch-type';
-import {  MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
+import { MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
 
 interface StateProps {
     harArbeidsgiver: boolean;
@@ -32,10 +32,12 @@ class Ingress extends React.Component<IngressProps, IngressState> {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
+
     handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
         e.preventDefault();
         this.props.doSettMaalId(e.target.value);
     }
+
     render() {
 
         const komponent = () => this.props.harArbeidsgiver ? (
@@ -43,13 +45,12 @@ class Ingress extends React.Component<IngressProps, IngressState> {
                 onChange={this.handleChange}
                 label={tekst('ingress-hararbeidsgiver', this.props.match.path === URL_ADMIN)}
             >
-                {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => {
-                    return (
+                {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
                         <option key={tekstId} value={tekstId}>
                             <Tekst id={tekstId}/>
                         </option>
-                    );
-                })}
+                    )
+                )}
             </SelectKomponent>
         ) : (
             <Ingresskomponent><Tekst id="ingress-utenarbeidsgiver"/></Ingresskomponent>
