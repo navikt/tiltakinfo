@@ -33,7 +33,7 @@ export default function reducer(state: ArbeidsforholdState = initialState, actio
     switch (action.type) {
         case ActionType.HENT_ARBEIDSFORHOLD_OK:
             const data = action.data;
-            const harArbeidsgiver = data.length > 1 && !!data[data.length - 1].arbeidsgiver;
+            const harArbeidsgiver = data.length > 0 && !!data[data.length - 1].arbeidsgiver;
             return {
                 ...state,
                 status: Status.OK,
