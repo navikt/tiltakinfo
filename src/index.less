@@ -3,7 +3,7 @@
 @desktopLimitWidth: 740px;
 
 html,
-body{
+body {
     font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
@@ -12,16 +12,17 @@ body,
 #root {
     height: 100%;
     background-color: @navLysGra;
+
+    .spinner {
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 .maincontent {
     position: relative;
     margin: 0 auto;
     padding: 2rem 1rem 12rem;
-}
-
-.spinner {
-    width: 100%;
 }
 
 @media (min-width: @screen-sm-min) {
