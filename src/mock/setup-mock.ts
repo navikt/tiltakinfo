@@ -16,7 +16,7 @@ export function setupMock() {
     }
     const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentarbeidsforhold]);
     fetchMock.get(unleashUrl, respondWith({
-        [tiltakinfoHentarbeidsforhold]: false,
+        [tiltakinfoHentarbeidsforhold]: true,
     }));
     fetchMock.get(API.getOppfolging, respondWith({
         underOppfolging: true,
