@@ -9,6 +9,15 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+
+const veilederBilde = require('../ikoner/veileder-dame.svg');
+
+/*class VeilederBilde extends React.Component {
+    render() {
+        return veilederBilde;
+    }
+}*/
 
 interface StateProps {
     harArbeidsgiver: boolean;
@@ -44,22 +53,25 @@ class Ingress extends React.Component<IngressProps, IngressState> {
 
         return (
             <section className="ingress">
-                <Ingresskomponent>
-                    <Tekst id={ingressId}/>
-                </Ingresskomponent>
-                {harArbeidsgiver && (
-                    <SelectKomponent
-                        onChange={this.handleChange}
-                        label={''}
-                    >
-                        {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
-                                <option key={tekstId} value={tekstId}>
-                                    <Tekst id={tekstId}/>
-                                </option>
-                            )
-                        )}
-                    </SelectKomponent>
-                )}
+                <Veilederpanel svg={<img src={veilederBilde}/>} type={'plakat'}>
+                    <Ingresskomponent>
+                        <Tekst id={ingressId}/>
+                    </Ingresskomponent>
+                    {harArbeidsgiver && (
+                        <SelectKomponent
+                            onChange={this.handleChange}
+                            label={''}
+                        >
+                            {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
+                                    <option key={tekstId} value={tekstId}>
+                                        <Tekst id={tekstId}/>
+                                    </option>
+                                )
+                            )}
+                        </SelectKomponent>
+                    )}
+
+                </Veilederpanel>
             </section>
         );
     }
