@@ -9,6 +9,8 @@ import { getArbeidsforholdFetch } from '../api/api';
 
 export interface Sykemelding {
     arbeidsgiver: string;
+    sendtdato: string;
+    valgtArbeidssituasjon: string;
 }
 
 export type SyfoState = Sykemelding[];
@@ -32,8 +34,16 @@ export const initialState: ArbeidsforholdState = {
 export default function reducer(state: ArbeidsforholdState = initialState, action: Handling): ArbeidsforholdState {
     switch (action.type) {
         case ActionType.HENT_ARBEIDSFORHOLD_OK:
-            const data = action.data;
-            const harArbeidsgiver = data.length > 0 && !!data[data.length - 1].arbeidsgiver;
+
+            const maxDate = new Date(Math.max(
+                ...action.data.map(
+                    (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato)
+                )
+            ));
+            const arbeidssituasjon = action.data.find(
+                (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato).getTime() === maxDate.getTime()
+            ).valgtArbeidssituasjon;
+            const harArbeidsgiver = arbeidssituasjon !== 'ARBEIDSLEDIG';
             return {
                 ...state,
                 status: Status.OK,

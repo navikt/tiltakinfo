@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
     doHentArbeidsforhold: () => hentArbeidsforhold()(dispatch),
     dispatchOKIngenArbeidsgiver: () => {
-        dispatch(hentArbeidsforholdOK([{arbeidsgiver: ''}]));
+        dispatch(hentArbeidsforholdOK([{arbeidsgiver: '', sendtdato: '', valgtArbeidssituasjon: ''}]));
     },
 });
 
