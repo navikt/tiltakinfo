@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import oppfolgingReducer, { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import statusReducer, { StatusState } from '../status/status-duck';
-import arbeidsforholdReducer, { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
+import sykmeldingerReducer, { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { ActionType } from './actions';
 import { MAAL_OPTION, MAAL_OPTIONS_REKKEFOLGE } from '../startside/maal-tiltak-map';
 import genericDuck from './generic-duck';
@@ -20,7 +20,7 @@ export interface AppState {
     unleash: UnleashState;
     oppfolging: OppfolgingState;
     status: StatusState;
-    arbeidsforhold: ArbeidsforholdState;
+    sykmeldinger: SykmeldingerState;
     maal: MaalState;
 }
 
@@ -28,6 +28,6 @@ export const reducer = combineReducers<AppState>({
     unleash: unleashReducer,
     oppfolging: oppfolgingReducer,
     status: statusReducer,
-    arbeidsforhold: arbeidsforholdReducer,
+    sykmeldinger: sykmeldingerReducer,
     maal: maalDuck.reducer,
 });

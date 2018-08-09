@@ -7,18 +7,18 @@ import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MAAL_OPTION, maalTiltakMap } from './maal-tiltak-map';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
-import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
+import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 
 interface StateProps {
-    arbeidsforhold: ArbeidsforholdState;
+    sykmeldinger: SykmeldingerState;
     maalId: MAAL_OPTION;
 }
 
 class TiltakKomponent extends React.Component<StateProps> {
     render() {
-        const {arbeidsforhold, maalId} = this.props;
+        const {sykmeldinger, maalId} = this.props;
 
-        const tiltakSomVises: Tiltak[] = arbeidsforhold.data.harArbeidsgiver ?
+        const tiltakSomVises: Tiltak[] = sykmeldinger.data.harArbeidsgiver ?
             maalTiltakMap[maalId].map(tiltakId => tiltakConfig(tiltakId)) :
             [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
 
@@ -52,7 +52,7 @@ class TiltakKomponent extends React.Component<StateProps> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        arbeidsforhold: state.arbeidsforhold,
+        sykmeldinger: state.sykmeldinger,
         maalId: state.maal.id,
     };
 };

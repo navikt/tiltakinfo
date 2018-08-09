@@ -8,12 +8,12 @@ import Tiltak from './tiltak-komponent';
 import KontakteNAV from './kontakte-nav';
 import Ingress from './ingress';
 import Tittel from './tittel';
-import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
+import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { MAAL_OPTION } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';
 
 interface StateProps {
-    arbeidsforhold: ArbeidsforholdState;
+    sykmeldinger: SykmeldingerState;
     maalId: MAAL_OPTION;
 }
 
@@ -29,15 +29,15 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {arbeidsforhold, maalId} = this.props;
+        const {sykmeldinger, maalId} = this.props;
         return (
             <>
                 <Brodsmuler/>
-                <Datalaster avhengigheter={[arbeidsforhold]}>
+                <Datalaster avhengigheter={[sykmeldinger]}>
                     <>
                         <Tittel/>
                         <Ingress/>
-                        {(!arbeidsforhold.data.harArbeidsgiver || maalId !== MAAL_OPTION.IKKE_VALGT) && (
+                        {(!sykmeldinger.data.harArbeidsgiver || maalId !== MAAL_OPTION.IKKE_VALGT) && (
                             <>
                                 <Tiltak/>
                                 <KontakteNAV/>
@@ -52,7 +52,7 @@ class Startside extends React.Component<StartsideProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    arbeidsforhold: state.arbeidsforhold,
+    sykmeldinger: state.sykmeldinger,
     maalId: state.maal.id,
 });
 
