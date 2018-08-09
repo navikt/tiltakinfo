@@ -2,7 +2,7 @@
 import * as fetchMock from 'fetch-mock';
 import { erHalvMock, respondWith } from './utils';
 import { API, featureQueryParams } from '../api/api';
-import { tiltakinfoHentarbeidsforhold } from '../unleash/unleash-duck';
+import { tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
 
 export function setupMock() {
     // const realFetch = window.fetch;
@@ -14,9 +14,9 @@ export function setupMock() {
     } else {
         console.log('### FULL MOCK AKTIVERT! ###');
     }
-    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentarbeidsforhold]);
+    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentsykmeldinger]);
     fetchMock.get(unleashUrl, respondWith({
-        [tiltakinfoHentarbeidsforhold]: true,
+        [tiltakinfoHentsykmeldinger]: true,
     }));
     fetchMock.get(API.getOppfolging, respondWith({
         underOppfolging: true,
@@ -24,7 +24,7 @@ export function setupMock() {
     fetchMock.get(API.getStatus, respondWith({
         harGyldigOidcToken: true,
     }));
-    fetchMock.get(API.getArbeidsforhold, respondWith([
+    fetchMock.get(API.getSykmeldinger, respondWith([
         {
             arbeidsgiver: 'Bekk Consulting As',
         },

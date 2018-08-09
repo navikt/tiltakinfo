@@ -21,7 +21,7 @@ export function Tittel({harArbeidsgiver}: StateProps) {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    harArbeidsgiver: state.arbeidsforhold.data.harArbeidsgiver,
+    harArbeidsgiver: state.sykmeldinger.data.harArbeidsgiver,
 });
 
 export default connect(mapStateToProps)(Tittel);

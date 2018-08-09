@@ -3,11 +3,11 @@ import * as ReactDOM from 'react-dom';
 import App from './app';
 import { FetchStub, stubFetch } from './test/fetch-test-utils';
 import { API, featureQueryParams } from './api/api';
-import { tiltakinfoHentarbeidsforhold } from './unleash/unleash-duck';
+import { tiltakinfoHentsykmeldinger } from './unleash/unleash-duck';
 
 it('renders without crashing', () => {
-    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentarbeidsforhold]);
-    stubFetch(new FetchStub().addResponse(unleashUrl, new Response(`${[tiltakinfoHentarbeidsforhold]}: true`)));
+    const unleashUrl = API.getUnleash + featureQueryParams([tiltakinfoHentsykmeldinger]);
+    stubFetch(new FetchStub().addResponse(unleashUrl, new Response(`${[tiltakinfoHentsykmeldinger]}: true`)));
 
     const div = document.createElement('div');
     ReactDOM.render(<App/>, div);
