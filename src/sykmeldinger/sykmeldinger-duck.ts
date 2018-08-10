@@ -7,6 +7,10 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { getSykmeldingerFetch } from '../api/api';
 
+export enum Arbeidssituasjon {
+    ARBEIDSLEDIG = 'ARBEIDSLEDIG',
+}
+
 export interface Sykemelding {
     arbeidsgiver: string;
     sendtdato: string;
@@ -43,7 +47,7 @@ export default function reducer(state: SykmeldingerState = initialState, action:
             const arbeidssituasjon = action.data.find(
                 (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato).getTime() === maxDate.getTime()
             ).valgtArbeidssituasjon;
-            const harArbeidsgiver = arbeidssituasjon !== 'ARBEIDSLEDIG';
+            const harArbeidsgiver = arbeidssituasjon !== Arbeidssituasjon.ARBEIDSLEDIG;
 
             return {
                 ...state,
