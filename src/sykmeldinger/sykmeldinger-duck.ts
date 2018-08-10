@@ -38,7 +38,9 @@ export const initialState: SykmeldingerState = {
 export default function reducer(state: SykmeldingerState = initialState, action: Handling): SykmeldingerState {
     switch (action.type) {
         case ActionType.HENT_SYKMELDINGER_OK:
-
+            if (action.data.length === 1 && action.data[0].sendtdato === '') {
+                return { ...state, status: Status.OK, data: {harArbeidsgiver: false}};
+            }
             const maxDate = new Date(Math.max(
                 ...action.data.map(
                     (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato)
