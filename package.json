@@ -15,7 +15,8 @@
     "eject": "react-scripts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
     "start-mock:halv": "cross-env REACT_APP_MOCK_HALV=true npm-run-all -p start:*",
-    "build": "npm run build:ts"
+    "build": "npm run build:ts",
+    "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js"
   },
   "dependencies": {
     "@nutgaard/react-scripts": "0.0.8-beta.4",
