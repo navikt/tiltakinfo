@@ -1,1 +1,2 @@
 https://${DomainName}/tiltakinfo/demo
+https://${DomainName}/tiltakinfo/demo/*
