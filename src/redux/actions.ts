@@ -17,6 +17,7 @@ export enum ActionType {
     HENT_SYKMELDINGER_OK = 'HENT_SYKMELDINGER_OK',
     HENT_SYKMELDINGER_FEILET = 'HENT_SYKMELDINGER_FEILET',
     HENT_SYKMELDINGER_LASTER = 'HENT_SYKMELDINGER_LASTER',
+    IKKE_HENT_SYKMELDINGER = 'IKKE_HENT_SYKMELDINGER',
     SETT_MAAL = 'SETT_MAAL',
 }
 
@@ -75,6 +76,10 @@ export interface HentSykmeldingerFEILETAction {
     type: ActionType.HENT_SYKMELDINGER_FEILET;
 }
 
+export interface IkkeHentSykmeldingerAction {
+    type: ActionType.IKKE_HENT_SYKMELDINGER;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -88,4 +93,5 @@ export type Handling =
     | HentStatusLASTERAction
     | HentSykmeldingerOKAction
     | HentSykmeldingerFEILETAction
-    | HentSykmeldingerLASTERAction;
+    | HentSykmeldingerLASTERAction
+    | IkkeHentSykmeldingerAction;
