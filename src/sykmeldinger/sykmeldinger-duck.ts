@@ -1,6 +1,10 @@
 import {
     ActionType,
-    Handling, HentSykmeldingerFEILETAction, HentSykmeldingerLASTERAction, HentSykmeldingerOKAction,
+    Handling,
+    HentSykmeldingerFEILETAction,
+    HentSykmeldingerLASTERAction,
+    HentSykmeldingerOKAction,
+    IkkeHentSykmeldingerAction,
 } from '../redux/actions';
 import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
@@ -11,13 +15,12 @@ export enum Arbeidssituasjon {
     ARBEIDSLEDIG = 'ARBEIDSLEDIG',
 }
 
-export interface Sykemelding {
-    arbeidsgiver: string;
+export interface Sykmelding {
     sendtdato: string;
     valgtArbeidssituasjon: string;
 }
 
-export type SyfoState = Sykemelding[];
+export type SyfoState = Sykmelding[];
 
 interface SykmeldingerDataState {
     harArbeidsgiver: boolean;
@@ -38,18 +41,17 @@ export const initialState: SykmeldingerState = {
 export default function reducer(state: SykmeldingerState = initialState, action: Handling): SykmeldingerState {
     switch (action.type) {
         case ActionType.HENT_SYKMELDINGER_OK:
-            if (action.data.length === 1 && action.data[0].sendtdato === '') {
-                return { ...state, status: Status.OK, data: {harArbeidsgiver: false}};
-            }
-            const maxDate = new Date(Math.max(
+            const datoNyesteSykmelding = new Date(Math.max(
                 ...action.data.map(
-                    (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato)
+                    (sykmelding: Sykmelding) => new Date(sykmelding.sendtdato)
                 )
             ));
-            const arbeidssituasjon = action.data.find(
-                (sykemelding: Sykemelding) => new Date(sykemelding.sendtdato).getTime() === maxDate.getTime()
-            ).valgtArbeidssituasjon;
-            const harArbeidsgiver = arbeidssituasjon !== Arbeidssituasjon.ARBEIDSLEDIG;
+            const gjeldendeSykmelding = action.data.find(
+                (sykmelding: Sykmelding) => new Date(sykmelding.sendtdato).getTime() === datoNyesteSykmelding.getTime()
+            );
+
+            const arbeidssituasjon = gjeldendeSykmelding && gjeldendeSykmelding.valgtArbeidssituasjon;
+            const harArbeidsgiver = arbeidssituasjon && arbeidssituasjon !== Arbeidssituasjon.ARBEIDSLEDIG;
 
             return {
                 ...state,
@@ -60,6 +62,8 @@ export default function reducer(state: SykmeldingerState = initialState, action:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_SYKMELDINGER_LASTER:
             return {...state, status: Status.LASTER};
+        case ActionType.IKKE_HENT_SYKMELDINGER:
+            return {...state, status: Status.OK};
         default:
             return state;
     }
@@ -89,5 +93,11 @@ function hentSykmeldingerFEILET(): HentSykmeldingerFEILETAction {
 function hentSykmeldingerLASTER(): HentSykmeldingerLASTERAction {
     return {
         type: ActionType.HENT_SYKMELDINGER_LASTER,
+    };
+}
+
+export function ikkeHentSykmeldingerOK(): IkkeHentSykmeldingerAction {
+    return {
+        type: ActionType.IKKE_HENT_SYKMELDINGER,
     };
 }
