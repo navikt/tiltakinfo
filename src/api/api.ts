@@ -31,7 +31,7 @@ export const featureQueryParams = (features: string[]): string => {
 };
 
 export const API: ApiProps = {
-    getUnleash: '/feature/',
+    getUnleash: '/feature',
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
     getSykmeldinger: '/syforest/sykmeldinger'
