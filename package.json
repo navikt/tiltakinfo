@@ -14,7 +14,6 @@
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
     "eject": "react-scripts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
-    "start-mock:halv": "cross-env REACT_APP_MOCK_HALV=true npm-run-all -p start:*",
     "build": "npm run build:ts",
     "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js"
   },
@@ -46,7 +45,8 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "yet-another-fetch-mock": "2.3.3"
   },
   "devDependencies": {
     "@types/fetch-mock": "6.0.3",
