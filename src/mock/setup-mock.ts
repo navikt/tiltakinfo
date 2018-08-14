@@ -20,8 +20,7 @@ export default () => {
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
-    const unleashUrl = API.getUnleash;
-    fetchMock.get(unleashUrl, {
+    fetchMock.get(API.getUnleash, {
         [tiltakinfoHentsykmeldinger]: true,
     });
 
