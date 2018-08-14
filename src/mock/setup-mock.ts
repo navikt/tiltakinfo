@@ -5,7 +5,7 @@ import { API } from '../api/api';
 export default () => {
 
     const loggingMiddleware: Middleware = (request, response) => {
-        console.log(request.url, JSON.parse(response.body));
+        console.log(request.url, JSON.parse(response.body)); // tslint:disable-line:no-console
         return response;
     };
 
@@ -18,7 +18,7 @@ export default () => {
         )
     });
 
-    console.log('### FULL MOCK AKTIVERT! ###');
+    console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
     const unleashUrl = API.getUnleash;
     fetchMock.get(unleashUrl, {
