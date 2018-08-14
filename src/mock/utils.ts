@@ -6,11 +6,3 @@ export function erLocalhost() {
 export function erFullMock(): boolean {
     return process.env.REACT_APP_MOCK_FULL === 'true';
 }
-
-export function erHalvMock(): boolean {
-    return process.env.REACT_APP_MOCK_HALV === 'true';
-}
-
-export function erMock() {
-    return erFullMock() || erHalvMock();
-}
