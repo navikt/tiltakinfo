@@ -28,7 +28,11 @@ export default function reducer(state: UnleashState = initialState, action: Hand
         case ActionType.HENT_UNLEASH_LASTER:
             return { ...state, status: Status.LASTER };
         case ActionType.HENT_UNLEASH_FEILET:
-            return { ...state, status: Status.FEILET };
+            return {
+                ...state,
+                status: Status.OK,
+                [tiltakinfoHentsykmeldinger]: false,
+            };
         default:
             return state;
     }

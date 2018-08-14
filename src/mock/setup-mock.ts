@@ -5,7 +5,7 @@ import { API } from '../api/api';
 export default () => {
 
     const loggingMiddleware: Middleware = (request, response) => {
-        console.log(request.url, JSON.parse(response.body)); // tslint:disable-line:no-console
+        console.log(request.url, response); // tslint:disable-line:no-console
         return response;
     };
 
@@ -22,7 +22,7 @@ export default () => {
 
     const unleashUrl = API.getUnleash;
     fetchMock.get(unleashUrl, {
-        [tiltakinfoHentsykmeldinger]: false,
+        [tiltakinfoHentsykmeldinger]: true,
     });
 
     fetchMock.get(API.getOppfolging, {

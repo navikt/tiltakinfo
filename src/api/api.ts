@@ -1,5 +1,5 @@
 import { fetchToJson } from './fetch-utils';
-import { initialState as unleashInitialState, UnleashState } from '../unleash/unleash-duck';
+import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
 import { SyfoState } from '../sykmeldinger/sykmeldinger-duck';
@@ -39,8 +39,7 @@ export const API: ApiProps = {
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
     const unleashUrl = API.getUnleash + featureQueryParams(features);
-    return fetchToJson<UnleashState>(unleashUrl, requestConfig)
-        .catch(() => Promise.resolve(unleashInitialState));
+    return fetchToJson<UnleashState>(unleashUrl, requestConfig);
 }
 
 export function getOppfolgingFetch(): Promise<OppfolgingState> {
