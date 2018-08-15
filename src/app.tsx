@@ -9,6 +9,8 @@ import setupMock from './mock/setup-mock';
 import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
 
+export const contextRoot: string = '/tiltakinfo';
+
 if (erFullMock() || erLocalhost()) {
     setupMock();
 }
@@ -22,7 +24,7 @@ class App extends React.Component {
                 <StatusProvider>
                     <UnleashProvider>
                         <DataProvider>
-                            <BrowserRouter basename="/tiltakinfo">
+                            <BrowserRouter basename={contextRoot}>
                                 <Innhold/>
                             </BrowserRouter>
                         </DataProvider>

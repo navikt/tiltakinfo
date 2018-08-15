@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { StatusState } from './status-duck';
 import { AppState } from '../redux/reducer';
 import Spinner from 'nav-frontend-spinner';
+import { contextRoot } from '../app';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -21,7 +22,7 @@ class StepupProvider extends React.Component<StepupProviderProps> {
 
     componentDidMount() {
         if (!this.props.status.harGyldigOidcToken) {
-            location.href = '/veilarbstepup/oidc?url=/tiltakinfo';
+            location.href = `/veilarbstepup/oidc?url=${contextRoot}`;
         }
     }
 

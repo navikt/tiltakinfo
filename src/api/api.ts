@@ -3,6 +3,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
 import { SyfoState } from '../sykmeldinger/sykmeldinger-duck';
+import { contextRoot } from '../app';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -31,7 +32,7 @@ export const featureQueryParams = (features: string[]): string => {
 };
 
 export const API: ApiProps = {
-    getUnleash: '/tiltakinfo/api/feature',
+    getUnleash: `${contextRoot}/api/feature`,
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
     getSykmeldinger: '/syforest/sykmeldinger'
