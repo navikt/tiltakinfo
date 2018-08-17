@@ -4,14 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import getStore from './redux/store';
 import Innhold from './innhold';
 import DataProvider from './data-provider';
-import { erLocalhost, erFullMock } from './mock/utils';
+import { erLocalhost, erFullMock, erDemo } from './mock/utils';
 import setupMock from './mock/setup-mock';
 import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
 
 export const contextRoot: string = '/tiltakinfo';
 
-if (erFullMock() || erLocalhost()) {
+if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();
 }
 

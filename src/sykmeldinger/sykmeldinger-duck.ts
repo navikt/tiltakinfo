@@ -10,12 +10,13 @@ import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { getSykmeldingerFetch } from '../api/api';
+import { JSONObject } from 'yet-another-fetch-mock';
 
 export enum Arbeidssituasjon {
     ARBEIDSLEDIG = 'ARBEIDSLEDIG',
 }
 
-export interface Sykmelding {
+export interface Sykmelding extends JSONObject {
     sendtdato: string;
     valgtArbeidssituasjon: string;
 }
