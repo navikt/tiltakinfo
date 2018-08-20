@@ -6,3 +6,8 @@ export function erLocalhost() {
 export function erFullMock(): boolean {
     return process.env.REACT_APP_MOCK_FULL === 'true';
 }
+
+export function erDemo(): boolean {
+    const path: string = window.location.pathname;
+    return path.includes('/demo/index.html');
+}

@@ -8,9 +8,11 @@ import { DataElement, Status } from '../api/datalaster';
 
 export const tiltakinfoHentsykmeldinger = 'tiltakinfo.hentsykmeldinger';
 
-export interface UnleashState extends DataElement {
+export interface ActiveUnleashFeatures {
     [tiltakinfoHentsykmeldinger]: boolean;
 }
+
+export type UnleashState = DataElement & ActiveUnleashFeatures;
 
 export const initialState: UnleashState = {
     [tiltakinfoHentsykmeldinger]: false,
