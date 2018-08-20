@@ -8,8 +8,7 @@ import { erLocalhost, erFullMock, erDemo } from './mock/utils';
 import setupMock from './mock/setup-mock';
 import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
-
-export const contextRoot: string = '/tiltakinfo';
+import { contextRoot } from './konstanter';
 
 if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();

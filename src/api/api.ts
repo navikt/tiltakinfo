@@ -3,7 +3,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
 import { SyfoState } from '../sykmeldinger/sykmeldinger-duck';
-import { contextRoot } from '../app';
+import { contextRoot } from '../konstanter';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);

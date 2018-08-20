@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { StatusState } from './status-duck';
 import { AppState } from '../redux/reducer';
 import Spinner from 'nav-frontend-spinner';
-import { contextRoot } from '../app';
+import { contextRoot } from '../konstanter';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
