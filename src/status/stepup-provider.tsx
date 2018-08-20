@@ -37,4 +37,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     status: state.status,
 });
 
-export default connect(mapStateToProps, null)(StepupProvider);
+export default connect(mapStateToProps)(StepupProvider);
