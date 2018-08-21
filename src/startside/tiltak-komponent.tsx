@@ -4,14 +4,14 @@ import './tiltak.less';
 import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
 import Tekst from '../finn-tekst';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MAAL_OPTION, maalTiltakMap } from './maal-tiltak-map';
+import { MaalOption, maalTiltakMap } from './maal-tiltak-map';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 
 interface StateProps {
     sykmeldinger: SykmeldingerState;
-    maalId: MAAL_OPTION;
+    maalId: MaalOption;
 }
 
 class TiltakKomponent extends React.Component<StateProps> {

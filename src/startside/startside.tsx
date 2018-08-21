@@ -9,12 +9,12 @@ import KontakteNAV from './kontakte-nav';
 import Ingress from './ingress';
 import Tittel from './tittel';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
-import { MAAL_OPTION } from './maal-tiltak-map';
+import { MaalOption } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';
 
 interface StateProps {
     sykmeldinger: SykmeldingerState;
-    maalId: MAAL_OPTION;
+    maalId: MaalOption;
 }
 
 interface DispatchProps {
@@ -37,7 +37,7 @@ class Startside extends React.Component<StartsideProps> {
                     <>
                         <Tittel/>
                         <Ingress/>
-                        {(!sykmeldinger.data.harArbeidsgiver || maalId !== MAAL_OPTION.IKKE_VALGT) && (
+                        {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
                             <>
                                 <Tiltak/>
                                 <KontakteNAV/>

@@ -1,14 +1,14 @@
 import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
 import { ActiveUnleashFeatures, tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
 
-export enum BRUKER {
+export enum Bruker {
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
 }
 
 export const brukerOptionsRekkefolge = [
-    BRUKER.SYKMELDT_UTEN_ARBEIDSGIVER,
-    BRUKER.SYKMELDT_MED_ARBEIDSGIVER,
+    Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
+    Bruker.SYKMELDT_MED_ARBEIDSGIVER,
 ];
 
 export enum MockConfigPropName {
@@ -25,8 +25,8 @@ export interface MockConfig extends ActiveUnleashFeatures {
 
 interface BrukerMocks {
     defaultMock: MockConfig;
-    [BRUKER.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
-    [BRUKER.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
+    [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
+    [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
@@ -45,13 +45,13 @@ export const brukerMocks: BrukerMocks = {
             },
         ],
     },
-    [BRUKER.SYKMELDT_UTEN_ARBEIDSGIVER]: {
+    [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
     },
-    [BRUKER.SYKMELDT_MED_ARBEIDSGIVER]: {
+    [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakinfoHentsykmeldinger]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
