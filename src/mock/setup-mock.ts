@@ -1,47 +1,20 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { ActiveUnleashFeatures, tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
+import { tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
-
-export enum MockConfigPropName {
-    UNDER_OPPFOLGING = 'underOppfolging',
-    HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
-    SYKMELDINGER = 'sykmeldinger',
-}
+import { brukerMocks, MockConfigPropName } from './mock-data-config';
 
 interface ResponseObject {
     [key: string]: any; // tslint:disable-line:no-any
 }
 
-interface MockConfig {
+interface MockAPI {
     getUnleash: ResponseObject;
     getOppfolging: ResponseObject;
     getStatus: ResponseObject;
     getSykmeldinger: Sykmelding[];
 }
-
-interface MockConfigProperties extends ActiveUnleashFeatures {
-    [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
-    [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: boolean;
-    [MockConfigPropName.SYKMELDINGER]: Sykmelding[];
-}
-
-const defaultMockConfig: MockConfigProperties = {
-    [tiltakinfoHentsykmeldinger]: true,
-    [MockConfigPropName.UNDER_OPPFOLGING]: true,
-    [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-    [MockConfigPropName.SYKMELDINGER]: [
-        {
-            sendtdato: '2018-01-01T01:00:00',
-            valgtArbeidssituasjon: 'ARBEIDSLEDIG',
-        },
-        {
-            valgtArbeidssituasjon: 'FRILANSER',
-            sendtdato: '2018-01-01T02:00:00',
-        },
-    ],
-};
 
 export default () => {
 
@@ -61,43 +34,43 @@ export default () => {
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
-    const erBoolskString = (arg: any) => arg === 'true' || arg === 'false'; // tslint:disable-line:no-any
-
     const toBoolean = (arg: string): boolean => arg === 'true';
 
-    const verdiFraUrl = <T>(nokkel: string): T => {
+    const verdiFraUrl = (nokkel: string) => {
         const queryParamsParsed = queryString.parse(location.search);
-        const verdi = queryParamsParsed[nokkel];
-        return erBoolskString(verdi) ? toBoolean(verdi) : verdi;
+        return queryParamsParsed[nokkel];
     };
 
-    const finnVerdi = <T>(urlKey: string): T => {
-        const urlVerdi: T = verdiFraUrl<T>(urlKey);
+    const finnVerdi = (urlKey: string) => {
+        const urlVerdi = verdiFraUrl(urlKey);
         if (urlVerdi !== undefined) {
-            return urlVerdi;
+            if (urlKey === MockConfigPropName.SYKMELDINGER) {
+                return (urlVerdi as string[]).map((sykmelding: string): Sykmelding => JSON.parse(sykmelding));
+            } else {
+                return toBoolean(urlVerdi);
+            }
         }
-        const defaultVal: T = defaultMockConfig[urlKey];
-        return defaultVal;
+        return brukerMocks.defaultMock[urlKey];
     };
 
-    const mockConfig: MockConfig = {
+    const mockAPI: MockAPI = {
         getUnleash: {
-            [tiltakinfoHentsykmeldinger]: finnVerdi<boolean>(tiltakinfoHentsykmeldinger),
+            [tiltakinfoHentsykmeldinger]: finnVerdi(tiltakinfoHentsykmeldinger),
         },
         getOppfolging: {
-            underOppfolging: finnVerdi<boolean>(MockConfigPropName.UNDER_OPPFOLGING),
+            underOppfolging: finnVerdi(MockConfigPropName.UNDER_OPPFOLGING),
         },
         getStatus: {
-            harGyldigOidcToken: finnVerdi<boolean>(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
+            harGyldigOidcToken: finnVerdi(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
         },
-        getSykmeldinger: finnVerdi<Sykmelding[]>(MockConfigPropName.SYKMELDINGER),
+        getSykmeldinger: finnVerdi(MockConfigPropName.SYKMELDINGER),
     };
 
-    fetchMock.get(API.getUnleash, mockConfig.getUnleash);
+    fetchMock.get(API.getUnleash, mockAPI.getUnleash);
 
-    fetchMock.get(API.getOppfolging, mockConfig.getOppfolging);
+    fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
 
-    fetchMock.get(API.getStatus, mockConfig.getStatus);
+    fetchMock.get(API.getStatus, mockAPI.getStatus);
 
-    fetchMock.get(API.getSykmeldinger, mockConfig.getSykmeldinger);
+    fetchMock.get(API.getSykmeldinger, mockAPI.getSykmeldinger);
 };
