@@ -12,12 +12,6 @@ import Veilederpanel from 'nav-frontend-veilederpanel';
 
 const veilederBilde = require('../ikoner/veileder-dame.svg');
 
-/*class VeilederBilde extends React.Component {
-    render() {
-        return veilederBilde;
-    }
-}*/
-
 interface StateProps {
     harArbeidsgiver: boolean;
 }
