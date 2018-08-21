@@ -9,6 +9,7 @@ import setupMock from './mock/setup-mock';
 import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
 import { contextRoot } from './konstanter';
+import mockDashboardInjecter from './mock/mock-dashboard-injecter';
 
 if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();
@@ -34,4 +35,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default mockDashboardInjecter(App);
