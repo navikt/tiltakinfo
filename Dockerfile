@@ -5,8 +5,13 @@ FROM ${BASE_IMAGE_PREFIX}node as builder
 ADD / /source
 ENV CI=true
 WORKDIR /source
-RUN npm install && npm run build
+RUN npm ci && npm run build:demo
+RUN cp -r /source/build /demo
+RUN npm run build
 
 FROM docker.adeo.no:5000/pus/decorator
 ENV APPLICATION_NAME=tiltakinfo
 COPY --from=builder /source/build /app
+COPY --from=builder /demo /app/demo
+
+

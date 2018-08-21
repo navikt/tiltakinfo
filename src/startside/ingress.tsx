@@ -6,7 +6,6 @@ import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ArbeidsforholdState } from '../arbeidsforhold/arbeidsforhold-duck';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
 import Veilederpanel from 'nav-frontend-veilederpanel';
@@ -21,7 +20,6 @@ const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 interface StateProps {
     harArbeidsgiver: boolean;
-    arbeidsforhold: ArbeidsforholdState;
 }
 
 interface DispatchProps {
@@ -78,8 +76,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    harArbeidsgiver: state.arbeidsforhold.data.harArbeidsgiver,
-    arbeidsforhold: state.arbeidsforhold,
+    harArbeidsgiver: state.sykmeldinger.data.harArbeidsgiver,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

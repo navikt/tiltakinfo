@@ -5,7 +5,6 @@ import { UnleashState } from './unleash/unleash-duck';
 import Startside from './startside/startside';
 import { AppState } from './redux/reducer';
 import { connect } from 'react-redux';
-import Datalaster from './api/datalaster';
 
 export const URL_ADMIN = '/admin';
 
@@ -22,17 +21,15 @@ class Innhold extends React.Component<InnholdProps> {
 
     render() {
         return (
-            <Datalaster avhengigheter={[this.props.features]}>
-                <main className="maincontent">
-                    <Switch location={this.props.location}>
-                        <Route path={URL_ADMIN} component={Startside}/>
-                        <Route
-                            path={'/'}
-                            component={Startside}
-                        />
-                    </Switch>
-                </main>
-            </Datalaster>
+            <main className="maincontent">
+                <Switch location={this.props.location}>
+                    <Route path={URL_ADMIN} component={Startside}/>
+                    <Route
+                        path={'/'}
+                        component={Startside}
+                    />
+                </Switch>
+            </main>
         );
     }
 }

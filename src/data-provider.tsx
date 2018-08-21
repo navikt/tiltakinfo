@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
-import { tiltakinfoHentarbeidsforhold, UnleashState } from './unleash/unleash-duck';
+import { tiltakinfoHentsykmeldinger, UnleashState } from './unleash/unleash-duck';
 import { hentOppfolging } from './oppfolging/oppfolging-duck';
-import { hentArbeidsforhold, hentArbeidsforholdOK } from './arbeidsforhold/arbeidsforhold-duck';
+import { hentSykmeldinger, ikkeHentSykmeldingerOK } from './sykmeldinger/sykmeldinger-duck';
 import { featureErAktivert } from './unleash/feature';
 import { AppState } from './redux/reducer';
 
@@ -17,8 +17,8 @@ interface StateProps {
 
 interface DispatchProps {
     doHentOppfolging: () => void;
-    doHentArbeidsforhold: () => void;
-    dispatchOKIngenArbeidsgiver: () => void;
+    doHentSykmeldinger: () => void;
+    dispatchOKIkkeHentSykmeldinger: () => void;
 }
 
 type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
@@ -30,10 +30,10 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 
     componentDidMount() {
         this.props.doHentOppfolging();
-        if (featureErAktivert(tiltakinfoHentarbeidsforhold, this.props.features)) {
-            this.props.doHentArbeidsforhold();
+        if (featureErAktivert(tiltakinfoHentsykmeldinger, this.props.features)) {
+            this.props.doHentSykmeldinger();
         } else {
-            this.props.dispatchOKIngenArbeidsgiver();
+            this.props.dispatchOKIkkeHentSykmeldinger();
         }
     }
 
@@ -48,9 +48,9 @@ const mapStateToProps = (state: AppState): StateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
-    doHentArbeidsforhold: () => hentArbeidsforhold()(dispatch),
-    dispatchOKIngenArbeidsgiver: () => {
-        dispatch(hentArbeidsforholdOK([{arbeidsgiver: ''}]));
+    doHentSykmeldinger: () => hentSykmeldinger()(dispatch),
+    dispatchOKIkkeHentSykmeldinger: () => {
+        dispatch(ikkeHentSykmeldingerOK());
     },
 });
 

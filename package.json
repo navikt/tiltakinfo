@@ -14,14 +14,15 @@
     "prettier": "prettier --write --single-quote --tab-width 4 src/**/*.ts src/**/*.tsx src/**/*.less",
     "eject": "react-scripts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
-    "start-mock:halv": "cross-env REACT_APP_MOCK_HALV=true npm-run-all -p start:*",
-    "build": "npm run build:ts"
+    "build": "npm run build:ts",
+    "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js"
   },
   "dependencies": {
     "@nutgaard/react-scripts": "0.0.8-beta.4",
     "ajv": "6.5.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
+    "cross-env": "5.2.0",
     "lodash.throttle": "4.1.1",
     "nav-frontend-chevron-style": "0.3.4",
     "nav-frontend-core": "4.0.5",
@@ -48,7 +49,8 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "yet-another-fetch-mock": "2.3.3"
   },
   "devDependencies": {
     "@types/fetch-mock": "6.0.3",

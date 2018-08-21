@@ -14,9 +14,10 @@ export enum ActionType {
     HENT_STATUS_OK = 'HENT_STATUS_OK',
     HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
     HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
-    HENT_ARBEIDSFORHOLD_OK = 'HENT_ARBEIDSFORHOLD_OK',
-    HENT_ARBEIDSFORHOLD_FEILET = 'HENT_ARBEIDSFORHOLD_FEILET',
-    HENT_ARBEIDSFORHOLD_LASTER = 'HENT_ARBEIDSFORHOLD_LASTER',
+    HENT_SYKMELDINGER_OK = 'HENT_SYKMELDINGER_OK',
+    HENT_SYKMELDINGER_FEILET = 'HENT_SYKMELDINGER_FEILET',
+    HENT_SYKMELDINGER_LASTER = 'HENT_SYKMELDINGER_LASTER',
+    IKKE_HENT_SYKMELDINGER = 'IKKE_HENT_SYKMELDINGER',
     SETT_MAAL = 'SETT_MAAL',
 }
 
@@ -63,16 +64,20 @@ export interface HentStatusFEILETAction {
     type: ActionType.HENT_STATUS_FEILET;
 }
 
-export interface HentArbeidsforholdOKAction extends Data {
-    type: ActionType.HENT_ARBEIDSFORHOLD_OK;
+export interface HentSykmeldingerOKAction extends Data {
+    type: ActionType.HENT_SYKMELDINGER_OK;
 }
 
-export interface HentArbeidsforholdLASTERAction {
-    type: ActionType.HENT_ARBEIDSFORHOLD_LASTER;
+export interface HentSykmeldingerLASTERAction {
+    type: ActionType.HENT_SYKMELDINGER_LASTER;
 }
 
-export interface HentArbeidsforholdFEILETAction {
-    type: ActionType.HENT_ARBEIDSFORHOLD_FEILET;
+export interface HentSykmeldingerFEILETAction {
+    type: ActionType.HENT_SYKMELDINGER_FEILET;
+}
+
+export interface IkkeHentSykmeldingerAction {
+    type: ActionType.IKKE_HENT_SYKMELDINGER;
 }
 
 export type Handling =
@@ -86,6 +91,7 @@ export type Handling =
     | HentStatusOKAction
     | HentStatusFEILETAction
     | HentStatusLASTERAction
-    | HentArbeidsforholdOKAction
-    | HentArbeidsforholdFEILETAction
-    | HentArbeidsforholdLASTERAction;
+    | HentSykmeldingerOKAction
+    | HentSykmeldingerFEILETAction
+    | HentSykmeldingerLASTERAction
+    | IkkeHentSykmeldingerAction;

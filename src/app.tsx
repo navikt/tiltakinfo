@@ -4,12 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import getStore from './redux/store';
 import Innhold from './innhold';
 import DataProvider from './data-provider';
-import { erLocalhost, erMock } from './mock/utils';
-import { setupMock } from './mock/setup-mock';
+import { erLocalhost, erFullMock, erDemo } from './mock/utils';
+import setupMock from './mock/setup-mock';
 import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
+import { contextRoot } from './konstanter';
 
-if (erMock() || erLocalhost()) {
+if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();
 }
 
@@ -22,7 +23,7 @@ class App extends React.Component {
                 <StatusProvider>
                     <UnleashProvider>
                         <DataProvider>
-                            <BrowserRouter basename="/tiltakinfo">
+                            <BrowserRouter basename={contextRoot}>
                                 <Innhold/>
                             </BrowserRouter>
                         </DataProvider>
