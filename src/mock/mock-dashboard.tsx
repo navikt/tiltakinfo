@@ -34,8 +34,8 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
 
     render() {
         const selectorVerdier = {
-            [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Bruker uten arbeidsgiver',
-            [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Bruker med arbeidsgiver',
+            [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
+            [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
         };
         return (
             <section className="mockdashboard">
