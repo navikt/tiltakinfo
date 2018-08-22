@@ -8,6 +8,9 @@ import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE } from './maal-tiltak-map';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+
+const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 interface StateProps {
     harArbeidsgiver: boolean;
@@ -42,22 +45,25 @@ class Ingress extends React.Component<IngressProps, IngressState> {
 
         return (
             <section className="ingress">
-                <Ingresskomponent>
-                    <Tekst id={ingressId}/>
-                </Ingresskomponent>
-                {harArbeidsgiver && (
-                    <SelectKomponent
-                        onChange={this.handleChange}
-                        label={''}
-                    >
-                        {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
-                                <option key={tekstId} value={tekstId}>
-                                    <Tekst id={tekstId}/>
-                                </option>
-                            )
-                        )}
-                    </SelectKomponent>
-                )}
+                <Veilederpanel svg={<img src={veilederBilde}/>} type={'plakat'}>
+                    <Ingresskomponent>
+                        <Tekst id={ingressId}/>
+                    </Ingresskomponent>
+                    {harArbeidsgiver && (
+                        <SelectKomponent
+                            onChange={this.handleChange}
+                            label={''}
+                        >
+                            {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
+                                    <option key={tekstId} value={tekstId}>
+                                        <Tekst id={tekstId}/>
+                                    </option>
+                                )
+                            )}
+                        </SelectKomponent>
+                    )}
+
+                </Veilederpanel>
             </section>
         );
     }

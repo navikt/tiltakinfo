@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import 'nav-frontend-core/less/core.less';
 import './index.less';
 
