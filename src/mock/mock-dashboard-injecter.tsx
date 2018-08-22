@@ -7,8 +7,8 @@ export default function mockDashboardInjecter(WrappedComponent: React.ComponentC
         render() {
             return (
                 <>
-                    <WrappedComponent/>
                     {erDemo() && <MockDashboard/>}
+                    <WrappedComponent/>
                 </>
             );
         }
