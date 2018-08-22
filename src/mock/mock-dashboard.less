@@ -1,6 +1,35 @@
+@import '../../node_modules/nav-frontend-core/less/_variabler';
 @import '../farger';
+
+@desktopLimitWidth: 740px;
 
 .mockdashboard {
     background-color: @foBlaBackground;
-    padding: 2rem 27rem 2rem 9rem;
+    padding: 2rem 1rem;
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .mockdashboard {
+        width: @desktopLimitWidth;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .skjemaelement {
+            width: 13rem;
+        }
+
+        button {
+            width: 13rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+    }
 }

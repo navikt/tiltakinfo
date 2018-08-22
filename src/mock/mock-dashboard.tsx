@@ -39,7 +39,7 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
         };
         return (
             <section className="mockdashboard">
-                <Innholdstittel>Kun for demo!</Innholdstittel>
+                <Innholdstittel>Demo</Innholdstittel>
                 <SelectKomponent
                     label="Velg brukertypen for demoen"
                     onChange={this.handleChange}
@@ -57,7 +57,7 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
                     }
                 </SelectKomponent>
                 <button className="knapp knapp--hoved" onClick={this.oppdaterUrl}>
-                    Last app med oppgitt data
+                    Velg bruker
                 </button>
             </section>
         );

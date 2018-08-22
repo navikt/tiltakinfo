@@ -6,6 +6,6 @@ import * as ReactDOM from 'react-dom';
 import App from './app';
 import { unregister } from './registerServiceWorker';
 
-ReactDOM.render(<App/>, document.getElementById('root') as HTMLElement);
+ReactDOM.render(<App/>, document.getElementById('app-root') as HTMLElement);
 
 unregister();
