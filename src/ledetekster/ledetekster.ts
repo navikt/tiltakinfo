@@ -18,7 +18,7 @@ export default {
     'informasjon-totiltak': 'Her er to alternativer:',
     'kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
     'kontaktenav-snakkmednav': 'Snakk med oss om muligheter',
-    'kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',
+    'kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har.',
     'kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',
     'tiltak-lonnstilskudd-tittel': 'Lønnstilskudd',
     'tiltak-lonnstilskudd-hva': 'Vet du om en arbeidsgiver som er interessert i å ansette deg? Trenger du litt tid for å komme i gang for fullt? NAV kan dekke deler av lønnen din en stund. Du vurderer sammen med arbeidsgiveren og veilederen din hvor mye NAV skal dekke.',
