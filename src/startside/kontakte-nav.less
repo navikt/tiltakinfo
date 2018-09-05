@@ -2,25 +2,66 @@
 
 .kontakte-nav {
     background-color: @white;
-    padding: 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem;
+    border: 2px solid #C6C2BF;
+    border-radius: .5rem;
 
-    .typo-normal {
-        padding-bottom: 1.5rem;
+    .kontakte-nav__bilde {
+        text-align: center;
+
+        img {
+            width: 120px;
+            padding-bottom: 1.5rem;
+        }
     }
 
-    .knapp {
-        padding: 0.5em 1.6em calc(.5em + .125em + 1px);
-        width: 100%;
-        text-align: center;
+    .kontakte-nav__innhold {
+
+        .kontakte-nav__knapp {
+            .knapp {
+                // padding: 0.5em 1.6em calc(.5em + .125em + 1px);
+            }
+        }
+        .typo-normal {
+            padding-bottom: 1.5rem;
+        }
     }
 }
 
 @media (min-width: @screen-sm-min) {
     .kontakte-nav {
-        .knapp {
-            padding: .5em 2.5em calc(.5em + .125em + 1px);
-            width: auto;
-            text-align: start;
+        background-color: @white;
+        padding: 2.5rem 1.5rem;
+        border: 2px solid #C6C2BF;
+        border-radius: .5rem;
+        display: flex;
+        justify-content: space-around;
+        // flex-direction: column;
+
+        .kontakte-nav__bilde {
+            order: 2;
+            text-align: center;
+            width: calc(30% - 0.5rem);
+            img {
+                width: 164px;
+                padding-bottom: 0;
+            }
+        }
+
+        .kontakte-nav__innhold {
+            order: 1;
+            padding-right: 2rem;
+            width: calc(70% - 0.5rem);
+            .kontakte-nav__knapp {
+                .knapp {
+                    // padding: .5em 2.5em calc(.5em + .125em + 1px);
+                    // width: auto;
+                    // text-align: start;
+                }
+            }
+            .typo-normal {
+                padding-bottom: 1.5rem;
+            }
         }
     }
 }
