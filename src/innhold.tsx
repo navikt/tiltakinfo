@@ -21,7 +21,7 @@ class Innhold extends React.Component<InnholdProps> {
 
     render() {
         return (
-            <main className="app-content">
+            <main>
                 <Switch location={this.props.location}>
                     <Route path={URL_ADMIN} component={Startside}/>
                     <Route

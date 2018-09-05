@@ -1,14 +1,18 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
+@import '../farger';
 
 
 .tittel.blokk-m {
     text-align: center;
+    background-color: @foBlaBar;
+    border-bottom: solid @foBlaBarBorder;
+    border-bottom-width: 0.3rem;
+    padding: 2.5rem 4rem 2.5rem 4rem;
+    margin: 0 0 2.5rem;
 }
 
 @media (min-width: @screen-sm-min) {
     .tittel.blokk-m {
-        width: 600px;
-        margin: 0 auto 2rem;
-        padding: 0 2.5rem;
+        padding: 2.5rem 0 2rem;
     }
 }
