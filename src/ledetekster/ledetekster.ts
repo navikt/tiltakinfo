@@ -7,7 +7,7 @@ export default {
     'fleretiltak-lenke': 'Se oversikt over mulighetene.',
     'fleretiltak-passedeg': 'NAV har flere tilbud som kan hjelpe deg ut i jobb.',
     'tittel-utenarbeidsgiver': 'Trenger du hjelp for å komme i jobb?',
-    'tittel-hararbeidsgiver': 'Trenger du hjelp for å komme tilbake til jobb?',
+    'tittel-hararbeidsgiver': 'Trenger du hjelp for å komme tilbake i jobb?',
     'ingress-utenarbeidsgiver': 'Av og til kan man trenge litt ekstra for å komme i jobb. Snakk med oss, så kan vi sammen finne ut hva som passer for deg.',
     'ingress-hararbeidsgiver': 'Hvilken situasjon ønsker du å være i når du ikke lenger er sykmeldt? Ut fra det du svarer viser vi deg noen alternativer.',
     'ingress-maal-ikkevalgt': 'Velg situasjon:',
