@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import './flere-tiltak.less';
 import Tekst from '../finn-tekst';
@@ -20,10 +20,10 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
     render() {
         const lenkeTiltak = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb'; // tslint:disable-line
         return (
-            <section className="flere-tiltak">
-                <Undertittel className="blokk-xs">
+            <section className="flere-tiltak panel panel--border">
+                <Systemtittel className="blokk-xxs">
                     <Tekst id={'fleretiltak-header'}/>
-                </Undertittel>
+                </Systemtittel>
                 <Normaltekst>
                     <Tekst id={'fleretiltak-passedeg'}/>&nbsp;
                     <a className="lenke" href={lenkeTiltak}>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
+import 'nav-frontend-paneler-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import Datalaster from '../api/datalaster';
@@ -30,8 +31,8 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
         return (
             <Datalaster avhengigheter={[oppfolging]}>
                 <>
-                    <section className="kontakte-nav blokk-xl">
-                        <Systemtittel className="blokk-s">
+                    <section className="kontakte-nav panel panel--border blokk-xl">
+                        <Systemtittel className="blokk-xxs">
                             <Tekst id={'kontaktenav-snakkmednav'}/>
                         </Systemtittel>
                         <Normaltekst>
@@ -44,7 +45,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         )}
                     </section>
                 </>
-
             </Datalaster>
         );
     }
