@@ -42,13 +42,13 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         <Normaltekst>
                             <Tekst id={tekstId}/>
                         </Normaltekst>
-                        <div className="kontakte-nav__knapp">
-                            {oppfolging.underOppfolging && (
+                        {oppfolging.underOppfolging && (
+                            <div className="kontakte-nav__knapp">
                                 <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
                                     <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
                                 </a>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 </section>
             </Datalaster>
