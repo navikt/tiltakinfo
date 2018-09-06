@@ -1,6 +1,5 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
 @import '../farger';
-@import '../../node_modules/nav-frontend-ekspanderbartpanel-style/src/index';
 
 .tiltak-oversikt {
     display: flex;
@@ -37,7 +36,6 @@
         padding: 1.5rem;
         min-height: 17rem;
         border: 0.09rem solid @foGraBorder;
-        border-radius: 0 0 4px 4px;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -50,7 +48,7 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        height: 114px;
+        //height: 114px;
         width: 271px;
     }
 
@@ -74,13 +72,13 @@
             width: 47%;
         }
 
-        .tiltak-ikon {
-            height: 127px;
-            width: 264px;
-        }
-
         .tiltak-header {
             padding: 2rem 2rem 0;
+        }
+
+
+        .tiltak-ikon {
+            width: 280px;
         }
 
         .tiltak-header-tekst {
@@ -103,5 +101,10 @@
         .tiltak-innhold {
             min-height: 17rem;
         }
+
+        .tiltak-ikon {
+            width: 330px;
+        }
     }
+
 }
