@@ -53,7 +53,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakinfoHentsykmeldinger]: true,
-        [MockConfigPropName.UNDER_OPPFOLGING]: true,
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
             {

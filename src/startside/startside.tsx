@@ -32,20 +32,22 @@ class Startside extends React.Component<StartsideProps> {
         const {sykmeldinger, maalId} = this.props;
         return (
             <>
-                <Brodsmuler/>
-                <Datalaster avhengigheter={[sykmeldinger]}>
-                    <>
-                        <Tittel/>
-                        <Ingress/>
-                        {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
-                            <>
-                                <Tiltak/>
-                                <KontakteNAV/>
-                                <FlereTiltak/>
-                            </>
-                        )}
-                    </>
-                </Datalaster>
+                <Tittel/>
+                <div className="app-content">
+                    <Brodsmuler/>
+                    <Datalaster avhengigheter={[sykmeldinger]}>
+                        <>
+                            <Ingress/>
+                            {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
+                                <>
+                                    <Tiltak/>
+                                    <KontakteNAV/>
+                                    <FlereTiltak/>
+                                </>
+                            )}
+                        </>
+                    </Datalaster>
+                </div>
             </>
         );
     }
