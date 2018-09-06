@@ -1,9 +1,10 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
+@import '../farger';
 
 .kontakte-nav {
     background-color: @white;
     padding: 2.5rem 1.5rem;
-    border: 2px solid #C6C2BF;
+    border: 2px solid @navGra20;
     border-radius: .5rem;
 
     .kontakte-nav__bilde {
@@ -19,7 +20,7 @@
 
         .kontakte-nav__knapp {
             .knapp {
-                // padding: 0.5em 1.6em calc(.5em + .125em + 1px);
+                padding: 0.5em 1.6em calc(.5em + .125em + 1px);
             }
         }
         .typo-normal {
@@ -30,37 +31,27 @@
 
 @media (min-width: @screen-sm-min) {
     .kontakte-nav {
-        background-color: @white;
-        padding: 2.5rem 1.5rem;
-        border: 2px solid #C6C2BF;
-        border-radius: .5rem;
         display: flex;
-        justify-content: space-around;
-        // flex-direction: column;
+        justify-content: space-evenly;
 
         .kontakte-nav__bilde {
             order: 2;
-            text-align: center;
-            width: calc(30% - 0.5rem);
+            width: calc(30% - 1rem);
             img {
                 width: 164px;
                 padding-bottom: 0;
             }
         }
-
         .kontakte-nav__innhold {
             order: 1;
-            padding-right: 2rem;
-            width: calc(70% - 0.5rem);
+            width: calc(70% - 1rem);
             .kontakte-nav__knapp {
                 .knapp {
-                    // padding: .5em 2.5em calc(.5em + .125em + 1px);
-                    // width: auto;
-                    // text-align: start;
+                    padding: .5em 2.5em calc(.5em + .125em + 1px);
                 }
             }
-            .typo-normal {
-                padding-bottom: 1.5rem;
+            .typo-innholdstittel {
+                margin-bottom: 1rem;
             }
         }
     }

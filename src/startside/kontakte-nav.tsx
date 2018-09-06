@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
-// import Datalaster from '../api/datalaster';
+import Datalaster from '../api/datalaster';
 import Tekst from '../finn-tekst';
 
 const kontakteNavBilde = require('../ikoner/kontakt-oss.svg');
@@ -30,24 +30,28 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             ? 'kontaktenav-takontakt-underoppfolging'
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
         return (
-            <section className="kontakte-nav blokk-xl">
+            <Datalaster avhengigheter={[oppfolging]}>
+                <section className="kontakte-nav blokk-xl">
                     <div className="kontakte-nav__bilde">
                         <img src={kontakteNavBilde}/>
                     </div>
                     <div className="kontakte-nav__innhold">
-                        <Systemtittel className="blokk-s">
+                        <Innholdstittel className="blokk-s">
                             <Tekst id={'kontaktenav-snakkmednav'}/>
-                        </Systemtittel>
+                        </Innholdstittel>
                         <Normaltekst>
                             <Tekst id={tekstId}/>
                         </Normaltekst>
                         <div className="kontakte-nav__knapp">
-                            <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
-                            </a>
+                            {oppfolging.underOppfolging && (
+                                <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
+                                    <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
+                                </a>
+                            )}
                         </div>
                     </div>
-            </section>
+                </section>
+            </Datalaster>
         );
     }
 }
@@ -57,23 +61,3 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 export default connect(mapStateToProps)(KontakteNAV);
-
-/*
-<Datalaster avhengigheter={[oppfolging]}>
-    <div className="kontakte-nav blokk-xl">
-        <Veilederpanel type="normal" svg={<img src={kontakteNavBilde}/>}>
-            <Systemtittel className="blokk-s">
-                <Tekst id={'kontaktenav-snakkmednav'}/>
-            </Systemtittel>
-            <Normaltekst>
-                <Tekst id={tekstId}/>
-            </Normaltekst>
-            {oppfolging.underOppfolging && (
-                <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                    <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
-                </a>
-            )}
-        </Veilederpanel>
-    </div>
-</Datalaster>
-*/
