@@ -1,27 +1,31 @@
-@import '../../styles/variabler.less';
+@import '../../node_modules/nav-frontend-core/less/_variabler';
+@import '../../node_modules/nav-frontend-core/less/_mixins';
+@import '../../node_modules/nav-frontend-typografi-style/src/index.less';
 
 .infoToggler {
-	position: relative;
-	border: none !important;
+	position: static;
+	border: none;
 	background: transparent;
+	margin-top: 1.5rem;
 	padding: 0;
 	display: inline-block;
 	&:focus {
-		.buttonFocus();
+		outline: none;
+		box-shadow: 0 0 0 3px @orangeFocus;
 	}
 	&__content {
-		color: #0067c5;
+		color: @navBla;
 		display: inline-block;
 		text-align: left;
-		border-bottom: solid 1px #b7b1a9;
-		padding-right: 1.5rem;
+		border-bottom: solid 1px @navGra40;
+		padding: 1rem 1.5rem 1rem 0;
 		position: relative;
 	}
 	&:hover,
 	&:focus,
 	&:active {
 		.infoToggler__content {
-			border-bottom-color: #0067c5;
+			border-bottom-color: @navBla;
 		}
 	}
 	&__label  {
@@ -30,10 +34,20 @@
 	&__chevron {
 		position: absolute;
 		right: 0;
-		top: 0.5rem;
-		.nav-frontend-chevron {
-			margin-top: 0.2rem;
-			margin-left: 0.4rem;
-		}
+	}
+}
+
+@media screen {
+	.print-only {
+		display: none;
+	}
+}
+
+@media print {
+	.no-print {
+		display: none;
+	}
+	.print-only {
+		display: block;
 	}
 }

@@ -1,6 +1,6 @@
 @import '../node_modules/nav-frontend-core/less/_variabler';
 
-@desktopLimitWidth: 740px;
+@desktopLimitWidth: 960px;
 
 html,
 body {
@@ -25,7 +25,8 @@ body,
     padding: 2rem 1rem 12rem;
 }
 
-@media (min-width: @screen-sm-min) {
+
+@media (min-width: @screen-md) {
     .app-content {
         width: @desktopLimitWidth;
         margin: 0 auto;
