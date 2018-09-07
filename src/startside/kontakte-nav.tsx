@@ -32,7 +32,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
         return (
             <Datalaster avhengigheter={[oppfolging]}>
-                <section className="kontakte-nav blokk-xl">
+                <section className="panel panel--border kontakte-nav blokk-xl">
                     <div className="kontakte-nav__bilde">
                         <img src={kontakteNavBilde}/>
                     </div>
