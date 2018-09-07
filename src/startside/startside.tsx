@@ -7,10 +7,10 @@ import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-komponent';
 import KontakteNAV from './kontakte-nav';
 import Ingress from './ingress';
-import Tittel from './tittel';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { MaalOption } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';
+import StartsideBanner from './startside-banner';
 
 interface StateProps {
     sykmeldinger: SykmeldingerState;
@@ -32,22 +32,33 @@ class Startside extends React.Component<StartsideProps> {
         const {sykmeldinger, maalId} = this.props;
         return (
             <>
-                <Tittel/>
-                <div className="app-content">
+                <StartsideBanner/>
+                <section className="app-content brodsmuler-container">
                     <Brodsmuler/>
-                    <Datalaster avhengigheter={[sykmeldinger]}>
+                </section>
+                <Datalaster avhengigheter={[sykmeldinger]}>
+                    <>
+                    <section className="app-content ingress-container">
+                        <Ingress/>
+                    </section>
+
+                    {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
                         <>
-                            <Ingress/>
-                            {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
-                                <>
-                                    <Tiltak/>
-                                    <KontakteNAV/>
-                                    <FlereTiltak/>
-                                </>
-                            )}
+                            <section className="app-content tiltak-container">
+                                <Tiltak/>
+                            </section>
+
+                            <section className="app-content-kontakte-nav blokk-xl">
+                                <KontakteNAV/>
+                            </section>
+
+                            <section className="app-content flere-tiltak-container">
+                                <FlereTiltak/>
+                            </section>
                         </>
-                    </Datalaster>
-                </div>
+                    )}
+                    </>
+                </Datalaster>
             </>
         );
     }

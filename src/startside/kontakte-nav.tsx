@@ -32,24 +32,29 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
         return (
             <Datalaster avhengigheter={[oppfolging]}>
-                <section className="panel panel--border kontakte-nav blokk-xl">
-                    <div className="kontakte-nav__bilde">
-                        <img src={kontakteNavBilde}/>
-                    </div>
-                    <div className="kontakte-nav__innhold">
-                        <Innholdstittel className="blokk-s">
-                            <Tekst id={'kontaktenav-snakkmednav'}/>
-                        </Innholdstittel>
-                        <Normaltekst>
-                            <Tekst id={tekstId}/>
-                        </Normaltekst>
-                        {oppfolging.underOppfolging && (
-                            <div className="kontakte-nav__knapp">
-                                <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                    <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
-                                </a>
-                            </div>
-                        )}
+                <section className="kontakte-nav-container">
+                    <div className="panel panel--border kontakte-nav">
+
+                        <div className="kontakte-nav__bilde">
+                            <img src={kontakteNavBilde}/>
+                        </div>
+
+                        <div className="kontakte-nav__innhold">
+                            <Innholdstittel className="blokk-s">
+                                <Tekst id={'kontaktenav-snakkmednav'}/>
+                            </Innholdstittel>
+                            <Normaltekst>
+                                <Tekst id={tekstId}/>
+                            </Normaltekst>
+                            {oppfolging.underOppfolging && (
+                                <div className="kontakte-nav__knapp">
+                                    <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
+                                        <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+
                     </div>
                 </section>
             </Datalaster>
