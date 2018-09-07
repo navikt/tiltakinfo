@@ -1,58 +1,61 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
 
-.kontakte-nav {
-    background-color: @white;
-    padding: 2.5rem 1.5rem;
-    border: 2px solid @navGra20;
-    border-radius: .5rem;
+.kontakte-nav-container {
+    padding: 5.5rem 0;
 
-    .kontakte-nav__bilde {
-        text-align: center;
-
-        img {
-            width: 120px;
-            height: 120px;
-            padding-bottom: 1.5rem;
-        }
-    }
-
-    .kontakte-nav__innhold {
-
-        .kontakte-nav__knapp {
-            .knapp {
-                padding: 0.5em 1.6em calc(.5em + .125em + 1px);
+    .kontakte-nav {
+        .kontakte-nav__bilde {
+            text-align: center;
+            img {
+                width: 120px;
+                height: 120px;
+                padding-bottom: 1.5rem;
             }
         }
-        .typo-normal {
-            padding-bottom: 1.5rem;
+        .kontakte-nav__innhold {
+            .kontakte-nav__knapp {
+                .knapp {
+                    padding: 0.5em 1.6em calc(.5em + .125em + 1px);
+                }
+            }
+            .typo-normal {
+                padding-bottom: 1.5rem;
+            }
         }
     }
 }
 
 @media (min-width: @screen-sm-min) {
-    .kontakte-nav {
-        display: flex;
-        justify-content: space-evenly;
+    .kontakte-nav-container {
+        margin: 2rem 0;
+        height: 100%;
+        position: relative;
+        padding: 5.5rem 0;
 
-        .kontakte-nav__bilde {
-            order: 2;
-            width: calc(30% - 1rem);
-            img {
-                width: 164px;
-                height: 164px;
-                padding-bottom: 0;
-            }
-        }
-        .kontakte-nav__innhold {
-            order: 1;
-            width: calc(70% - 1rem);
-            .kontakte-nav__knapp {
-                .knapp {
-                    padding: .5em 2.5em calc(.5em + .125em + 1px);
+        .kontakte-nav {
+            display: flex;
+            justify-content: space-evenly;
+
+            .kontakte-nav__bilde {
+                order: 2;
+                width: calc(30% - 1rem);
+                img {
+                    width: 164px;
+                    height: 164px;
+                    padding-bottom: 0;
                 }
             }
-            .typo-innholdstittel {
-                margin-bottom: 1rem;
+            .kontakte-nav__innhold {
+                order: 1;
+                width: calc(70% - 1rem);
+                .kontakte-nav__knapp {
+                    .knapp {
+                        padding: .5em 2.5em calc(.5em + .125em + 1px);
+                    }
+                }
+                .typo-innholdstittel {
+                    margin-bottom: 1rem;
+                }
             }
         }
     }
