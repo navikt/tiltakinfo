@@ -1,0 +1,51 @@
+@import '../../node_modules/nav-frontend-core/less/_variabler';
+
+.infoToggler {
+	position: static;
+	border: none;
+	background: transparent;
+	margin-top: 1.5rem;
+	padding: 0;
+	display: inline-block;
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px @orangeFocus;
+	}
+	&__content {
+		color: @navBla;
+		display: inline-block;
+		text-align: left;
+		border-bottom: solid 1px @navGra40;
+		padding: 1rem 1.5rem 1rem 0;
+		position: relative;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		.infoToggler__content {
+			border-bottom-color: @navBla;
+		}
+	}
+	&__label  {
+		display: inline-block;
+	}
+	&__chevron {
+		position: absolute;
+		right: 0;
+	}
+}
+
+@media screen {
+	.print-only {
+		display: none;
+	}
+}
+
+@media print {
+	.no-print {
+		display: none;
+	}
+	.print-only {
+		display: block;
+	}
+}

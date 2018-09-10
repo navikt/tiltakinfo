@@ -19,11 +19,13 @@
   },
   "dependencies": {
     "@nutgaard/react-scripts": "0.0.8-beta.4",
+    "@types/react-collapse": "4.0.2",
     "ajv": "6.5.1",
     "babel-polyfill": "6.26.0",
     "classnames": "2.2.6",
     "cross-env": "5.2.0",
     "lodash.throttle": "4.1.1",
+    "nav-frontend-chevron": "1.0.6",
     "nav-frontend-chevron-style": "0.3.4",
     "nav-frontend-core": "4.0.5",
     "nav-frontend-ikoner-assets": "0.2.27",
@@ -45,7 +47,9 @@
     "nav-frontend-veilederpanel-style": "0.0.9",
     "prop-types": "15.6.1",
     "react": "16.4.0",
+    "react-collapse": "4.0.3",
     "react-dom": "16.4.0",
+    "react-motion": "0.5.2",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
@@ -53,6 +57,7 @@
     "yet-another-fetch-mock": "2.3.3"
   },
   "devDependencies": {
+    "@types/classnames": "2.2.6",
     "@types/fetch-mock": "6.0.3",
     "@types/jest": "23.0.0",
     "@types/node": "10.3.1",
