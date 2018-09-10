@@ -4,7 +4,7 @@ import oppfolgingReducer, { OppfolgingState } from '../oppfolging/oppfolging-duc
 import statusReducer, { StatusState } from '../status/status-duck';
 import sykmeldingerReducer, { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { ActionType } from './actions';
-import { MaalOption, MAAL_OPTIONS_REKKEFOLGE } from '../startside/maal-tiltak-map';
+import { MaalOption } from '../startside/maal-tiltak-map';
 import genericDuck from './generic-duck';
 
 interface MaalState {
@@ -12,7 +12,7 @@ interface MaalState {
 }
 
 export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
-    {id: MAAL_OPTIONS_REKKEFOLGE[0]},
+    {id: MaalOption.IKKE_VALGT},
     ActionType.SETT_MAAL
 );
 

@@ -1,0 +1,71 @@
+@import '~nav-frontend-typografi-style/src/mixins';
+@import '~nav-frontend-typografi-style/src/fontimports';
+@import '../../node_modules/nav-frontend-core/less/_variabler';
+
+.ingress {
+
+    .ingress__intro {
+        text-align: center;
+        padding: 0 2.8rem;
+        margin-bottom: 47px;
+
+        img {
+            height: 150px;
+            width: 220px;
+        }
+
+        .ingress__label-alternativer {
+            .typo-ingress-mixin();
+        }
+
+        .ingress__tittel {
+            margin-bottom: 25px;
+        }
+    }
+
+    ul.ingress__maal {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .skjult {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .ingress {
+        .ingress__intro {
+            margin-bottom: 16px;
+
+            .ingress__label-alternativer {
+                .typo-normal-mixin();
+            }
+            .ingress__tittel {
+                margin-bottom: 48px;
+            }
+        }
+
+        ul.ingress__maal {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            li {
+                width: 49%;
+            }
+        }
+    }
+}

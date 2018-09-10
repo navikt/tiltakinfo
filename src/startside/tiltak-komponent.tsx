@@ -19,7 +19,7 @@ class TiltakKomponent extends React.Component<StateProps> {
         const {sykmeldinger, maalId} = this.props;
 
         const tiltakSomVises: Tiltak[] = sykmeldinger.data.harArbeidsgiver ?
-            maalTiltakMap[maalId].map(tiltakId => tiltakConfig(tiltakId)) :
+            maalTiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
             [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
 
         return (

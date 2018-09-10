@@ -11,6 +11,7 @@ import Tittel from './tittel';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { MaalOption } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';
+import IngressSykmeldtMedArbeidsgiver from './ingress-sykmeldtmedarbeidsgiver';
 
 interface StateProps {
     sykmeldinger: SykmeldingerState;
@@ -30,13 +31,14 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const {sykmeldinger, maalId} = this.props;
+        const IngressKomponent = sykmeldinger.data.harArbeidsgiver ? IngressSykmeldtMedArbeidsgiver : Ingress;
         return (
             <>
                 <Brodsmuler/>
                 <Datalaster avhengigheter={[sykmeldinger]}>
                     <>
                         <Tittel/>
-                        <Ingress/>
+                        <IngressKomponent/>
                         {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
                             <>
                                 <Tiltak/>

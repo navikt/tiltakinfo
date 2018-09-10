@@ -40,7 +40,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
     render() {
         const {harArbeidsgiver} = this.props;
         const ingressId = harArbeidsgiver
-            ? 'ingress-hararbeidsgiver'
+            ? 'ingress-medarbeidsgiver'
             : 'ingress-utenarbeidsgiver';
 
         return (
@@ -62,7 +62,6 @@ class Ingress extends React.Component<IngressProps, IngressState> {
                             )}
                         </SelectKomponent>
                     )}
-
                 </Veilederpanel>
             </section>
         );

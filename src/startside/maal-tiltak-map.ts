@@ -9,7 +9,6 @@ export enum MaalOption {
 }
 
 export const MAAL_OPTIONS_REKKEFOLGE = [
-    MaalOption.IKKE_VALGT,
     MaalOption.SAMME_STILLING,
     MaalOption.SAMME_ARBEIDSGIVER,
     MaalOption.NY_ARBEIDSGIVER,
@@ -17,7 +16,6 @@ export const MAAL_OPTIONS_REKKEFOLGE = [
 ];
 
 export const maalTiltakMap = {
-    [MaalOption.IKKE_VALGT]: [TiltakId.TOMT_TILTAK],
     [MaalOption.SAMME_STILLING]: [TiltakId.TILRETTELEGGING, TiltakId.ARBEIDSRETTET_REHABILITERING],
     [MaalOption.SAMME_ARBEIDSGIVER]: [TiltakId.MENTOR, TiltakId.OPPLAERING_SAMME_ARBEIDSGIVER],
     [MaalOption.NY_ARBEIDSGIVER]: [TiltakId.OPPLAERING_NY_ARBEIDSGIVER, TiltakId.OPPFOLGING],
