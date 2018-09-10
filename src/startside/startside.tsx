@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
@@ -70,6 +69,4 @@ const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Startside);
+export default connect(mapStateToProps)(Startside);
