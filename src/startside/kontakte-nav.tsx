@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
+import 'nav-frontend-paneler-style';
 import './kontakte-nav.less';
 import { OppfolgingState } from '../oppfolging/oppfolging-duck';
 import Datalaster from '../api/datalaster';
@@ -31,24 +32,29 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
         return (
             <Datalaster avhengigheter={[oppfolging]}>
-                <section className="kontakte-nav blokk-xl">
-                    <div className="kontakte-nav__bilde">
-                        <img src={kontakteNavBilde}/>
-                    </div>
-                    <div className="kontakte-nav__innhold">
-                        <Innholdstittel className="blokk-s">
-                            <Tekst id={'kontaktenav-snakkmednav'}/>
-                        </Innholdstittel>
-                        <Normaltekst>
-                            <Tekst id={tekstId}/>
-                        </Normaltekst>
-                        {oppfolging.underOppfolging && (
-                            <div className="kontakte-nav__knapp">
-                                <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
-                                    <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
-                                </a>
-                            </div>
-                        )}
+                <section className="kontakte-nav-container">
+                    <div className="panel panel--border kontakte-nav">
+
+                        <div className="kontakte-nav__bilde">
+                            <img src={kontakteNavBilde}/>
+                        </div>
+
+                        <div className="kontakte-nav__innhold">
+                            <Innholdstittel className="blokk-s">
+                                <Tekst id={'kontaktenav-snakkmednav'}/>
+                            </Innholdstittel>
+                            <Normaltekst>
+                                <Tekst id={tekstId}/>
+                            </Normaltekst>
+                            {oppfolging.underOppfolging && (
+                                <div className="kontakte-nav__knapp">
+                                    <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
+                                        <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+
                     </div>
                 </section>
             </Datalaster>

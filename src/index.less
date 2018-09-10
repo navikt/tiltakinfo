@@ -11,7 +11,6 @@ html,
 body,
 #app-root {
     height: 100%;
-    background-color: @navLysGra;
 
     .spinner {
         display: block;
@@ -22,7 +21,13 @@ body,
 .app-content {
     position: relative;
     margin: 0 auto;
-    padding: 0 1rem 12rem;
+    padding: 0 1rem 0;
+}
+.app-content-kontakte-nav {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 1rem 0;
+    background-color: #efefef;
 }
 
 
@@ -30,6 +35,14 @@ body,
     .app-content {
         width: @desktopLimitWidth;
         margin: 0 auto;
-        padding: 0 0 12rem;
+        padding: 0;
+    }
+    .app-content-kontakte-nav {
+        width: 100%;
+        padding: 0;
+        .kontakte-nav-container {
+            width: @desktopLimitWidth;
+            margin: 0 auto;
+        }
     }
 }
