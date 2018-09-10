@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import './ingress.less';
+import './ingress-sykmeldtutenarbeidsgiver.less';
 import Tekst, { tekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';

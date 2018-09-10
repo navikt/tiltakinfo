@@ -5,7 +5,7 @@ import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
-import Ingress from './ingress';
+import Ingress from './ingress-sykmeldtutenarbeidsgiver';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { MaalOption } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';

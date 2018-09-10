@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Ingress as Ingresskomponent } from 'nav-frontend-typografi';
-import './ingress.less';
+import './ingress-sykmeldtutenarbeidsgiver.less';
 import Tekst from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ interface IngressState {
     options: string[];
 }
 
-class Ingress extends React.Component<IngressProps, IngressState> {
+class IngressSykmeldtutenarbeidsgiver extends React.Component<IngressProps, IngressState> {
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -76,4 +76,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Ingress));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(IngressSykmeldtutenarbeidsgiver));
