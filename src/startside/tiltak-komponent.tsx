@@ -1,60 +1,60 @@
 import * as React from 'react';
-import { Innholdstittel, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
-import Lenkepanel from 'nav-frontend-lenkepanel/lib/index';
-import Tekst from '../finn-tekst';
-import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MaalOption, maalTiltakMap } from './maal-tiltak-map';
-import { AppState } from '../redux/reducer';
-import { connect } from 'react-redux';
-import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
+import Tekst, { tekst } from '../finn-tekst';
+import { Tiltak } from './tiltak-config';
+import UtvidetInformasjon from './utvidetInformasjon';
+import * as classnames from 'classnames';
 
-interface StateProps {
-    sykmeldinger: SykmeldingerState;
-    maalId: MaalOption;
+interface OwnProps {
+    tiltak: Tiltak;
 }
 
-class TiltakKomponent extends React.Component<StateProps> {
-    render() {
-        const {sykmeldinger, maalId} = this.props;
+interface State {
+    apen: boolean;
+}
 
-        const tiltakSomVises: Tiltak[] = sykmeldinger.data.harArbeidsgiver ?
-            maalTiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
-            [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
+export default class TiltakKomponent extends React.Component<OwnProps, State> {
+
+    constructor(props: OwnProps) {
+        super(props);
+        this.state = {
+            apen: false
+        };
+
+        this.onToggleApen = this.onToggleApen.bind(this);
+    }
+
+    onToggleApen() {
+        this.setState({apen: !this.state.apen});
+    }
+
+    render() {
+        const cls = classnames('tiltak-innhold', {
+            'tiltak--erUtvidet': this.state.apen
+        });
 
         return (
-            <section className="tiltak-oversikt blokk-xl">
-                <Undertittel className="tiltak-overskrift blokk-s">
-                    <Tekst id={'informasjon-totiltak'}/>
-                </Undertittel>
-                <div className="tiltak-liste">
-                    {tiltakSomVises.map((tiltak: Tiltak) =>
-                        <div key={tiltak.tittel} className="tiltak">
-                            <div className="tiltak-header">
-                                <Innholdstittel className="tiltak-header-tekst">
-                                    <Tekst id={tiltak.tittel}/>
-                                </Innholdstittel>
-                                <img src={tiltak.ikon} alt="" className="tiltak-ikon"/>
-                            </div>
-                            <div className="tiltak-innhold blokk-xxs">
-                                <Normaltekst><Tekst id={tiltak.hva}/></Normaltekst>
-                            </div>
-                            <Lenkepanel href={tiltak.url} tittelProps="element">
-                                <Tekst id={tiltak.lesmer}/>
-                            </Lenkepanel>
-                        </div>
-                    )}
+            <div key={this.props.tiltak.tittel} className="tiltak">
+                <div className="tiltak-header">
+                    <Innholdstittel className="tiltak-header-tekst">
+                        <Tekst id={this.props.tiltak.tittel}/>
+                    </Innholdstittel>
+                    <img src={this.props.tiltak.ikon} alt="" className="tiltak-ikon"/>
                 </div>
-            </section>
+                <div className={cls}>
+                    <Ingress><Tekst id={this.props.tiltak.hva}/></Ingress>
+                    <UtvidetInformasjon
+                        apneLabel={tekst(this.props.tiltak.lesmer, false)}
+                        lukkLabel="Lukk informasjon"
+                        erApen={this.state.apen}
+                        onToggle={this.onToggleApen}
+                    >
+                        <Normaltekst><br/><Tekst id={this.props.tiltak.ekspandertinfo}/></Normaltekst>
+                    </UtvidetInformasjon>
+                </div>
+
+            </div>
         );
     }
 }
-
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        sykmeldinger: state.sykmeldinger,
-        maalId: state.maal.id,
-    };
-};
-
-export default connect(mapStateToProps)(TiltakKomponent);

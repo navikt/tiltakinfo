@@ -10,22 +10,32 @@
         .selectContainer select {
             padding: 1.2rem 1.6rem 1.2rem 1rem;
         }
+
+        .selectContainer {
+            background-color: transparent;
+        }
+
+    }
+    .nav-veilederpanel--kompakt.nav-veilederpanel--plakat {
+        margin-top: 5rem;
     }
     .nav-veilederpanel {
         border: 4px solid @foBlaBackground;
-        background-color: @navLysGra;
     }
-    .nav-veileder img {
-        height: 100%;
+    .nav-veileder {
+        img {
+            height: 100%;
+        }
     }
 }
 
 @media (min-width: @screen-sm-min) {
     .ingress {
-        .nav-veilederpanel .nav-veileder + div {
-            width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .nav-veilederpanel .nav-veileder {
+            & + div {
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
         .skjemaelement {
             .selectContainer select {

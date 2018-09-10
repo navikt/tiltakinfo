@@ -45,7 +45,7 @@ class Ingress extends React.Component<IngressProps, IngressState> {
 
         return (
             <section className="ingress">
-                <Veilederpanel svg={<img src={veilederBilde}/>} type={'plakat'}>
+                <Veilederpanel svg={<img src={veilederBilde}/>} type="plakat" kompakt={true}>
                     <Ingresskomponent>
                         <Tekst id={ingressId}/>
                     </Ingresskomponent>
