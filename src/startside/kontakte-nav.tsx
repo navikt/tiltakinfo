@@ -34,11 +34,9 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav-container">
                     <div className="panel panel--border kontakte-nav">
-
                         <div className="kontakte-nav__bilde">
                             <img src={kontakteNavBilde}/>
                         </div>
-
                         <div className="kontakte-nav__innhold">
                             <Innholdstittel className="blokk-s">
                                 <Tekst id={'kontaktenav-snakkmednav'}/>
@@ -54,7 +52,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                 </div>
                             )}
                         </div>
-
                     </div>
                 </section>
             </Datalaster>
