@@ -47,6 +47,7 @@
     "nav-frontend-veilederpanel-style": "0.0.9",
     "prop-types": "15.6.1",
     "react": "16.4.0",
+    "react-collapse": "4.0.3",
     "react-dom": "16.4.0",
     "react-motion": "0.5.2",
     "react-redux": "5.0.7",
