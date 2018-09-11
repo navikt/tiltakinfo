@@ -22,7 +22,7 @@ class TiltakContainer extends React.Component<StateProps> {
             maalTiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
             [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
         return (
-            <section className="tiltak-oversikt blokk-xl">
+            <section className="tiltak-oversikt">
                 <Undertittel className="tiltak-overskrift blokk-s">
                     <Tekst id={'informasjon-totiltak'}/>
                 </Undertittel>
