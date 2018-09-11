@@ -4,6 +4,7 @@
 .tiltak-oversikt {
     display: flex;
     flex-direction: column;
+    margin-bottom: 64px;
 
     .tiltak-overskrift {
         margin: 0 auto 2rem;
@@ -34,11 +35,14 @@
     .tiltak-innhold {
         background-color: @white;
         padding: 1.5rem;
-        min-height: 17rem;
         border: 0.09rem solid @navGra40;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+
+        .typo-ingress {
+            margin-bottom: 24px;
+        }
     }
 
     .tiltak-ikon {
@@ -61,6 +65,7 @@
 @media (min-width: @screen-sm-min) {
     .tiltak-oversikt {
         flex-direction: column;
+        margin-bottom: 104px;
 
         .tiltak-liste {
             flex-direction: row;
@@ -74,7 +79,6 @@
         .tiltak-header {
             padding: 2rem 2rem 0;
         }
-
 
         .tiltak-ikon {
             width: 280px;
@@ -90,20 +94,7 @@
 
         .tiltak-innhold {
             padding: 2rem;
-            min-height: 22rem;
-        }
-    }
-}
-
-@media (min-width: @screen-md) {
-    .tiltak-oversikt {
-        .tiltak-innhold {
             min-height: 17rem;
         }
-
-        .tiltak-ikon {
-            width: 330px;
-        }
     }
-
 }

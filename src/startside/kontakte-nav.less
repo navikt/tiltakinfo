@@ -4,6 +4,9 @@
     padding: 5.5rem 0;
 
     .kontakte-nav {
+        &.panel {
+            padding:2.5rem 1.5rem;
+        }
         .kontakte-nav__bilde {
             text-align: center;
             img {
@@ -34,8 +37,10 @@
 
         .kontakte-nav {
             display: flex;
-            justify-content: space-evenly;
-
+            justify-content: space-between;
+            &.panel {
+                padding:2.5rem 6rem;
+            }
             .kontakte-nav__bilde {
                 order: 2;
                 width: calc(30% - 1rem);
@@ -48,13 +53,20 @@
             .kontakte-nav__innhold {
                 order: 1;
                 width: calc(70% - 1rem);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 .kontakte-nav__knapp {
+                    margin-top: 1.5rem;
                     .knapp {
                         padding: .5em 2.5em calc(.5em + .125em + 1px);
                     }
                 }
                 .typo-innholdstittel {
                     margin-bottom: 1rem;
+                }
+                .typo-normal {
+                    padding-bottom: 0;
                 }
             }
         }

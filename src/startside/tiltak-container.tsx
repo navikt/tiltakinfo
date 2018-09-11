@@ -23,7 +23,7 @@ class TiltakContainer extends React.Component<StateProps> {
             [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
 
         return (
-            <section className="tiltak-oversikt blokk-xl">
+            <section className="tiltak-oversikt">
                 <Undertittel className="tiltak-overskrift blokk-s">
                     <Tekst id={'informasjon-totiltak'}/>
                 </Undertittel>
