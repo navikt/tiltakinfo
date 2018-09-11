@@ -5,7 +5,7 @@ import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
-import Ingress from './ingress-sykmeldtutenarbeidsgiver';
+import IngressSykmeldtUtenArbeidsgiver from './ingress-sykmeldtutenarbeidsgiver';
 import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import { MaalOption } from './maal-tiltak-map';
 import Datalaster from '../api/datalaster';
@@ -30,7 +30,9 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const {sykmeldinger, maalId} = this.props;
-        const IngressKomponent = sykmeldinger.data.harArbeidsgiver ? IngressSykmeldtMedArbeidsgiver : Ingress;
+        const IngressKomponent = sykmeldinger.data.harArbeidsgiver
+            ? IngressSykmeldtMedArbeidsgiver
+            : IngressSykmeldtUtenArbeidsgiver;
         return (
             <>
                 <StartsideBanner/>
