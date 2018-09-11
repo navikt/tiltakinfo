@@ -39,11 +39,11 @@ class Startside extends React.Component<StartsideProps> {
                 <section className="app-content brodsmuler-container">
                     <Brodsmuler/>
                 </section>
-                <section className="app-content ingress-container">
-                    <IngressKomponent/>
-                </section>
                 <Datalaster avhengigheter={[sykmeldinger]}>
                     <>
+                        <section className="app-content ingress-container">
+                            <IngressKomponent/>
+                        </section>
                         {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
                             <>
                                 <section className="app-content tiltak-container">

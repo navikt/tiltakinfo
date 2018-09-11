@@ -28,7 +28,7 @@ class TiltakContainer extends React.Component<StateProps> {
                 </Undertittel>
                 <div className="tiltak-liste">
                     {tiltakSomVises.map((tiltak: Tiltak) =>
-                        <TiltakKomponent key={tiltak.tittel} tiltak={tiltak}/>
+                        <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
                     )}
                 </div>
             </section>
