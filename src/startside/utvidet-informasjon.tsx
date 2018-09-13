@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
 import { guid } from 'nav-frontend-js-utils';
-import InfoToggler from './infoToggler';
-import './utvidetInformasjon.less';
+import InfoToggler from './info-toggler';
+import './utvidet-informasjon.less';
 import EkspanderbartInnhold from './ekspanderbartInnhold';
 
 interface OwnProps {

@@ -3,7 +3,7 @@ import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Tekst, { tekst } from '../finn-tekst';
 import { Tiltak } from './tiltak-config';
-import UtvidetInformasjon from './utvidetInformasjon';
+import UtvidetInformasjon from './utvidet-informasjon';
 import * as classnames from 'classnames';
 
 interface OwnProps {
