@@ -1,6 +1,7 @@
 @import '~nav-frontend-typografi-style/src/mixins';
 @import '~nav-frontend-typografi-style/src/fontimports';
 @import '../../node_modules/nav-frontend-core/less/_variabler';
+@import './check-white';
 
 .ingress {
 
@@ -39,6 +40,28 @@
         margin: -1px;
         padding: 0;
         border: 0;
+    }
+
+    // Hack for at ikke check med hvit bakgrunn skal forsvinne når man ikke hovrer over radiopanelet.
+    // Kopiert fra nav-frontend-skjema-style
+    .radioPanel {
+        &.inputPanel {
+            &--checked {
+                cursor: default;
+
+                &:hover:not(.inputPanel--disabled),
+                &:not(:hover):not(.inputPanel--disabled) { // Denne er lagt til lokalt for å fikse buggen
+                    background-color: rgba(0, 103, 197, 0.2);
+                    border: 1px solid transparent;
+                    box-shadow: none;
+
+                    .inputPanel__field + .inputPanel__label:before {
+                        background-color: @navBla;
+                        background-image: @checkWhite;
+                    }
+                }
+            }
+        }
     }
 }
 
