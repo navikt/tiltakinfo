@@ -8,7 +8,7 @@ import './ingress-sykmeldtmedarbeidsgiver.less';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
-import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './maal-tiltak-map';
+import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
 
 const velgMaalBilde = require('../ikoner/velg-maal.svg');
 

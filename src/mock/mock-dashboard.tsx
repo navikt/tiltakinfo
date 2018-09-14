@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import * as queryString from 'query-string';
 import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
-import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
+import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
 import './mock-dashboard.less';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
@@ -36,6 +36,8 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
         const selectorVerdier = {
             [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
             [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
+            [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: 'Arbeidsledig situasjonsbestemt',
+            [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: 'Arbeidsledig spesielt tilpasset',
         };
         return (
             <section className="mockdashboard">

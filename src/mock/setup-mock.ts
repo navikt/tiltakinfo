@@ -2,7 +2,7 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
-import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
+import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
 import { brukerMocks, MockConfigPropName } from './mock-data-config';
 
 interface ResponseObject {
@@ -14,6 +14,7 @@ interface MockAPI {
     getOppfolging: ResponseObject;
     getStatus: ResponseObject;
     getSykmeldinger: Sykmelding[];
+    getArbeidsledig: ResponseObject;
 }
 
 export default () => {
@@ -46,6 +47,8 @@ export default () => {
         if (urlVerdi !== undefined) {
             if (urlKey === MockConfigPropName.SYKMELDINGER) {
                 return (urlVerdi as string[]).map((sykmelding: string): Sykmelding => JSON.parse(sykmelding));
+            } else if (urlKey === MockConfigPropName.SITUASJON) {
+                return urlVerdi;
             } else {
                 return toBoolean(urlVerdi);
             }
@@ -64,6 +67,9 @@ export default () => {
             harGyldigOidcToken: finnVerdi(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
         },
         getSykmeldinger: finnVerdi(MockConfigPropName.SYKMELDINGER),
+        getArbeidsledig: {
+            situasjon: finnVerdi(MockConfigPropName.SITUASJON)
+        },
     };
 
     fetchMock.get(API.getUnleash, mockAPI.getUnleash);
@@ -73,4 +79,6 @@ export default () => {
     fetchMock.get(API.getStatus, mockAPI.getStatus);
 
     fetchMock.get(API.getSykmeldinger, mockAPI.getSykmeldinger);
+
+    fetchMock.get(API.getArbeidsledig, mockAPI.getArbeidsledig);
 };

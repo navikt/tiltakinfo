@@ -1,5 +1,6 @@
 export enum TiltakId {
-    LONNSTILSKUDD = 'tiltak-lonnstilskudd',
+    LONNSTILSKUDD_ARBEIDSLEDIG = 'tiltak-lonnstilskudd-arbeidsledig',
+    LONNSTILSKUDD_SYKMELDT = 'tiltak-lonnstilskudd-sykmeldt',
     OPPFOLGING = 'tiltak-oppfolging',
     TILRETTELEGGING = 'tiltak-tilrettelegging',
     ARBEIDSRETTET_REHABILITERING = 'tiltak-arbeidsrettet-rehabilitering',
@@ -21,10 +22,19 @@ export interface Tiltak {
 
 export default (tiltakId: TiltakId): Tiltak => {
     switch (tiltakId) {
-        case TiltakId.LONNSTILSKUDD:
+        case TiltakId.LONNSTILSKUDD_ARBEIDSLEDIG:
             return {
                 tittel: 'tiltak-lonnstilskudd-tittel',
-                hva: 'tiltak-lonnstilskudd-hva',
+                hva: 'tiltak-lonnstilskudd-arbeidsledig-hva',
+                lesmer: 'tiltak-lonnstilskudd-lesmer',
+                ekspandertinfo: 'tiltak-lonnstilskudd-ekspandertinfo',
+                ikon: require('../ikoner/lonnstilskudd.svg'),
+                url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb/Tilskudd+til+lonnsutgifter', // tslint:disable-line:max-line-length
+            };
+        case TiltakId.LONNSTILSKUDD_SYKMELDT:
+            return {
+                tittel: 'tiltak-lonnstilskudd-tittel',
+                hva: 'tiltak-lonnstilskudd-sykmeldt-hva',
                 lesmer: 'tiltak-lonnstilskudd-lesmer',
                 ekspandertinfo: 'tiltak-lonnstilskudd-ekspandertinfo',
                 ikon: require('../ikoner/lonnstilskudd.svg'),

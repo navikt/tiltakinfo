@@ -1,9 +1,10 @@
 import { fetchToJson } from './fetch-utils';
 import { UnleashState } from '../unleash/unleash-duck';
-import { OppfolgingState } from '../oppfolging/oppfolging-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
-import { SyfoState } from '../sykmeldinger/sykmeldinger-duck';
+import { SyfoState } from '../brukerdata/sykmeldinger-duck';
 import { contextRoot } from '../konstanter';
+import { ArbeidsledigState } from '../brukerdata/arbeidsledig-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -24,6 +25,7 @@ interface ApiProps {
     getOppfolging: string;
     getStatus: string;
     getSykmeldinger: string;
+    getArbeidsledig: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -35,7 +37,8 @@ export const API: ApiProps = {
     getUnleash: `${contextRoot}/api/feature`,
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
-    getSykmeldinger: '/syforest/sykmeldinger'
+    getSykmeldinger: '/syforest/sykmeldinger',
+    getArbeidsledig: '/midlertidig/api/getarbeidsledig'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -53,4 +56,8 @@ export function getStatusFetch(): Promise<StatusState> {
 
 export function getSykmeldingerFetch(): Promise<SyfoState> {
     return fetchToJson(API.getSykmeldinger, requestConfig);
+}
+
+export function getArbeidsledigFetch(): Promise<ArbeidsledigState> {
+    return fetchToJson(API.getArbeidsledig, requestConfig);
 }

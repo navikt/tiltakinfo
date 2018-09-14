@@ -1,5 +1,6 @@
 import { UnleashState } from '../unleash/unleash-duck';
-import { OppfolgingState } from '../oppfolging/oppfolging-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
+import { ArbeidsledigState } from '../brukerdata/arbeidsledig-duck';
 import { StatusState } from '../status/status-duck';
 import { Data } from './generic-duck';
 
@@ -19,6 +20,9 @@ export enum ActionType {
     HENT_SYKMELDINGER_LASTER = 'HENT_SYKMELDINGER_LASTER',
     IKKE_HENT_SYKMELDINGER = 'IKKE_HENT_SYKMELDINGER',
     SETT_MAAL = 'SETT_MAAL',
+    HENT_ARBEIDSLEDIG_OK = 'HENT_ARBEIDSLEDIG_OK',
+    HENT_ARBEIDSLEDIG_FEILET = 'HENT_ARBEIDSLEDIG_FEILET',
+    HENT_ARBEIDSLEDIG_LASTER = 'HENT_ARBEIDSLEDIG_LASTER',
 }
 
 export interface TestAction extends Data {
@@ -80,6 +84,19 @@ export interface IkkeHentSykmeldingerAction {
     type: ActionType.IKKE_HENT_SYKMELDINGER;
 }
 
+export interface HentArbeidsledigOKAction {
+    type: ActionType.HENT_ARBEIDSLEDIG_OK;
+    arbeidsledig: ArbeidsledigState;
+}
+
+export interface HentArbeidsledigLASTERAction {
+    type: ActionType.HENT_ARBEIDSLEDIG_LASTER;
+}
+
+export interface HentArbeidsledigFEILETAction {
+    type: ActionType.HENT_ARBEIDSLEDIG_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -94,4 +111,7 @@ export type Handling =
     | HentSykmeldingerOKAction
     | HentSykmeldingerFEILETAction
     | HentSykmeldingerLASTERAction
-    | IkkeHentSykmeldingerAction;
+    | IkkeHentSykmeldingerAction
+    | HentArbeidsledigOKAction
+    | HentArbeidsledigLASTERAction
+    | HentArbeidsledigFEILETAction;

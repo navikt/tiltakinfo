@@ -15,9 +15,24 @@ export const MAAL_OPTIONS_REKKEFOLGE = [
     MaalOption.USIKKER,
 ];
 
-export const maalTiltakMap = {
+export enum SituasjonOption {
+    UBESTEMT = 'situasjonoption-ubestemt',
+    SYKMELDT = 'situasjonoption-sykmeldt',
+    SITUASJONSBESTEMT = 'situasjonoption-situasjonsbestemt',
+    SPESIELT_TILPASSET = 'situasjonoption-spesielttilpasset',
+}
+
+export const tiltakMap = {
+    // Sykmeldt med arbeidsgiver
     [MaalOption.SAMME_STILLING]: [TiltakId.TILRETTELEGGING, TiltakId.ARBEIDSRETTET_REHABILITERING],
     [MaalOption.SAMME_ARBEIDSGIVER]: [TiltakId.MENTOR, TiltakId.OPPLAERING_SAMME_ARBEIDSGIVER],
     [MaalOption.NY_ARBEIDSGIVER]: [TiltakId.OPPLAERING_NY_ARBEIDSGIVER, TiltakId.OPPFOLGING],
-    [MaalOption.USIKKER]: [TiltakId.AVKLARING, TiltakId.ARBEIDSRETTET_REHABILITERING]
+    [MaalOption.USIKKER]: [TiltakId.AVKLARING, TiltakId.ARBEIDSRETTET_REHABILITERING],
+
+    // Sykmeldt uten arbeidsgiver
+    [SituasjonOption.SYKMELDT]: [TiltakId.LONNSTILSKUDD_SYKMELDT, TiltakId.OPPFOLGING],
+
+    // Ikke sykmeldt
+    [SituasjonOption.SITUASJONSBESTEMT]: [TiltakId.LONNSTILSKUDD_ARBEIDSLEDIG, TiltakId.OPPFOLGING],
+    [SituasjonOption.SPESIELT_TILPASSET]: [TiltakId.OPPLAERING_NY_ARBEIDSGIVER, TiltakId.AVKLARING]
 };

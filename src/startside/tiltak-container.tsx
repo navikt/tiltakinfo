@@ -3,24 +3,24 @@ import { Undertittel } from 'nav-frontend-typografi';
 import './tiltak.less';
 import Tekst from '../finn-tekst';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MaalOption, maalTiltakMap } from './maal-tiltak-map';
+import { MaalOption, tiltakMap } from './tiltak-map';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
-import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
 import TiltakKomponent from './tiltak-komponent';
+import { ArbeidsledigState } from '../brukerdata/arbeidsledig-duck';
 
 interface StateProps {
-    sykmeldinger: SykmeldingerState;
     maalId: MaalOption;
+    arbeidsledig: ArbeidsledigState;
 }
 
 class TiltakContainer extends React.Component<StateProps> {
     render() {
-        const {sykmeldinger, maalId} = this.props;
-
-        const tiltakSomVises: Tiltak[] = sykmeldinger.data.harArbeidsgiver ?
-            maalTiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
-            [tiltakConfig(TiltakId.LONNSTILSKUDD), tiltakConfig(TiltakId.OPPFOLGING)];
+        const { maalId, arbeidsledig} = this.props;
+        const tiltakSomVises: Tiltak[] =
+            maalId !== MaalOption.IKKE_VALGT ?
+                tiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
+                tiltakMap[arbeidsledig.situasjon].map((tiltakId: TiltakId) => tiltakConfig(tiltakId));
         return (
             <section className="tiltak-oversikt">
                 <Undertittel className="tiltak-overskrift blokk-s">
@@ -38,8 +38,8 @@ class TiltakContainer extends React.Component<StateProps> {
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        sykmeldinger: state.sykmeldinger,
         maalId: state.maal.id,
+        arbeidsledig: state.arbeidsledig,
     };
 };
 
