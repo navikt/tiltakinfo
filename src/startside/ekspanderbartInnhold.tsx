@@ -24,7 +24,7 @@ const EkspanderbartInnhold: React.StatelessComponent<OwnProps> = ({
                                                                       ariaLive = 'off'
                                                                   }) => {
     const content = (
-        <div aria-live={ariaLive}>{erApen ? <div>{children}</div> : <div/>}</div>
+        <div aria-live={ariaLive}>{erApen ? <>{children}</> : null}</div>
     );
     if (!animert) {
         return content;
