@@ -17,7 +17,7 @@ const initialMaalState: MaalState = {
 };
 
 export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
-    {id: MaalOption.IKKE_VALGT},
+    initialMaalState,
     ActionType.SETT_MAAL
 );
 
