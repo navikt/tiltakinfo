@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import persistent from './persistent-reducer';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import statusReducer, { StatusState } from '../status/status-duck';
@@ -8,12 +9,16 @@ import { ActionType } from './actions';
 import { MaalOption } from '../startside/tiltak-map';
 import genericDuck from './generic-duck';
 
-interface MaalState {
+export interface MaalState {
     id: MaalOption;
 }
 
+const initialMaalState: MaalState = {
+    id: MaalOption.IKKE_VALGT
+};
+
 export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
-    {id: MaalOption.IKKE_VALGT},
+    initialMaalState,
     ActionType.SETT_MAAL
 );
 
@@ -32,5 +37,5 @@ export const reducer = combineReducers<AppState>({
     status: statusReducer,
     sykmeldinger: sykmeldingerReducer,
     arbeidsledigSituasjon: arbeidsledigReducer,
-    maal: maalDuck.reducer,
+    maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
 });
