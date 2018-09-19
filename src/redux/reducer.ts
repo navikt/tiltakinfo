@@ -3,7 +3,7 @@ import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import statusReducer, { StatusState } from '../status/status-duck';
 import sykmeldingerReducer, { SykmeldingerState } from '../brukerdata/sykmeldinger-duck';
-import arbeidsledigReducer, { ArbeidsledigState } from '../brukerdata/arbeidsledig-duck';
+import arbeidsledigReducer, { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
 import { ActionType } from './actions';
 import { MaalOption } from '../startside/tiltak-map';
 import genericDuck from './generic-duck';
@@ -23,7 +23,7 @@ export interface AppState {
     status: StatusState;
     sykmeldinger: SykmeldingerState;
     maal: MaalState;
-    arbeidsledig: ArbeidsledigState;
+    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -31,6 +31,6 @@ export const reducer = combineReducers<AppState>({
     oppfolging: oppfolgingReducer,
     status: statusReducer,
     sykmeldinger: sykmeldingerReducer,
-    arbeidsledig: arbeidsledigReducer,
+    arbeidsledigSituasjon: arbeidsledigReducer,
     maal: maalDuck.reducer,
 });

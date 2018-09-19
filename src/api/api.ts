@@ -4,7 +4,7 @@ import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
 import { SyfoState } from '../brukerdata/sykmeldinger-duck';
 import { contextRoot } from '../konstanter';
-import { ArbeidsledigState } from '../brukerdata/arbeidsledig-duck';
+import { ServicegruppeState } from '../brukerdata/servicekode-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -38,7 +38,7 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
     getSykmeldinger: '/syforest/sykmeldinger',
-    getArbeidsledig: '/midlertidig/api/getarbeidsledig'
+    getArbeidsledig: '/veilarbproxy/api/servicegruppekode'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -58,6 +58,6 @@ export function getSykmeldingerFetch(): Promise<SyfoState> {
     return fetchToJson(API.getSykmeldinger, requestConfig);
 }
 
-export function getArbeidsledigFetch(): Promise<ArbeidsledigState> {
+export function getArbeidsledigFetch(): Promise<ServicegruppeState> {
     return fetchToJson(API.getArbeidsledig, requestConfig);
 }

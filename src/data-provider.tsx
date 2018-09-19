@@ -6,7 +6,7 @@ import { hentOppfolging } from './brukerdata/oppfolging-duck';
 import { hentSykmeldinger, ikkeHentSykmeldingerOK } from './brukerdata/sykmeldinger-duck';
 import { featureErAktivert } from './unleash/feature';
 import { AppState } from './redux/reducer';
-import { hentArbeidsledig } from './brukerdata/arbeidsledig-duck';
+import { hentArbeidsledig } from './brukerdata/servicekode-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any

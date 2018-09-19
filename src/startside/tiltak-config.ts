@@ -1,5 +1,5 @@
 export enum TiltakId {
-    LONNSTILSKUDD_ARBEIDSLEDIG = 'tiltak-lonnstilskudd-arbeidsledig',
+    LONNSTILSKUDD_ARBEIDSLEDIG = 'tiltak-lonnstilskudd-arbeidsledigSituasjon',
     LONNSTILSKUDD_SYKMELDT = 'tiltak-lonnstilskudd-sykmeldt',
     OPPFOLGING = 'tiltak-oppfolging',
     TILRETTELEGGING = 'tiltak-tilrettelegging',

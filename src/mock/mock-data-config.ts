@@ -1,6 +1,5 @@
 import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
 import { ActiveUnleashFeatures, tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
-import { SituasjonOption } from '../startside/tiltak-map';
 
 export enum Bruker {
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
@@ -20,14 +19,14 @@ export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
     HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
     SYKMELDINGER = 'sykmeldinger',
-    SITUASJON = 'situasjon',
+    SERVICEGRUPPE = 'servicegruppe',
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: boolean;
     [MockConfigPropName.SYKMELDINGER]: Sykmelding[];
-    [MockConfigPropName.SITUASJON]: string;
+    [MockConfigPropName.SERVICEGRUPPE]: string;
 }
 
 interface BrukerMocks {
@@ -53,14 +52,14 @@ export const brukerMocks: BrukerMocks = {
                 sendtdato: '2018-01-01T02:00:00',
             },
         ],
-        [MockConfigPropName.SITUASJON]: SituasjonOption.SYKMELDT,
+        [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
-        [MockConfigPropName.SITUASJON]: SituasjonOption.SYKMELDT,
+        [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakinfoHentsykmeldinger]: true,
@@ -76,20 +75,20 @@ export const brukerMocks: BrukerMocks = {
                 sendtdato: '2018-01-01T02:00:00',
             },
         ],
-        [MockConfigPropName.SITUASJON]: SituasjonOption.SYKMELDT,
+        [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
-        [MockConfigPropName.SITUASJON]: SituasjonOption.SITUASJONSBESTEMT,
+        [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
-        [MockConfigPropName.SITUASJON]: SituasjonOption.SPESIELT_TILPASSET,
+        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
     }
 };

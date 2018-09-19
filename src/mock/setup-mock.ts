@@ -47,7 +47,7 @@ export default () => {
         if (urlVerdi !== undefined) {
             if (urlKey === MockConfigPropName.SYKMELDINGER) {
                 return (urlVerdi as string[]).map((sykmelding: string): Sykmelding => JSON.parse(sykmelding));
-            } else if (urlKey === MockConfigPropName.SITUASJON) {
+            } else if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
                 return urlVerdi;
             } else {
                 return toBoolean(urlVerdi);
@@ -68,7 +68,7 @@ export default () => {
         },
         getSykmeldinger: finnVerdi(MockConfigPropName.SYKMELDINGER),
         getArbeidsledig: {
-            situasjon: finnVerdi(MockConfigPropName.SITUASJON)
+            servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE)
         },
     };
 
