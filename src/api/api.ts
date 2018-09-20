@@ -38,7 +38,7 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
     getStatus: '/veilarbstepup/status',
     getSykmeldinger: '/syforest/sykmeldinger',
-    getArbeidsledig: '/veilarbproxy/api/servicegruppekode'
+    getArbeidsledig: '/veilarbtiltakinfo/api/servicegruppekode'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
