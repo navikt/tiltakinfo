@@ -54,8 +54,28 @@
     .tiltak:not(:first-child) {
         margin-top: 1.5rem;
     }
+}
 
+.tiltak-ingress {
+    margin-bottom: 2rem;
 
+    .nav-veilederpanel--kompakt.nav-veilederpanel {
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    .nav-veilederpanel {
+        border: 4px solid @foBlaBackground;
+        width: 90%;
+        .typo-normal {
+            line-height: 2rem;
+        }
+    }
+    .nav-veileder {
+        img {
+            height: 100%;
+        }
+    }
 }
 
 @media (min-width: @screen-sm-min) {
@@ -91,6 +111,15 @@
         .tiltak-innhold {
             padding: 2rem;
             min-height: 19rem;
+        }
+    }
+
+    .tiltak-ingress {
+        .nav-veilederpanel {
+            width: 75%;
+            .typo-normal {
+                line-height: 1.8rem;
+            }
         }
     }
 }
