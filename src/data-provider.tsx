@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
-import { tiltakinfoHentsykmeldinger, UnleashState } from './unleash/unleash-duck';
+import { UnleashState } from './unleash/unleash-duck';
 import { hentOppfolging } from './oppfolging/oppfolging-duck';
-import { hentSykmeldinger, ikkeHentSykmeldingerOK } from './sykmeldinger/sykmeldinger-duck';
-import { featureErAktivert } from './unleash/feature';
+import { hentSykmeldinger } from './sykmeldinger/sykmeldinger-duck';
 import { AppState } from './redux/reducer';
 
 interface OwnProps {
@@ -18,7 +17,6 @@ interface StateProps {
 interface DispatchProps {
     doHentOppfolging: () => void;
     doHentSykmeldinger: () => void;
-    dispatchOKIkkeHentSykmeldinger: () => void;
 }
 
 type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
@@ -30,11 +28,7 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 
     componentDidMount() {
         this.props.doHentOppfolging();
-        if (featureErAktivert(tiltakinfoHentsykmeldinger, this.props.features)) {
-            this.props.doHentSykmeldinger();
-        } else {
-            this.props.dispatchOKIkkeHentSykmeldinger();
-        }
+        this.props.doHentSykmeldinger();
     }
 
     render() {
@@ -49,9 +43,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
     doHentSykmeldinger: () => hentSykmeldinger()(dispatch),
-    dispatchOKIkkeHentSykmeldinger: () => {
-        dispatch(ikkeHentSykmeldingerOK());
-    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);
