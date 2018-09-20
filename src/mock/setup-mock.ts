@@ -1,5 +1,4 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import { tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
@@ -10,7 +9,6 @@ interface ResponseObject {
 }
 
 interface MockAPI {
-    getUnleash: ResponseObject;
     getOppfolging: ResponseObject;
     getStatus: ResponseObject;
     getSykmeldinger: Sykmelding[];
@@ -54,9 +52,6 @@ export default () => {
     };
 
     const mockAPI: MockAPI = {
-        getUnleash: {
-            [tiltakinfoHentsykmeldinger]: finnVerdi(tiltakinfoHentsykmeldinger),
-        },
         getOppfolging: {
             underOppfolging: finnVerdi(MockConfigPropName.UNDER_OPPFOLGING),
         },
@@ -65,8 +60,6 @@ export default () => {
         },
         getSykmeldinger: finnVerdi(MockConfigPropName.SYKMELDINGER),
     };
-
-    fetchMock.get(API.getUnleash, mockAPI.getUnleash);
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
 

@@ -6,16 +6,12 @@ import { getUnleashFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
-export const tiltakinfoHentsykmeldinger = 'tiltakinfo.hentsykmeldinger';
-
 export interface ActiveUnleashFeatures {
-    [tiltakinfoHentsykmeldinger]: boolean;
 }
 
 export type UnleashState = DataElement & ActiveUnleashFeatures;
 
 export const initialState: UnleashState = {
-    [tiltakinfoHentsykmeldinger]: false,
     status: Status.IKKE_STARTET
 };
 
@@ -24,7 +20,6 @@ export default function reducer(state: UnleashState = initialState, action: Hand
     switch (action.type) {
         case ActionType.HENT_UNLEASH_OK:
             return {
-                [tiltakinfoHentsykmeldinger]: action.unleash[tiltakinfoHentsykmeldinger],
                 status: Status.OK
             };
         case ActionType.HENT_UNLEASH_LASTER:
@@ -33,7 +28,6 @@ export default function reducer(state: UnleashState = initialState, action: Hand
             return {
                 ...state,
                 status: Status.OK,
-                [tiltakinfoHentsykmeldinger]: false,
             };
         default:
             return state;
@@ -42,7 +36,7 @@ export default function reducer(state: UnleashState = initialState, action: Hand
 
 export function hentUnleash(): (dispatch: Dispatch) => Promise<void> {
     return fetchThenDispatch<UnleashState>(
-        () => getUnleashFetch([tiltakinfoHentsykmeldinger]), {
+        () => getUnleashFetch([]), {
         ok: hentUnleashOK,
         feilet: hentUnleashFEILET,
         pending: hentUnleashLASTER,
