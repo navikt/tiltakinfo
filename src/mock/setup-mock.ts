@@ -2,7 +2,7 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
-import { brukerMocks, MockConfigPropName } from './mock-data-config';
+import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
 
 interface ResponseObject {
     [key: string]: any; // tslint:disable-line:no-any
@@ -42,10 +42,13 @@ export default () => {
     const finnVerdi = (urlKey: string) => {
         const urlVerdi = verdiFraUrl(urlKey);
         if (urlVerdi !== undefined) {
+            const verdiParsed = toBoolean(urlVerdi);
             if (urlKey === MockConfigPropName.SYKMELDINGER) {
-                return (urlVerdi as string[]).map((sykmelding: string): Sykmelding => JSON.parse(sykmelding));
+                return verdiParsed === true
+                    ? brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][MockConfigPropName.SYKMELDINGER]
+                    : [];
             } else {
-                return toBoolean(urlVerdi);
+                return verdiParsed;
             }
         }
         return brukerMocks.defaultMock[urlKey];
