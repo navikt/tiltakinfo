@@ -28,14 +28,12 @@ class TiltakContainer extends React.Component<StateProps> {
         return (
             <>
                 { (sykmeldinger.data.harArbeidsgiver)
-                && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) ?
+                && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
                     <section className="tiltak-ingress">
                         <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
                                 <Tekst id="veileder-maal-samme-arbeidsgiver"/>
                         </Veilederpanel>
-                    </section>
-                    :
-                    null }
+                    </section> }
                 <section className="tiltak-oversikt">
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>
