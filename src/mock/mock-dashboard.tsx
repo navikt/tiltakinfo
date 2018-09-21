@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import * as queryString from 'query-string';
 import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
-import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
 import './mock-dashboard.less';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
@@ -25,10 +24,9 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
     oppdaterUrl(e: React.SyntheticEvent<HTMLButtonElement>) {
         e.preventDefault();
         location.search = queryString.stringify({
-            ...this.state,
-            [MockConfigPropName.SYKMELDINGER]: this.state[MockConfigPropName.SYKMELDINGER].map(
-                (sykmelding: Sykmelding) => JSON.stringify(sykmelding)
-            )
+            [MockConfigPropName.UNDER_OPPFOLGING]: this.state[MockConfigPropName.UNDER_OPPFOLGING],
+            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: this.state[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
+            [MockConfigPropName.SYKMELDINGER]: this.state[MockConfigPropName.SYKMELDINGER].length > 0
         });
     }
 

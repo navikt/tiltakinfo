@@ -1,5 +1,5 @@
 import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
-import { ActiveUnleashFeatures, tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
+import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 
 export enum Bruker {
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
@@ -31,7 +31,6 @@ interface BrukerMocks {
 
 export const brukerMocks: BrukerMocks = {
     defaultMock: {
-        [tiltakinfoHentsykmeldinger]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
@@ -46,13 +45,11 @@ export const brukerMocks: BrukerMocks = {
         ],
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
-        [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
-        [tiltakinfoHentsykmeldinger]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
