@@ -27,7 +27,8 @@ class TiltakContainer extends React.Component<StateProps> {
 
         return (
             <>
-                { (sykmeldinger.data.harArbeidsgiver) && (maalId === MaalOption.SAMME_ARBEIDSGIVER) ?
+                { (sykmeldinger.data.harArbeidsgiver)
+                && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) ?
                     <section className="tiltak-ingress">
                         <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
                                 <Tekst id="veileder-maal-samme-arbeidsgiver"/>
