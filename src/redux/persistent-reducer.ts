@@ -1,6 +1,6 @@
 /* tslint:disable */
 
-import { MaalState } from './reducer';
+import {DemoBrukerState, MaalState} from "./reducer";
 
 function read(scope: string) {
     const content = localStorage.getItem(scope);
@@ -14,7 +14,7 @@ function write(scope: string, content: any) {
     return localStorage.setItem(scope, JSON.stringify(content));
 }
 
-type PersistentType = MaalState;
+type PersistentType = MaalState | DemoBrukerState;
 
 function erBesvarelseEndret(
     scope: string,
