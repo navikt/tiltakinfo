@@ -18,11 +18,11 @@ interface DispatchProps {
     doSettDemoBruker: (id: string) => void;
 }
 
-type MockDashboardProps = StateProps & DispatchProps; // tslint:disable-line:no-any
+type MockDashboardProps = StateProps & DispatchProps;
 
 export class MockDashboard extends React.Component<MockDashboardProps> {
 
-    constructor(props: MockDashboardProps) { // tslint:disable-line:no-any
+    constructor(props: MockDashboardProps) {
         super(props);
 
         this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
         this.oppdaterUrl();
     }
 
-    handleChange(e: React.ChangeEvent<HTMLSelectElement>) { // tslint:disable-line:no-any
+    handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
         e.preventDefault();
         this.props.doSettDemoBruker(e.target.value);
     }
