@@ -55,10 +55,19 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
-        [tiltakinfoHentsykmeldinger]: false,
-        [MockConfigPropName.UNDER_OPPFOLGING]: true,
+        [tiltakinfoHentsykmeldinger]: true,
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SYKMELDINGER]: [],
+        [MockConfigPropName.SYKMELDINGER]: [
+            {
+                sendtdato: '2018-01-01T01:00:00',
+                valgtArbeidssituasjon: 'FRILANSER',
+            },
+            {
+                valgtArbeidssituasjon: 'ARBEIDSLEDIG',
+                sendtdato: '2018-01-01T02:00:00',
+            },
+        ],
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {

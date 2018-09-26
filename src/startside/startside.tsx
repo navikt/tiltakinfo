@@ -35,6 +35,19 @@ class Startside extends React.Component<StartsideProps> {
         const IngressKomponent = sykmeldinger.data.harArbeidsgiver
             ? IngressSykmeldtMedArbeidsgiver
             : IngressSykmeldtUtenArbeidsgiver;
+        const gyldigTiltakSituasjon = () => {
+            const arbeidsledig =
+                (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
+                || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
+            const sykmeldtUtenArbeidsgiver =
+                sykmeldinger.data.erSykmeldt && !sykmeldinger.data.harArbeidsgiver;
+            const sykmeldtMedArbeidsgiver =
+                sykmeldinger.data.erSykmeldt
+                && sykmeldinger.data.harArbeidsgiver
+                && (maalId !== MaalOption.IKKE_VALGT);
+            return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
+        };
+
         return (
             <>
                 <StartsideBanner/>
@@ -47,10 +60,7 @@ class Startside extends React.Component<StartsideProps> {
                             <IngressKomponent/>
                         </section>
                         {(
-                            ((arbeidsledigSituasjon.situasjon !== SituasjonOption.SYKMELDT)
-                            && (arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT))
-                            || !sykmeldinger.data.harArbeidsgiver
-                            || maalId !== MaalOption.IKKE_VALGT) && (
+                            gyldigTiltakSituasjon() && (
                             <>
                                 <section className="app-content tiltak-container">
                                     <Tiltak/>
@@ -64,7 +74,7 @@ class Startside extends React.Component<StartsideProps> {
                                     <FlereTiltak/>
                                 </section>
                             </>
-                        )}
+                        ))}
                     </>
                 </Datalaster>
             </>

@@ -34,8 +34,6 @@ export default function reducer(
             const situasjonsMap = {
                 'BATT': SituasjonOption.SPESIELT_TILPASSET,
                 'BFORM': SituasjonOption.SITUASJONSBESTEMT,
-                'VURDI': SituasjonOption.SYKMELDT,
-                'VURDU': SituasjonOption.SYKMELDT,
             };
             if (servicegruppekode in situasjonsMap) {
                 return {...state, status: Status.OK, situasjon: situasjonsMap[servicegruppekode]};

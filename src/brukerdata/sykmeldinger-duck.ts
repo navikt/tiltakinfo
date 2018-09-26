@@ -25,6 +25,7 @@ export type SyfoState = Sykmelding[];
 
 interface SykmeldingerDataState {
     harArbeidsgiver: boolean;
+    erSykmeldt: boolean;
 }
 
 export interface SykmeldingerState extends DataElement {
@@ -34,6 +35,7 @@ export interface SykmeldingerState extends DataElement {
 export const initialState: SykmeldingerState = {
     data: {
         harArbeidsgiver: false,
+        erSykmeldt: false,
     },
     status: Status.IKKE_STARTET,
 };
@@ -51,13 +53,14 @@ export default function reducer(state: SykmeldingerState = initialState, action:
                 (sykmelding: Sykmelding) => new Date(sykmelding.sendtdato).getTime() === datoNyesteSykmelding.getTime()
             );
 
+            const erSykmeldt = typeof gjeldendeSykmelding !== 'undefined';
             const arbeidssituasjon = gjeldendeSykmelding && gjeldendeSykmelding.valgtArbeidssituasjon;
             const harArbeidsgiver = arbeidssituasjon && arbeidssituasjon !== Arbeidssituasjon.ARBEIDSLEDIG;
 
             return {
                 ...state,
                 status: Status.OK,
-                data: {harArbeidsgiver},
+                data: {harArbeidsgiver, erSykmeldt},
             };
         case ActionType.HENT_SYKMELDINGER_FEILET:
             return {...state, status: Status.FEILET};
