@@ -1,5 +1,5 @@
 import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
-import { ActiveUnleashFeatures, tiltakinfoHentsykmeldinger } from '../unleash/unleash-duck';
+import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 
 export enum Bruker {
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
@@ -20,6 +20,7 @@ export enum MockConfigPropName {
     HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
     SYKMELDINGER = 'sykmeldinger',
     SERVICEGRUPPE = 'servicegruppe',
+    HAR_ARBEIDSGIVER = 'harArbeidsgiver',
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
@@ -39,7 +40,6 @@ interface BrukerMocks {
 
 export const brukerMocks: BrukerMocks = {
     defaultMock: {
-        [tiltakinfoHentsykmeldinger]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
@@ -49,14 +49,13 @@ export const brukerMocks: BrukerMocks = {
             },
             {
                 valgtArbeidssituasjon: 'FRILANSER',
-                sendtdato: '2018-01-01T02:00:00',
+                sendtdato: '2018-01-01T03:00:00',
             },
         ],
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
-        [tiltakinfoHentsykmeldinger]: true,
-        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
             {
@@ -71,7 +70,6 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
-        [tiltakinfoHentsykmeldinger]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [
@@ -87,14 +85,12 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
-        [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
-        [tiltakinfoHentsykmeldinger]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SYKMELDINGER]: [],

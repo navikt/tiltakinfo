@@ -4,7 +4,6 @@ import {
     HentSykmeldingerFEILETAction,
     HentSykmeldingerLASTERAction,
     HentSykmeldingerOKAction,
-    IkkeHentSykmeldingerAction,
 } from '../redux/actions';
 import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
@@ -97,11 +96,5 @@ function hentSykmeldingerFEILET(): HentSykmeldingerFEILETAction {
 function hentSykmeldingerLASTER(): HentSykmeldingerLASTERAction {
     return {
         type: ActionType.HENT_SYKMELDINGER_LASTER,
-    };
-}
-
-export function ikkeHentSykmeldingerOK(): IkkeHentSykmeldingerAction {
-    return {
-        type: ActionType.IKKE_HENT_SYKMELDINGER,
     };
 }

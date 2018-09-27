@@ -6,9 +6,12 @@ import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
+import Veilederpanel from 'nav-frontend-veilederpanel';
 import TiltakKomponent from './tiltak-komponent';
 import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
 import { SykmeldingerState } from '../brukerdata/sykmeldinger-duck';
+
+const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 interface StateProps {
     maalId: MaalOption;
@@ -18,25 +21,40 @@ interface StateProps {
 
 class TiltakContainer extends React.Component<StateProps> {
     render() {
+
+        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
+
+        const finnTiltak = (tiltakMapKey: string) => {
+            return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
+        };
+
         const {sykmeldinger, maalId, arbeidsledigSituasjon} = this.props;
         const tiltakSomVises: Tiltak[] =
-            arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT ?
-                tiltakMap[arbeidsledigSituasjon.situasjon].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
-                sykmeldinger.data.harArbeidsgiver ?
-                    tiltakMap[maalId].map((tiltakId: TiltakId) => tiltakConfig(tiltakId)) :
-                    tiltakMap[SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER]
-                        .map((tiltakId: TiltakId) => tiltakConfig(tiltakId));
+            arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT
+                ? finnTiltak(arbeidsledigSituasjon.situasjon)
+                : sykmeldinger.data.harArbeidsgiver
+                    ? finnTiltak(maalId)
+                    : finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER);
         return (
-            <section className="tiltak-oversikt">
-                <Undertittel className="tiltak-overskrift blokk-s">
-                    <Tekst id={'informasjon-totiltak'}/>
-                </Undertittel>
-                <div className="tiltak-liste">
-                    {tiltakSomVises.map((tiltak: Tiltak) =>
-                        <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
-                    )}
-                </div>
-            </section>
+            <>
+                { (sykmeldinger.data.harArbeidsgiver)
+                && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
+                    <section className="tiltak-ingress">
+                        <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
+                                <Tekst id="veileder-maal-samme-arbeidsgiver"/>
+                        </Veilederpanel>
+                    </section> }
+                <section className="tiltak-oversikt">
+                    <Undertittel className="tiltak-overskrift blokk-s">
+                        <Tekst id={'informasjon-totiltak'}/>
+                    </Undertittel>
+                    <div className="tiltak-liste">
+                        {tiltakSomVises.map((tiltak: Tiltak) =>
+                            <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
+                        )}
+                    </div>
+                </section>
+            </>
         );
     }
 }

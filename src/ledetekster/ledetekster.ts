@@ -23,6 +23,7 @@ export default {
     'kontaktenav-snakkmednav': 'Snakk med oss om muligheter',
     'kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har.',
     'kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',
+    'veileder-maal-samme-arbeidsgiver': 'Husk at det er arbeidsgiveren din som har ansvaret for å følge deg opp. Det er derfor viktig at dere tidlig avklarer dine ønsker, muligheter og mål. Hvis du trenger ekstra hjelp, ser du to eksempler på hva NAV kan bistå med under.',
     'tiltak-lonnstilskudd-tittel': 'Lønnstilskudd',
     'tiltak-lonnstilskudd-sykmeldt-hva': 'Vet du om en arbeidsgiver som er interessert i å ansette deg? Trenger du litt tid for å komme i gang for fullt? NAV kan dekke deler av lønnen din en stund. Du vurderer sammen med arbeidsgiveren og veilederen din hvor mye NAV skal dekke.',
     'tiltak-lonnstilskudd-arbeidsledig-hva': 'Vet du om en arbeidsgiver som er interessert i å ansette deg? Trenger du litt tid for å komme i gang for fullt? NAV kan dekke deler av lønnen din en stund. Arbeidsgiveren og NAV blir enige om hvor mye som skal dekkes og hvor lenge tilskuddet skal vare.',

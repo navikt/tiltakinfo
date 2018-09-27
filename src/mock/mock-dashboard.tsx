@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import * as queryString from 'query-string';
-import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
-import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
+import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfigPropName } from './mock-data-config';
 import './mock-dashboard.less';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
-export class MockDashboard extends React.Component<{}, MockConfig> {
-    public state: MockConfig;
+interface MockDashboardState {
+    valgtBruker: string;
+}
+
+export class MockDashboard extends React.Component<{}, MockDashboardState> {
+    public state: MockDashboardState;
 
     constructor(props: any) { // tslint:disable-line:no-any
         super(props);
-        this.state = brukerMocks.defaultMock;
+        this.state = {valgtBruker: 'ikkeValgt'};
 
         this.handleChange = this.handleChange.bind(this);
         this.oppdaterUrl = this.oppdaterUrl.bind(this);
@@ -19,16 +22,19 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
 
     handleChange(e: React.ChangeEvent<HTMLSelectElement>) { // tslint:disable-line:no-any
         e.preventDefault();
-        this.setState(brukerMocks[e.target.value]);
+        this.setState({valgtBruker: e.target.value});
     }
 
     oppdaterUrl(e: React.SyntheticEvent<HTMLButtonElement>) {
         e.preventDefault();
+        const { valgtBruker } = this.state;
         location.search = queryString.stringify({
-            ...this.state,
-            [MockConfigPropName.SYKMELDINGER]: this.state[MockConfigPropName.SYKMELDINGER].map(
-                (sykmelding: Sykmelding) => JSON.stringify(sykmelding)
-            )
+            [MockConfigPropName.UNDER_OPPFOLGING]: brukerMocks[valgtBruker].underOppfolging,
+            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: brukerMocks[valgtBruker].harGyldigOidcToken,
+            [MockConfigPropName.SYKMELDINGER]: valgtBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER ||
+            valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
+            [MockConfigPropName.HAR_ARBEIDSGIVER]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
+            [MockConfigPropName.SERVICEGRUPPE]: brukerMocks[valgtBruker].servicegruppe,
         });
     }
 
