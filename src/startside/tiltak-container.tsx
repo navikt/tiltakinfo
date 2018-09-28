@@ -56,14 +56,13 @@ class TiltakContainer extends React.Component<StateProps, State> {
                 { (sykmeldinger.data.harArbeidsgiver)
                 && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
                     <section className="tiltak-ingress">
-                        {erDesktop ?
-                        <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
+                        <Veilederpanel
+                            svg={<img src={veilederBilde}/>}
+                            type={erDesktop ? 'normal' : 'plakat'}
+                            kompakt={true}
+                        >
                                 <Tekst id="veileder-maal-samme-arbeidsgiver"/>
                         </Veilederpanel>
-                         :  <Veilederpanel svg={<img src={veilederBilde}/>} type="plakat" kompakt={true}>
-                                <Tekst id="veileder-maal-samme-arbeidsgiver"/>
-                            </Veilederpanel>
-                        }
                     </section> }
                 <section className="tiltak-oversikt">
                     <Undertittel className="tiltak-overskrift blokk-s">
