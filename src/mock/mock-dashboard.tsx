@@ -44,6 +44,7 @@ export class MockDashboard extends React.Component<{}, MockDashboardState> {
             [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
             [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: 'Arbeidsledig situasjonsbestemt',
             [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: 'Arbeidsledig spesielt tilpasset',
+            [Bruker.UTENFOR_MAALGRUPPE]: 'Utenfor målgruppe',
         };
         return (
             <section className="mockdashboard">

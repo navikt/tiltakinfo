@@ -6,6 +6,7 @@ export enum Bruker {
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
     ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
+    UTENFOR_MAALGRUPPE = 'UTENFOR_MAALGRUPPE',
 }
 
 export const brukerOptionsRekkefolge = [
@@ -13,6 +14,7 @@ export const brukerOptionsRekkefolge = [
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
     Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
     Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET,
+    Bruker.UTENFOR_MAALGRUPPE,
 ];
 
 export enum MockConfigPropName {
@@ -38,6 +40,7 @@ interface BrukerMocks {
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
+    [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
@@ -85,5 +88,15 @@ export const brukerMocks: BrukerMocks = {
             arbeidssituasjoner: [],
             tiltakSyfo: false,
         },
+    },
+    [Bruker.UTENFOR_MAALGRUPPE]: {
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
+        [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidssituasjoner: [],
+            tiltakSyfo: false,
+        },
     }
+
 };

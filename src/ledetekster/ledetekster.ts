@@ -54,5 +54,7 @@ export default {
     'tiltak-avklaring-tittel': 'Avklaring',
     'tiltak-avklaring-hva': 'Er det lenge siden du var i jobb, eller har helsen din blitt dårligere? Trenger du å bli tryggere på hva du kan jobbe med? Du kan få hjelp til å finne ut hvilke jobber du trives med og mestrer.',
     'tiltak-avklaring-lesmer': 'Les mer om avklaring',
-    'tiltak-avklaring-ekspandertinfo': 'Du kan få veiledning og hjelp til å vurdere om du kan komme tilbake til din nåværende jobb, hvis arbeidssituasjonen og arbeidsoppgavene blir tilpasset dine behov. Eller om du bør se på andre muligheter. Du kan for eksempel få hjelp til å vurdere kompetansen din og hvilke muligheter den gir. Du kan også få hjelp til å vurdere og prøve ut arbeidsevnen din.'
+    'tiltak-avklaring-ekspandertinfo': 'Du kan få veiledning og hjelp til å vurdere om du kan komme tilbake til din nåværende jobb, hvis arbeidssituasjonen og arbeidsoppgavene blir tilpasset dine behov. Eller om du bør se på andre muligheter. Du kan for eksempel få hjelp til å vurdere kompetansen din og hvilke muligheter den gir. Du kan også få hjelp til å vurdere og prøve ut arbeidsevnen din.',
+    'feilmelding-tekniskfeil': 'Det har dessverre oppstått en teknisk feil hos oss. Vi kan derfor ikke foreslå tiltak som kan være aktuelle i din situasjon. Bruk lenken under hvis du vil lese beskrivelser av alle NAV-tiltakene.',
+    'feilmelding-manglendeinfo': 'Vi har ikke nok informasjon om deg. Vi kan derfor ikke foreslå tiltak som kan være aktuelle i din situasjon. Bruk lenken under hvis du vil lese beskrivelser av alle NAV-tiltakene.',
 };

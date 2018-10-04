@@ -12,6 +12,8 @@ import Datalaster from '../api/datalaster';
 import StartsideBanner from './startside-banner';
 import IngressSykmeldtMedArbeidsgiver from './ingress-sykmeldtmedarbeidsgiver';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
+import AlertStripe from 'nav-frontend-alertstriper';
+import Tekst from '../finn-tekst';
 
 interface StateProps {
     maalId: MaalOption;
@@ -54,29 +56,30 @@ class Startside extends React.Component<StartsideProps> {
                 <section className="app-content brodsmuler-container">
                     <Brodsmuler/>
                 </section>
+
                 <Datalaster avhengigheter={[arbeidsledigSituasjon, syfoSituasjon]}>
+                    { gyldigBrukerSituasjon() ?
                     <>
                         <section className="app-content ingress-container">
                             <IngressKomponent/>
                         </section>
-                        {(
-                            gyldigBrukerSituasjon() && (
-                            <>
-                                <section className="app-content tiltak-container">
-                                    <Tiltak/>
-                                </section>
+                        <section className="app-content tiltak-container">
+                            <Tiltak/>
+                        </section>
 
-                                <section className="app-content-kontakte-nav blokk-xl">
-                                    <KontakteNAV/>
-                                </section>
-
-                                <section className="app-content flere-tiltak-container">
-                                    <FlereTiltak/>
-                                </section>
-                            </>
-                        ))}
+                        <section className="app-content-kontakte-nav blokk-xl">
+                            <KontakteNAV/>
+                        </section>
                     </>
+                    :
+                    <AlertStripe type="advarsel" className="app-content feilmelding-container">
+                        <Tekst id={'feilmelding-manglendeinfo'}/>
+                    </AlertStripe>
+                    }
                 </Datalaster>
+                <section className="app-content flere-tiltak-container">
+                    <FlereTiltak/>
+                </section>
             </>
         );
     }
