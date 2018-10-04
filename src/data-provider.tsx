@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
 import { UnleashState } from './unleash/unleash-duck';
 import { hentOppfolging } from './brukerdata/oppfolging-duck';
-import { hentSykmeldinger } from './brukerdata/sykmeldinger-duck';
 import { AppState } from './redux/reducer';
 import { hentArbeidsledig } from './brukerdata/servicekode-duck';
+import { hentSyfo } from './brukerdata/syfo-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -17,8 +17,8 @@ interface StateProps {
 
 interface DispatchProps {
     doHentOppfolging: () => void;
-    doHentSykmeldinger: () => void;
     doHentArbeidsledig: () => void;
+    doHentSyfo: () => void;
 }
 
 type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
@@ -30,8 +30,8 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 
     componentDidMount() {
         this.props.doHentOppfolging();
-        this.props.doHentSykmeldinger();
         this.props.doHentArbeidsledig();
+        this.props.doHentSyfo();
     }
 
     render() {
@@ -45,8 +45,8 @@ const mapStateToProps = (state: AppState): StateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
-    doHentSykmeldinger: () => hentSykmeldinger()(dispatch),
     doHentArbeidsledig: () => hentArbeidsledig()(dispatch),
+    doHentSyfo: () => hentSyfo()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

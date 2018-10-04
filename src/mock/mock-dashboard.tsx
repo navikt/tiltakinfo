@@ -31,10 +31,10 @@ export class MockDashboard extends React.Component<{}, MockDashboardState> {
         location.search = queryString.stringify({
             [MockConfigPropName.UNDER_OPPFOLGING]: brukerMocks[valgtBruker].underOppfolging,
             [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: brukerMocks[valgtBruker].harGyldigOidcToken,
-            [MockConfigPropName.SYKMELDINGER]: valgtBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER ||
-            valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
-            [MockConfigPropName.HAR_ARBEIDSGIVER]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
             [MockConfigPropName.SERVICEGRUPPE]: brukerMocks[valgtBruker].servicegruppe,
+            [MockConfigPropName.ER_SYKMELDT_URLMOCK]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER
+                                                    || valgtBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
+            [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
         });
     }
 

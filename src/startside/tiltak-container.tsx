@@ -9,14 +9,14 @@ import { connect } from 'react-redux';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import TiltakKomponent from './tiltak-komponent';
 import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
-import { SykmeldingerState } from '../brukerdata/sykmeldinger-duck';
+import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 interface StateProps {
     maalId: MaalOption;
     arbeidsledigSituasjon: ArbeidsledigSituasjonState;
-    sykmeldinger: SykmeldingerState;
+    syfoSituasjon: SyfoSituasjonState;
 }
 
 class TiltakContainer extends React.Component<StateProps> {
@@ -28,16 +28,16 @@ class TiltakContainer extends React.Component<StateProps> {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
 
-        const {sykmeldinger, maalId, arbeidsledigSituasjon} = this.props;
+        const {maalId, arbeidsledigSituasjon, syfoSituasjon} = this.props;
         const tiltakSomVises: Tiltak[] =
             arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT
                 ? finnTiltak(arbeidsledigSituasjon.situasjon)
-                : sykmeldinger.data.harArbeidsgiver
+                : syfoSituasjon.harArbeidsgiver
                     ? finnTiltak(maalId)
                     : finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER);
         return (
             <>
-                { (sykmeldinger.data.harArbeidsgiver)
+                { (syfoSituasjon.harArbeidsgiver)
                 && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
                     <section className="tiltak-ingress">
                         <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
@@ -63,7 +63,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     return {
         maalId: state.maal.id,
         arbeidsledigSituasjon: state.arbeidsledigSituasjon,
-        sykmeldinger: state.sykmeldinger,
+        syfoSituasjon: state.syfoSituasjon,
     };
 };
 

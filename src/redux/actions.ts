@@ -2,6 +2,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { StatusState } from '../status/status-duck';
 import { Data } from './generic-duck';
+import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum ActionType {
     TEST_ACTION = 'TEST_ACTION',
@@ -14,14 +15,13 @@ export enum ActionType {
     HENT_STATUS_OK = 'HENT_STATUS_OK',
     HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
     HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
-    HENT_SYKMELDINGER_OK = 'HENT_SYKMELDINGER_OK',
-    HENT_SYKMELDINGER_FEILET = 'HENT_SYKMELDINGER_FEILET',
-    HENT_SYKMELDINGER_LASTER = 'HENT_SYKMELDINGER_LASTER',
-    IKKE_HENT_SYKMELDINGER = 'IKKE_HENT_SYKMELDINGER',
     SETT_MAAL = 'SETT_MAAL',
     HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
     HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET',
     HENT_SERVICEGRUPPE_LASTER = 'HENT_SERVICEGRUPPE_LASTER',
+    HENT_SYFO_OK = 'HENT_SYFO_OK',
+    HENT_SYFO_FEILET = 'HENT_SYFO_FEILET',
+    HENT_SYFO_LASTER = 'HENT_SYFO_LASTER',
 }
 
 export interface TestAction extends Data {
@@ -67,22 +67,6 @@ export interface HentStatusFEILETAction {
     type: ActionType.HENT_STATUS_FEILET;
 }
 
-export interface HentSykmeldingerOKAction extends Data {
-    type: ActionType.HENT_SYKMELDINGER_OK;
-}
-
-export interface HentSykmeldingerLASTERAction {
-    type: ActionType.HENT_SYKMELDINGER_LASTER;
-}
-
-export interface HentSykmeldingerFEILETAction {
-    type: ActionType.HENT_SYKMELDINGER_FEILET;
-}
-
-export interface IkkeHentSykmeldingerAction {
-    type: ActionType.IKKE_HENT_SYKMELDINGER;
-}
-
 export interface HentServicegruppeOKAction extends Data {
     type: ActionType.HENT_SERVICEGRUPPE_OK;
 }
@@ -93,6 +77,19 @@ export interface HentServicegruppeLASTERAction {
 
 export interface HentServicegruppeFEILETAction {
     type: ActionType.HENT_SERVICEGRUPPE_FEILET;
+}
+
+export interface HentSyfoOKAction {
+    type: ActionType.HENT_SYFO_OK;
+    syfoData: SyfoDataState;
+}
+
+export interface HentSyfoLASTERAction {
+    type: ActionType.HENT_SYFO_LASTER;
+}
+
+export interface HentSyfoFEILETAction {
+    type: ActionType.HENT_SYFO_FEILET;
 }
 
 export type Handling =
@@ -106,10 +103,9 @@ export type Handling =
     | HentStatusOKAction
     | HentStatusFEILETAction
     | HentStatusLASTERAction
-    | HentSykmeldingerOKAction
-    | HentSykmeldingerFEILETAction
-    | HentSykmeldingerLASTERAction
-    | IkkeHentSykmeldingerAction
     | HentServicegruppeOKAction
     | HentServicegruppeLASTERAction
-    | HentServicegruppeFEILETAction;
+    | HentServicegruppeFEILETAction
+    | HentSyfoOKAction
+    | HentSyfoLASTERAction
+    | HentSyfoFEILETAction;
