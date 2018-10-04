@@ -1,7 +1,6 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
-import { Sykmelding } from '../brukerdata/sykmeldinger-duck';
 import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
 
 interface ResponseObject {
@@ -11,8 +10,8 @@ interface ResponseObject {
 interface MockAPI {
     getOppfolging: ResponseObject;
     getStatus: ResponseObject;
-    getSykmeldinger: Sykmelding[];
     getArbeidsledig: ResponseObject;
+    getSyfo: ResponseObject;
 }
 
 export default () => {
@@ -43,29 +42,25 @@ export default () => {
     const mockVerdier = {
         [MockConfigPropName.UNDER_OPPFOLGING] : verdiFraUrl(MockConfigPropName.UNDER_OPPFOLGING),
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN] : verdiFraUrl(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
-        [MockConfigPropName.SYKMELDINGER] : verdiFraUrl(MockConfigPropName.SYKMELDINGER),
-        [MockConfigPropName.HAR_ARBEIDSGIVER] : verdiFraUrl(MockConfigPropName.HAR_ARBEIDSGIVER),
         [MockConfigPropName.SERVICEGRUPPE] : verdiFraUrl(MockConfigPropName.SERVICEGRUPPE),
+        [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK] : verdiFraUrl(MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK),
+        [MockConfigPropName.ER_SYKMELDT_URLMOCK] : verdiFraUrl(MockConfigPropName.ER_SYKMELDT_URLMOCK),
     };
 
     const finnVerdi = (urlKey: string) => {
-
-        if (mockVerdier[urlKey] !== undefined) {
-            const verdiParsed = toBoolean(mockVerdier[urlKey]);
-            if (urlKey === MockConfigPropName.SYKMELDINGER) {
-                if (verdiParsed) {
-                    if (toBoolean(mockVerdier[MockConfigPropName.HAR_ARBEIDSGIVER])) {
-                        return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][MockConfigPropName.SYKMELDINGER];
-                    } else {
-                        return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][MockConfigPropName.SYKMELDINGER];
-                    }
-                } else {
-                    return [];
-                }
-            } else if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
+        if (urlKey === MockConfigPropName.SYFODATA) {
+            if (toBoolean(mockVerdier[MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK])) {
+                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][MockConfigPropName.SYFODATA];
+            } else if (toBoolean(mockVerdier[MockConfigPropName.ER_SYKMELDT_URLMOCK])) {
+                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][MockConfigPropName.SYFODATA];
+            } else {
+                return brukerMocks[Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET][MockConfigPropName.SYFODATA];
+            }
+        } else if (mockVerdier[urlKey] !== undefined) {
+            if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
                 return mockVerdier[urlKey];
             } else {
-                return verdiParsed;
+                return toBoolean(mockVerdier[urlKey]);
             }
         }
         return brukerMocks.defaultMock[urlKey];
@@ -78,17 +73,17 @@ export default () => {
         getStatus: {
             harGyldigOidcToken: finnVerdi(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
         },
-        getSykmeldinger: finnVerdi(MockConfigPropName.SYKMELDINGER),
         getArbeidsledig: {
-            servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE)
+            servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE),
         },
+        getSyfo: finnVerdi(MockConfigPropName.SYFODATA),
     };
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
 
     fetchMock.get(API.getStatus, mockAPI.getStatus);
 
-    fetchMock.get(API.getSykmeldinger, mockAPI.getSykmeldinger);
-
     fetchMock.get(API.getArbeidsledig, mockAPI.getArbeidsledig);
+
+    fetchMock.get(API.getSyfo, mockAPI.getSyfo);
 };

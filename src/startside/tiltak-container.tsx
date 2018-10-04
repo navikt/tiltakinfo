@@ -9,38 +9,69 @@ import { connect } from 'react-redux';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import TiltakKomponent from './tiltak-komponent';
 import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
-import { SykmeldingerState } from '../brukerdata/sykmeldinger-duck';
+import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 interface StateProps {
     maalId: MaalOption;
     arbeidsledigSituasjon: ArbeidsledigSituasjonState;
-    sykmeldinger: SykmeldingerState;
+    syfoSituasjon: SyfoSituasjonState;
 }
 
-class TiltakContainer extends React.Component<StateProps> {
+interface State {
+    windowSize: number;
+}
+
+class TiltakContainer extends React.Component<StateProps, State> {
+    constructor(props: StateProps) {
+        super(props);
+        this.state = {
+            windowSize: window.innerWidth
+        };
+        this.handleWindowSize = this.handleWindowSize.bind(this);
+    }
+
+    handleWindowSize() {
+        this.setState({
+            windowSize: window.innerWidth
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowSize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSize);
+    }
+
     render() {
 
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
+        const erDesktop = this.state.windowSize > 767;
 
         const finnTiltak = (tiltakMapKey: string) => {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
 
-        const {sykmeldinger, maalId, arbeidsledigSituasjon} = this.props;
+        const {maalId, arbeidsledigSituasjon, syfoSituasjon} = this.props;
         const tiltakSomVises: Tiltak[] =
             arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT
                 ? finnTiltak(arbeidsledigSituasjon.situasjon)
-                : sykmeldinger.data.harArbeidsgiver
+                : syfoSituasjon.harArbeidsgiver
                     ? finnTiltak(maalId)
                     : finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER);
         return (
             <>
-                { (sykmeldinger.data.harArbeidsgiver)
+                { (syfoSituasjon.harArbeidsgiver)
                 && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
                     <section className="tiltak-ingress">
-                        <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
+                        <Veilederpanel
+                            svg={<img src={veilederBilde}/>}
+                            type={erDesktop ? 'normal' : 'plakat'}
+                            kompakt={true}
+                        >
                                 <Tekst id="veileder-maal-samme-arbeidsgiver"/>
                         </Veilederpanel>
                     </section> }
@@ -63,7 +94,7 @@ const mapStateToProps = (state: AppState): StateProps => {
     return {
         maalId: state.maal.id,
         arbeidsledigSituasjon: state.arbeidsledigSituasjon,
-        sykmeldinger: state.sykmeldinger,
+        syfoSituasjon: state.syfoSituasjon,
     };
 };
 

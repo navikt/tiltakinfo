@@ -21,7 +21,7 @@ export function StartsideBanner({harArbeidsgiver}: StateProps) {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    harArbeidsgiver: state.sykmeldinger.data.harArbeidsgiver,
+    harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
 });
 
 export default connect(mapStateToProps)(StartsideBanner);
