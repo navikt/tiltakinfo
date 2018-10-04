@@ -19,10 +19,37 @@ interface StateProps {
     syfoSituasjon: SyfoSituasjonState;
 }
 
-class TiltakContainer extends React.Component<StateProps> {
+interface State {
+    windowSize: number;
+}
+
+class TiltakContainer extends React.Component<StateProps, State> {
+    constructor(props: StateProps) {
+        super(props);
+        this.state = {
+            windowSize: window.innerWidth
+        };
+        this.handleWindowSize = this.handleWindowSize.bind(this);
+    }
+
+    handleWindowSize() {
+        this.setState({
+            windowSize: window.innerWidth
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowSize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSize);
+    }
+
     render() {
 
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
+        const erDesktop = this.state.windowSize > 767;
 
         const finnTiltak = (tiltakMapKey: string) => {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
@@ -40,7 +67,11 @@ class TiltakContainer extends React.Component<StateProps> {
                 { (syfoSituasjon.harArbeidsgiver)
                 && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
                     <section className="tiltak-ingress">
-                        <Veilederpanel svg={<img src={veilederBilde}/>} type="normal" kompakt={true}>
+                        <Veilederpanel
+                            svg={<img src={veilederBilde}/>}
+                            type={erDesktop ? 'normal' : 'plakat'}
+                            kompakt={true}
+                        >
                                 <Tekst id="veileder-maal-samme-arbeidsgiver"/>
                         </Veilederpanel>
                     </section> }
