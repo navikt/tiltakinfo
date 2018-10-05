@@ -47,7 +47,6 @@ class TiltakContainer extends React.Component<StateProps, State> {
     }
 
     render() {
-
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const erDesktop = this.state.windowSize > 767;
 

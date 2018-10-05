@@ -15,7 +15,7 @@ export enum Arbeidssituasjon {
     ARBEIDSLEDIG = 'ARBEIDSLEDIG',
 }
 
-export interface SyfoDataState extends JSONObject { // vs DataElement?
+export interface SyfoDataState extends JSONObject {
     arbeidssituasjoner: string[];
     tiltakSyfo: boolean;
 }
