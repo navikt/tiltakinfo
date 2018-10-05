@@ -33,7 +33,8 @@ export class MockDashboard extends React.Component<{}, MockDashboardState> {
             [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: brukerMocks[valgtBruker].harGyldigOidcToken,
             [MockConfigPropName.SERVICEGRUPPE]: brukerMocks[valgtBruker].servicegruppe,
             [MockConfigPropName.ER_SYKMELDT_URLMOCK]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER
-                                                    || valgtBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
+                                                    || valgtBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER
+                                                    || valgtBruker === Bruker.DEFAULT_MOCK,
             [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: valgtBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
         });
     }

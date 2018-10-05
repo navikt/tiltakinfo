@@ -6,6 +6,7 @@ export enum Bruker {
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
     ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
+    DEFAULT_MOCK = 'DEFAULT_MOCK',
 }
 
 export const brukerOptionsRekkefolge = [
@@ -33,21 +34,21 @@ export interface MockConfig extends ActiveUnleashFeatures {
 }
 
 interface BrukerMocks {
-    defaultMock: MockConfig;
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
+    [Bruker.DEFAULT_MOCK]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
-    defaultMock: {
+    [Bruker.DEFAULT_MOCK]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
+        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['FRILANSER'],
-            tiltakSyfo: true,
+            arbeidssituasjoner: [],
+            tiltakSyfo: false,
         },
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
@@ -85,5 +86,5 @@ export const brukerMocks: BrukerMocks = {
             arbeidssituasjoner: [],
             tiltakSyfo: false,
         },
-    }
+    },
 };
