@@ -5,12 +5,12 @@ import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
-import IngressSykmeldtUtenArbeidsgiver from './ingress-sykmeldtutenarbeidsgiver';
+import IngressUtenArbeidsgiver from './ingress-utenarbeidsgiver';
 import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
 import { MaalOption, SituasjonOption } from './tiltak-map';
 import Datalaster from '../api/datalaster';
 import StartsideBanner from './startside-banner';
-import IngressSykmeldtMedArbeidsgiver from './ingress-sykmeldtmedarbeidsgiver';
+import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 interface StateProps {
@@ -33,8 +33,8 @@ class Startside extends React.Component<StartsideProps> {
     render() {
         const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
         const IngressKomponent = syfoSituasjon.harArbeidsgiver
-            ? IngressSykmeldtMedArbeidsgiver
-            : IngressSykmeldtUtenArbeidsgiver;
+            ? IngressMedArbeidsgiver
+            : IngressUtenArbeidsgiver;
         const gyldigBrukerSituasjon = () => {
             const arbeidsledig =
                 (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
