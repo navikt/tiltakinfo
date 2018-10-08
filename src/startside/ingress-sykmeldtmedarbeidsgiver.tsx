@@ -35,6 +35,13 @@ class IngressSykmeldtMedArbeidsgiver extends React.Component<IngressProps, Ingre
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
         this.props.doSettMaalId(e.target.value);
+        const tiltakContainer = document.querySelector('.tiltak-container');
+        if (tiltakContainer) {
+            tiltakContainer.scrollIntoView({
+                block: 'start',
+                behavior: 'smooth'
+            });
+        }
     }
 
     render() {
