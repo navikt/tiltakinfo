@@ -50,5 +50,5 @@ export const reducer = combineReducers<AppState>({
     status: statusReducer,
     sykmeldinger: sykmeldingerReducer,
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
-    demobruker: persistent('DemoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
+    demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
 });
