@@ -35,7 +35,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                 <section className="kontakte-nav-container">
                     <div className="panel panel--border kontakte-nav">
                         <div className="kontakte-nav__bilde">
-                            <img src={kontakteNavBilde}/>
+                            <img src={kontakteNavBilde} alt=""/>
                         </div>
                         <div className="kontakte-nav__innhold">
                             <Innholdstittel className="blokk-s">

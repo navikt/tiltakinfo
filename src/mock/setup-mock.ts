@@ -51,7 +51,7 @@ export default () => {
                 return verdiParsed;
             }
         }
-        return brukerMocks.defaultMock[urlKey];
+        return brukerMocks[Bruker.DEFAULT_MOCK_BRUKER][urlKey];
     };
 
     const mockAPI: MockAPI = {

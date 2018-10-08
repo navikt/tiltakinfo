@@ -25,7 +25,7 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
         return (
             <section className="flere-tiltak">
                 <div className="flere-tiltak__bilde">
-                    <img src={flereTiltakBilde}/>
+                    <img src={flereTiltakBilde} alt=""/>
                 </div>
 
                 <div className="flere-tiltak__innhold">
