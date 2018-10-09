@@ -11,3 +11,12 @@ You can find the developer guide [here](https://github.com/facebookincubator/cre
 4. Trykk på `Propose file change` nederst på siden for å opprette en ny branch med endringen.
 5. På neste side under overskrift og ingress, sørg for at `base` er satt til `master` og `compare` er satt til din nye branch, se evt. over endringene, og åpne en pull request (forespørsel om å få ta inn endringen til masterbranchen) ved å trykke `Create pull request`.
 6. Utviklerne får automatisk beskjed om at pull requesten er opprettet, og aksepterer endringen så fort en av dem har mulighet.
+
+### Henvendelser
+Spørsmål knyttet til koden kan rettes mot:
+ 
+* Johan Rusvik, Johan.Rusvik@nav.no
+* Nina Kjekstad, Nina.Kjekstad@nav.no
+* Terese Haug, Terese.Haug@nav.no
+
+For NAV-interne henvendelser kan Slack-kanalen #team-kartlegging benyttes.

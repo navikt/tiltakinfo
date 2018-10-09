@@ -1,6 +1,4 @@
-/* tslint:disable */
-
-import { MaalState } from './reducer';
+import { DemoBrukerState, MaalState } from './reducer';
 
 function read(scope: string) {
     const content = localStorage.getItem(scope);
@@ -10,11 +8,11 @@ function read(scope: string) {
     return JSON.parse(content);
 }
 
-function write(scope: string, content: any) {
+function write(scope: string, content: any) { // tslint:disable-line
     return localStorage.setItem(scope, JSON.stringify(content));
 }
 
-type PersistentType = MaalState;
+type PersistentType = MaalState | DemoBrukerState;
 
 function erBesvarelseEndret(
     scope: string,
@@ -36,9 +34,9 @@ function erBesvarelseEndret(
 export default (
     scope: string,
     location: Location,
-    reducer: any,
+    reducer: any, // tslint:disable-line
     initialState: PersistentType
-) => (state: any, action: any) => {
+) => (state: any, action: any) => { // tslint:disable-line
     let nState = state;
     if (
         erBesvarelseEndret(scope, initialState) ||

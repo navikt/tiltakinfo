@@ -1,40 +1,60 @@
 import * as React from 'react';
+import './mock-dashboard.less';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import * as queryString from 'query-string';
-import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
-import './mock-dashboard.less';
+import { AppState, demoBrukerDuck } from '../redux/reducer';
+import {
+    Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfigPropName
+} from './mock-data-config';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import { Dispatch } from '../redux/dispatch-type';
+import { connect } from 'react-redux';
 
-export class MockDashboard extends React.Component<{}, MockConfig> {
-    public state: MockConfig;
+interface StateProps {
+    demobruker: Bruker;
+}
 
-    constructor(props: any) { // tslint:disable-line:no-any
+interface DispatchProps {
+    doSettDemoBruker: (id: string) => void;
+}
+
+type MockDashboardProps = StateProps & DispatchProps;
+
+export class MockDashboard extends React.Component<MockDashboardProps> {
+
+    constructor(props: MockDashboardProps) {
         super(props);
-        this.state = brukerMocks.defaultMock;
 
         this.handleChange = this.handleChange.bind(this);
         this.oppdaterUrl = this.oppdaterUrl.bind(this);
     }
 
-    handleChange(e: React.ChangeEvent<HTMLSelectElement>) { // tslint:disable-line:no-any
-        e.preventDefault();
-        this.setState(brukerMocks[e.target.value]);
+    componentDidUpdate () {
+        this.oppdaterUrl();
     }
 
-    oppdaterUrl(e: React.SyntheticEvent<HTMLButtonElement>) {
+    handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
         e.preventDefault();
+        this.props.doSettDemoBruker(e.target.value);
+    }
+
+    oppdaterUrl() {
+        const demobruker = brukerMocks[this.props.demobruker];
         location.search = queryString.stringify({
-            [MockConfigPropName.UNDER_OPPFOLGING]: this.state[MockConfigPropName.UNDER_OPPFOLGING],
-            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: this.state[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
-            [MockConfigPropName.SYKMELDINGER]: this.state[MockConfigPropName.SYKMELDINGER].length > 0
+            [MockConfigPropName.UNDER_OPPFOLGING]: demobruker[MockConfigPropName.UNDER_OPPFOLGING],
+            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: demobruker[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
+            [MockConfigPropName.SYKMELDINGER]: demobruker[MockConfigPropName.SYKMELDINGER].length > 0
         });
     }
 
     render() {
+        const {demobruker} = this.props;
         const selectorVerdier = {
+            [Bruker.DEFAULT_MOCK_BRUKER]: 'Velg brukertype:',
             [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
             [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
         };
+
         return (
             <section className="mockdashboard">
                 <Innholdstittel>Demo</Innholdstittel>
@@ -43,23 +63,28 @@ export class MockDashboard extends React.Component<{}, MockConfig> {
                     onChange={this.handleChange}
                     id="velg-bruker"
                 >
-                    <option value="velg-brukertype">
-                        Velg brukertype:
-                    </option>
                     {
                         brukerOptionsRekkefolge.map((bruker: string) =>
-                            <option key={bruker} value={bruker}>
+                            <option
+                                key={bruker}
+                                value={bruker}
+                                selected={demobruker === bruker}
+                            >
                                 {selectorVerdier[bruker]}
                             </option>
                         )
                     }
                 </SelectKomponent>
-                <button className="knapp knapp--hoved" onClick={this.oppdaterUrl}>
-                    Velg bruker
-                </button>
             </section>
         );
     }
 }
 
-export default MockDashboard;
+const mapStateToProps = (state: AppState): StateProps => ({
+    demobruker: state.demobruker.id,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+    doSettDemoBruker: (id) => dispatch(demoBrukerDuck.actionCreator({id})),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(MockDashboard);

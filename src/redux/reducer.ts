@@ -7,6 +7,7 @@ import sykmeldingerReducer, { SykmeldingerState } from '../sykmeldinger/sykmeldi
 import { ActionType } from './actions';
 import { MaalOption } from '../startside/maal-tiltak-map';
 import genericDuck from './generic-duck';
+import { Bruker } from '../mock/mock-data-config';
 
 export interface MaalState {
     id: MaalOption;
@@ -21,12 +22,26 @@ export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
     ActionType.SETT_MAAL
 );
 
+export interface DemoBrukerState {
+    id: Bruker;
+}
+
+const initialDemoBrukerState: DemoBrukerState = {
+    id: Bruker.DEFAULT_MOCK_BRUKER,
+};
+
+export const demoBrukerDuck = genericDuck<DemoBrukerState, ActionType.SETT_BRUKERTYPE>(
+    initialDemoBrukerState,
+    ActionType.SETT_BRUKERTYPE
+);
+
 export interface AppState {
     unleash: UnleashState;
     oppfolging: OppfolgingState;
     status: StatusState;
     sykmeldinger: SykmeldingerState;
     maal: MaalState;
+    demobruker: DemoBrukerState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -35,4 +50,5 @@ export const reducer = combineReducers<AppState>({
     status: statusReducer,
     sykmeldinger: sykmeldingerReducer,
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
+    demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
 });

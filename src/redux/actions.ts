@@ -19,6 +19,7 @@ export enum ActionType {
     HENT_SYKMELDINGER_LASTER = 'HENT_SYKMELDINGER_LASTER',
     IKKE_HENT_SYKMELDINGER = 'IKKE_HENT_SYKMELDINGER',
     SETT_MAAL = 'SETT_MAAL',
+    SETT_BRUKERTYPE = 'SETT_BRUKERTYPE',
 }
 
 export interface TestAction extends Data {

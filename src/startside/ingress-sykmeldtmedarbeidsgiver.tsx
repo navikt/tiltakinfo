@@ -54,7 +54,6 @@ class IngressSykmeldtMedArbeidsgiver extends React.Component<IngressProps, Ingre
                         src={velgMaalBilde}
                         alt=""
                         className="velg-maal-bilde blokk-l"
-                        role="img"
                     />
                     <Innholdstittel tag="h2" className="ingress__tittel">
                         <Tekst id="ingress-medarbeidsgiver"/>
