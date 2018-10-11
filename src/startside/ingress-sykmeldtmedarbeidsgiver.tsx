@@ -35,10 +35,26 @@ class IngressSykmeldtMedArbeidsgiver extends React.Component<IngressProps, Ingre
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
         this.props.doSettMaalId(e.target.value);
+
+        const header = document.querySelector('.siteheader');
+        const headerheight = header ? header.getBoundingClientRect().height : 0;
+
+        const startsidebanner = document.querySelector('.banner-tekst');
+        const startsidebannerheight = startsidebanner ? startsidebanner.getBoundingClientRect().height + 120 : 0;
+
+        const brodsmuler = document.querySelector('.brodsmuler-container');
+        const brodsmulerheight = brodsmuler ? brodsmuler.getBoundingClientRect().height : 0;
+
+        const ingress = document.querySelector('.ingress-container');
+        const ingressheight = ingress ? ingress.getBoundingClientRect().height : 0;
+
+        const height = headerheight + startsidebannerheight + brodsmulerheight + ingressheight + 38;
+
         const tiltakContainer = document.querySelector('.tiltak-container');
+
         if (tiltakContainer) {
-            tiltakContainer.scrollIntoView({
-                block: 'start',
+            window.scrollTo({
+                top: height,
                 behavior: 'smooth'
             });
         }

@@ -13,9 +13,11 @@ export function StartsideBanner({harArbeidsgiver}: StateProps) {
     const tekstId = harArbeidsgiver ? 'tittel-hararbeidsgiver' : 'tittel-utenarbeidsgiver';
     return (
         <section className="startside-banner blokk-m">
-            <Sidetittel>
-                <Tekst id={tekstId}/>
-            </Sidetittel>
+           <div className="banner-tekst">
+                <Sidetittel>
+                    <Tekst id={tekstId}/>
+                </Sidetittel>
+            </div>
         </section>
     );
 }
