@@ -46,7 +46,7 @@ class Startside extends React.Component<StartsideProps> {
                         </section>
                         {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
                             <>
-                                <section className="app-content tiltak-container fadeIn">
+                                <section className="app-content tiltak-container">
                                     <Tiltak/>
                                 </section>
 
