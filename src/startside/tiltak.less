@@ -1,129 +1,156 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
 @import '../farger';
 
-.tiltak-oversikt {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 64px;
-
-    .tiltak-overskrift {
-        margin: 0 auto 2rem;
-    }
-    .tiltak-liste {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .tiltak {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .tiltak-header {
-        padding: 1.5rem 1.5rem 0;
-        position: relative;
-        background-color: @foBlaBackground;
-        border-bottom: 0.2rem solid @foBlaBorder;
-        border-radius: .5rem .5rem 0 0;
-    }
-
-    .tiltak-header-tekst {
-        margin-bottom: 8rem;
-        height: 2em;
-    }
-
-    .tiltak-innhold {
-        background-color: @white;
-        padding: 1.5rem;
-        border: 0.09rem solid @navGra40;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-    }
-
-    .tiltak-ikon {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin-left: auto;
-        margin-right: auto;
-        width: 271px;
-    }
-
-    .tiltak:not(:first-child) {
-        margin-top: 1.5rem;
-    }
+/*@-webkit-keyframes NAME-YOUR-ANIMATION {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
 }
+@-moz-keyframes NAME-YOUR-ANIMATION {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-o-keyframes NAME-YOUR-ANIMATION {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes NAME-YOUR-ANIMATION {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}*/
 
-.tiltak-ingress {
-    margin-bottom: 2rem;
+.tiltak-container {
 
-    .nav-veilederpanel--kompakt.nav-veilederpanel {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 3.7rem;
-    }
-    .nav-veilederpanel {
-        border: 4px solid @foBlaBackground;
-        width: 90%;
-        .typo-normal {
-            line-height: 2rem;
+    // webkit-animation: NAME-YOUR-ANIMATION 2s ease-in; /* Safari 4+ */
+    // -moz-animation:    NAME-YOUR-ANIMATION 2s ease-in; /* Fx 5+ */
+    // -o-animation:      NAME-YOUR-ANIMATION 2s ease-in; /* Opera 12+ */
+    // animation:         NAME-YOUR-ANIMATION 2s ease-in; /* IE 10+, Fx 29+ */
+
+    .tiltak-oversikt {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+
+        .tiltak-overskrift {
+            margin: 0 auto 2rem;
+        }
+        .tiltak-liste {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tiltak {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tiltak-header {
+            padding: 1.5rem 1.5rem 0;
+            position: relative;
+            background-color: @foBlaBackground;
+            border-bottom: 0.2rem solid @foBlaBorder;
+            border-radius: .5rem .5rem 0 0;
+        }
+
+        .tiltak-header-tekst {
+            margin-bottom: 8rem;
+            height: 2em;
+        }
+
+        .tiltak-innhold {
+            background-color: @white;
+            padding: 1.5rem;
+            border: 0.09rem solid @navGra40;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .tiltak-ikon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 271px;
+        }
+
+        .tiltak:not(:first-child) {
+            margin-top: 1.5rem;
         }
     }
-    .nav-veileder {
-        img {
-            height: 100%;
+
+    .tiltak-ingress {
+        margin-bottom: 2rem;
+
+        .nav-veilederpanel--kompakt.nav-veilederpanel {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3.7rem;
+        }
+        .nav-veilederpanel {
+            border: 4px solid @foBlaBackground;
+            width: 90%;
+            .typo-normal {
+                line-height: 2rem;
+            }
+        }
+        .nav-veileder {
+            img {
+                height: 100%;
+            }
         }
     }
 }
 
 @media (min-width: @screen-sm-min) {
-    .tiltak-oversikt {
-        margin-top: 2.5rem;
-        flex-direction: column;
-        margin-bottom: 104px;
+    .tiltak-container {
+        .tiltak-oversikt {
+            margin-top: 2.5rem;
+            flex-direction: column;
+            margin-bottom: 104px;
 
-        .tiltak-liste {
-            flex-direction: row;
-            justify-content: space-between;
-        }
+            .tiltak-liste {
+                flex-direction: row;
+                justify-content: space-between;
+            }
 
-        .tiltak {
-            width: 47%;
-        }
+            .tiltak {
+                width: 47%;
+            }
 
-        .tiltak-header {
-            padding: 2rem 2rem 0;
-        }
+            .tiltak-header {
+                padding: 2rem 2rem 0;
+            }
 
-        .tiltak-ikon {
-            width: 280px;
-        }
+            .tiltak-ikon {
+                width: 280px;
+            }
 
-        .tiltak-header-tekst {
-            margin-bottom: 10rem;
-        }
+            .tiltak-header-tekst {
+                margin-bottom: 10rem;
+            }
 
-        .tiltak:not(:first-child) {
-            margin-top: 0rem;
-        }
+            .tiltak:not(:first-child) {
+                margin-top: 0rem;
+            }
 
-        .tiltak-innhold {
-            padding: 2rem;
-            min-height: 19rem;
-        }
-    }
-
-    .tiltak-ingress {
-        .nav-veilederpanel {
-            width: 75%;
-            .typo-normal {
-                line-height: 1.8rem;
+            .tiltak-innhold {
+                padding: 2rem;
+                min-height: 19rem;
             }
         }
-        .nav-veilederpanel--kompakt .nav-veilederpanel {
-            margin-top: 3.125rem;
+
+        .tiltak-ingress {
+            .nav-veilederpanel {
+                width: 75%;
+                .typo-normal {
+                    line-height: 1.8rem;
+                }
+            }
+            .nav-veilederpanel--kompakt .nav-veilederpanel {
+                margin-top: 3.125rem;
+            }
         }
     }
 }
