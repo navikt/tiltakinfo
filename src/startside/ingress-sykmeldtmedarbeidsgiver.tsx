@@ -9,6 +9,9 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './maal-tiltak-map';
+import { polyfill } from 'smoothscroll-polyfill';
+
+polyfill();
 
 const velgMaalBilde = require('../ikoner/velg-maal.svg');
 
@@ -30,6 +33,17 @@ class IngressSykmeldtMedArbeidsgiver extends React.Component<IngressProps, Ingre
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidUpdate () {
+        const tiltakContainer = document.querySelector('.tiltak-container');
+
+        if (tiltakContainer) {
+            tiltakContainer.scrollIntoView({
+                block: 'start',
+                behavior: 'smooth'
+            });
+        }
     }
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
