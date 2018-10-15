@@ -47,8 +47,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
@@ -56,8 +56,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['ARBEIDSLEDIG'],
-            tiltakSyfo: true,
+            arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
+            erTiltakSykmeldteInngangAktiv: true,
         },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
@@ -65,8 +65,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['FRILANSER'],
-            tiltakSyfo: true,
+            arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
+            erTiltakSykmeldteInngangAktiv: true,
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
@@ -74,8 +74,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
@@ -83,8 +83,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
 };
