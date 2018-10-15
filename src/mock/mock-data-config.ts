@@ -2,6 +2,7 @@ import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
+    DEFAULT_MOCK_BRUKER = 'DEFAULT_MOCK_BRUKER',
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
@@ -10,6 +11,7 @@ export enum Bruker {
 }
 
 export const brukerOptionsRekkefolge = [
+    Bruker.DEFAULT_MOCK_BRUKER,
     Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
     Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
@@ -33,7 +35,7 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.SYFODATA]: SyfoDataState;
 }
 
-interface BrukerMocks {
+export interface BrukerMocks {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;

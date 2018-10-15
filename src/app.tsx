@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Provider as StoreProvider } from 'react-redux';
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import getStore from './redux/store';
 import Innhold from './innhold';
@@ -20,19 +20,29 @@ const store = getStore();
 class App extends React.Component {
     render() {
         return (
-            <StoreProvider store={store}>
-                <StatusProvider>
-                    <UnleashProvider>
-                        <DataProvider>
-                            <BrowserRouter basename={contextRoot}>
-                                <Innhold/>
-                            </BrowserRouter>
-                        </DataProvider>
-                    </UnleashProvider>
-                </StatusProvider>
-            </StoreProvider>
+            <StatusProvider>
+                <UnleashProvider>
+                    <DataProvider>
+                        <BrowserRouter basename={contextRoot}>
+                            <Innhold/>
+                        </BrowserRouter>
+                    </DataProvider>
+                </UnleashProvider>
+            </StatusProvider>
         );
     }
 }
 
-export default mockDashboardInjecter(App);
+const AppWrapper = mockDashboardInjecter(App);
+
+class StoreProvider extends React.Component {
+    render() {
+        return (
+            <ReduxProvider store={store}>
+                <AppWrapper />
+            </ReduxProvider>
+        );
+    }
+}
+
+export default StoreProvider;

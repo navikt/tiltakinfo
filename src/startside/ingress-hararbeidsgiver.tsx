@@ -9,6 +9,9 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
+import { polyfill } from 'smoothscroll-polyfill';
+
+polyfill();
 
 const velgMaalBilde = require('../ikoner/velg-maal.svg');
 
@@ -32,6 +35,17 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidUpdate () {
+        const tiltakContainer = document.querySelector('.tiltak-container');
+
+        if (tiltakContainer) {
+            tiltakContainer.scrollIntoView({
+                block: 'start',
+                behavior: 'smooth'
+            });
+        }
+    }
+
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
         this.props.doSettMaalId(e.target.value);
@@ -47,7 +61,6 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
                         src={velgMaalBilde}
                         alt=""
                         className="velg-maal-bilde blokk-l"
-                        role="img"
                     />
                     <Innholdstittel tag="h2" className="ingress__tittel">
                         <Tekst id="ingress-medarbeidsgiver"/>
