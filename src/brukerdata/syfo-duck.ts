@@ -16,8 +16,8 @@ export enum Arbeidssituasjon {
 }
 
 export interface SyfoDataState extends JSONObject {
-    arbeidssituasjoner: string[];
-    tiltakSyfo: boolean;
+    arbeidsSituasjonIAktiveSykmeldinger: string[];
+    erTiltakSykmeldteInngangAktiv: boolean;
 }
 
 export interface SyfoSituasjonState extends DataElement {
@@ -35,8 +35,9 @@ export const initialState: SyfoSituasjonState = {
 export default function reducer(state: SyfoSituasjonState = initialState, action: Handling): SyfoSituasjonState {
     switch (action.type) {
         case ActionType.HENT_SYFO_OK:
-            const erSykmeldt = action.syfoData.tiltakSyfo;
-            const harArbeidsgiver = action.syfoData.arbeidssituasjoner
+            const erSykmeldt = action.syfoData.erTiltakSykmeldteInngangAktiv;
+            const harArbeidsgiver = action.syfoData.arbeidsSituasjonIAktiveSykmeldinger !== null &&
+                action.syfoData.arbeidsSituasjonIAktiveSykmeldinger
                 .filter( situasjon => situasjon !== Arbeidssituasjon.ARBEIDSLEDIG).length > 0;
             return {...state, status: Status.OK, harArbeidsgiver: harArbeidsgiver, erSykmeldt: erSykmeldt};
         case ActionType.HENT_SYFO_FEILET:

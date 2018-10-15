@@ -22,6 +22,7 @@ export enum ActionType {
     HENT_SYFO_OK = 'HENT_SYFO_OK',
     HENT_SYFO_FEILET = 'HENT_SYFO_FEILET',
     HENT_SYFO_LASTER = 'HENT_SYFO_LASTER',
+    SETT_BRUKERTYPE = 'SETT_BRUKERTYPE',
 }
 
 export interface TestAction extends Data {

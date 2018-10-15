@@ -47,7 +47,6 @@ class TiltakContainer extends React.Component<StateProps, State> {
     }
 
     render() {
-
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const erDesktop = this.state.windowSize > 767;
 
@@ -64,17 +63,25 @@ class TiltakContainer extends React.Component<StateProps, State> {
                     : finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER);
         return (
             <>
-                { (syfoSituasjon.harArbeidsgiver)
-                && ((maalId === MaalOption.SAMME_ARBEIDSGIVER) || (maalId === MaalOption.SAMME_STILLING)) &&
+                { syfoSituasjon.harArbeidsgiver &&
                     <section className="tiltak-ingress">
                         <Veilederpanel
                             svg={<img src={veilederBilde}/>}
                             type={erDesktop ? 'normal' : 'plakat'}
                             kompakt={true}
                         >
-                                <Tekst id="veileder-maal-samme-arbeidsgiver"/>
+                            { (maalId === MaalOption.SAMME_ARBEIDSGIVER || maalId === MaalOption.SAMME_STILLING) &&
+                            <Tekst id="veileder-maal-samme-arbeidsgiver"/>
+                            }
+                            { maalId === MaalOption.NY_ARBEIDSGIVER &&
+                            <Tekst id="veileder-maal-ny-arbeidsgiver"/>
+                            }
+                            { maalId === MaalOption.USIKKER &&
+                            <Tekst id="veileder-maal-usikker"/>
+                            }
                         </Veilederpanel>
-                    </section> }
+                    </section>
+                }
                 <section className="tiltak-oversikt">
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>

@@ -2,14 +2,17 @@ import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
+    DEFAULT_MOCK_BRUKER = 'DEFAULT_MOCK_BRUKER',
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
     ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
     UTENFOR_MAALGRUPPE = 'UTENFOR_MAALGRUPPE',
+    DEFAULT_MOCK = 'DEFAULT_MOCK',
 }
 
 export const brukerOptionsRekkefolge = [
+    Bruker.DEFAULT_MOCK_BRUKER,
     Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
     Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
@@ -34,23 +37,23 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.SYFODATA]: SyfoDataState;
 }
 
-interface BrukerMocks {
-    defaultMock: MockConfig;
+export interface BrukerMocks {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
     [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
+    [Bruker.DEFAULT_MOCK]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
-    defaultMock: {
+    [Bruker.DEFAULT_MOCK]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
+        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['FRILANSER'],
-            tiltakSyfo: true,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
@@ -58,8 +61,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['ARBEIDSLEDIG'],
-            tiltakSyfo: true,
+            arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
+            erTiltakSykmeldteInngangAktiv: true,
         },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
@@ -67,8 +70,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: ['FRILANSER'],
-            tiltakSyfo: true,
+            arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
+            erTiltakSykmeldteInngangAktiv: true,
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
@@ -76,8 +79,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
@@ -85,18 +88,18 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     },
+
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.SYFODATA]: {
-            arbeidssituasjoner: [],
-            tiltakSyfo: false,
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
         },
     }
-
 };
