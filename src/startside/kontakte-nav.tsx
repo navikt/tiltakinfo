@@ -6,7 +6,7 @@ import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import 'nav-frontend-paneler-style';
 import './kontakte-nav.less';
-import { OppfolgingState } from '../oppfolging/oppfolging-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import Datalaster from '../api/datalaster';
 import Tekst from '../finn-tekst';
 

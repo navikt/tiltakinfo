@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import './ingress-sykmeldtutenarbeidsgiver.less';
+import './ingress-utenarbeidsgiver.less';
 import Tekst, { tekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
-import './ingress-sykmeldtmedarbeidsgiver.less';
+import './ingress-hararbeidsgiver.less';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
-import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './maal-tiltak-map';
+import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
 import { polyfill } from 'smoothscroll-polyfill';
 
 polyfill();
@@ -29,7 +29,7 @@ interface IngressState {
     options: string[];
 }
 
-class IngressSykmeldtMedArbeidsgiver extends React.Component<IngressProps, IngressState> {
+class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState> {
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -102,4 +102,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(IngressSykmeldtMedArbeidsgiver));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(IngressHarArbeidsgiver));

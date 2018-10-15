@@ -1,68 +1,92 @@
-import { Sykmelding } from '../sykmeldinger/sykmeldinger-duck';
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
+import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
     DEFAULT_MOCK_BRUKER = 'DEFAULT_MOCK_BRUKER',
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
+    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
+    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
+    DEFAULT_MOCK = 'DEFAULT_MOCK',
 }
 
 export const brukerOptionsRekkefolge = [
     Bruker.DEFAULT_MOCK_BRUKER,
     Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
+    Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
+    Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET,
 ];
 
 export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
     HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
-    SYKMELDINGER = 'sykmeldinger',
+    SERVICEGRUPPE = 'servicegruppe',
+    SYFODATA = 'syfoData',
+    HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
+    ER_SYKMELDT_URLMOCK = 'erSykmeldt',
+
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: boolean;
-    [MockConfigPropName.SYKMELDINGER]: Sykmelding[];
+    [MockConfigPropName.SERVICEGRUPPE]: string;
+    [MockConfigPropName.SYFODATA]: SyfoDataState;
 }
 
 export interface BrukerMocks {
-    [Bruker.DEFAULT_MOCK_BRUKER]: MockConfig;
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: MockConfig;
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
+    [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
+    [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
+    [Bruker.DEFAULT_MOCK]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
-    [Bruker.DEFAULT_MOCK_BRUKER]: {
+    [Bruker.DEFAULT_MOCK]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SYKMELDINGER]: [
-            {
-                sendtdato: '2018-01-01T01:00:00',
-                valgtArbeidssituasjon: 'ARBEIDSLEDIG',
-            },
-            {
-                valgtArbeidssituasjon: 'FRILANSER',
-                sendtdato: '2018-01-01T02:00:00',
-            },
-        ],
+        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
+        },
     },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SYKMELDINGER]: [],
+        [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
+            erTiltakSykmeldteInngangAktiv: true,
+        },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SYKMELDINGER]: [
-            {
-                sendtdato: '2018-01-01T01:00:00',
-                valgtArbeidssituasjon: 'ARBEIDSLEDIG',
-            },
-            {
-                valgtArbeidssituasjon: 'FRILANSER',
-                sendtdato: '2018-01-01T02:00:00',
-            },
-        ],
+        [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
+            erTiltakSykmeldteInngangAktiv: true,
+        },
+    },
+    [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
+        [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
+        },
+    },
+    [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
+        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
+        },
     },
 };

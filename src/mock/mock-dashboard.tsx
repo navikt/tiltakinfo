@@ -2,10 +2,9 @@ import * as React from 'react';
 import './mock-dashboard.less';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import * as queryString from 'query-string';
+import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfigPropName } from './mock-data-config';
+import './mock-dashboard.less';
 import { AppState, demoBrukerDuck } from '../redux/reducer';
-import {
-    Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfigPropName
-} from './mock-data-config';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { Dispatch } from '../redux/dispatch-type';
 import { connect } from 'react-redux';
@@ -39,11 +38,16 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
     }
 
     oppdaterUrl() {
-        const demobruker = brukerMocks[this.props.demobruker];
+        const demobrukerMock = brukerMocks[this.props.demobruker];
+        const demobruker = this.props.demobruker;
         location.search = queryString.stringify({
-            [MockConfigPropName.UNDER_OPPFOLGING]: demobruker[MockConfigPropName.UNDER_OPPFOLGING],
-            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: demobruker[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
-            [MockConfigPropName.SYKMELDINGER]: demobruker[MockConfigPropName.SYKMELDINGER].length > 0
+            [MockConfigPropName.UNDER_OPPFOLGING]: demobrukerMock[MockConfigPropName.UNDER_OPPFOLGING],
+            [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: demobrukerMock[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
+            [MockConfigPropName.SERVICEGRUPPE]: demobrukerMock[MockConfigPropName.SERVICEGRUPPE],
+            [MockConfigPropName.ER_SYKMELDT_URLMOCK]: demobruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER
+            || demobruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER
+            || demobruker === Bruker.DEFAULT_MOCK,
+            [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: demobruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
         });
     }
 
@@ -53,6 +57,8 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
             [Bruker.DEFAULT_MOCK_BRUKER]: 'Velg brukertype:',
             [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
             [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
+            [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: 'Arbeidsledig situasjonsbestemt',
+            [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: 'Arbeidsledig spesielt tilpasset',
         };
 
         return (

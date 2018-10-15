@@ -32,15 +32,18 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
                 <Systemtittel className="blokk-xxs">
                     <Tekst id={'fleretiltak-header'}/>
                 </Systemtittel>
-                <Normaltekst>
+
                     <div className="flere-tiltak__tekst">
+                        <Normaltekst>
                     <Tekst id={'fleretiltak-passedeg'}/>
+                        </Normaltekst>
                     </div>
+                    <Normaltekst>
                     <a className="lenke" href={lenkeTiltak}>
                         <Tekst id={'fleretiltak-lenke'}/>
                         <NavFrontendChevron stor={true}/>
                     </a>
-                </Normaltekst>
+                    </Normaltekst>
                 </div>
             </section>
         );

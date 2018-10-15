@@ -5,16 +5,18 @@ import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
-import IngressSykmeldtUtenArbeidsgiver from './ingress-sykmeldtutenarbeidsgiver';
-import { SykmeldingerState } from '../sykmeldinger/sykmeldinger-duck';
-import { MaalOption } from './maal-tiltak-map';
+import IngressUtenArbeidsgiver from './ingress-utenarbeidsgiver';
+import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
+import { MaalOption, SituasjonOption } from './tiltak-map';
 import Datalaster from '../api/datalaster';
 import StartsideBanner from './startside-banner';
-import IngressSykmeldtMedArbeidsgiver from './ingress-sykmeldtmedarbeidsgiver';
+import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
+import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 interface StateProps {
-    sykmeldinger: SykmeldingerState;
     maalId: MaalOption;
+    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    syfoSituasjon: SyfoSituasjonState;
 }
 
 interface DispatchProps {
@@ -29,22 +31,36 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {sykmeldinger, maalId} = this.props;
-        const IngressKomponent = sykmeldinger.data.harArbeidsgiver
-            ? IngressSykmeldtMedArbeidsgiver
-            : IngressSykmeldtUtenArbeidsgiver;
+        const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
+        const IngressKomponent = syfoSituasjon.harArbeidsgiver
+            ? IngressMedArbeidsgiver
+            : IngressUtenArbeidsgiver;
+        const gyldigBrukerSituasjon = () => {
+            const arbeidsledig =
+                (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
+                || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
+            const sykmeldtUtenArbeidsgiver =
+                syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
+            const sykmeldtMedArbeidsgiver =
+                syfoSituasjon.erSykmeldt
+                && syfoSituasjon.harArbeidsgiver
+                && (maalId !== MaalOption.IKKE_VALGT);
+            return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
+        };
+
         return (
             <>
                 <StartsideBanner/>
                 <section className="app-content brodsmuler-container">
                     <Brodsmuler/>
                 </section>
-                <Datalaster avhengigheter={[sykmeldinger]}>
+                <Datalaster avhengigheter={[arbeidsledigSituasjon, syfoSituasjon]}>
                     <>
                         <section className="app-content ingress-container">
                             <IngressKomponent/>
                         </section>
-                        {(!sykmeldinger.data.harArbeidsgiver || maalId !== MaalOption.IKKE_VALGT) && (
+                        {(
+                            gyldigBrukerSituasjon() && (
                             <>
                                 <section className="app-content tiltak-container">
                                     <Tiltak/>
@@ -58,7 +74,7 @@ class Startside extends React.Component<StartsideProps> {
                                     <FlereTiltak/>
                                 </section>
                             </>
-                        )}
+                        ))}
                     </>
                 </Datalaster>
             </>
@@ -67,8 +83,9 @@ class Startside extends React.Component<StartsideProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    sykmeldinger: state.sykmeldinger,
     maalId: state.maal.id,
+    arbeidsledigSituasjon: state.arbeidsledigSituasjon,
+    syfoSituasjon: state.syfoSituasjon,
 });
 
 export default connect(mapStateToProps)(Startside);
