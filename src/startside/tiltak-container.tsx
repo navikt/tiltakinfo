@@ -84,9 +84,11 @@ class TiltakContainer extends React.Component<StateProps, State> {
                     </section>
                 }
                 <section className="tiltak-oversikt">
+                    { !(syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) &&
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>
                     </Undertittel>
+                    }
                     <div className="tiltak-liste">
                         {tiltakSomVises.map((tiltak: Tiltak) =>
                             <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
