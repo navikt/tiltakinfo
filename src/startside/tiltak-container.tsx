@@ -56,11 +56,12 @@ class TiltakContainer extends React.Component<StateProps, State> {
 
         const {maalId, arbeidsledigSituasjon, syfoSituasjon} = this.props;
         const tiltakSomVises: Tiltak[] =
-            arbeidsledigSituasjon.situasjon !== SituasjonOption.UBESTEMT
-                ? finnTiltak(arbeidsledigSituasjon.situasjon)
-                : syfoSituasjon.harArbeidsgiver
-                    ? finnTiltak(maalId)
-                    : finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER);
+            syfoSituasjon.erSykmeldt ?
+                ( syfoSituasjon.harArbeidsgiver ?
+                    finnTiltak(maalId) :
+                    finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
+                finnTiltak(arbeidsledigSituasjon.situasjon);
+
         return (
             <>
                 { syfoSituasjon.harArbeidsgiver &&
@@ -83,9 +84,11 @@ class TiltakContainer extends React.Component<StateProps, State> {
                     </section>
                 }
                 <section className="tiltak-oversikt">
+                    { !(syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) &&
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>
                     </Undertittel>
+                    }
                     <div className="tiltak-liste">
                         {tiltakSomVises.map((tiltak: Tiltak) =>
                             <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
