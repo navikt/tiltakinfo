@@ -38,8 +38,8 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
     }
 
     oppdaterUrl() {
-        const demobrukerMock = brukerMocks[this.props.demobruker];
         const demobruker = this.props.demobruker;
+        const demobrukerMock = brukerMocks[demobruker];
         location.search = queryString.stringify({
             [MockConfigPropName.UNDER_OPPFOLGING]: demobrukerMock[MockConfigPropName.UNDER_OPPFOLGING],
             [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: demobrukerMock[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
@@ -54,7 +54,7 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
     render() {
         const {demobruker} = this.props;
         const selectorVerdier = {
-            [Bruker.DEFAULT_MOCK_BRUKER]: 'Velg brukertype:',
+            [Bruker.DEFAULT_MOCK]: 'Velg brukertype:',
             [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
             [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
             [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: 'Arbeidsledig situasjonsbestemt',

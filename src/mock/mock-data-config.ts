@@ -2,17 +2,16 @@ import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
-    DEFAULT_MOCK_BRUKER = 'DEFAULT_MOCK_BRUKER',
+    DEFAULT_MOCK = 'DEFAULT_MOCK',
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
     ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
     UTENFOR_MAALGRUPPE = 'UTENFOR_MAALGRUPPE',
-    DEFAULT_MOCK = 'DEFAULT_MOCK',
 }
 
 export const brukerOptionsRekkefolge = [
-    Bruker.DEFAULT_MOCK_BRUKER,
+    Bruker.DEFAULT_MOCK,
     Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
     Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
@@ -92,7 +91,6 @@ export const brukerMocks: BrukerMocks = {
             erTiltakSykmeldteInngangAktiv: false,
         },
     },
-
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
@@ -101,5 +99,5 @@ export const brukerMocks: BrukerMocks = {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,
         },
-    }
+    },
 };
