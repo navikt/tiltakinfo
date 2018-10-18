@@ -67,14 +67,15 @@ class Startside extends React.Component<StartsideProps> {
                         { ((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
                         || sykmeldtUtenArbeidsgiver
                         || arbeidsledig ) &&
-                        <section className="app-content tiltak-container">
-                            <Tiltak/>
-                        </section>
+                        <>
+                            <section className="app-content tiltak-container">
+                                <Tiltak/>
+                            </section>
+                            <section className="app-content-kontakte-nav blokk-xl">
+                                <KontakteNAV/>
+                            </section>
+                        </>
                         }
-
-                        <section className="app-content-kontakte-nav blokk-xl">
-                            <KontakteNAV/>
-                        </section>
                     </>
                     :
                     <AlertStripe type="advarsel" className="app-content feilmelding-container">
@@ -82,9 +83,11 @@ class Startside extends React.Component<StartsideProps> {
                     </AlertStripe>
                     }
                 </Datalaster>
+                { (sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
                 </section>
+                }
             </>
         );
     }
