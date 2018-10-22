@@ -83,7 +83,7 @@ class Startside extends React.Component<StartsideProps> {
                     </AlertStripe>
                     }
                 </Datalaster>
-                { (sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT) &&
+                { !(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
                 </section>
