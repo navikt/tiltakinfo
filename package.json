@@ -55,7 +55,7 @@
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
     "smoothscroll-polyfill": "0.4.3",
-    "yet-another-fetch-mock": "2.3.3"
+    "yet-another-fetch-mock": "2.4.0"
   },
   "devDependencies": {
     "@navikt/create-react-app-typescript-less": "1.0.0-beta.14",
