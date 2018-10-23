@@ -20,15 +20,15 @@ const store = getStore();
 class App extends React.Component {
     render() {
         return (
-            <StatusProvider>
-                <UnleashProvider>
-                    <DataProvider>
-                        <BrowserRouter basename={contextRoot}>
+            <BrowserRouter basename={contextRoot}>
+                <StatusProvider>
+                    <UnleashProvider>
+                        <DataProvider>
                             <Innhold/>
-                        </BrowserRouter>
-                    </DataProvider>
-                </UnleashProvider>
-            </StatusProvider>
+                        </DataProvider>
+                    </UnleashProvider>
+                </StatusProvider>
+            </BrowserRouter>
         );
     }
 }
@@ -39,7 +39,7 @@ class StoreProvider extends React.Component {
     render() {
         return (
             <ReduxProvider store={store}>
-                <AppWrapper />
+                <AppWrapper/>
             </ReduxProvider>
         );
     }

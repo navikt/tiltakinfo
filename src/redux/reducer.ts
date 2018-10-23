@@ -28,7 +28,7 @@ export interface DemoBrukerState {
 }
 
 const initialDemoBrukerState: DemoBrukerState = {
-    id: Bruker.DEFAULT_MOCK_BRUKER,
+    id: Bruker.DEFAULT_MOCK,
 };
 
 export const demoBrukerDuck = genericDuck<DemoBrukerState, ActionType.SETT_BRUKERTYPE>(

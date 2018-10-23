@@ -2,20 +2,21 @@ import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
-    DEFAULT_MOCK_BRUKER = 'DEFAULT_MOCK_BRUKER',
+    DEFAULT_MOCK = 'DEFAULT_MOCK',
     SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
     ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
     ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
-    DEFAULT_MOCK = 'DEFAULT_MOCK',
+    UTENFOR_MAALGRUPPE = 'UTENFOR_MAALGRUPPE',
 }
 
 export const brukerOptionsRekkefolge = [
-    Bruker.DEFAULT_MOCK_BRUKER,
+    Bruker.DEFAULT_MOCK,
     Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
     Bruker.SYKMELDT_MED_ARBEIDSGIVER,
     Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT,
     Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET,
+    Bruker.UTENFOR_MAALGRUPPE,
 ];
 
 export enum MockConfigPropName {
@@ -40,6 +41,7 @@ export interface BrukerMocks {
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
+    [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
     [Bruker.DEFAULT_MOCK]: MockConfig;
 }
 
@@ -84,6 +86,15 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
+        [MockConfigPropName.SYFODATA]: {
+            arbeidsSituasjonIAktiveSykmeldinger: [],
+            erTiltakSykmeldteInngangAktiv: false,
+        },
+    },
+    [Bruker.UTENFOR_MAALGRUPPE]: {
+        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
+        [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,
