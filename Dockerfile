@@ -9,7 +9,7 @@ RUN npm ci && npm run build:demo
 RUN cp -r /source/build /demo
 RUN npm run build
 
-FROM docker.adeo.no:5000/pus/decorator
+FROM docker.adeo.no:5000/pus/decorator:110.20181025.1419
 ENV APPLICATION_NAME=tiltakinfo
 COPY --from=builder /source/build /app
 COPY --from=builder /demo /app/demo
