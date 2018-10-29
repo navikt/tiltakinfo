@@ -42,19 +42,9 @@ export interface BrukerMocks {
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: MockConfig;
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: MockConfig;
     [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
-    [Bruker.DEFAULT_MOCK]: MockConfig;
 }
 
 export const brukerMocks: BrukerMocks = {
-    [Bruker.DEFAULT_MOCK]: {
-        [MockConfigPropName.UNDER_OPPFOLGING]: false,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
-        [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
-    },
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
@@ -74,7 +64,7 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
-        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.SYFODATA]: {
@@ -83,7 +73,7 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
-        [MockConfigPropName.UNDER_OPPFOLGING]: false,
+        [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
