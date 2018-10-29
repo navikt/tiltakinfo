@@ -54,7 +54,7 @@ export default () => {
             } else if (toBoolean(mockVerdier[MockConfigPropName.ER_SYKMELDT_URLMOCK])) {
                 return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][MockConfigPropName.SYFODATA];
             } else {
-                return brukerMocks[Bruker.DEFAULT_MOCK][MockConfigPropName.SYFODATA];
+                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][MockConfigPropName.SYFODATA];
             }
         } else if (mockVerdier[urlKey] !== undefined) {
             if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
@@ -63,7 +63,7 @@ export default () => {
                 return toBoolean(mockVerdier[urlKey]);
             }
         }
-        return brukerMocks[Bruker.DEFAULT_MOCK][urlKey];
+        return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][urlKey];
     };
 
     const mockAPI: MockAPI = {
