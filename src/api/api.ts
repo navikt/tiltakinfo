@@ -35,7 +35,7 @@ export const featureQueryParams = (features: string[]): string => {
 
 export const API: ApiProps = {
     getUnleash: `${contextRoot}/api/feature`,
-    getOppfolging: '/veilarboppfolgingproxy/api/oppfolging',
+    getOppfolging: '/veilarboppfolging/api/oppfolging',
     getStatus: '/veilarbstepup/status',
     getArbeidsledig: '/veilarbtiltakinfo/api/servicegruppekode',
     getSyfo: '/syforest/sykeforloep/metadata',
