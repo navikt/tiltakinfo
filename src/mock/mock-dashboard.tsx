@@ -68,7 +68,7 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
 
         return (
             <section className="mockdashboard">
-                <Innholdstittel>Demo</Innholdstittel>
+                <Innholdstittel>Veilederdemo for tiltakinfo</Innholdstittel>
                 <SelectKomponent
                     label="Velg brukertypen for demoen"
                     onChange={this.handleChange}
