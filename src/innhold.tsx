@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { OppfolgingState } from './brukerdata/oppfolging-duck';
 import { SyfoSituasjonState } from './brukerdata/syfo-duck';
 import { ArbeidsledigSituasjonState } from './brukerdata/servicekode-duck';
-import { userMetric } from './metrics';
+import { brukerMetrikk } from './metrics';
 
 export const URL_ADMIN = '/admin';
 
@@ -25,7 +25,7 @@ class Innhold extends React.Component<InnholdProps> {
     }
 
     componentDidMount() {
-        userMetric(
+        brukerMetrikk(
             this.props.arbeidsledigSituasjon.situasjon,
             this.props.syfoSituasjon.harArbeidsgiver,
             this.props.syfoSituasjon.erSykmeldt,
