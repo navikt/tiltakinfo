@@ -18,8 +18,8 @@ export const MAAL_OPTIONS_REKKEFOLGE = [
 export enum SituasjonOption {
     UBESTEMT = 'situasjonoption-ubestemt',
     SYKMELDT_UTEN_ARBEIDSGIVER = 'situasjonoption-sykmeldt-utenarbeidsgiver',
-    SITUASJONSBESTEMT = 'situasjonoption-situasjonsbestemt',
-    SPESIELT_TILPASSET = 'situasjonoption-spesielttilpasset',
+    SITUASJONSBESTEMT = 'BFORM',
+    SPESIELT_TILPASSET = 'BATT',
 }
 
 export const tiltakMap = {

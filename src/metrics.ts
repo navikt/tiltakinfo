@@ -1,8 +1,17 @@
-import { ActionType } from './redux/actions';
+import { SituasjonOption } from './startside/tiltak-map';
 
-export const metricsMiddleWare = (store: any) => (next: any) => (action: any) => { // tslint:disable-line:no-any
-    if (action.type === ActionType.HENT_OPPFOLGING_OK) {
-        (window as any).frontendlogger.event('tiltaksinfo.underOppfolging', {'underOppfolging': action.oppfolging.underOppfolging}, {}); // tslint:disable-line
-    }
-    next(action);
+const logEvent = (window as any).frontendlogger.event; // tslint:disable-line:no-any
+
+export const userMetric = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    underOppfolging: boolean
+): void => {
+    logEvent('tiltakinfo.bruker', {}, {
+        servicegruppekode,
+        harArbeidsgiverIAktiveSykmeldinger,
+        erTiltakSykmeldteInngangAktiv,
+        underOppfolging
+    });
 };
