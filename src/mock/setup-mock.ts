@@ -71,7 +71,10 @@ export default () => {
             underOppfolging: finnVerdi(MockConfigPropName.UNDER_OPPFOLGING),
         },
         getStatus: {
+            erInnlogget: finnVerdi(MockConfigPropName.ER_INNLOGGET),
             harGyldigOidcToken: finnVerdi(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
+            niva: finnVerdi(MockConfigPropName.NIVA),
+            nivaOidc: finnVerdi(MockConfigPropName.NIVA_OIDC),
         },
         getArbeidsledig: {
             servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE),
