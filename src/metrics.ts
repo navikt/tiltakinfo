@@ -1,6 +1,8 @@
 import { SituasjonOption } from './startside/tiltak-map';
 
-const logEvent = (window as any).frontendlogger.event; // tslint:disable-line:no-any
+const w = (window as any); // tslint:disable-line:no-any
+
+const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 export const userMetric = (
     servicegruppekode: SituasjonOption,
