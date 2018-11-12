@@ -1,11 +1,11 @@
 import { TiltakId } from './tiltak-config';
 
 export enum MaalOption {
-    IKKE_VALGT = 'ingress-maal-ikkevalgt',
-    SAMME_STILLING = 'ingress-maal-samme-stilling',
-    SAMME_ARBEIDSGIVER = 'ingress-maal-samme-arbeidsgiver',
-    NY_ARBEIDSGIVER = 'ingress-maal-ny-arbeidsgiver',
-    USIKKER = 'ingress-maal-usikker',
+    IKKE_VALGT = 'maal-ikkevalgt',
+    SAMME_STILLING = 'maal-samme-stilling',
+    SAMME_ARBEIDSGIVER = 'maal-samme-arbeidsgiver',
+    NY_ARBEIDSGIVER = 'maal-ny-arbeidsgiver',
+    USIKKER = 'maal-usikker',
 }
 
 export const MAAL_OPTIONS_REKKEFOLGE = [

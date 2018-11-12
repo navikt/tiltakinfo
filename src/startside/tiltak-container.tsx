@@ -53,9 +53,9 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
     }
 
     render() {
-        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const erDesktop = this.state.windowSize > 767;
 
+        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const finnTiltak = (tiltakMapKey: string) => {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
