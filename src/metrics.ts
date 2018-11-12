@@ -38,6 +38,5 @@ export const klikkPaFortellMegMerMetrikk = () => {
 };
 
 export const klikkPaGaTilAktivitetsplanen = () => {
-    console.log('klikk');
     logEvent(`${domene}.gatilaktivitetsplanen`);
 };
