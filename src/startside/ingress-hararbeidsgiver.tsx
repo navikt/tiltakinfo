@@ -10,6 +10,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
 import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
 import { polyfill } from 'smoothscroll-polyfill';
+import { klikkPaMaalMetrikk } from '../metrics';
 
 polyfill();
 
@@ -48,7 +49,9 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         e.preventDefault();
-        this.props.doSettMaalId(e.target.value);
+        const maalId: MaalOption = e.target.value as MaalOption;
+        this.props.doSettMaalId(maalId);
+        klikkPaMaalMetrikk(maalId);
     }
 
     render() {

@@ -61,7 +61,7 @@ class Startside extends React.Component<StartsideProps> {
                         || arbeidsledig ) &&
                         <>
                             <section className="app-content tiltak-container">
-                                <Tiltak/>
+                                <Tiltak tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}/>
                             </section>
                             <section className="app-content-kontakte-nav blokk-xl">
                                 <KontakteNAV/>

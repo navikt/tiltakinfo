@@ -13,18 +13,24 @@ import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 const veilederBilde = require('../ikoner/veileder-dame.svg');
 
+interface OwnProp {
+    tiltakErBasertPaMaal: boolean;
+}
+
 interface StateProps {
     maalId: MaalOption;
     arbeidsledigSituasjon: ArbeidsledigSituasjonState;
     syfoSituasjon: SyfoSituasjonState;
 }
 
+type TiltakContainerProps = OwnProp & StateProps;
+
 interface State {
     windowSize: number;
 }
 
-class TiltakContainer extends React.Component<StateProps, State> {
-    constructor(props: StateProps) {
+class TiltakContainer extends React.Component<TiltakContainerProps, State> {
+    constructor(props: TiltakContainerProps) {
         super(props);
         this.state = {
             windowSize: window.innerWidth
@@ -91,7 +97,12 @@ class TiltakContainer extends React.Component<StateProps, State> {
                     }
                     <div className="tiltak-liste">
                         {tiltakSomVises.map((tiltak: Tiltak) =>
-                            <TiltakKomponent key={tiltak.tittel} tiltak={tiltak} />
+                            <TiltakKomponent
+                                key={tiltak.tittel}
+                                tiltak={tiltak}
+                                maalId={this.props.maalId}
+                                tiltakErBasertPaMaal={this.props.tiltakErBasertPaMaal}
+                            />
                         )}
                     </div>
                 </section>

@@ -5,9 +5,13 @@ import Tekst, { tekst } from '../finn-tekst';
 import { Tiltak } from './tiltak-config';
 import UtvidetInformasjon from './utvidet-informasjon';
 import * as classnames from 'classnames';
+import { klikkPaLesMerMetrikk, klikkPaLesMerMetrikkMedMaal } from '../metrics';
+import { MaalOption } from './tiltak-map';
 
 interface OwnProps {
     tiltak: Tiltak;
+    maalId: MaalOption;
+    tiltakErBasertPaMaal: boolean;
 }
 
 interface State {
@@ -23,6 +27,18 @@ export default class TiltakKomponent extends React.Component<OwnProps, State> {
         };
 
         this.onToggleApen = this.onToggleApen.bind(this);
+    }
+
+    componentDidUpdate(prevProps: OwnProps, prevState: State) {
+        const { tiltakErBasertPaMaal, maalId, tiltak } = this.props;
+
+        const lesMerKlikk: boolean = !prevState.apen && this.state.apen;
+
+        if (lesMerKlikk && tiltakErBasertPaMaal) {
+            klikkPaLesMerMetrikkMedMaal(maalId, tiltak.id);
+        } else if (lesMerKlikk && !tiltakErBasertPaMaal) {
+            klikkPaLesMerMetrikk(tiltak.id);
+        }
     }
 
     onToggleApen() {
@@ -53,7 +69,6 @@ export default class TiltakKomponent extends React.Component<OwnProps, State> {
                         <Normaltekst><br/><Tekst id={this.props.tiltak.ekspandertinfo}/></Normaltekst>
                     </UtvidetInformasjon>
                 </div>
-
             </div>
         );
     }

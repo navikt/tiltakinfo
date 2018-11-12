@@ -6,6 +6,7 @@ import './flere-tiltak.less';
 import Tekst from '../finn-tekst';
 import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
+import { klikkPaFortellMegMerMetrikk } from '../metrics';
 
 const flereTiltakBilde = require('../ikoner/flere-alternativer.svg');
 
@@ -39,7 +40,7 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
                         </Normaltekst>
                     </div>
                     <Normaltekst>
-                    <a className="lenke" href={lenkeTiltak}>
+                    <a className="lenke" href={lenkeTiltak} onClick={() => klikkPaFortellMegMerMetrikk()}>
                         <Tekst id={'fleretiltak-lenke'}/>
                         <NavFrontendChevron stor={true}/>
                     </a>
