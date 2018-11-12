@@ -8,7 +8,6 @@ export enum TiltakId {
     OPPLAERING_SAMME_ARBEIDSGIVER = 'tiltak-opplaering-samme-arbeidsgiver',
     OPPLAERING_NY_ARBEIDSGIVER = 'tiltak-opplaering-ny-arbeidsgiver',
     AVKLARING = 'tiltak-avklaring',
-    TOMT_TILTAK = 'tiltak-tomt',
 }
 
 export interface Tiltak {
@@ -102,15 +101,6 @@ export default (tiltakId: TiltakId): Tiltak => {
                 ekspandertinfo: 'tiltak-avklaring-ekspandertinfo',
                 ikon: require('../ikoner/avklaring.svg'),
                 url: 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/avklaring--894', // tslint:disable-line:max-line-length
-            };
-        case TiltakId.TOMT_TILTAK:
-            return {
-                tittel: '',
-                hva: '',
-                lesmer: '',
-                ekspandertinfo: '',
-                ikon: '',
-                url: '',
             };
         default:
             return {
