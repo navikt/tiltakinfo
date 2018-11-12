@@ -10,12 +10,20 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { getStatusFetch } from '../api/api';
 import { DataElement, Status } from '../api/datalaster';
 
-export interface StatusState extends DataElement {
+export interface StatusDto {
+    erInnlogget: boolean;
     harGyldigOidcToken: boolean;
+    niva: number;
+    nivaOidc: number;
 }
 
+export type StatusState = DataElement & StatusDto;
+
 export const initialState: StatusState = {
+    erInnlogget: false,
     harGyldigOidcToken: false,
+    niva: 0,
+    nivaOidc: 0,
     status: Status.IKKE_STARTET,
 };
 
@@ -24,7 +32,10 @@ export default function reducer(state: StatusState = initialState, action: Handl
     switch (action.type) {
         case ActionType.HENT_STATUS_OK:
             return {
+                erInnlogget: action.status.erInnlogget,
                 harGyldigOidcToken: action.status.harGyldigOidcToken,
+                niva: action.status.niva,
+                nivaOidc: action.status.nivaOidc,
                 status: Status.OK,
             };
         case ActionType.HENT_STATUS_FEILET:

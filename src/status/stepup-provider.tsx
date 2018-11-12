@@ -21,7 +21,8 @@ class StepupProvider extends React.Component<StepupProviderProps> {
     }
 
     componentDidMount() {
-        if (!this.props.status.harGyldigOidcToken) {
+        const gyldigInnlogging = this.props.status.harGyldigOidcToken && this.props.status.nivaOidc === 4;
+        if (!gyldigInnlogging) {
             location.href = `/veilarbstepup/oidc?url=${contextRoot}`;
         }
     }

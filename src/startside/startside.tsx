@@ -8,19 +8,16 @@ import KontakteNAV from './kontakte-nav';
 import IngressUtenArbeidsgiver from './ingress-utenarbeidsgiver';
 import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
 import { MaalOption, SituasjonOption } from './tiltak-map';
-import Datalaster from '../api/datalaster';
 import StartsideBanner from './startside-banner';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Tekst from '../finn-tekst';
 import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
-import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 
 interface StateProps {
     maalId: MaalOption;
     arbeidsledigSituasjon: ArbeidsledigSituasjonState;
     syfoSituasjon: SyfoSituasjonState;
-    oppfolging: OppfolgingState;
 }
 
 interface DispatchProps {
@@ -35,7 +32,7 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const { maalId, arbeidsledigSituasjon, syfoSituasjon, oppfolging } = this.props;
+        const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
         const IngressKomponent = syfoSituasjon.harArbeidsgiver
             ? IngressMedArbeidsgiver
             : IngressUtenArbeidsgiver;
@@ -57,8 +54,6 @@ class Startside extends React.Component<StartsideProps> {
                 <section className="app-content brodsmuler-container">
                     <Brodsmuler/>
                 </section>
-
-                <Datalaster avhengigheter={[arbeidsledigSituasjon, syfoSituasjon, oppfolging]}>
                     { gyldigBrukerSituasjon() ?
                     <>
                         <section className="app-content ingress-container">
@@ -82,7 +77,6 @@ class Startside extends React.Component<StartsideProps> {
                         <Tekst id={'feilmelding-manglendeinfo'}/>
                     </AlertStripe>
                     }
-                </Datalaster>
                 { !(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
@@ -97,7 +91,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
     arbeidsledigSituasjon: state.arbeidsledigSituasjon,
     syfoSituasjon: state.syfoSituasjon,
-    oppfolging: state.oppfolging,
 });
 
 export default connect(mapStateToProps)(Startside);

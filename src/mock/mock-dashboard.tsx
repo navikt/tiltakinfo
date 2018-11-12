@@ -46,7 +46,10 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
             const demobrukerMock = brukerMocks[demobruker];
             location.search = queryString.stringify({
                 [MockConfigPropName.UNDER_OPPFOLGING]: demobrukerMock[MockConfigPropName.UNDER_OPPFOLGING],
+                [MockConfigPropName.ER_INNLOGGET]: demobrukerMock[MockConfigPropName.ER_INNLOGGET],
                 [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: demobrukerMock[MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN],
+                [MockConfigPropName.NIVA]: demobrukerMock[MockConfigPropName.NIVA],
+                [MockConfigPropName.NIVA_OIDC]: demobrukerMock[MockConfigPropName.NIVA_OIDC],
                 [MockConfigPropName.SERVICEGRUPPE]: demobrukerMock[MockConfigPropName.SERVICEGRUPPE],
                 [MockConfigPropName.ER_SYKMELDT_URLMOCK]: demobruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER
                 || demobruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,

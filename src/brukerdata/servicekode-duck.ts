@@ -17,7 +17,7 @@ export interface ServicegruppeState extends JSONObject {
 }
 
 export interface ArbeidsledigSituasjonState extends DataElement {
-    situasjon: string;
+    situasjon: SituasjonOption;
 }
 
 export const initialState: ArbeidsledigSituasjonState = {
