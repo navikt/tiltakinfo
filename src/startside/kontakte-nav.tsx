@@ -9,6 +9,7 @@ import './kontakte-nav.less';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import Datalaster from '../api/datalaster';
 import Tekst from '../finn-tekst';
+import { klikkPaGaTilAktivitetsplanen } from '../metrics';
 
 const kontakteNavBilde = require('../ikoner/kontakt-oss.svg');
 
@@ -46,7 +47,11 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                             </Normaltekst>
                             {oppfolging.underOppfolging && (
                                 <div className="kontakte-nav__knapp">
-                                    <a className="knapp knapp--hoved" href={lenkeAktivitetsplan}>
+                                    <a
+                                        className="knapp knapp--hoved"
+                                        href={lenkeAktivitetsplan}
+                                        onClick={() => klikkPaGaTilAktivitetsplanen()}
+                                    >
                                         <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
                                     </a>
                                 </div>

@@ -20,10 +20,7 @@ interface StateProps {
     syfoSituasjon: SyfoSituasjonState;
 }
 
-interface DispatchProps {
-}
-
-type StartsideProps = DispatchProps & StateProps;
+type StartsideProps = StateProps;
 
 class Startside extends React.Component<StartsideProps> {
 
@@ -64,7 +61,7 @@ class Startside extends React.Component<StartsideProps> {
                         || arbeidsledig ) &&
                         <>
                             <section className="app-content tiltak-container">
-                                <Tiltak/>
+                                <Tiltak tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}/>
                             </section>
                             <section className="app-content-kontakte-nav blokk-xl">
                                 <KontakteNAV/>

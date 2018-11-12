@@ -22,6 +22,7 @@ class UtvidetInformasjon extends React.Component<Props> {
         super(props);
         this.innholdId = guid();
     }
+
     render() {
         const cls = classnames('utvidetInformasjon', {
             'utvidetInformasjon--apen': this.props.erApen
