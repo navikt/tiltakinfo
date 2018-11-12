@@ -1,7 +1,9 @@
 import { MaalOption, SituasjonOption } from './startside/tiltak-map';
 import { TiltakId } from './startside/tiltak-config';
 
-const logEvent = (window as any).frontendlogger.event; // tslint:disable-line:no-any
+const w = (window as any); // tslint:disable-line:no-any
+
+const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 
 const domene = 'tiltakinfo';
 
