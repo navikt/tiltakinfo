@@ -20,7 +20,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    doSettMaalId: (id: string) => void;
+    doSettMaalId: (id: MaalOption) => void;
 }
 
 type IngressProps = StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line:no-any
