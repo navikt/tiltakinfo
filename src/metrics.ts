@@ -26,7 +26,7 @@ export const klikkPaMaalMetrikk = (maal: MaalOption) => {
 };
 
 export const klikkPaLesMerMetrikkMedMaal = (maal: MaalOption, tiltak: TiltakId) => {
-    logEvent(`${domene}.lesmer`, {}, {maal, tiltak});
+    logEvent(`${domene}.lesmermedmaal`, {}, {maal, tiltak});
 };
 
 export const klikkPaLesMerMetrikk = (tiltak: TiltakId) => {
