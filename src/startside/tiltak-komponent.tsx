@@ -36,7 +36,8 @@ export default class TiltakKomponent extends React.Component<OwnProps, State> {
 
         if (lesMerKlikk && tiltakErBasertPaMaal) {
             klikkPaLesMerMetrikkMedMaal(maalId, tiltak.id);
-        } else if (lesMerKlikk && !tiltakErBasertPaMaal) {
+        }
+        if (lesMerKlikk) {
             klikkPaLesMerMetrikk(tiltak.id);
         }
     }
