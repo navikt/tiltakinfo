@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import { UnleashState } from './unleash/unleash-duck';
 import Startside from './startside/startside';
 import { AppState } from './redux/reducer';
 import { connect } from 'react-redux';
+import { OppfolgingState } from './brukerdata/oppfolging-duck';
+import { SyfoSituasjonState } from './brukerdata/syfo-duck';
+import { ArbeidsledigSituasjonState } from './brukerdata/servicekode-duck';
+import { brukerMetrikk } from './metrics';
 
 export const URL_ADMIN = '/admin';
 
 interface StateProps {
-    features: UnleashState;
+    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    syfoSituasjon: SyfoSituasjonState;
+    oppfolging: OppfolgingState;
 }
 
 type InnholdProps = StateProps & RouteComponentProps<any>; // tslint:disable-line:no-any
@@ -17,6 +22,15 @@ type InnholdProps = StateProps & RouteComponentProps<any>; // tslint:disable-lin
 class Innhold extends React.Component<InnholdProps> {
     constructor(props: InnholdProps) {
         super(props);
+    }
+
+    componentDidMount() {
+        brukerMetrikk(
+            this.props.arbeidsledigSituasjon.situasjon,
+            this.props.syfoSituasjon.harArbeidsgiver,
+            this.props.syfoSituasjon.erSykmeldt,
+            this.props.oppfolging.underOppfolging
+        );
     }
 
     render() {
@@ -35,7 +49,9 @@ class Innhold extends React.Component<InnholdProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    features: state.unleash,
+    arbeidsledigSituasjon: state.arbeidsledigSituasjon,
+    syfoSituasjon: state.syfoSituasjon,
+    oppfolging: state.oppfolging,
 });
 
 export default withRouter(connect(mapStateToProps)(Innhold));

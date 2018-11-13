@@ -1,5 +1,6 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { StatusDto } from '../status/status-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'DEFAULT_MOCK',
@@ -21,17 +22,18 @@ export const brukerOptionsRekkefolge = [
 
 export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
+    ER_INNLOGGET = 'erInnlogget',
     HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
+    NIVA = 'niva',
+    NIVA_OIDC = 'nivaOidc',
     SERVICEGRUPPE = 'servicegruppe',
     SYFODATA = 'syfoData',
     HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
     ER_SYKMELDT_URLMOCK = 'erSykmeldt',
-
 }
 
-export interface MockConfig extends ActiveUnleashFeatures {
+export interface MockConfig extends ActiveUnleashFeatures, StatusDto {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
-    [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: boolean;
     [MockConfigPropName.SERVICEGRUPPE]: string;
     [MockConfigPropName.SYFODATA]: SyfoDataState;
 }
@@ -44,10 +46,17 @@ export interface BrukerMocks {
     [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
 }
 
+const innloggingsstatusMock: StatusDto = {
+    erInnlogget: true,
+    harGyldigOidcToken: true,
+    niva: 4,
+    nivaOidc: 4,
+};
+
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
+        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
@@ -55,8 +64,8 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
+        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
@@ -64,8 +73,8 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
+        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -73,8 +82,8 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
+        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -82,8 +91,8 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
+        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
