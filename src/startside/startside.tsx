@@ -30,17 +30,15 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
-        const IngressKomponent = syfoSituasjon.harArbeidsgiver
-            ? IngressMedArbeidsgiver
-            : IngressUtenArbeidsgiver;
+        const sykmeldtMedArbeidsgiver =
+            syfoSituasjon.erSykmeldt
+            && syfoSituasjon.harArbeidsgiver;
         const arbeidsledig =
             (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
             || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
         const sykmeldtUtenArbeidsgiver =
             syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
-        const sykmeldtMedArbeidsgiver =
-            syfoSituasjon.erSykmeldt
-            && syfoSituasjon.harArbeidsgiver;
+        const IngressKomponent = sykmeldtMedArbeidsgiver ? IngressMedArbeidsgiver : IngressUtenArbeidsgiver;
         const gyldigBrukerSituasjon = () => {
             return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
         };
