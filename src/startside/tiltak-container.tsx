@@ -68,9 +68,13 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
                     finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
                 finnTiltak(arbeidsledigSituasjon.situasjon);
 
+        const sykmeldtMedArbeidsgiver =
+            syfoSituasjon.erSykmeldt
+            && syfoSituasjon.harArbeidsgiver;
+
         return (
             <>
-                { syfoSituasjon.harArbeidsgiver &&
+                { sykmeldtMedArbeidsgiver &&
                     <section className="tiltak-ingress">
                         <Veilederpanel
                             svg={<img src={veilederBilde}/>}
