@@ -31,7 +31,7 @@ export default class Brodsmuler extends React.Component<OwnProps> {
                     }
                     { arbeidsledig &&
                         <>
-                            <a href="/veientilarbeid/" className="lenke"><Tekst id={'brodsmuler-veientilarbeid'}/></a>
+                            <a href="/veientilarbeid" className="lenke"><Tekst id={'brodsmuler-veientilarbeid'}/></a>
                             <span className="brodsmule__skille">/</span>
                         </>
                     }
