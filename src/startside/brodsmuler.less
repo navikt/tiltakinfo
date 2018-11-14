@@ -4,6 +4,7 @@
     margin-bottom: 1.5rem;
     display: flex;
     line-height: 2rem;
+    padding: 1rem 1rem 0;
 
     .brodsmuler__ikon {
         display: none;
@@ -15,14 +16,28 @@
     }
 }
 
-@media (min-width: @screen-sm-min) {
+@media (min-width: 384px) {
     .brodsmuler {
-        margin-bottom: 3.5rem;
+        margin-bottom: 1rem;
         .brodsmuler__ikon {
             display: inline-block;
             margin-right: 1rem;
             width: 2rem;
             height: 2rem;
         }
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .brodsmuler {
+        padding: 0 1rem 0;
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .brodsmuler {
+        padding: 0;
+        width: 960px;
+        margin: 0 auto 1rem;
     }
 }

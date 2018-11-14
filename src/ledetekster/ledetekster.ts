@@ -2,6 +2,7 @@
 export default {
     'brodsmuler-dittnav': 'Ditt NAV',
     'brodsmuler-dittsykefravaer': 'Ditt sykefravær',
+    'brodsmuler-veientilarbeid': 'Veien til arbeid',
     'brodsmuler-tiltak': 'Tiltak',
     'fleretiltak-header': 'Det finnes flere alternativer',
     'fleretiltak-lenke': 'Fortell meg mer om tilbudene',

@@ -3,22 +3,41 @@ import 'nav-frontend-lenker-style';
 import './brodsmuler.less';
 import Tekst from '../finn-tekst';
 
-export default function Brodsmuler () {
+interface OwnProps {
+    arbeidsledig: boolean;
+    sykmeldt: boolean;
+}
 
-    const brodsmuleikon = require('../ikoner/person.svg');
+export default class Brodsmuler extends React.Component<OwnProps> {
 
-    return (
-        <nav className="brodsmuler" aria-label="Du er her:" >
-            <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
-            <div className="brodsmuler__smuler">
+    constructor(props: OwnProps) {
+        super(props);
+    }
 
-                <a href="/dittnav/" className="lenke"><Tekst id={'brodsmuler-dittnav'}/></a>
-                <span className="brodsmule__skille">/</span>
-                <a href="/sykefravaer/" className="lenke"><Tekst id={'brodsmuler-dittsykefravaer'}/></a>
-                <span className="brodsmule__skille">/</span>
-                <span><Tekst id={'brodsmuler-tiltak'}/></span>
-
-            </div>
-        </nav>
-    );
+    render() {
+        const brodsmuleikon = require('../ikoner/person.svg');
+        const {arbeidsledig, sykmeldt } = this.props;
+        return (
+            <nav className="brodsmuler" aria-label="Du er her:" >
+                <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
+                <div className="brodsmuler__smuler">
+                    <a href="/dittnav/" className="lenke"><Tekst id={'brodsmuler-dittnav'}/></a>
+                    <span className="brodsmule__skille">/</span>
+                    { sykmeldt &&
+                        <>
+                            <a href="/sykefravaer/" className="lenke"><Tekst id={'brodsmuler-dittsykefravaer'}/></a>
+                            <span className="brodsmule__skille">/</span>
+                        </>
+                    }
+                    { arbeidsledig &&
+                        <>
+                            <a href="/veientilarbeid/" className="lenke"><Tekst id={'brodsmuler-veientilarbeid'}/></a>
+                            <span className="brodsmule__skille">/</span>
+                        </>
+                    }
+                    <span><Tekst id={'brodsmuler-tiltak'}/></span>
+                </div>
+            </nav>
+        );
+    }
 }
