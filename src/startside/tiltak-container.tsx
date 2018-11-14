@@ -8,22 +8,21 @@ import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import TiltakKomponent from './tiltak-komponent';
-import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
-import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 
 const veilederBilde = require('../ikoner/veileder-dame.svg');
 
-interface OwnProp {
+interface OwnProps {
     tiltakErBasertPaMaal: boolean;
+    sykmeldt: boolean;
+    sykmeldtMedArbeidsgiver: boolean;
+    arbeidsledigSituasjon: SituasjonOption;
 }
 
 interface StateProps {
     maalId: MaalOption;
-    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
-    syfoSituasjon: SyfoSituasjonState;
 }
 
-type TiltakContainerProps = OwnProp & StateProps;
+type TiltakContainerProps = OwnProps & StateProps;
 
 interface State {
     windowSize: number;
@@ -60,17 +59,18 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
 
-        const {maalId, arbeidsledigSituasjon, syfoSituasjon} = this.props;
+        const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, arbeidsledigSituasjon} = this.props;
+
         const tiltakSomVises: Tiltak[] =
-            syfoSituasjon.erSykmeldt ?
-                ( syfoSituasjon.harArbeidsgiver ?
+            sykmeldt ?
+                ( sykmeldtMedArbeidsgiver ?
                     finnTiltak(maalId) :
                     finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
-                finnTiltak(arbeidsledigSituasjon.situasjon);
+                finnTiltak(arbeidsledigSituasjon);
 
         return (
             <>
-                { syfoSituasjon.harArbeidsgiver &&
+                { sykmeldtMedArbeidsgiver &&
                     <section className="tiltak-ingress">
                         <Veilederpanel
                             svg={<img src={veilederBilde}/>}
@@ -90,7 +90,7 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
                     </section>
                 }
                 <section className="tiltak-oversikt">
-                    { !(syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) &&
+                    { !(sykmeldtMedArbeidsgiver) &&
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>
                     </Undertittel>
@@ -114,8 +114,6 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 const mapStateToProps = (state: AppState): StateProps => {
     return {
         maalId: state.maal.id,
-        arbeidsledigSituasjon: state.arbeidsledigSituasjon,
-        syfoSituasjon: state.syfoSituasjon,
     };
 };
 

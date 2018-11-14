@@ -29,14 +29,17 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
+
         const sykmeldtMedArbeidsgiver =
             syfoSituasjon.erSykmeldt
             && syfoSituasjon.harArbeidsgiver;
+        const sykmeldtUtenArbeidsgiver =
+            syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
+        const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
+
         const arbeidsledig =
             (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
             || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
-        const sykmeldtUtenArbeidsgiver =
-            syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
         const IngressKomponent = sykmeldtMedArbeidsgiver ? IngressMedArbeidsgiver : IngressUtenArbeidsgiver;
         const gyldigBrukerSituasjon = () => {
             return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
@@ -44,7 +47,11 @@ class Startside extends React.Component<StartsideProps> {
 
         return (
             <>
-                <StartsideBanner/>
+                <StartsideBanner
+                    sykmeldt={sykmeldt}
+                    arbeidsledig={arbeidsledig && !sykmeldt}
+                    sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                />
                 { gyldigBrukerSituasjon() ?
                 <>
                     <section className="app-content ingress-container">
@@ -55,7 +62,12 @@ class Startside extends React.Component<StartsideProps> {
                     || arbeidsledig ) &&
                     <>
                         <section className="app-content tiltak-container">
-                            <Tiltak tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}/>
+                            <Tiltak
+                                tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
+                                sykmeldt={sykmeldt}
+                                sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                                arbeidsledigSituasjon={arbeidsledigSituasjon.situasjon}
+                            />
                         </section>
                         <section className="app-content-kontakte-nav blokk-xl">
                             <KontakteNAV/>
