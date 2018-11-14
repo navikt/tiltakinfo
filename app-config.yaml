@@ -11,7 +11,7 @@ healthcheck:
   liveness:
     path: tiltakinfo/internal/isAlive
   readiness:
-    path: tiltakinfo/internal/selftest
+    path: tiltakinfo/internal/isReady
 prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
