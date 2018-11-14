@@ -34,9 +34,9 @@ export const klikkPaLesMerMetrikk = (tiltak: TiltakId) => {
 };
 
 export const klikkPaFortellMegMerMetrikk = () => {
-    logEvent(`${domene}.fortellmegmer`);
+    logEvent(`${domene}.fortellmegmer`, {}, {});
 };
 
 export const klikkPaGaTilAktivitetsplanen = () => {
-    logEvent(`${domene}.gatilaktivitetsplanen`);
+    logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
 };

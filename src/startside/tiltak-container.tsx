@@ -68,6 +68,10 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
                     finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
                 finnTiltak(arbeidsledigSituasjon);
 
+        const sykmeldtMedArbeidsgiver =
+            syfoSituasjon.erSykmeldt
+            && syfoSituasjon.harArbeidsgiver;
+
         return (
             <>
                 { sykmeldtMedArbeidsgiver &&
