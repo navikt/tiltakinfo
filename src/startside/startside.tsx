@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../redux/reducer';
-import Brodsmuler from './brodsmuler';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
@@ -30,14 +29,17 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
+
         const sykmeldtMedArbeidsgiver =
             syfoSituasjon.erSykmeldt
             && syfoSituasjon.harArbeidsgiver;
+        const sykmeldtUtenArbeidsgiver =
+            syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
+        const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
+
         const arbeidsledig =
             (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
             || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
-        const sykmeldtUtenArbeidsgiver =
-            syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
         const IngressKomponent = sykmeldtMedArbeidsgiver ? IngressMedArbeidsgiver : IngressUtenArbeidsgiver;
         const gyldigBrukerSituasjon = () => {
             return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
@@ -45,33 +47,41 @@ class Startside extends React.Component<StartsideProps> {
 
         return (
             <>
-                <StartsideBanner/>
-                <section className="app-content brodsmuler-container">
-                    <Brodsmuler/>
-                </section>
-                    { gyldigBrukerSituasjon() ?
+                <StartsideBanner
+                    sykmeldt={sykmeldt}
+                    arbeidsledig={arbeidsledig && !sykmeldt}
+                    sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                />
+                { gyldigBrukerSituasjon() ?
+                <>
+                    <section className="app-content ingress-container">
+                        <IngressKomponent/>
+                    </section>
+                    { ((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
+                    || sykmeldtUtenArbeidsgiver
+                    || arbeidsledig ) &&
                     <>
-                        <section className="app-content ingress-container">
-                            <IngressKomponent/>
+                        <section className="app-content tiltak-container">
+                            <Tiltak
+                                tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
+                                sykmeldt={sykmeldt}
+                                sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                                arbeidsledigSituasjon={arbeidsledigSituasjon.situasjon}
+                            />
                         </section>
-                        { ((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
-                        || sykmeldtUtenArbeidsgiver
-                        || arbeidsledig ) &&
-                        <>
-                            <section className="app-content tiltak-container">
-                                <Tiltak tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}/>
-                            </section>
-                            <section className="app-content-kontakte-nav blokk-xl">
-                                <KontakteNAV/>
-                            </section>
-                        </>
-                        }
+                        <section className="app-content-kontakte-nav blokk-xl">
+                            <KontakteNAV/>
+                        </section>
                     </>
-                    :
-                    <AlertStripe type="advarsel" className="app-content feilmelding-container">
+                    }
+                </>
+                :
+                <div className="app-content alert">
+                    <AlertStripe type="advarsel" className="feilmelding-container">
                         <Tekst id={'feilmelding-manglendeinfo'}/>
                     </AlertStripe>
-                    }
+                </div>
+                }
                 { !(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
