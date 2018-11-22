@@ -9,8 +9,6 @@ import { SyfoSituasjonState } from './brukerdata/syfo-duck';
 import { ArbeidsledigSituasjonState } from './brukerdata/servicekode-duck';
 import { brukerMetrikk } from './metrics';
 
-export const URL_ADMIN = '/admin';
-
 interface StateProps {
     arbeidsledigSituasjon: ArbeidsledigSituasjonState;
     syfoSituasjon: SyfoSituasjonState;
@@ -37,7 +35,6 @@ class Innhold extends React.Component<InnholdProps> {
         return (
             <main>
                 <Switch location={this.props.location}>
-                    <Route path={URL_ADMIN} component={Startside}/>
                     <Route
                         path={'/'}
                         component={Startside}

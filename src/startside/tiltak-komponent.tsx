@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import './tiltak.less';
-import Tekst, { tekst } from '../finn-tekst';
+import Tekst, { utledTekst } from '../finn-tekst';
 import { Tiltak } from './tiltak-config';
 import UtvidetInformasjon from './utvidet-informasjon';
 import * as classnames from 'classnames';
@@ -62,8 +62,8 @@ export default class TiltakKomponent extends React.Component<OwnProps, State> {
                 <div className={cls}>
                     <Ingress><Tekst id={this.props.tiltak.hva}/></Ingress>
                     <UtvidetInformasjon
-                        apneLabel={tekst(this.props.tiltak.lesmer, false)}
-                        lukkLabel="Lukk informasjon"
+                        apneLabel={utledTekst(this.props.tiltak.lesmer)}
+                        lukkLabel={utledTekst('tiltak-lukk-informasjon')}
                         erApen={this.state.apen}
                         onToggle={this.onToggleApen}
                     >
