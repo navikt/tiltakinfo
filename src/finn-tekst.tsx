@@ -3,7 +3,6 @@ import ledetekster from './ledetekster/ledetekster';
 import * as queryString from 'query-string';
 
 const skalViseTekstNokler = queryString.parse(location.search).vistekster;
-console.log('skalViseTekstNokler', skalViseTekstNokler); // tslint:disable-line:no-console
 
 export function utledTekst (id: string): string {
     if (skalViseTekstNokler && ledetekster[id]) {
@@ -22,9 +21,7 @@ interface OwnProps {
 
 const Tekst = ({id}: OwnProps) => {
     return (
-        <>
-            {utledTekst(id)}
-        </>
+        <>{utledTekst(id)}</>
     );
 };
 
