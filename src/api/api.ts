@@ -1,7 +1,6 @@
 import { fetchToJson } from './fetch-utils';
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
-import { StatusState } from '../status/status-duck';
 import { contextRoot } from '../konstanter';
 import { ServicegruppeState } from '../brukerdata/servicekode-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
@@ -23,7 +22,6 @@ const requestConfig: RequestInit = {
 interface ApiProps {
     getUnleash: string;
     getOppfolging: string;
-    getStatus: string;
     getArbeidsledig: string;
     getSyfo: string;
 }
@@ -36,7 +34,6 @@ export const featureQueryParams = (features: string[]): string => {
 export const API: ApiProps = {
     getUnleash: `${contextRoot}/api/feature`,
     getOppfolging: '/veilarboppfolging/api/oppfolging',
-    getStatus: '/veilarbstepup/status',
     getArbeidsledig: '/veilarbtiltakinfo/api/servicegruppekode',
     getSyfo: '/syforest/sykeforloep/metadata',
 };
@@ -48,10 +45,6 @@ export function getUnleashFetch(features: string[]): Promise<UnleashState> {
 
 export function getOppfolgingFetch(): Promise<OppfolgingState> {
     return fetchToJson(API.getOppfolging, requestConfig);
-}
-
-export function getStatusFetch(): Promise<StatusState> {
-    return fetchToJson(API.getStatus, requestConfig);
 }
 
 export function getArbeidsledigFetch(): Promise<ServicegruppeState> {
