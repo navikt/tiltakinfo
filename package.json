@@ -37,8 +37,8 @@
     "nav-frontend-paneler-style": "0.3.11",
     "nav-frontend-skjema": "1.0.36",
     "nav-frontend-skjema-style": "1.0.17",
-    "nav-frontend-spinner": "1.0.10",
-    "nav-frontend-spinner-style": "0.2.4",
+    "nav-frontend-spinner": "1.0.12",
+    "nav-frontend-spinner-style": "0.2.5",
     "nav-frontend-typografi": "2.0.6",
     "nav-frontend-typografi-style": "1.0.10",
     "nav-frontend-veileder": "2.0.2",
@@ -58,7 +58,7 @@
     "yet-another-fetch-mock": "2.4.0"
   },
   "devDependencies": {
-    "@navikt/create-react-app-typescript-less": "1.0.0-beta.14",
+    "@navikt/create-react-app-typescript-less": "1.0.0-beta.16",
     "@types/classnames": "2.2.6",
     "@types/jest": "23.0.0",
     "@types/node": "10.3.1",
@@ -73,6 +73,6 @@
     "file-loader": "2.0.0",
     "query-string": "5.1.1",
     "sinon": "6.0.0",
-    "typescript": "3.0.3"
+    "typescript": "3.1.6"
   }
 }
