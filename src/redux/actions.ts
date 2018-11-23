@@ -1,6 +1,5 @@
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
-import { StatusState } from '../status/status-duck';
 import { Data } from './generic-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
@@ -12,9 +11,6 @@ export enum ActionType {
     HENT_OPPFOLGING_OK = 'HENT_OPPFOLGING_OK',
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
     HENT_OPPFOLGING_LASTER = 'HENT_OPPFOLGING_LASTER',
-    HENT_STATUS_OK = 'HENT_STATUS_OK',
-    HENT_STATUS_FEILET = 'HENT_STATUS_FEILET',
-    HENT_STATUS_LASTER = 'HENT_STATUS_LASTER',
     SETT_MAAL = 'SETT_MAAL',
     HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
     HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET',
@@ -55,19 +51,6 @@ export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
-export interface HentStatusOKAction {
-    type: ActionType.HENT_STATUS_OK;
-    status: StatusState;
-}
-
-export interface HentStatusLASTERAction {
-    type: ActionType.HENT_STATUS_LASTER;
-}
-
-export interface HentStatusFEILETAction {
-    type: ActionType.HENT_STATUS_FEILET;
-}
-
 export interface HentServicegruppeOKAction extends Data {
     type: ActionType.HENT_SERVICEGRUPPE_OK;
 }
@@ -101,9 +84,6 @@ export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingLASTERAction
     | HentOppfolgingFEILETAction
-    | HentStatusOKAction
-    | HentStatusFEILETAction
-    | HentStatusLASTERAction
     | HentServicegruppeOKAction
     | HentServicegruppeLASTERAction
     | HentServicegruppeFEILETAction
