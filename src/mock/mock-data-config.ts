@@ -1,6 +1,5 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
-import { StatusDto } from '../status/status-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
@@ -33,7 +32,7 @@ export enum MockConfigPropName {
     VIS_TEKSTER = 'vistekster'
 }
 
-export interface MockConfig extends ActiveUnleashFeatures, StatusDto {
+export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.SERVICEGRUPPE]: string;
     [MockConfigPropName.SYFODATA]: SyfoDataState;
@@ -47,16 +46,8 @@ export interface BrukerMocks {
     [Bruker.UTENFOR_MAALGRUPPE]: MockConfig;
 }
 
-const innloggingsstatusMock: StatusDto = {
-    erInnlogget: true,
-    harGyldigOidcToken: true,
-    niva: 4,
-    nivaOidc: 4,
-};
-
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
-        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.SYFODATA]: {
@@ -65,7 +56,6 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
-        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.SYFODATA]: {
@@ -74,7 +64,6 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
-        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.SYFODATA]: {
@@ -83,7 +72,6 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
-        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.SYFODATA]: {
@@ -92,7 +80,6 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
-        ...innloggingsstatusMock,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.SYFODATA]: {

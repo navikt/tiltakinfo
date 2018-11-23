@@ -6,7 +6,6 @@ import Innhold from './innhold';
 import DataProvider from './data-provider';
 import { erLocalhost, erFullMock, erDemo } from './mock/utils';
 import setupMock from './mock/setup-mock';
-import StatusProvider from './status/status-provider';
 import UnleashProvider from './unleash-provider';
 import { contextRoot } from './konstanter';
 import mockDashboardInjecter from './mock/mock-dashboard-injecter';
@@ -21,13 +20,11 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter basename={contextRoot}>
-                <StatusProvider>
-                    <UnleashProvider>
-                        <DataProvider>
-                            <Innhold/>
-                        </DataProvider>
-                    </UnleashProvider>
-                </StatusProvider>
+                <UnleashProvider>
+                    <DataProvider>
+                        <Innhold/>
+                    </DataProvider>
+                </UnleashProvider>
             </BrowserRouter>
         );
     }
