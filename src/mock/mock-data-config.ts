@@ -2,12 +2,12 @@ import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 export enum Bruker {
-    DEFAULT_MOCK = 'DEFAULT_MOCK',
-    SYKMELDT_MED_ARBEIDSGIVER = 'SYKMELDT_MED_ARBEIDSGIVER',
-    SYKMELDT_UTEN_ARBEIDSGIVER = 'SYKMELDT_UTEN_ARBEIDSGIVER',
-    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'ARBEIDSLEDIG_SITUASJONSBESTEMT',
-    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'ARBEIDSLEDIG_SPESIELT_TILPASSET',
-    UTENFOR_MAALGRUPPE = 'UTENFOR_MAALGRUPPE',
+    DEFAULT_MOCK = 'bruker-default-mock',
+    SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',
+    SYKMELDT_UTEN_ARBEIDSGIVER = 'bruker-sykmeldt-uten-arbeidsgiver',
+    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'bruker-arbeidsledig-situasjonsbestemt',
+    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'bruker-arbeidsledig-spesielt-tilpasset',
+    UTENFOR_MAALGRUPPE = 'bruker-utenfor-maalgruppe',
 }
 
 export const brukerOptionsRekkefolge = [
@@ -29,6 +29,7 @@ export enum MockConfigPropName {
     SYFODATA = 'syfoData',
     HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
     ER_SYKMELDT_URLMOCK = 'erSykmeldt',
+    VIS_TEKSTER = 'vistekster'
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {

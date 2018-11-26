@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import './ingress-utenarbeidsgiver.less';
-import Tekst, { tekst } from '../finn-tekst';
+import Tekst, { utledTekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
 import './ingress-hararbeidsgiver.less';
@@ -85,7 +85,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
                             <RadioPanel
                                 name={tekstId}
                                 checked={maalId === tekstId}
-                                label={tekst(tekstId, false)}
+                                label={utledTekst(tekstId)}
                                 value={tekstId}
                                 onChange={this.handleChange}
                             />
