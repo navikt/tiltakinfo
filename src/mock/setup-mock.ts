@@ -77,7 +77,7 @@ export default () => {
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
 
-    fetchMock.get(API.getArbeidsledig, mockAPI.getArbeidsledig);
+    fetchMock.get(API.getOppfolgingsstatus, mockAPI.getArbeidsledig);
 
     fetchMock.get(API.getSyfo, mockAPI.getSyfo);
 };
