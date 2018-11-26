@@ -35,11 +35,14 @@ export default function reducer(
                 'BATT': SituasjonOption.SPESIELT_TILPASSET,
                 'BFORM': SituasjonOption.SITUASJONSBESTEMT,
             };
-            if (servicegruppekode in situasjonsMap) {
-                return {...state, status: Status.OK, situasjon: situasjonsMap[servicegruppekode]};
-            } else {
-                return {...state, status: Status.OK, situasjon: SituasjonOption.UBESTEMT};
-            }
+
+            return {
+                ...state,
+                status: Status.OK,
+                situasjon: servicegruppekode in situasjonsMap
+                    ? situasjonsMap[servicegruppekode]
+                    : SituasjonOption.UBESTEMT,
+            };
         case ActionType.HENT_SERVICEGRUPPE_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_SERVICEGRUPPE_LASTER:
