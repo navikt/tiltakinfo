@@ -8,6 +8,7 @@ import { AppState, demoBrukerDuck } from '../redux/reducer';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { Dispatch } from '../redux/dispatch-type';
 import { connect } from 'react-redux';
+import Tekst, { utledTekst } from '../finn-tekst';
 
 interface StateProps {
     demobruker: Bruker;
@@ -54,26 +55,21 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
                 [MockConfigPropName.ER_SYKMELDT_URLMOCK]: demobruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER
                 || demobruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER,
                 [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: demobruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER,
+                [MockConfigPropName.VIS_TEKSTER]: queryString.parse(location.search).vistekster,
             });
         }
     }
 
     render() {
         const {demobruker} = this.props;
-        const selectorVerdier = {
-            [Bruker.DEFAULT_MOCK]: 'Velg brukertype',
-            [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: 'Sykmeldt uten arbeidsgiver',
-            [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: 'Sykmeldt med arbeidsgiver',
-            [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: 'Arbeidsledig situasjonsbestemt',
-            [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: 'Arbeidsledig spesielt tilpasset',
-            [Bruker.UTENFOR_MAALGRUPPE]: 'Utenfor målgruppe',
-        };
 
         return (
             <section className="mockdashboard">
-                <Innholdstittel>Veilederdemo for tiltakinfo</Innholdstittel>
+                <Innholdstittel>
+                    <Tekst id={'demo-tittel'}/>
+                </Innholdstittel>
                 <SelectKomponent
-                    label="Velg brukertypen for demoen"
+                    label={utledTekst('demo-velg-brukertype')}
                     onChange={this.handleChange}
                     id="velg-bruker"
                 >
@@ -84,7 +80,7 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
                                 value={bruker}
                                 selected={demobruker === bruker}
                             >
-                                {selectorVerdier[bruker]}
+                                {utledTekst(bruker)}
                             </option>
                         )
                     }

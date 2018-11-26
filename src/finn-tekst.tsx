@@ -1,29 +1,28 @@
 import * as React from 'react';
 import ledetekster from './ledetekster/ledetekster';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { URL_ADMIN } from './innhold';
+import * as queryString from 'query-string';
 
-export const tekst = (id: string, erAdmin: boolean): string => {
-    if (erAdmin) {
-        return id;
+const skalViseTekstNokler = queryString.parse(location.search).vistekster;
+
+export function utledTekst (id: string): string {
+    if (skalViseTekstNokler && ledetekster[id]) {
+        return ledetekster[id] + ' [' + id + ']' ;
     }
     if (!ledetekster[id]) {
         console.error(`Kunne ikke finne teksten ${id}! Returnerer oppgitt id.`); // tslint:disable-line:no-console
         return id;
     }
     return ledetekster[id];
-};
+}
 
 interface OwnProps {
     id: string;
 }
 
-type TekstProps = OwnProps & RouteComponentProps<any>; // tslint:disable-line:no-any
-
-const TekstComponent = ({id, match}: TekstProps) => {
+const Tekst = ({id}: OwnProps) => {
     return (
-        <>{tekst(id, match.path === URL_ADMIN)}</>
+        <>{utledTekst(id)}</>
     );
 };
 
-export default withRouter(TekstComponent);
+export default Tekst;
