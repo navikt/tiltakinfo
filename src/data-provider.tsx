@@ -19,7 +19,7 @@ interface StateProps {
 
 interface DispatchProps {
     doHentOppfolging: () => void;
-    doHentArbeidsledig: () => void;
+    doHentOppfolgingsstatus: () => void;
     doHentSyfo: () => void;
 }
 
@@ -32,7 +32,7 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 
     componentDidMount() {
         this.props.doHentOppfolging();
-        this.props.doHentArbeidsledig();
+        this.props.doHentOppfolgingsstatus();
         this.props.doHentSyfo();
     }
 
@@ -54,7 +54,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
-    doHentArbeidsledig: () => hentOppfolgingsstatus()(dispatch),
+    doHentOppfolgingsstatus: () => hentOppfolgingsstatus()(dispatch),
     doHentSyfo: () => hentSyfo()(dispatch),
 });
 
