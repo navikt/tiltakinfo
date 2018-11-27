@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 You can find the developer guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
 
 ### Editering av tekster direkte i GitHub
-1. For å se tekstnøklene, gå til `https://tjenester.nav.no/tiltakinfo/admin`.
+1. For å se tekstnøklene, gå til `https://tjenester.nav.no/tiltakinfo/demo/index.html?vistekster=true`.
 2. Gå til filen [ledetekster.ts](https://github.com/navikt/tiltakinfo/blob/master/src/ledetekster/ledetekster.ts).
 3. Trykk på blyanten oppe i høyre hjørne for å editere, finn teksten som skal endres, og gjør endringen.
 4. Trykk på `Propose file change` nederst på siden for å opprette en ny branch med endringen.
@@ -13,10 +13,11 @@ You can find the developer guide [here](https://github.com/facebookincubator/cre
 6. Utviklerne får automatisk beskjed om at pull requesten er opprettet, og aksepterer endringen så fort en av dem har mulighet.
 
 ### Henvendelser
+
 Spørsmål knyttet til koden kan rettes mot:
  
 * Johan Rusvik, Johan.Rusvik@nav.no
-* Nina Kjekstad, Nina.Kjekstad@nav.no
+* Kjell Arne Brødreskift, Kjell.Arne.Brodreskift@nav.no
 * Terese Haug, Terese.Haug@nav.no
 
 For NAV-interne henvendelser kan Slack-kanalen #team-kartlegging benyttes.
