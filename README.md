@@ -13,6 +13,7 @@ You can find the developer guide [here](https://github.com/facebookincubator/cre
 6. Utviklerne får automatisk beskjed om at pull requesten er opprettet, og aksepterer endringen så fort en av dem har mulighet.
 
 ### Henvendelser
+
 Spørsmål knyttet til koden kan rettes mot:
  
 * Johan Rusvik, Johan.Rusvik@nav.no
