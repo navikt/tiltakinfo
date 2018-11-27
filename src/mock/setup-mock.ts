@@ -9,7 +9,7 @@ interface ResponseObject {
 
 interface MockAPI {
     getOppfolging: ResponseObject;
-    getArbeidsledig: ResponseObject;
+    getOppfolgingsstatus: ResponseObject;
     getSyfo: ResponseObject;
 }
 
@@ -69,15 +69,16 @@ export default () => {
         getOppfolging: {
             underOppfolging: finnVerdi(MockConfigPropName.UNDER_OPPFOLGING),
         },
-        getArbeidsledig: {
+        getOppfolgingsstatus: {
             servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE),
+            oppfolgingsenhet: finnVerdi(MockConfigPropName.OPPFOLGINGSENHET)
         },
         getSyfo: finnVerdi(MockConfigPropName.SYFODATA),
     };
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
 
-    fetchMock.get(API.getOppfolgingsstatus, mockAPI.getArbeidsledig);
+    fetchMock.get(API.getOppfolgingsstatus, mockAPI.getOppfolgingsstatus);
 
     fetchMock.get(API.getSyfo, mockAPI.getSyfo);
 };

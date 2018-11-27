@@ -12,12 +12,14 @@ import { DataElement, Status } from '../api/datalaster';
 import { SituasjonOption } from '../startside/tiltak-map';
 import { JSONObject } from 'yet-another-fetch-mock';
 
+export interface OppfolgingsEnhet extends JSONObject {
+    navn: string;
+    enhetId: string;
+}
+
 export interface OppfolgingsstatusFetchState extends JSONObject {
      servicegruppe: string;
-     oppfolgingsenhet: {
-         navn: string;
-         enhetId: string;
-     };
+     oppfolgingsenhet: OppfolgingsEnhet;
 }
 
 export interface OppfolgingsstatusState extends DataElement {
