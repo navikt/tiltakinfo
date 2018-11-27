@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from './redux/dispatch-type';
 import { hentOppfolging, OppfolgingState } from './brukerdata/oppfolging-duck';
 import { AppState } from './redux/reducer';
-import { ArbeidsledigSituasjonState, hentArbeidsledig } from './brukerdata/servicekode-duck';
+import { OppfolgingsstatusState, hentOppfolgingsstatus } from './brukerdata/oppfolgingsstatus-duck';
 import { hentSyfo, SyfoSituasjonState } from './brukerdata/syfo-duck';
 import Datalaster from './api/datalaster';
 
@@ -12,14 +12,14 @@ interface OwnProps {
 }
 
 interface StateProps {
-    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     oppfolging: OppfolgingState;
 }
 
 interface DispatchProps {
     doHentOppfolging: () => void;
-    doHentArbeidsledig: () => void;
+    doHentOppfolgingsstatus: () => void;
     doHentSyfo: () => void;
 }
 
@@ -32,14 +32,14 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 
     componentDidMount() {
         this.props.doHentOppfolging();
-        this.props.doHentArbeidsledig();
+        this.props.doHentOppfolgingsstatus();
         this.props.doHentSyfo();
     }
 
     render() {
-        const {arbeidsledigSituasjon, syfoSituasjon, oppfolging} = this.props;
+        const {oppfolgingsstatus, syfoSituasjon, oppfolging} = this.props;
         return (
-            <Datalaster avhengigheter={[arbeidsledigSituasjon, syfoSituasjon, oppfolging]}>
+            <Datalaster avhengigheter={[oppfolgingsstatus, syfoSituasjon, oppfolging]}>
                 {this.props.children}
             </Datalaster>
         );
@@ -47,14 +47,14 @@ class DataProvider extends React.Component<UnleashProviderProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    arbeidsledigSituasjon: state.arbeidsledigSituasjon,
+    oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
     oppfolging: state.oppfolging,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
-    doHentArbeidsledig: () => hentArbeidsledig()(dispatch),
+    doHentOppfolgingsstatus: () => hentOppfolgingsstatus()(dispatch),
     doHentSyfo: () => hentSyfo()(dispatch),
 });
 

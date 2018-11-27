@@ -5,7 +5,7 @@ import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
 import IngressUtenArbeidsgiver from './ingress-utenarbeidsgiver';
-import { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
+import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { MaalOption, SituasjonOption } from './tiltak-map';
 import StartsideBanner from './startside-banner';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
@@ -15,7 +15,7 @@ import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
 
 interface StateProps {
     maalId: MaalOption;
-    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
 }
 
@@ -28,7 +28,7 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const { maalId, arbeidsledigSituasjon, syfoSituasjon } = this.props;
+        const { maalId, oppfolgingsstatus, syfoSituasjon } = this.props;
 
         const sykmeldtMedArbeidsgiver =
             syfoSituasjon.erSykmeldt
@@ -38,8 +38,8 @@ class Startside extends React.Component<StartsideProps> {
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
 
         const arbeidsledig =
-            (arbeidsledigSituasjon.situasjon === SituasjonOption.SITUASJONSBESTEMT)
-            || (arbeidsledigSituasjon.situasjon === SituasjonOption.SPESIELT_TILPASSET);
+            (oppfolgingsstatus.situasjon === SituasjonOption.SITUASJONSBESTEMT)
+            || (oppfolgingsstatus.situasjon === SituasjonOption.SPESIELT_TILPASSET);
         const IngressKomponent = sykmeldtMedArbeidsgiver ? IngressMedArbeidsgiver : IngressUtenArbeidsgiver;
         const gyldigBrukerSituasjon = () => {
             return (arbeidsledig || sykmeldtUtenArbeidsgiver || sykmeldtMedArbeidsgiver);
@@ -66,7 +66,7 @@ class Startside extends React.Component<StartsideProps> {
                                 tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
                                 sykmeldt={sykmeldt}
                                 sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
-                                arbeidsledigSituasjon={arbeidsledigSituasjon.situasjon}
+                                oppfolgingsstatus={oppfolgingsstatus.situasjon}
                             />
                         </section>
                         <section className="app-content-kontakte-nav blokk-xl">
@@ -94,7 +94,7 @@ class Startside extends React.Component<StartsideProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
-    arbeidsledigSituasjon: state.arbeidsledigSituasjon,
+    oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
 });
 

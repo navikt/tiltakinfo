@@ -12,9 +12,9 @@ export enum ActionType {
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
     HENT_OPPFOLGING_LASTER = 'HENT_OPPFOLGING_LASTER',
     SETT_MAAL = 'SETT_MAAL',
-    HENT_SERVICEGRUPPE_OK = 'HENT_SERVICEGRUPPE_OK',
-    HENT_SERVICEGRUPPE_FEILET = 'HENT_SERVICEGRUPPE_FEILET',
-    HENT_SERVICEGRUPPE_LASTER = 'HENT_SERVICEGRUPPE_LASTER',
+    HENT_OPPFOLGINGSSTATUS_OK = 'HENT_OPPFOLGINGSSTATUS_OK',
+    HENT_OPPFOLGINGSSTATUS_FEILET = 'HENT_OPPFOLGINGSSTATUS_FEILET',
+    HENT_OPPFOLGINGSSTATUS_LASTER = 'HENT_OPPFOLGINGSSTATUS_LASTER',
     HENT_SYFO_OK = 'HENT_SYFO_OK',
     HENT_SYFO_FEILET = 'HENT_SYFO_FEILET',
     HENT_SYFO_LASTER = 'HENT_SYFO_LASTER',
@@ -51,16 +51,16 @@ export interface HentOppfolgingFEILETAction {
     type: ActionType.HENT_OPPFOLGING_FEILET;
 }
 
-export interface HentServicegruppeOKAction extends Data {
-    type: ActionType.HENT_SERVICEGRUPPE_OK;
+export interface HentOppfolgingsstatusOKAction extends Data {
+    type: ActionType.HENT_OPPFOLGINGSSTATUS_OK;
 }
 
-export interface HentServicegruppeLASTERAction {
-    type: ActionType.HENT_SERVICEGRUPPE_LASTER;
+export interface HentOppfolgingsstatusLASTERAction {
+    type: ActionType.HENT_OPPFOLGINGSSTATUS_LASTER;
 }
 
-export interface HentServicegruppeFEILETAction {
-    type: ActionType.HENT_SERVICEGRUPPE_FEILET;
+export interface HentOppfolgingsstatusFEILETAction {
+    type: ActionType.HENT_OPPFOLGINGSSTATUS_FEILET;
 }
 
 export interface HentSyfoOKAction {
@@ -84,9 +84,9 @@ export type Handling =
     | HentOppfolgingOKAction
     | HentOppfolgingLASTERAction
     | HentOppfolgingFEILETAction
-    | HentServicegruppeOKAction
-    | HentServicegruppeLASTERAction
-    | HentServicegruppeFEILETAction
+    | HentOppfolgingsstatusOKAction
+    | HentOppfolgingsstatusLASTERAction
+    | HentOppfolgingsstatusFEILETAction
     | HentSyfoOKAction
     | HentSyfoLASTERAction
     | HentSyfoFEILETAction;
