@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState } from '../redux/reducer';
+import { AppState, maalDuck } from '../redux/reducer';
 import FlereTiltak from './flere-tiltak';
 import Tiltak from './tiltak-container';
 import KontakteNAV from './kontakte-nav';
@@ -12,19 +12,36 @@ import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Tekst from '../finn-tekst';
 import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
+import { RegistreringState } from '../brukerdata/registrering-duck';
+import { Dispatch } from '../redux/dispatch-type';
+import { mapTilMaalOption } from '../mock/utils';
 
 interface StateProps {
     maalId: MaalOption;
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
+    registrering: RegistreringState;
 }
 
-type StartsideProps = StateProps;
+interface DispatchProps {
+    doSettMaalId: (id: MaalOption) => void;
+}
+
+type StartsideProps = StateProps & DispatchProps;
 
 class Startside extends React.Component<StartsideProps> {
 
     constructor(props: StartsideProps) {
         super(props);
+    }
+
+    componentWillMount() {
+        const { maalId, registrering, doSettMaalId } = this.props;
+
+        if (maalId === MaalOption.IKKE_VALGT && registrering.registreringData) {
+            const fremtidigSituasjon = registrering.registreringData.registrering.besvarelse.fremtidigSituasjon;
+            doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
+        }
     }
 
     render() {
@@ -96,6 +113,11 @@ const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
+    registrering: state.registrering
 });
 
-export default connect(mapStateToProps)(Startside);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+    doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Startside);

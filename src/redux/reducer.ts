@@ -8,6 +8,7 @@ import { ActionType } from './actions';
 import { MaalOption } from '../startside/tiltak-map';
 import genericDuck from './generic-duck';
 import { Bruker } from '../mock/mock-data-config';
+import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
 
 export interface MaalState {
     id: MaalOption;
@@ -42,6 +43,7 @@ export interface AppState {
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     demobruker: DemoBrukerState;
+    registrering: RegistreringState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -49,6 +51,7 @@ export const reducer = combineReducers<AppState>({
     oppfolging: oppfolgingReducer,
     oppfolgingsstatus: oppfolgingsstatusReducer,
     syfoSituasjon: syfoReducer,
+    registrering: registreringReducer,
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
 });

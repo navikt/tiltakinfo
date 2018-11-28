@@ -2,6 +2,7 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
+import { FremtidigSituasjonSvar, RegistreringType } from '../brukerdata/registrering-duck';
 
 interface ResponseObject {
     [key: string]: any; // tslint:disable-line:no-any
@@ -81,4 +82,14 @@ export default () => {
     fetchMock.get(API.getOppfolgingsstatus, mockAPI.getOppfolgingsstatus);
 
     fetchMock.get(API.getSyfo, mockAPI.getSyfo);
+
+    // TODO: Gjør dette på en bedre måte
+    fetchMock.get(API.getRegistrering, {
+        type: RegistreringType.SYKMELDT,
+        registrering: {
+            besvarelse: {
+                fremtidigSituasjon: FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
+            }
+        }
+    });
 };
