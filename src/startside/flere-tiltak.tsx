@@ -30,20 +30,24 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
                 </div>
 
                 <div className="flere-tiltak__innhold">
-                <Systemtittel className="blokk-xxs">
-                    <Tekst id={'fleretiltak-header'}/>
-                </Systemtittel>
+                    <Systemtittel className="blokk-xxs">
+                        <Tekst id={'fleretiltak-header'}/>
+                    </Systemtittel>
 
                     <div className="flere-tiltak__tekst">
                         <Normaltekst>
-                    <Tekst id={'fleretiltak-passedeg'}/>
+                            <Tekst id={'fleretiltak-passedeg'}/>
                         </Normaltekst>
                     </div>
                     <Normaltekst>
-                    <a className="lenke" href={lenkeTiltak} onClick={() => klikkPaFortellMegMerMetrikk()}>
-                        <Tekst id={'fleretiltak-lenke'}/>
-                        <NavFrontendChevron stor={true}/>
-                    </a>
+                        <a
+                            className="lenke flere-tiltak__lenke"
+                            href={lenkeTiltak}
+                            onClick={() => klikkPaFortellMegMerMetrikk()}
+                        >
+                            <Tekst id={'fleretiltak-lenke'}/>
+                            <NavFrontendChevron stor={true}/>
+                        </a>
                     </Normaltekst>
                 </div>
             </section>
