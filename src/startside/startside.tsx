@@ -35,7 +35,7 @@ class Startside extends React.Component<StartsideProps> {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { maalId, registrering, doSettMaalId } = this.props;
 
         if (maalId === MaalOption.IKKE_VALGT && registrering.registreringData) {

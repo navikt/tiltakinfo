@@ -1,6 +1,7 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
+import { FremtidigSituasjonSvar, RegistreringDataState, RegistreringType } from '../brukerdata/registrering-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
@@ -28,6 +29,7 @@ export enum MockConfigPropName {
     NIVA_OIDC = 'nivaOidc',
     SERVICEGRUPPE = 'servicegruppe',
     SYFODATA = 'syfoData',
+    REGISTRERING = 'registrering',
     HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
     ER_SYKMELDT_URLMOCK = 'erSykmeldt',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
@@ -39,6 +41,7 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.SERVICEGRUPPE]: string;
     [MockConfigPropName.OPPFOLGINGSENHET]: OppfolgingsEnhet;
     [MockConfigPropName.SYFODATA]: SyfoDataState;
+    [MockConfigPropName.REGISTRERING]?: RegistreringDataState;
 }
 
 export interface BrukerMocks {
@@ -72,6 +75,14 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
             erTiltakSykmeldteInngangAktiv: true,
+        },
+        [MockConfigPropName.REGISTRERING]: {
+            type: RegistreringType.SYKMELDT,
+            registrering: {
+                besvarelse: {
+                    fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
+                }
+            }
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {

@@ -2,7 +2,6 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
-import { FremtidigSituasjonSvar, RegistreringType } from '../brukerdata/registrering-duck';
 
 interface ResponseObject {
     [key: string]: any; // tslint:disable-line:no-any
@@ -12,6 +11,7 @@ interface MockAPI {
     getOppfolging: ResponseObject;
     getOppfolgingsstatus: ResponseObject;
     getSyfo: ResponseObject;
+    getRegistrering: ResponseObject;
 }
 
 export default () => {
@@ -48,13 +48,13 @@ export default () => {
     };
 
     const finnVerdi = (urlKey: string) => {
-        if (urlKey === MockConfigPropName.SYFODATA) {
+        if (urlKey === MockConfigPropName.SYFODATA || urlKey === MockConfigPropName.REGISTRERING) {
             if (toBoolean(mockVerdier[MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK])) {
-                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][MockConfigPropName.SYFODATA];
+                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][urlKey];
             } else if (toBoolean(mockVerdier[MockConfigPropName.ER_SYKMELDT_URLMOCK])) {
-                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][MockConfigPropName.SYFODATA];
+                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][urlKey];
             } else {
-                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][MockConfigPropName.SYFODATA];
+                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][urlKey];
             }
         } else if (mockVerdier[urlKey] !== undefined) {
             if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
@@ -75,6 +75,7 @@ export default () => {
             oppfolgingsenhet: finnVerdi(MockConfigPropName.OPPFOLGINGSENHET)
         },
         getSyfo: finnVerdi(MockConfigPropName.SYFODATA),
+        getRegistrering: finnVerdi(MockConfigPropName.REGISTRERING)
     };
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
@@ -83,13 +84,5 @@ export default () => {
 
     fetchMock.get(API.getSyfo, mockAPI.getSyfo);
 
-    // TODO: Gjør dette på en bedre måte
-    fetchMock.get(API.getRegistrering, {
-        type: RegistreringType.SYKMELDT,
-        registrering: {
-            besvarelse: {
-                fremtidigSituasjon: FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING
-            }
-        }
-    });
+    fetchMock.get(API.getRegistrering, mockAPI.getRegistrering);
 };
