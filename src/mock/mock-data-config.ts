@@ -54,8 +54,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'NAV Bærum',
-            enhetId: '0219',
+            navn: 'mock',
+            enhetId: 'mock',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
@@ -66,8 +66,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'NAV Bærum',
-            enhetId: '0219',
+            navn: 'mock',
+            enhetId: 'mock',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
@@ -78,8 +78,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'NAV Bærum',
-            enhetId: '0219',
+            navn: 'mock',
+            enhetId: 'mock',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -90,8 +90,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'NAV Bærum',
-            enhetId: '0219',
+            navn: 'mock',
+            enhetId: 'mock',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -102,8 +102,8 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'NAV Bærum',
-            enhetId: '0219',
+            navn: 'mock',
+            enhetId: 'mock',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
