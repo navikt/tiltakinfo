@@ -11,13 +11,16 @@ export const brukerMetrikk = (
     servicegruppekode: SituasjonOption,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
-    underOppfolging: boolean
+    underOppfolging: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
 ): void => {
-    logEvent(`${domene}.bruker`, {}, {
+    logEvent(`${domene}.bruker`, {oppfolgingsEnhetNavn}, {
         servicegruppekode,
         harArbeidsgiverIAktiveSykmeldinger,
         erTiltakSykmeldteInngangAktiv,
-        underOppfolging
+        underOppfolging,
+        oppfolgingsEnhetId,
     });
 };
 
@@ -39,8 +42,4 @@ export const klikkPaFortellMegMerMetrikk = () => {
 
 export const klikkPaGaTilAktivitetsplanen = () => {
     logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
-};
-
-export const oppfolgingsEnhetMetrikk = (oppfolgingsEnhetId: string) => {
-    logEvent(`${domene}.oppfolgingsenhet`, {}, {oppfolgingsEnhetId});
 };
