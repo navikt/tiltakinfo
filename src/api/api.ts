@@ -2,7 +2,7 @@ import { fetchToJson } from './fetch-utils';
 import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { contextRoot } from '../konstanter';
-import { ServicegruppeState } from '../brukerdata/servicekode-duck';
+import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 
 const getCookie = (name: string) => {
@@ -22,7 +22,7 @@ const requestConfig: RequestInit = {
 interface ApiProps {
     getUnleash: string;
     getOppfolging: string;
-    getArbeidsledig: string;
+    getOppfolgingsstatus: string;
     getSyfo: string;
 }
 
@@ -34,7 +34,7 @@ export const featureQueryParams = (features: string[]): string => {
 export const API: ApiProps = {
     getUnleash: `${contextRoot}/api/feature`,
     getOppfolging: '/veilarboppfolging/api/oppfolging',
-    getArbeidsledig: '/veilarbtiltakinfo/api/servicegruppekode',
+    getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     getSyfo: '/syforest/sykeforloep/metadata',
 };
 
@@ -47,8 +47,8 @@ export function getOppfolgingFetch(): Promise<OppfolgingState> {
     return fetchToJson(API.getOppfolging, requestConfig);
 }
 
-export function getArbeidsledigFetch(): Promise<ServicegruppeState> {
-    return fetchToJson(API.getArbeidsledig, requestConfig);
+export function getOppfolgingsstatusFetch(): Promise<OppfolgingsstatusFetchState> {
+    return fetchToJson(API.getOppfolgingsstatus, requestConfig);
 }
 
 export function getSyfoFetch(): Promise<SyfoDataState> {

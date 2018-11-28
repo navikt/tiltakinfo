@@ -1,5 +1,6 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
@@ -29,12 +30,14 @@ export enum MockConfigPropName {
     SYFODATA = 'syfoData',
     HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
     ER_SYKMELDT_URLMOCK = 'erSykmeldt',
-    VIS_TEKSTER = 'vistekster'
+    OPPFOLGINGSENHET = 'oppfolgingsenhet',
+    VIS_TEKSTER = 'vistekster',
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.SERVICEGRUPPE]: string;
+    [MockConfigPropName.OPPFOLGINGSENHET]: OppfolgingsEnhet;
     [MockConfigPropName.SYFODATA]: SyfoDataState;
 }
 
@@ -50,6 +53,10 @@ export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
+        [MockConfigPropName.OPPFOLGINGSENHET]: {
+            navn: 'NAV Bærum',
+            enhetId: '0219',
+        },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
             erTiltakSykmeldteInngangAktiv: true,
@@ -58,6 +65,10 @@ export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
+        [MockConfigPropName.OPPFOLGINGSENHET]: {
+            navn: 'NAV Bærum',
+            enhetId: '0219',
+        },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
             erTiltakSykmeldteInngangAktiv: true,
@@ -66,6 +77,10 @@ export const brukerMocks: BrukerMocks = {
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
+        [MockConfigPropName.OPPFOLGINGSENHET]: {
+            navn: 'NAV Bærum',
+            enhetId: '0219',
+        },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,
@@ -74,6 +89,10 @@ export const brukerMocks: BrukerMocks = {
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
+        [MockConfigPropName.OPPFOLGINGSENHET]: {
+            navn: 'NAV Bærum',
+            enhetId: '0219',
+        },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,
@@ -82,6 +101,10 @@ export const brukerMocks: BrukerMocks = {
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
+        [MockConfigPropName.OPPFOLGINGSENHET]: {
+            navn: 'NAV Bærum',
+            enhetId: '0219',
+        },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,

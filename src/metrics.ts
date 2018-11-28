@@ -40,3 +40,7 @@ export const klikkPaFortellMegMerMetrikk = () => {
 export const klikkPaGaTilAktivitetsplanen = () => {
     logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
 };
+
+export const oppfolgingsEnhetMetrikk = (oppfolgingsEnhetId: string) => {
+    logEvent(`${domene}.oppfolgingsenhet`, {}, {oppfolgingsEnhetId});
+};

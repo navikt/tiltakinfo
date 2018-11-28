@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import persistent from './persistent-reducer';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
-import arbeidsledigReducer, { ArbeidsledigSituasjonState } from '../brukerdata/servicekode-duck';
+import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { ActionType } from './actions';
 import { MaalOption } from '../startside/tiltak-map';
@@ -39,7 +39,7 @@ export interface AppState {
     unleash: UnleashState;
     oppfolging: OppfolgingState;
     maal: MaalState;
-    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     demobruker: DemoBrukerState;
 }
@@ -47,7 +47,7 @@ export interface AppState {
 export const reducer = combineReducers<AppState>({
     unleash: unleashReducer,
     oppfolging: oppfolgingReducer,
-    arbeidsledigSituasjon: arbeidsledigReducer,
+    oppfolgingsstatus: oppfolgingsstatusReducer,
     syfoSituasjon: syfoReducer,
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),

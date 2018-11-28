@@ -6,11 +6,11 @@ import { AppState } from './redux/reducer';
 import { connect } from 'react-redux';
 import { OppfolgingState } from './brukerdata/oppfolging-duck';
 import { SyfoSituasjonState } from './brukerdata/syfo-duck';
-import { ArbeidsledigSituasjonState } from './brukerdata/servicekode-duck';
-import { brukerMetrikk } from './metrics';
+import { OppfolgingsstatusState } from './brukerdata/oppfolgingsstatus-duck';
+import { brukerMetrikk, oppfolgingsEnhetMetrikk } from './metrics';
 
 interface StateProps {
-    arbeidsledigSituasjon: ArbeidsledigSituasjonState;
+    oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     oppfolging: OppfolgingState;
 }
@@ -24,10 +24,13 @@ class Innhold extends React.Component<InnholdProps> {
 
     componentDidMount() {
         brukerMetrikk(
-            this.props.arbeidsledigSituasjon.situasjon,
+            this.props.oppfolgingsstatus.situasjon,
             this.props.syfoSituasjon.harArbeidsgiver,
             this.props.syfoSituasjon.erSykmeldt,
             this.props.oppfolging.underOppfolging
+        );
+        oppfolgingsEnhetMetrikk(
+            this.props.oppfolgingsstatus.oppfolgingsenhet.enhetId,
         );
     }
 
@@ -46,7 +49,7 @@ class Innhold extends React.Component<InnholdProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    arbeidsledigSituasjon: state.arbeidsledigSituasjon,
+    oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
     oppfolging: state.oppfolging,
 });
