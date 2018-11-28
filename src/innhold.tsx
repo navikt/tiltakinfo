@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { OppfolgingState } from './brukerdata/oppfolging-duck';
 import { SyfoSituasjonState } from './brukerdata/syfo-duck';
 import { OppfolgingsstatusState } from './brukerdata/oppfolgingsstatus-duck';
-import { brukerMetrikk, oppfolgingsEnhetMetrikk } from './metrics';
+import { brukerMetrikk } from './metrics';
 
 interface StateProps {
     oppfolgingsstatus: OppfolgingsstatusState;
@@ -27,10 +27,9 @@ class Innhold extends React.Component<InnholdProps> {
             this.props.oppfolgingsstatus.situasjon,
             this.props.syfoSituasjon.harArbeidsgiver,
             this.props.syfoSituasjon.erSykmeldt,
-            this.props.oppfolging.underOppfolging
-        );
-        oppfolgingsEnhetMetrikk(
+            this.props.oppfolging.underOppfolging,
             this.props.oppfolgingsstatus.oppfolgingsenhet.enhetId,
+            this.props.oppfolgingsstatus.oppfolgingsenhet.navn,
         );
     }
 
