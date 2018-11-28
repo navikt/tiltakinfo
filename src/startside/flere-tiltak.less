@@ -1,54 +1,73 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
 
 .flere-tiltak {
-  background-color: @navLysGra;
-  padding: 2.5rem;
-  border-radius: 0.5rem;
-  margin-bottom: 10rem;
-  .flere-tiltak__bilde {
-    text-align: center;
-    img {
-      width: 114px;
-      height: 114px;
-      padding-bottom: 1.5rem;
-    }
-  }
-  .flere-tiltak__innhold {
-    .typo-normal {
-      padding-bottom: 1.5rem;
+    background-color: @navLysGra;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 10rem;
+
+    .flere-tiltak__bilde {
+        text-align: center;
+
+        img {
+            width: 114px;
+            height: 114px;
+            padding-bottom: 1.5rem;
+        }
     }
 
-    .flere-tiltak__tekst {
-      margin: 1rem 0 1rem 0;
-    }
+    .flere-tiltak__innhold {
+        .typo-normal {
+            padding-bottom: 1.5rem;
+        }
 
-    .lenke {
-      margin-top: 0.3rem;
-      padding-bottom: 1rem;
+        .flere-tiltak__tekst {
+            margin: 1rem 0 1rem 0;
+        }
+
+        .flere-tiltak__lenke {
+            position: relative;
+
+            .chevron--hoyre.chevron--stor {
+                position: absolute;
+                top: 9px;
+                right: -1.3rem;
+                width: 20px;
+
+                &:before {
+                    transform: translateX(2px) rotate(45deg);
+                }
+
+                &:after {
+                    transform: translateX(-2px) rotate(-45deg);
+                }
+            }
+        }
     }
-  }
 }
 
 
 @media (min-width: @screen-sm-min) {
-  .flere-tiltak {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 20rem;
+    .flere-tiltak {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20rem;
 
-    .flere-tiltak__bilde {
-      order: 1;
-      width: calc(30% - 1rem);
-      margin: auto;
-      img {
-        padding-bottom: 0;
-      }
-    }
-    .flere-tiltak__innhold {
-      order: 2;
-      width: calc(70% - 1rem);
-      padding-right: 13rem;
+        .flere-tiltak__bilde {
+            order: 1;
+            width: calc(30% - 1rem);
+            margin: auto;
 
+            img {
+                padding-bottom: 0;
+            }
+        }
+
+        .flere-tiltak__innhold {
+            order: 2;
+            width: calc(70% - 1rem);
+            padding-right: 13rem;
+
+        }
     }
-  }
 }
