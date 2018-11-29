@@ -43,7 +43,10 @@ class DataProvider extends React.Component<UnleashProviderProps> {
     render() {
         const {oppfolgingsstatus, syfoSituasjon, oppfolging, registrering} = this.props;
         return (
-            <Datalaster avhengigheter={[oppfolgingsstatus, syfoSituasjon, oppfolging, registrering]}>
+            <Datalaster
+                avhengigheter={[oppfolgingsstatus, syfoSituasjon, oppfolging]}
+                ventPa={[registrering]}
+            >
                 {this.props.children}
             </Datalaster>
         );

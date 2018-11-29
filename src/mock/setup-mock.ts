@@ -85,4 +85,5 @@ export default () => {
     fetchMock.get(API.getSyfo, mockAPI.getSyfo);
 
     fetchMock.get(API.getRegistrering, mockAPI.getRegistrering);
+
 };
