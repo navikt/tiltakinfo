@@ -15,12 +15,13 @@ export const brukerMetrikk = (
     oppfolgingsEnhetId: string,
     oppfolgingsEnhetNavn: string
 ): void => {
-    logEvent(`${domene}.bruker`, {oppfolgingsEnhetNavn}, {
+    logEvent(`${domene}.bruker`, {}, {
         servicegruppekode,
         harArbeidsgiverIAktiveSykmeldinger,
         erTiltakSykmeldteInngangAktiv,
         underOppfolging,
         oppfolgingsEnhetId,
+        oppfolgingsEnhetNavn,
     });
 };
 
