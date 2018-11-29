@@ -18,15 +18,17 @@ export function erDemo(): boolean {
 export function mapTilMaalOption(fremtidigSituasjon: FremtidigSituasjonSvar): MaalOption {
 
     switch (fremtidigSituasjon) {
+
         case FremtidigSituasjonSvar.NY_ARBEIDSGIVER:
             return MaalOption.NY_ARBEIDSGIVER;
         case FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING:
             return MaalOption.SAMME_ARBEIDSGIVER;
         case FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER:
             return MaalOption.SAMME_STILLING;
-        default:
-            // USIKKER & INGEN_PASSER
+        case FremtidigSituasjonSvar.USIKKER || FremtidigSituasjonSvar.INGEN_PASSER:
             return MaalOption.USIKKER;
+        default:
+            return MaalOption.IKKE_VALGT;
 
     }
 

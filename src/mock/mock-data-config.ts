@@ -1,7 +1,7 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
-import { FremtidigSituasjonSvar, RegistreringDataState, RegistreringType } from '../brukerdata/registrering-duck';
+import { FremtidigSituasjonSvar, RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
@@ -77,7 +77,6 @@ export const brukerMocks: BrukerMocks = {
             erTiltakSykmeldteInngangAktiv: true,
         },
         [MockConfigPropName.REGISTRERING]: {
-            type: RegistreringType.SYKMELDT,
             registrering: {
                 besvarelse: {
                     fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER

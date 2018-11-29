@@ -7,12 +7,8 @@ import {
     HentRegistreringFEILETAction, HentRegistreringLASTERAction, HentRegistreringOKAction
 } from '../redux/actions';
 
-export enum RegistreringType {
-    ORDINAER = 'ORDINAER',
-    SYKMELDT = 'SYKMELDT'
-}
-
 export enum FremtidigSituasjonSvar {
+    IKKE_VALGT = 'IKKE_VALGT',
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
     NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
@@ -29,7 +25,6 @@ export interface Registrering {
 }
 
 export interface RegistreringDataState {
-    type: RegistreringType;
     registrering: Registrering;
 }
 

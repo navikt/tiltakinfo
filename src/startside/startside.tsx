@@ -36,9 +36,10 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     componentDidMount() {
-        const { maalId, registrering, doSettMaalId } = this.props;
+        const { maalId, registrering, doSettMaalId, syfoSituasjon } = this.props;
 
-        if (maalId === MaalOption.IKKE_VALGT && registrering.registreringData) {
+        if (maalId === MaalOption.IKKE_VALGT && registrering.registreringData
+            && syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) {
             const fremtidigSituasjon = registrering.registreringData.registrering.besvarelse.fremtidigSituasjon;
             doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
         }
