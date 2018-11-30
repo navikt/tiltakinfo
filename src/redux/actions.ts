@@ -2,6 +2,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { Data } from './generic-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum ActionType {
     TEST_ACTION = 'TEST_ACTION',
@@ -19,6 +20,9 @@ export enum ActionType {
     HENT_SYFO_FEILET = 'HENT_SYFO_FEILET',
     HENT_SYFO_LASTER = 'HENT_SYFO_LASTER',
     SETT_BRUKERTYPE = 'SETT_BRUKERTYPE',
+    HENT_REGISTRERING_OK = 'HENT_REGISTRERING_OK',
+    HENT_REGISTRERING_LASTER = 'HENT_REGISTRERING_LASTER',
+    HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET'
 }
 
 export interface TestAction extends Data {
@@ -76,6 +80,19 @@ export interface HentSyfoFEILETAction {
     type: ActionType.HENT_SYFO_FEILET;
 }
 
+export interface HentRegistreringOKAction {
+    type: ActionType.HENT_REGISTRERING_OK;
+    registreringData: RegistreringDataState;
+}
+
+export interface HentRegistreringLASTERAction {
+    type: ActionType.HENT_REGISTRERING_LASTER;
+}
+
+export interface HentRegistreringFEILETAction {
+    type: ActionType.HENT_REGISTRERING_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -89,4 +106,7 @@ export type Handling =
     | HentOppfolgingsstatusFEILETAction
     | HentSyfoOKAction
     | HentSyfoLASTERAction
-    | HentSyfoFEILETAction;
+    | HentSyfoFEILETAction
+    | HentRegistreringOKAction
+    | HentRegistreringLASTERAction
+    | HentRegistreringFEILETAction;

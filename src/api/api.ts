@@ -4,6 +4,7 @@ import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { contextRoot } from '../konstanter';
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { RegistreringDataState } from '../brukerdata/registrering-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -24,6 +25,7 @@ interface ApiProps {
     getOppfolging: string;
     getOppfolgingsstatus: string;
     getSyfo: string;
+    getRegistrering: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -36,6 +38,7 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolging/api/oppfolging',
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     getSyfo: '/syforest/sykeforloep/metadata',
+    getRegistrering: '/veilarbregistrering/api/registrering'
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -53,4 +56,8 @@ export function getOppfolgingsstatusFetch(): Promise<OppfolgingsstatusFetchState
 
 export function getSyfoFetch(): Promise<SyfoDataState> {
     return fetchToJson(API.getSyfo, requestConfig);
+}
+
+export function getRegistrering(): Promise<RegistreringDataState> {
+    return fetchToJson(API.getRegistrering, requestConfig);
 }
