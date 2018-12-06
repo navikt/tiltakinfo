@@ -18,7 +18,6 @@ export default {
     'maal-samme-arbeidsgiver': 'Annen jobb hos arbeidsgiveren min',
     'maal-ny-arbeidsgiver': 'Jobbe hos en annen arbeidsgiver',
     'maal-usikker': 'Usikker',
-    'maal-situasjon': 'Situasjon',
     'ingress-radiopanelgruppe-skjult': 'Svaralternativer',
     'informasjon-totiltak': 'Her er to eksempler:',
     'kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
