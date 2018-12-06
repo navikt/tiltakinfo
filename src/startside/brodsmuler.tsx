@@ -19,7 +19,7 @@ export default class Brodsmuler extends React.Component<OwnProps> {
         const {arbeidsledig, sykmeldt } = this.props;
         return (
             <nav className="brodsmuler" aria-label="Du er her:" >
-                <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />
+                <img src={brodsmuleikon} alt="" aria-hidden="true" className="brodsmuler__ikon" />
                 <div className="brodsmuler__smuler">
                     <a href="/dittnav" className="lenke"><Tekst id={'brodsmuler-dittnav'}/></a>
                     <span className="brodsmule__skille">/</span>
