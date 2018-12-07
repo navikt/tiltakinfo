@@ -20,7 +20,7 @@ export default {
     'maal-usikker': 'Usikker',
     'ingress-radiopanelgruppe-skjult': 'Svaralternativer',
     'informasjon-totiltak': 'Her er to eksempler:',
-    'kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
+    'kontaktenav-lenke-underoppfolging': 'Gå til dialogen med veileder',
     'kontaktenav-snakkmednav': 'Snakk med oss om muligheter',
     'kontaktenav-takontakt-ikkeunderoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har.',
     'kontaktenav-takontakt-underoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',

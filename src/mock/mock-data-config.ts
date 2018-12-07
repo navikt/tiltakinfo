@@ -79,7 +79,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.REGISTRERING]: {
             registrering: {
                 besvarelse: {
-                    fremtidigSituasjon: FremtidigSituasjonSvar.USIKKER
+                    fremtidigSituasjon: FremtidigSituasjonSvar.IKKE_VALGT
                 }
             }
         },
