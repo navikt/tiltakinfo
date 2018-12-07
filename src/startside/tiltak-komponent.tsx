@@ -57,7 +57,7 @@ export default class TiltakKomponent extends React.Component<OwnProps, State> {
                     <Innholdstittel className="tiltak-header-tekst">
                         <Tekst id={this.props.tiltak.tittel}/>
                     </Innholdstittel>
-                    <img src={this.props.tiltak.ikon} alt="" className="tiltak-ikon"/>
+                    <img src={this.props.tiltak.ikon} alt="" aria-hidden="true" className="tiltak-ikon"/>
                 </div>
                 <div className={cls}>
                     <Ingress><Tekst id={this.props.tiltak.hva}/></Ingress>

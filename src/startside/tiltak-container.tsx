@@ -73,7 +73,7 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
                 { sykmeldtMedArbeidsgiver &&
                     <section className="tiltak-ingress">
                         <Veilederpanel
-                            svg={<img src={veilederBilde}/>}
+                            svg={<img src={veilederBilde} alt="" aria-hidden="true"/>}
                             type={erDesktop ? 'normal' : 'plakat'}
                             kompakt={true}
                         >
