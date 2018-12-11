@@ -1,7 +1,7 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
-import { FremtidigSituasjonSvar, RegistreringDataState } from '../brukerdata/registrering-duck';
+import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
