@@ -16,8 +16,6 @@ prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
   path: tiltakinfo/internal/metrics
-alertProfiles:
-  - pus-decorator
 resources:
   limits:
     cpu: 3
@@ -43,3 +41,6 @@ fasitResources:
     path: /tiltakinfo
 
 webproxy: true
+
+alertProfiles:
+  - pus-decorator
