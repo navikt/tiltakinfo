@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import './ingress-utenarbeidsgiver.less';
-import Tekst, { utledTekst } from '../finn-tekst';
+import Tekst from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
 import './ingress-hararbeidsgiver.less';
-import { RadioPanel } from 'nav-frontend-skjema';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Dispatch } from '../redux/dispatch-type';
-import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
+import { MaalOption } from './tiltak-map';
 import { polyfill } from 'smoothscroll-polyfill';
 import { klikkPaMaalMetrikk } from '../metrics';
 
@@ -26,14 +26,23 @@ interface DispatchProps {
 
 type IngressProps = StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line:no-any
 
-interface IngressState {
-    options: string[];
+interface State {
+    checked: string;
 }
 
-class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState> {
+class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
+
+    static radios = [
+        { label: 'Samme jobb hos samme arbeidsgiver', value: 'maal-samme-stilling', id: 'maal-samme-stilling' }, // tslint:disable-line
+        { label: 'Annen jobb hos arbeidsgiveren min', value: 'maal-samme-arbeidsgiver', id: 'maal-samme-arbeidsgiver' }, // tslint:disable-line
+        { label: 'Jobbe hos en annen arbeidsgiver', value: 'maal-ny-arbeidsgiver', id: 'maal-ny-arbeidsgiver' }, // tslint:disable-line
+        { label: 'Usikker', value: 'maal-ny-arbeidsgiver', id: 'maal-usikker' }
+    ];
+
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.state = { checked: 'maal-samme-stilling' };
     }
 
     componentDidUpdate () {
@@ -51,12 +60,11 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
         e.preventDefault();
         const maalId: MaalOption = e.target.value as MaalOption;
         this.props.doSettMaalId(maalId);
+        this.setState({ checked: maalId });
         klikkPaMaalMetrikk(maalId);
     }
 
     render() {
-        const {maalId} = this.props;
-
         return (
             <section className="ingress">
                 <div className="ingress__intro">
@@ -76,23 +84,13 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
                 <span className="skjult" id="beskrivendetekst">
                     <Tekst id="ingress-radiopanelgruppe-skjult"/>
                 </span>
-                <ul
-                    role="group"
-                    aria-labelledby="beskrivendetekst"
-                    className="ingress__maal"
-                >
-                    {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
-                        <li key={tekstId} className="blokk-xs">
-                            <RadioPanel
-                                name="situasjon"
-                                checked={maalId === tekstId}
-                                label={utledTekst(tekstId)}
-                                value={tekstId}
-                                onChange={this.handleChange}
-                            />
-                        </li>
-                    ))}
-                </ul>
+                <RadioPanelGruppe
+                    name="situasjon"
+                    legend=""
+                    radios={IngressHarArbeidsgiver.radios}
+                    checked={this.state.checked}
+                    onChange={this.handleChange}
+                />
             </section>
         );
     }
