@@ -1,5 +1,4 @@
 import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
-import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
 import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
 
@@ -24,10 +23,9 @@ export const brukerOptionsRekkefolge = [
 export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
     SERVICEGRUPPE = 'servicegruppe',
-    SYFODATA = 'syfoData',
     REGISTRERING = 'registrering',
-    HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
-    ER_SYKMELDT_URLMOCK = 'erSykmeldt',
+    HAR_ARBEIDSGIVER = 'arbeidsSituasjonIAktiveSykmeldinger',
+    ER_SYKMELDT = 'erTiltakSykmeldteInngangAktiv',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
     VIS_TEKSTER = 'vistekster',
 }
@@ -36,7 +34,8 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.SERVICEGRUPPE]: string;
     [MockConfigPropName.OPPFOLGINGSENHET]: OppfolgingsEnhet;
-    [MockConfigPropName.SYFODATA]: SyfoDataState;
+    [MockConfigPropName.ER_SYKMELDT]: boolean;
+    [MockConfigPropName.HAR_ARBEIDSGIVER]: string[];
     [MockConfigPropName.REGISTRERING]?: RegistreringDataState;
 }
 
@@ -56,10 +55,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: 'mock',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
-            erTiltakSykmeldteInngangAktiv: true,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: ['ARBEIDSLEDIG'],
+        [MockConfigPropName.ER_SYKMELDT]: true,
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
@@ -68,10 +65,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: 'mock',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
-            erTiltakSykmeldteInngangAktiv: true,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: ['FRILANSER'],
+        [MockConfigPropName.ER_SYKMELDT]: true,
         [MockConfigPropName.REGISTRERING]: {
             registrering: {
                 besvarelse: {
@@ -87,10 +82,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: 'mock',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
@@ -99,10 +92,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: 'mock',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
@@ -111,9 +102,7 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: 'mock',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
     },
 };

@@ -64,10 +64,12 @@ export default () => {
         [MockConfigPropName.SERVICEGRUPPE]: mockData[MockConfigPropName.SERVICEGRUPPE],
     });
 
-    fetchMock.get(API.getSyfo, mockData[MockConfigPropName.SYFODATA]);
+    fetchMock.get(API.getSyfo, {
+        [MockConfigPropName.ER_SYKMELDT]: mockData[MockConfigPropName.ER_SYKMELDT],
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: mockData[MockConfigPropName.HAR_ARBEIDSGIVER],
+    });
 
     const mockDataRegistrering = mockData[MockConfigPropName.REGISTRERING];
-
     if (mockDataRegistrering !== undefined) {
         fetchMock.get(API.getRegistrering, mockDataRegistrering);
     }
