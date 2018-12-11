@@ -15,7 +15,7 @@ interface OwnProps {
     tiltakErBasertPaMaal: boolean;
     sykmeldt: boolean;
     sykmeldtMedArbeidsgiver: boolean;
-    oppfolgingsstatus: SituasjonOption;
+    situasjon: SituasjonOption;
 }
 
 interface StateProps {
@@ -59,14 +59,14 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
 
-        const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, oppfolgingsstatus} = this.props;
+        const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, situasjon} = this.props;
 
         const tiltakSomVises: Tiltak[] =
             sykmeldt ?
                 ( sykmeldtMedArbeidsgiver ?
                     finnTiltak(maalId) :
                     finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
-                finnTiltak(oppfolgingsstatus);
+                finnTiltak(situasjon);
 
         return (
             <>
