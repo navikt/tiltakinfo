@@ -70,37 +70,37 @@ class Startside extends React.Component<StartsideProps> {
                     arbeidsledig={arbeidsledig && !sykmeldt}
                     sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
                 />
-                { gyldigBrukerSituasjon() ?
-                <>
-                    <section className="app-content ingress-container">
-                        <IngressKomponent/>
-                    </section>
-                    { ((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
-                    || sykmeldtUtenArbeidsgiver
-                    || arbeidsledig ) &&
+                {gyldigBrukerSituasjon() ?
                     <>
-                        <section className="app-content tiltak-container">
-                            <Tiltak
-                                tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
-                                sykmeldt={sykmeldt}
-                                sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
-                                oppfolgingsstatus={oppfolgingsstatus.situasjon}
-                            />
+                        <section className="app-content ingress-container">
+                            <IngressKomponent/>
                         </section>
-                        <section className="app-content-kontakte-nav blokk-xl">
-                            <KontakteNAV/>
-                        </section>
+                        {((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
+                            || sykmeldtUtenArbeidsgiver
+                            || arbeidsledig) &&
+                        <>
+                            <section className="app-content tiltak-container">
+                                <Tiltak
+                                    tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
+                                    sykmeldt={sykmeldt}
+                                    sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                                    oppfolgingsstatus={oppfolgingsstatus.situasjon}
+                                />
+                            </section>
+                            <section className="app-content-kontakte-nav blokk-xl">
+                                <KontakteNAV/>
+                            </section>
+                        </>
+                        }
                     </>
-                    }
-                </>
-                :
-                <div className="app-content alert">
-                    <AlertStripe type="advarsel" className="feilmelding-container">
-                        <Tekst id={'feilmelding-manglendeinfo'}/>
-                    </AlertStripe>
-                </div>
+                    :
+                    <div className="app-content alert">
+                        <AlertStripe type="advarsel" className="feilmelding-container">
+                            <Tekst id={'feilmelding-manglendeinfo'}/>
+                        </AlertStripe>
+                    </div>
                 }
-                { !(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
+                {!(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
                 </section>
