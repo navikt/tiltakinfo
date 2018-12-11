@@ -23,10 +23,6 @@ export const brukerOptionsRekkefolge = [
 
 export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
-    ER_INNLOGGET = 'erInnlogget',
-    HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
-    NIVA = 'niva',
-    NIVA_OIDC = 'nivaOidc',
     SERVICEGRUPPE = 'servicegruppe',
     SYFODATA = 'syfoData',
     REGISTRERING = 'registrering',
