@@ -24,22 +24,22 @@ export default () => {
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
-    const sjekkLagretDemobruker = () => {
-        let LagretDemobruker = Bruker.DEFAULT_MOCK;
+    const hentLagretDemoBruker = () => {
+        let lagretDemobruker = Bruker.DEFAULT_MOCK;
         const demobrukerLocalStorage = localStorage.getItem('demoBrukerState');
         if (demobrukerLocalStorage) {
             const demobruker: Demobruker = JSON.parse(demobrukerLocalStorage);
             brukerOptionsRekkefolge.forEach((bruker: Bruker) => {
                 if (bruker === demobruker.id) {
-                    LagretDemobruker = bruker;
+                    lagretDemobruker = bruker;
                 }
             });
         }
-        return LagretDemobruker;
+        return lagretDemobruker;
     };
 
     const finnMockConfig = (): MockConfig => {
-        const lagretDemoBruker = sjekkLagretDemobruker();
+        const lagretDemoBruker = hentLagretDemoBruker();
         if (lagretDemoBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER) {
             return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER];
         } else if (lagretDemoBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER) {
