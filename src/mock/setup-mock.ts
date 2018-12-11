@@ -1,6 +1,7 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
+import { erDemo } from './utils';
 
 interface Demobruker {
     [key: string]: string;
@@ -39,15 +40,19 @@ export default () => {
     };
 
     const finnMockConfig = (): MockConfig => {
-        const lagretDemoBruker = hentLagretDemoBruker();
-        if (lagretDemoBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER) {
-            return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER];
-        } else if (lagretDemoBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER) {
-            return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER];
-        } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET) {
-            return brukerMocks[Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET];
-        } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT) {
-            return brukerMocks[Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT];
+        if (erDemo()) {
+            const lagretDemoBruker = hentLagretDemoBruker();
+            if (lagretDemoBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER) {
+                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER];
+            } else if (lagretDemoBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER) {
+                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER];
+            } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET) {
+                return brukerMocks[Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET];
+            } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT) {
+                return brukerMocks[Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT];
+            } else {
+                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
+            }
         } else {
             return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
         }
