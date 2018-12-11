@@ -1,4 +1,4 @@
-import { FremtidigSituasjonSvar } from '../brukerdata/registrering-duck';
+import { MaalFraRegistrering } from '../brukerdata/registrering-duck';
 import { MaalOption } from '../startside/tiltak-map';
 
 export function erLocalhost() {
@@ -15,17 +15,17 @@ export function erDemo(): boolean {
     return path.includes('/demo/index.html');
 }
 
-export function mapTilMaalOption(fremtidigSituasjon: FremtidigSituasjonSvar): MaalOption {
+export function mapTilMaalOption(fremtidigSituasjon: MaalFraRegistrering): MaalOption {
 
     switch (fremtidigSituasjon) {
 
-        case FremtidigSituasjonSvar.NY_ARBEIDSGIVER:
+        case MaalFraRegistrering.NY_ARBEIDSGIVER:
             return MaalOption.NY_ARBEIDSGIVER;
-        case FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER_NY_STILLING:
+        case MaalFraRegistrering.SAMME_ARBEIDSGIVER_NY_STILLING:
             return MaalOption.SAMME_ARBEIDSGIVER;
-        case FremtidigSituasjonSvar.SAMME_ARBEIDSGIVER:
+        case MaalFraRegistrering.SAMME_ARBEIDSGIVER:
             return MaalOption.SAMME_STILLING;
-        case FremtidigSituasjonSvar.USIKKER || FremtidigSituasjonSvar.INGEN_PASSER:
+        case MaalFraRegistrering.USIKKER || MaalFraRegistrering.INGEN_PASSER:
             return MaalOption.USIKKER;
         default:
             return MaalOption.IKKE_VALGT;

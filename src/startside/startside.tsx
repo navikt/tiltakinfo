@@ -12,7 +12,7 @@ import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Tekst from '../finn-tekst';
 import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
-import { RegistreringState } from '../brukerdata/registrering-duck';
+import { MaalFraRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
 import { Dispatch } from '../redux/dispatch-type';
 import { mapTilMaalOption } from '../mock/utils';
 
@@ -36,17 +36,17 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     componentDidMount() {
-        const { maalId, registrering, doSettMaalId, syfoSituasjon } = this.props;
+        const {maalId, registrering, doSettMaalId, syfoSituasjon} = this.props;
 
-        if (maalId === MaalOption.IKKE_VALGT && registrering.registreringData
+        if (maalId === MaalOption.IKKE_VALGT && registrering.maalFraRegistrering !== MaalFraRegistrering.IKKE_VALGT
             && syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) {
-            const fremtidigSituasjon = registrering.registreringData.registrering.besvarelse.fremtidigSituasjon;
+            const fremtidigSituasjon = registrering.maalFraRegistrering;
             doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
         }
     }
 
     render() {
-        const { maalId, oppfolgingsstatus, syfoSituasjon } = this.props;
+        const {maalId, oppfolgingsstatus, syfoSituasjon} = this.props;
 
         const sykmeldtMedArbeidsgiver =
             syfoSituasjon.erSykmeldt
@@ -70,37 +70,37 @@ class Startside extends React.Component<StartsideProps> {
                     arbeidsledig={arbeidsledig && !sykmeldt}
                     sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
                 />
-                { gyldigBrukerSituasjon() ?
-                <>
-                    <section className="app-content ingress-container">
-                        <IngressKomponent/>
-                    </section>
-                    { ((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
-                    || sykmeldtUtenArbeidsgiver
-                    || arbeidsledig ) &&
+                {gyldigBrukerSituasjon() ?
                     <>
-                        <section className="app-content tiltak-container">
-                            <Tiltak
-                                tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
-                                sykmeldt={sykmeldt}
-                                sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
-                                oppfolgingsstatus={oppfolgingsstatus.situasjon}
-                            />
+                        <section className="app-content ingress-container">
+                            <IngressKomponent/>
                         </section>
-                        <section className="app-content-kontakte-nav blokk-xl">
-                            <KontakteNAV/>
-                        </section>
+                        {((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
+                            || sykmeldtUtenArbeidsgiver
+                            || arbeidsledig) &&
+                        <>
+                            <section className="app-content tiltak-container">
+                                <Tiltak
+                                    tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
+                                    sykmeldt={sykmeldt}
+                                    sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
+                                    oppfolgingsstatus={oppfolgingsstatus.situasjon}
+                                />
+                            </section>
+                            <section className="app-content-kontakte-nav blokk-xl">
+                                <KontakteNAV/>
+                            </section>
+                        </>
+                        }
                     </>
-                    }
-                </>
-                :
-                <div className="app-content alert">
-                    <AlertStripe type="advarsel" className="feilmelding-container">
-                        <Tekst id={'feilmelding-manglendeinfo'}/>
-                    </AlertStripe>
-                </div>
+                    :
+                    <div className="app-content alert">
+                        <AlertStripe type="advarsel" className="feilmelding-container">
+                            <Tekst id={'feilmelding-manglendeinfo'}/>
+                        </AlertStripe>
+                    </div>
                 }
-                { !(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
+                {!(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
                 </section>
