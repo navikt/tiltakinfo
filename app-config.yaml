@@ -16,6 +16,8 @@ prometheus:
   # NB: pus-decorator sine metrikker
   enabled: true
   path: tiltakinfo/internal/metrics
+alertProfiles:
+  - pus-decorator
 resources:
   limits:
     cpu: 3
