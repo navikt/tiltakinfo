@@ -24,7 +24,7 @@ export default () => {
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
-    const hentLagretDemoBruker = () => {
+    const hentLagretDemoBruker = (): Bruker => {
         let lagretDemobruker = Bruker.DEFAULT_MOCK;
         const demobrukerLocalStorage = localStorage.getItem('demoBrukerState');
         if (demobrukerLocalStorage) {
