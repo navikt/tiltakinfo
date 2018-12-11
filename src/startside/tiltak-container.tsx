@@ -55,18 +55,25 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
         const erDesktop = this.state.windowSize > 767;
 
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
-        const finnTiltak = (tiltakMapKey: string) => {
+        const finnTiltak = (tiltakMapKey: string): Tiltak[] => {
             return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
         };
 
         const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, situasjon} = this.props;
 
-        const tiltakSomVises: Tiltak[] =
-            sykmeldt ?
-                ( sykmeldtMedArbeidsgiver ?
-                    finnTiltak(maalId) :
-                    finnTiltak(SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER)) :
-                finnTiltak(situasjon);
+        const finnTiltakMapKey = (): string => {
+            if (sykmeldt) {
+                if (sykmeldtMedArbeidsgiver) {
+                    return maalId;
+                } else {
+                    return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
+                }
+            } else {
+                return situasjon;
+            }
+        };
+
+        const tiltakSomVises: Tiltak[] = finnTiltak(finnTiltakMapKey());
 
         return (
             <>
