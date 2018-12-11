@@ -19,8 +19,8 @@ export default () => {
         middleware: MiddlewareUtils.combine(
             MiddlewareUtils.delayMiddleware(200),
             MiddlewareUtils.failurerateMiddleware(0.00),
-            loggingMiddleware
-        )
+            loggingMiddleware,
+        ),
     });
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
@@ -61,7 +61,7 @@ export default () => {
     const mockData: MockConfig = finnMockConfig();
 
     fetchMock.get(API.getOppfolging, {
-        [MockConfigPropName.UNDER_OPPFOLGING]: mockData[MockConfigPropName.UNDER_OPPFOLGING]
+        [MockConfigPropName.UNDER_OPPFOLGING]: mockData[MockConfigPropName.UNDER_OPPFOLGING],
     });
 
     fetchMock.get(API.getOppfolgingsstatus, {
