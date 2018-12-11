@@ -27,22 +27,22 @@ interface DispatchProps {
 type IngressProps = StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line:no-any
 
 interface State {
-    checked: string;
+    checked: MaalOption;
 }
 
 class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
 
     static radios = [
-        { label: 'Samme jobb hos samme arbeidsgiver', value: 'maal-samme-stilling', id: 'maal-samme-stilling' }, // tslint:disable-line
-        { label: 'Annen jobb hos arbeidsgiveren min', value: 'maal-samme-arbeidsgiver', id: 'maal-samme-arbeidsgiver' }, // tslint:disable-line
-        { label: 'Jobbe hos en annen arbeidsgiver', value: 'maal-ny-arbeidsgiver', id: 'maal-ny-arbeidsgiver' }, // tslint:disable-line
-        { label: 'Usikker', value: 'maal-ny-arbeidsgiver', id: 'maal-usikker' }
+        { label: 'Samme jobb hos samme arbeidsgiver', value: 'maal-samme-stilling', id: 'maal-samme-stilling' },
+        { label: 'Annen jobb hos arbeidsgiveren min', value: 'maal-samme-arbeidsgiver', id: 'maal-samme-arbeidsgiver' },
+        { label: 'Jobbe hos en annen arbeidsgiver', value: 'maal-ny-arbeidsgiver', id: 'maal-ny-arbeidsgiver' },
+        { label: 'Usikker', value: 'maal-usikker', id: 'maal-usikker' }
     ];
 
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { checked: 'maal-samme-stilling' };
+        this.state = { checked: MaalOption.IKKE_VALGT };
     }
 
     componentDidUpdate () {
@@ -56,12 +56,10 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
         }
     }
 
-    handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
-        const maalId: MaalOption = e.target.value as MaalOption;
-        this.props.doSettMaalId(maalId);
-        this.setState({ checked: maalId });
-        klikkPaMaalMetrikk(maalId);
+    handleChange(event: React.ChangeEvent<HTMLInputElement>, value: MaalOption) {
+        this.setState({ checked: value });
+        this.props.doSettMaalId(value);
+        klikkPaMaalMetrikk(value);
     }
 
     render() {
@@ -88,8 +86,8 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
                     name="situasjon"
                     legend=""
                     radios={IngressHarArbeidsgiver.radios}
-                    checked={this.state.checked}
                     onChange={this.handleChange}
+                    checked={this.state.checked}
                 />
             </section>
         );
