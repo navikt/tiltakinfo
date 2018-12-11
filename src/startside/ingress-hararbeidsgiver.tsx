@@ -48,7 +48,6 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
     }
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
         const maalId: MaalOption = e.target.value as MaalOption;
         this.props.doSettMaalId(maalId);
         klikkPaMaalMetrikk(maalId);
