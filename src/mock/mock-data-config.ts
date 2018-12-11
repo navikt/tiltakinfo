@@ -1,4 +1,4 @@
-import { ActiveUnleashFeatures } from '../unleash/unleash-duck';
+import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
 import { FremtidigSituasjonSvar, RegistreringDataState } from '../brukerdata/registrering-duck';
@@ -34,6 +34,7 @@ export enum MockConfigPropName {
     ER_SYKMELDT_URLMOCK = 'erSykmeldt',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
     VIS_TEKSTER = 'vistekster',
+    MELDING_BAERUM = 'tiltakInfoMeldingBaerum'
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
@@ -54,11 +55,12 @@ export interface BrukerMocks {
 
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
+        [tiltakInfoMeldingBaerum]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
             navn: 'mock',
-            enhetId: 'mock',
+            enhetId: '0219',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
@@ -66,11 +68,12 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
+        [tiltakInfoMeldingBaerum]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
             navn: 'mock',
-            enhetId: 'mock',
+            enhetId: '0219',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
@@ -85,11 +88,12 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
+        [tiltakInfoMeldingBaerum]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
             navn: 'mock',
-            enhetId: 'mock',
+            enhetId: '0219',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -97,11 +101,12 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
+        [tiltakInfoMeldingBaerum]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
             navn: 'mock',
-            enhetId: 'mock',
+            enhetId: '0219',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
@@ -109,15 +114,16 @@ export const brukerMocks: BrukerMocks = {
         },
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
+        [tiltakInfoMeldingBaerum]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
             navn: 'mock',
-            enhetId: 'mock',
+            enhetId: '0219',
         },
         [MockConfigPropName.SYFODATA]: {
             arbeidsSituasjonIAktiveSykmeldinger: [],
             erTiltakSykmeldteInngangAktiv: false,
         },
-    },
+    }
 };

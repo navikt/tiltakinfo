@@ -1,7 +1,9 @@
 import * as React from 'react';
 import 'nav-frontend-lenker-style';
-import './brodsmuler.less';
 import Tekst from '../finn-tekst';
+import brodsmuleikon from '../ikoner/person.svg';
+
+import './brodsmuler.less';
 
 interface OwnProps {
     arbeidsledig: boolean;
@@ -15,8 +17,8 @@ export default class Brodsmuler extends React.Component<OwnProps> {
     }
 
     render() {
-        const brodsmuleikon = require('../ikoner/person.svg');
-        const {arbeidsledig, sykmeldt } = this.props;
+        const {arbeidsledig, sykmeldt} = this.props;
+
         return (
             <nav className="brodsmuler" aria-label="Du er her:" >
                 <img src={brodsmuleikon} alt="" className="brodsmuler__ikon" />

@@ -1,36 +1,64 @@
 import * as React from 'react';
-import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
-import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import 'nav-frontend-paneler-style';
-import './kontakte-nav.less';
-import { OppfolgingState } from '../brukerdata/oppfolging-duck';
-import Datalaster from '../api/datalaster';
+import NavFrontendModal from 'nav-frontend-modal';
+import { Normaltekst, Innholdstittel, Sidetittel } from 'nav-frontend-typografi';
 import Tekst from '../finn-tekst';
+import Datalaster from '../api/datalaster';
+import { AppState } from '../redux/reducer';
 import { klikkPaGaTilAktivitetsplanen } from '../metrics';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
+import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
+import { selectBrukersNavn, State as BrukersNavnState } from '../redux/brukers-navn';
 
-const kontakteNavBilde = require('../ikoner/kontakt-oss.svg');
+import kontakteNavBilde from '../ikoner/kontakt-oss.svg';
+
+import './kontakte-nav.less';
 
 interface StateProps {
     oppfolging: OppfolgingState;
+    oppfolgingsEnhet: OppfolgingsEnhet;
+    brukersNavn: BrukersNavnState;
+}
+
+interface StateType {
+    modalIsOpen: boolean;
 }
 
 export type KontakteNavProps = StateProps;
 
 class KontakteNAV extends React.Component<KontakteNavProps> {
+    public state: StateType;
 
     constructor(props: KontakteNavProps) {
         super(props);
+        this.state = {
+            modalIsOpen: false
+        };
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    openModal() {
+        this.setState({modalIsOpen: true});
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false});
     }
 
     render() {
         const lenkeAktivitetsplan = '/aktivitetsplan';
-        const {oppfolging} = this.props;
+        const {oppfolging, oppfolgingsEnhet, brukersNavn} = this.props;
         const tekstId = oppfolging.underOppfolging
             ? 'kontaktenav-takontakt-underoppfolging'
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
+        const {modalIsOpen} = this.state;
+
+        const fulltNavn = brukersNavn.data.name !== undefined ? brukersNavn.data.name : 'Aksel Lund Svindal';
+
         return (
             <Datalaster avhengigheter={[oppfolging]}>
                 <section className="kontakte-nav-container">
@@ -42,7 +70,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                             <Innholdstittel className="blokk-s">
                                 <Tekst id={'kontaktenav-snakkmednav'}/>
                             </Innholdstittel>
-                            <Normaltekst>
+                            <Normaltekst className="blokk-s">
                                 <Tekst id={tekstId}/>
                             </Normaltekst>
                             {oppfolging.underOppfolging && (
@@ -56,8 +84,48 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                     </a>
                                 </div>
                             )}
+                            {!oppfolging.underOppfolging && oppfolgingsEnhet.enhetId === '0219' && (
+                                <div className="kontakt-kontor">
+                                    <Normaltekst className="blokk-s">
+                                        Ditt kontor er <strong>NAV Bærum</strong>.
+                                    </Normaltekst>
+                                    <button className="knapp knapp--hoved" onClick={() => this.openModal()}>
+                                        Kontakt NAV Bærum
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
+
+                    <NavFrontendModal
+                        isOpen={modalIsOpen}
+                        onRequestClose={() => this.closeModal()}
+                        closeButton={true}
+                        contentClass="kontaktModalInnhold"
+                        contentLabel="Kontakt NAV Bærum"
+                        ariaHideApp={false}
+                        bodyOpenClassName="modal__kontakt-nav"
+
+                    >
+                        <Sidetittel tag="h1" className="blokk-s">Kontakt<br/>NAV Bærum</Sidetittel>
+                        <Normaltekst className="blokk-s">Denne meldingen blir sendt til NAV Bærum:</Normaltekst>
+                        <Normaltekst className="sitat">
+                            "<strong>{fulltNavn}</strong> så informasjon om
+                            <strong> Arbeidsrettet rehabilitering</strong> og er interessert
+                            i å snakke om muligheter."
+                        </Normaltekst>
+                        <Normaltekst className="blokk-s">
+                            Etter at du har sendt meldingen, vil NAV
+                            Bærum ta kontakt med deg innen et par dager.
+                        </Normaltekst>
+                        <button className="knapp knapp--hoved blokk-xs">Send Melding</button>
+                        <Normaltekst className="subtekst">
+                            Dette er en ny tjeneste NAV tester ut. Informasonen din vil
+                            bli lagret og delt med utviklingsteamet og NAV Bærum.
+                            Personopplysninger slettes etter testperioden.
+                        </Normaltekst>
+
+                    </NavFrontendModal>
                 </section>
             </Datalaster>
         );
@@ -66,6 +134,8 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
+    oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
+    brukersNavn: selectBrukersNavn(state),
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

@@ -14,7 +14,7 @@ import { klikkPaMaalMetrikk } from '../metrics';
 
 polyfill();
 
-const velgMaalBilde = require('../ikoner/velg-maal.svg');
+import velgMaalBilde from '../ikoner/velg-maal.svg';
 
 interface StateProps {
     maalId: MaalOption;

@@ -9,6 +9,7 @@ import { MaalOption } from '../startside/tiltak-map';
 import genericDuck from './generic-duck';
 import { Bruker } from '../mock/mock-data-config';
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
+import brukersNavn, { State as BrukersNavnState } from './brukers-navn';
 
 export interface MaalState {
     id: MaalOption;
@@ -44,6 +45,7 @@ export interface AppState {
     syfoSituasjon: SyfoSituasjonState;
     demobruker: DemoBrukerState;
     registrering: RegistreringState;
+    brukersNavn: BrukersNavnState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -54,4 +56,5 @@ export const reducer = combineReducers<AppState>({
     registrering: registreringReducer,
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
+    brukersNavn,
 });

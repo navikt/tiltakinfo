@@ -8,6 +8,7 @@ export enum Status {
     LASTER = 'LASTER',
     FEILET = 'FEILET',
     IKKE_STARTET = 'IKKE_STARTET',
+    RELASTER = 'RELASTER'
 }
 
 export interface DataElement {

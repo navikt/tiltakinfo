@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import TiltakKomponent from './tiltak-komponent';
 
-const veilederBilde = require('../ikoner/veileder-dame.svg');
+import veilederBilde from '../ikoner/veileder-dame.svg';
 
 interface OwnProps {
     tiltakErBasertPaMaal: boolean;

@@ -2,12 +2,14 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import * as queryString from 'query-string';
 import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
+import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 
 interface ResponseObject {
     [key: string]: any; // tslint:disable-line:no-any
 }
 
 interface MockAPI {
+    getUnleash: ResponseObject;
     getOppfolging: ResponseObject;
     getOppfolgingsstatus: ResponseObject;
     getSyfo: ResponseObject;
@@ -40,11 +42,11 @@ export default () => {
     };
 
     const mockVerdier = {
-        [MockConfigPropName.UNDER_OPPFOLGING] : verdiFraUrl(MockConfigPropName.UNDER_OPPFOLGING),
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN] : verdiFraUrl(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
-        [MockConfigPropName.SERVICEGRUPPE] : verdiFraUrl(MockConfigPropName.SERVICEGRUPPE),
-        [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK] : verdiFraUrl(MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK),
-        [MockConfigPropName.ER_SYKMELDT_URLMOCK] : verdiFraUrl(MockConfigPropName.ER_SYKMELDT_URLMOCK),
+        [MockConfigPropName.UNDER_OPPFOLGING]: verdiFraUrl(MockConfigPropName.UNDER_OPPFOLGING),
+        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: verdiFraUrl(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
+        [MockConfigPropName.SERVICEGRUPPE]: verdiFraUrl(MockConfigPropName.SERVICEGRUPPE),
+        [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: verdiFraUrl(MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK),
+        [MockConfigPropName.ER_SYKMELDT_URLMOCK]: verdiFraUrl(MockConfigPropName.ER_SYKMELDT_URLMOCK),
     };
 
     const finnVerdi = (urlKey: string) => {
@@ -75,7 +77,10 @@ export default () => {
             oppfolgingsenhet: finnVerdi(MockConfigPropName.OPPFOLGINGSENHET)
         },
         getSyfo: finnVerdi(MockConfigPropName.SYFODATA),
-        getRegistrering: finnVerdi(MockConfigPropName.REGISTRERING)
+        getRegistrering: finnVerdi(MockConfigPropName.REGISTRERING),
+        getUnleash: {
+            [tiltakInfoMeldingBaerum]: finnVerdi(tiltakInfoMeldingBaerum)
+        }
     };
 
     fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
@@ -86,4 +91,5 @@ export default () => {
 
     fetchMock.get(API.getRegistrering, mockAPI.getRegistrering);
 
+    fetchMock.get(API.getUnleash, mockAPI.getUnleash);
 };

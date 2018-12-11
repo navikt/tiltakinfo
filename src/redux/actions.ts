@@ -22,7 +22,10 @@ export enum ActionType {
     SETT_BRUKERTYPE = 'SETT_BRUKERTYPE',
     HENT_REGISTRERING_OK = 'HENT_REGISTRERING_OK',
     HENT_REGISTRERING_LASTER = 'HENT_REGISTRERING_LASTER',
-    HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET'
+    HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET',
+    HENT_BRUKERS_NAVN_OK = 'HENT_BRUKERS_NAVN_OK',
+    HENT_BRUKERS_NAVN_PENDING = 'HENT_BRUKERS_NAVN_PENDING',
+    HENT_BRUKERS_NAVN_FEILET = 'HENT_BRUKERS_NAVN_FEILET'
 }
 
 export interface TestAction extends Data {
@@ -93,6 +96,19 @@ export interface HentRegistreringFEILETAction {
     type: ActionType.HENT_REGISTRERING_FEILET;
 }
 
+export interface HentBrukersNavnOKAction {
+    brukernavn: string;
+    type: ActionType.HENT_BRUKERS_NAVN_OK;
+}
+
+export interface HentBrukersNavnPENDINGAction {
+    type: ActionType.HENT_BRUKERS_NAVN_PENDING;
+}
+
+export interface HentBrukersNavnFEILETAction {
+    type: ActionType.HENT_BRUKERS_NAVN_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -109,4 +125,7 @@ export type Handling =
     | HentSyfoFEILETAction
     | HentRegistreringOKAction
     | HentRegistreringLASTERAction
-    | HentRegistreringFEILETAction;
+    | HentRegistreringFEILETAction
+    | HentBrukersNavnOKAction
+    | HentBrukersNavnPENDINGAction
+    | HentBrukersNavnFEILETAction;
