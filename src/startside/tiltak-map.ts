@@ -22,7 +22,22 @@ export enum SituasjonOption {
     SPESIELT_TILPASSET = 'BATT',
 }
 
-export const tiltakMap = {
+interface TiltakMap {
+    // Sykmeldt med arbeidsgiver
+    [MaalOption.SAMME_STILLING]: TiltakId[];
+    [MaalOption.SAMME_ARBEIDSGIVER]: TiltakId[];
+    [MaalOption.NY_ARBEIDSGIVER]: TiltakId[];
+    [MaalOption.USIKKER]: TiltakId[];
+
+    // Sykmeldt uten arbeidsgiver
+    [SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER]: TiltakId[];
+
+    // Ikke sykmeldt
+    [SituasjonOption.SITUASJONSBESTEMT]: TiltakId[];
+    [SituasjonOption.SPESIELT_TILPASSET]: TiltakId[];
+}
+
+export const tiltakMap: TiltakMap = {
     // Sykmeldt med arbeidsgiver
     [MaalOption.SAMME_STILLING]: [TiltakId.TILRETTELEGGING, TiltakId.ARBEIDSRETTET_REHABILITERING],
     [MaalOption.SAMME_ARBEIDSGIVER]: [TiltakId.MENTOR, TiltakId.OPPLAERING_SAMME_ARBEIDSGIVER],
