@@ -8,12 +8,10 @@ const veilederBilde = require('../ikoner/veileder-dame.svg');
 
 export default function IngressUtenArbeidsgiver() {
     return (
-        <section className="ingress">
-            <Veilederpanel svg={<img src={veilederBilde} alt="" aria-hidden="true"/>} type="plakat" kompakt={true}>
-                <Ingresskomponent>
-                    <Tekst id="ingress-utenarbeidsgiver"/>
-                </Ingresskomponent>
-            </Veilederpanel>
-        </section>
+        <Veilederpanel svg={<img src={veilederBilde} alt="" aria-hidden="true"/>} type="plakat" kompakt={true}>
+            <Ingresskomponent>
+                <Tekst id="ingress-utenarbeidsgiver"/>
+            </Ingresskomponent>
+        </Veilederpanel>
     );
 }

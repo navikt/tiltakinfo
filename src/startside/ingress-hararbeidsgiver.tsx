@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import './ingress-utenarbeidsgiver.less';
-import Tekst from '../finn-tekst';
+import Tekst, { utledTekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
 import './ingress-hararbeidsgiver.less';
@@ -64,7 +64,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
 
     render() {
         return (
-            <section className="ingress">
+            <>
                 <div className="ingress__intro">
                     <img
                         src={velgMaalBilde}
@@ -75,21 +75,19 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
                     <Innholdstittel tag="h2" className="ingress__tittel">
                         <Tekst id="ingress-medarbeidsgiver"/>
                     </Innholdstittel>
-                    <span className="ingress__label-alternativer">
+                    <p className="blokk-m">
                         <Tekst id="ingress-medarbeidsgiver-tillegg"/>
-                    </span>
+                    </p>
                 </div>
-                <span className="skjult" id="beskrivendetekst">
-                    <Tekst id="ingress-radiopanelgruppe-skjult"/>
-                </span>
                 <RadioPanelGruppe
+                    className="ingress__radiopanel"
                     name="situasjon"
-                    legend=""
+                    legend={utledTekst('ingress-radiopanelgruppe-skjult')}
                     radios={IngressHarArbeidsgiver.radios}
                     onChange={this.handleChange}
                     checked={this.state.checked}
                 />
-            </section>
+            </>
         );
     }
 }

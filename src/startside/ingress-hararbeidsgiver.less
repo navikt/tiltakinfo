@@ -1,100 +1,45 @@
-/*@import '~nav-frontend-typografi-style/src/mixins';
-@import '~nav-frontend-typografi-style/src/fontimports';
 @import '../../node_modules/nav-frontend-core/less/_variabler';
-@import './check-white';
 
-.ingress {
-    margin-bottom: 1rem;
+.ingress__intro {
+    text-align: center;
+    padding: 0 2.8rem;
 
-    .ingress__intro {
-        text-align: center;
-        padding: 0 2.8rem;
-        margin-bottom: 47px;
-
-        img {
-            height: 150px;
-            width: 220px;
-        }
-
-        .ingress__label-alternativer {
-            .typo-ingress-mixin();
-        }
-
-        .ingress__tittel {
-            margin-bottom: 25px;
-        }
+    img {
+        height: 150px;
+        width: 220px;
     }
 
-    ul.ingress__maal {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
+    .ingress__tittel {
+        margin-bottom: 3rem;
     }
+}
 
-    .skjult {
+.ingress__radiopanel {
+    legend {
         position: absolute;
+        width: 0;
+        height: 0;
         overflow: hidden;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        width: 1px;
-        margin: -1px;
-        padding: 0;
-        border: 0;
     }
+    .inputPanelGruppe__inner {
+        display: block;
 
-    // Hack for at ikke hvit checker med blå bakgrunn skal forsvinne når man ikke hovrer over radiopanelet.
-    // Kopiert fra nav-frontend-skjema-style
-
-    .radioPanel {
-        &.inputPanel {
-            &--checked {
-                cursor: default;
-
-                &:hover:not(.inputPanel--disabled),
-                &:not(:hover):not(.inputPanel--disabled) { // Dette er endringen som fikser buggen
-                    background-color: rgba(0, 103, 197, 0.2);
-                    border: 1px solid transparent;
-                    box-shadow: none;
-
-                    .inputPanel__field + .inputPanel__label:before {
-                        background-color: @navBla;
-                        background-image: @checkWhite;
-                    }
-                }
-            }
+        .radioPanel {
+            width: auto;
         }
     }
 }
 
 @media (min-width: @screen-sm-min) {
-    .ingress {
-        .ingress__intro {
-            margin-bottom: 16px;
-
-            .ingress__label-alternativer {
-                .typo-normal-mixin();
-            }
-            .ingress__tittel {
-                margin-bottom: 48px;
-            }
-        }
-
-        ul.ingress__maal {
-            list-style: none;
-            padding: 0;
+    .ingress__radiopanel {
+        .inputPanelGruppe__inner {
             display: flex;
-            flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
 
-            li {
+            .radioPanel {
                 width: 49%;
             }
         }
     }
-
-    .ingress-container:last-child {
-        margin-bottom: 12rem;
-    }
-} */
+}
