@@ -2,6 +2,7 @@ import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
 import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
 import { erDemo } from './utils';
+import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 
 interface Demobruker {
     [key: string]: string;
@@ -78,4 +79,12 @@ export default () => {
     if (mockDataRegistrering !== undefined) {
         fetchMock.get(API.getRegistrering, mockDataRegistrering);
     }
+
+    fetchMock.get(API.hentBrukersNavn, {
+        [MockConfigPropName.BRUKERNAVN]: mockData[MockConfigPropName.BRUKERNAVN]
+    });
+
+    fetchMock.get(API.getUnleash, {
+        [tiltakInfoMeldingBaerum]: mockData[tiltakInfoMeldingBaerum]
+    });
 };

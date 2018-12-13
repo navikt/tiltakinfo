@@ -7,6 +7,7 @@ import { OppfolgingsstatusState, hentOppfolgingsstatus } from './brukerdata/oppf
 import { hentSyfo, SyfoSituasjonState } from './brukerdata/syfo-duck';
 import Datalaster from './api/datalaster';
 import { hentRegistrering, RegistreringState } from './brukerdata/registrering-duck';
+import { hentBrukernavn } from './redux/brukernavn-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -24,6 +25,7 @@ interface DispatchProps {
     doHentOppfolgingsstatus: () => void;
     doHentSyfo: () => void;
     doHentRegistrering: () => void;
+    doHentBrukersNavn: () => void;
 }
 
 type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
@@ -38,6 +40,7 @@ class DataProvider extends React.Component<UnleashProviderProps> {
         this.props.doHentOppfolgingsstatus();
         this.props.doHentSyfo();
         this.props.doHentRegistrering();
+        this.props.doHentBrukersNavn();
     }
 
     render() {
@@ -64,7 +67,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolging: () => hentOppfolging()(dispatch),
     doHentOppfolgingsstatus: () => hentOppfolgingsstatus()(dispatch),
     doHentSyfo: () => hentSyfo()(dispatch),
-    doHentRegistrering: () => hentRegistrering()(dispatch)
+    doHentRegistrering: () => hentRegistrering()(dispatch),
+    doHentBrukersNavn: () => hentBrukernavn()(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

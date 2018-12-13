@@ -9,7 +9,7 @@ import { MaalOption } from '../startside/tiltak-map';
 import genericDuck from './generic-duck';
 import { Bruker } from '../mock/mock-data-config';
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
-import brukersNavn, { State as BrukersNavnState } from './brukers-navn';
+import brukersNavn, { State as BrukersNavnState } from './brukernavn-duck';
 
 export interface MaalState {
     id: MaalOption;

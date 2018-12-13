@@ -11,11 +11,13 @@ import { AppState } from '../redux/reducer';
 import { klikkPaGaTilAktivitetsplanen } from '../metrics';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
-import { selectBrukersNavn, State as BrukersNavnState } from '../redux/brukers-navn';
+import { State as BrukersNavnState } from '../redux/brukernavn-duck';
+import Feature from '../unleash/feature';
 
 import kontakteNavBilde from '../ikoner/kontakt-oss.svg';
 
 import './kontakte-nav.less';
+import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 
 interface StateProps {
     oppfolging: OppfolgingState;
@@ -60,7 +62,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
         const fulltNavn = brukersNavn.data.name !== undefined ? brukersNavn.data.name : 'Aksel Lund Svindal';
 
         return (
-            <Datalaster avhengigheter={[oppfolging]}>
+            <Datalaster avhengigheter={[oppfolging, brukersNavn]}>
                 <section className="kontakte-nav-container">
                     <div className="panel panel--border kontakte-nav">
                         <div className="kontakte-nav__bilde">
@@ -84,16 +86,20 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                     </a>
                                 </div>
                             )}
-                            {!oppfolging.underOppfolging && oppfolgingsEnhet.enhetId === '0219' && (
-                                <div className="kontakt-kontor">
-                                    <Normaltekst className="blokk-s">
-                                        Ditt kontor er <strong>NAV Bærum</strong>.
-                                    </Normaltekst>
-                                    <button className="knapp knapp--hoved" onClick={() => this.openModal()}>
-                                        Kontakt NAV Bærum
-                                    </button>
-                                </div>
-                            )}
+                            <Feature name={tiltakInfoMeldingBaerum}>
+                                <>
+                                    {!oppfolging.underOppfolging && oppfolgingsEnhet.enhetId === '0219' && (
+                                        <div className="kontakt-kontor">
+                                            <Normaltekst className="blokk-s">
+                                                Ditt kontor er <strong>NAV Bærum</strong>.
+                                            </Normaltekst>
+                                            <button className="knapp knapp--hoved" onClick={() => this.openModal()}>
+                                                Kontakt NAV Bærum
+                                            </button>
+                                        </div>
+                                    )}
+                                </>
+                            </Feature>
                         </div>
                     </div>
 
@@ -135,7 +141,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    brukersNavn: selectBrukersNavn(state),
+    brukersNavn: state.brukersNavn,
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

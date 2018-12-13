@@ -1,34 +1,27 @@
 import * as Api from '../api/api';
-import { AppState } from './reducer';
 import {
-    ActionType,
+    ActionType, Handling,
     HentBrukersNavnFEILETAction,
     HentBrukersNavnOKAction,
     HentBrukersNavnPENDINGAction,
 } from './actions';
 import { fetchThenDispatch } from '../api/fetch-utils';
-import { Status } from '../api/datalaster';
-
-export interface State {
-    data: Data;
-    status: string;
-}
+import { DataElement, Status } from '../api/datalaster';
 
 export interface Data {
     name?: string;
 }
 
-interface Action {
-    type: ActionType;
+export interface State extends DataElement {
     data: Data;
 }
 
-const initialState = {
+const initialState: State = {
     data: {},
     status: Status.IKKE_STARTET
 };
 
-export default function (state: State = initialState, action: Action): State {
+export default function (state: State = initialState, action: Handling): State {
     switch (action.type) {
         case ActionType.HENT_BRUKERS_NAVN_PENDING:
             if (state.status === Status.OK) {
@@ -38,7 +31,7 @@ export default function (state: State = initialState, action: Action): State {
         case ActionType.HENT_BRUKERS_NAVN_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_BRUKERS_NAVN_OK: {
-            return {...state, status: Status.OK, data: action.data};
+            return {...state, status: Status.OK, data: {name: action.name}};
         }
         default:
             return state;
@@ -53,18 +46,14 @@ export function hentBrukernavn() {
     });
 }
 
-export function selectBrukersNavn(state: AppState): State {
-    return state.brukersNavn;
-}
-
 interface Bruker {
-    navn: string;
+    name: string;
 }
 
 function hentBrukernavnOk(bruker: Bruker): HentBrukersNavnOKAction {
     return {
         type: ActionType.HENT_BRUKERS_NAVN_OK,
-        brukernavn: bruker.navn
+        name: bruker.name
     };
 }
 

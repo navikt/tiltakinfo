@@ -97,7 +97,7 @@ export interface HentRegistreringFEILETAction {
 }
 
 export interface HentBrukersNavnOKAction {
-    brukernavn: string;
+    name: string;
     type: ActionType.HENT_BRUKERS_NAVN_OK;
 }
 
