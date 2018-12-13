@@ -1,19 +1,10 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
-import * as queryString from 'query-string';
-import { Bruker, brukerMocks, MockConfigPropName } from './mock-data-config';
-import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
+import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
+import { erDemo } from './utils';
 
-interface ResponseObject {
-    [key: string]: any; // tslint:disable-line:no-any
-}
-
-interface MockAPI {
-    getUnleash: ResponseObject;
-    getOppfolging: ResponseObject;
-    getOppfolgingsstatus: ResponseObject;
-    getSyfo: ResponseObject;
-    getRegistrering: ResponseObject;
+interface Demobruker {
+    [key: string]: string;
 }
 
 export default () => {
@@ -27,69 +18,64 @@ export default () => {
         enableFallback: true, // default: true
         middleware: MiddlewareUtils.combine(
             MiddlewareUtils.delayMiddleware(200),
-            MiddlewareUtils.failurerateMiddleware(0.01),
-            loggingMiddleware
-        )
+            MiddlewareUtils.failurerateMiddleware(0.00),
+            loggingMiddleware,
+        ),
     });
 
     console.log('### FULL MOCK AKTIVERT! ###'); // tslint:disable-line:no-console
 
-    const toBoolean = (arg: string): boolean => arg === 'true';
-
-    const verdiFraUrl = (nokkel: string) => {
-        const queryParamsParsed = queryString.parse(location.search);
-        return queryParamsParsed[nokkel];
-    };
-
-    const mockVerdier = {
-        [MockConfigPropName.UNDER_OPPFOLGING]: verdiFraUrl(MockConfigPropName.UNDER_OPPFOLGING),
-        [MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN]: verdiFraUrl(MockConfigPropName.HAR_GYLDIG_OIDC_TOKEN),
-        [MockConfigPropName.SERVICEGRUPPE]: verdiFraUrl(MockConfigPropName.SERVICEGRUPPE),
-        [MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK]: verdiFraUrl(MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK),
-        [MockConfigPropName.ER_SYKMELDT_URLMOCK]: verdiFraUrl(MockConfigPropName.ER_SYKMELDT_URLMOCK),
-    };
-
-    const finnVerdi = (urlKey: string) => {
-        if (urlKey === MockConfigPropName.SYFODATA || urlKey === MockConfigPropName.REGISTRERING) {
-            if (toBoolean(mockVerdier[MockConfigPropName.HAR_ARBEIDSGIVER_URLMOCK])) {
-                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER][urlKey];
-            } else if (toBoolean(mockVerdier[MockConfigPropName.ER_SYKMELDT_URLMOCK])) {
-                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER][urlKey];
-            } else {
-                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][urlKey];
-            }
-        } else if (mockVerdier[urlKey] !== undefined) {
-            if (urlKey === MockConfigPropName.SERVICEGRUPPE) {
-                return mockVerdier[urlKey];
-            } else {
-                return toBoolean(mockVerdier[urlKey]);
-            }
+    const hentLagretDemoBruker = (): Bruker => {
+        let lagretDemobruker = Bruker.DEFAULT_MOCK;
+        const demobrukerLocalStorage = localStorage.getItem('demoBrukerState');
+        if (demobrukerLocalStorage) {
+            const demobruker: Demobruker = JSON.parse(demobrukerLocalStorage);
+            brukerOptionsRekkefolge.forEach((bruker: Bruker) => {
+                if (bruker === demobruker.id) {
+                    lagretDemobruker = bruker;
+                }
+            });
         }
-        return brukerMocks[Bruker.UTENFOR_MAALGRUPPE][urlKey];
+        return lagretDemobruker;
     };
 
-    const mockAPI: MockAPI = {
-        getOppfolging: {
-            underOppfolging: finnVerdi(MockConfigPropName.UNDER_OPPFOLGING),
-        },
-        getOppfolgingsstatus: {
-            servicegruppe: finnVerdi(MockConfigPropName.SERVICEGRUPPE),
-            oppfolgingsenhet: finnVerdi(MockConfigPropName.OPPFOLGINGSENHET)
-        },
-        getSyfo: finnVerdi(MockConfigPropName.SYFODATA),
-        getRegistrering: finnVerdi(MockConfigPropName.REGISTRERING),
-        getUnleash: {
-            [tiltakInfoMeldingBaerum]: finnVerdi(tiltakInfoMeldingBaerum)
+    const finnMockConfig = (): MockConfig => {
+        if (erDemo()) {
+            const lagretDemoBruker = hentLagretDemoBruker();
+            if (lagretDemoBruker === Bruker.SYKMELDT_MED_ARBEIDSGIVER) {
+                return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER];
+            } else if (lagretDemoBruker === Bruker.SYKMELDT_UTEN_ARBEIDSGIVER) {
+                return brukerMocks[Bruker.SYKMELDT_UTEN_ARBEIDSGIVER];
+            } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET) {
+                return brukerMocks[Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET];
+            } else if (lagretDemoBruker === Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT) {
+                return brukerMocks[Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT];
+            } else {
+                return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
+            }
+        } else {
+            return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
         }
     };
 
-    fetchMock.get(API.getOppfolging, mockAPI.getOppfolging);
+    const mockData: MockConfig = finnMockConfig();
 
-    fetchMock.get(API.getOppfolgingsstatus, mockAPI.getOppfolgingsstatus);
+    fetchMock.get(API.getOppfolging, {
+        [MockConfigPropName.UNDER_OPPFOLGING]: mockData[MockConfigPropName.UNDER_OPPFOLGING],
+    });
 
-    fetchMock.get(API.getSyfo, mockAPI.getSyfo);
+    fetchMock.get(API.getOppfolgingsstatus, {
+        [MockConfigPropName.OPPFOLGINGSENHET]: mockData[MockConfigPropName.OPPFOLGINGSENHET],
+        [MockConfigPropName.SERVICEGRUPPE]: mockData[MockConfigPropName.SERVICEGRUPPE],
+    });
 
-    fetchMock.get(API.getRegistrering, mockAPI.getRegistrering);
+    fetchMock.get(API.getSyfo, {
+        [MockConfigPropName.ER_SYKMELDT]: mockData[MockConfigPropName.ER_SYKMELDT],
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: mockData[MockConfigPropName.HAR_ARBEIDSGIVER],
+    });
 
-    fetchMock.get(API.getUnleash, mockAPI.getUnleash);
+    const mockDataRegistrering = mockData[MockConfigPropName.REGISTRERING];
+    if (mockDataRegistrering !== undefined) {
+        fetchMock.get(API.getRegistrering, mockDataRegistrering);
+    }
 };

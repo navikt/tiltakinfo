@@ -6,8 +6,9 @@ import {
     ActionType, Handling,
     HentRegistreringFEILETAction, HentRegistreringLASTERAction, HentRegistreringOKAction
 } from '../redux/actions';
+import { JSONObject } from 'yet-another-fetch-mock';
 
-export enum FremtidigSituasjonSvar {
+export enum MaalFraRegistrering {
     IKKE_VALGT = 'IKKE_VALGT',
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
@@ -16,24 +17,21 @@ export enum FremtidigSituasjonSvar {
     INGEN_PASSER = 'INGEN_PASSER'
 }
 
-export interface Besvarelse {
-    fremtidigSituasjon: FremtidigSituasjonSvar;
-}
-
-export interface Registrering {
-    besvarelse: Besvarelse;
-}
-
-export interface RegistreringDataState {
-    registrering: Registrering;
+export interface RegistreringDataState extends JSONObject {
+    registrering: {
+        besvarelse: {
+            fremtidigSituasjon: MaalFraRegistrering;
+        };
+    };
 }
 
 export interface RegistreringState extends DataElement {
-    registreringData?: RegistreringDataState;
+    maalFraRegistrering: MaalFraRegistrering;
 }
 
 const initialState: RegistreringState = {
     status: Status.IKKE_STARTET,
+    maalFraRegistrering: MaalFraRegistrering.IKKE_VALGT,
 };
 
 // Reducer
@@ -44,7 +42,11 @@ export default function (state: RegistreringState = initialState, action: Handli
         case ActionType.HENT_REGISTRERING_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_REGISTRERING_OK:
-            return {...state, status: Status.OK, registreringData: action.registreringData};
+            return {
+                ...state,
+                status: Status.OK,
+                maalFraRegistrering: action.registreringData.registrering.besvarelse.fremtidigSituasjon
+            };
         default:
             return state;
     }

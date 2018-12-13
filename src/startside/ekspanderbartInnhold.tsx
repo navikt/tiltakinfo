@@ -16,13 +16,14 @@ export interface OwnProps {
     harEkspanderbartInnhold?: boolean;
 }
 
-const EkspanderbartInnhold: React.StatelessComponent<OwnProps> = ({
-                                                                      children,
-                                                                      animert = true,
-                                                                      harEkspanderbartInnhold = false,
-                                                                      erApen = false,
-                                                                      ariaLive = 'off'
-                                                                  }) => {
+const EkspanderbartInnhold: React.StatelessComponent<OwnProps> = (
+    {
+        children,
+        animert = true,
+        harEkspanderbartInnhold = false,
+        erApen = false,
+        ariaLive = 'off'
+    }) => {
     const content = (
         <div aria-live={ariaLive}>{erApen ? <>{children}</> : null}</div>
     );

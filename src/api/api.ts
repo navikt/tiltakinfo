@@ -6,6 +6,8 @@ import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duc
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
 
+export const INNLOGGINGSLINJE_URL = '/innloggingslinje/auth';
+
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
     const match = re.exec(document.cookie);
@@ -26,6 +28,7 @@ interface ApiProps {
     getOppfolgingsstatus: string;
     getSyfo: string;
     getRegistrering: string;
+    hentBrukersNavn: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -38,7 +41,8 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolging/api/oppfolging',
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     getSyfo: '/syforest/sykeforloep/metadata',
-    getRegistrering: '/veilarbregistrering/api/registrering'
+    getRegistrering: '/veilarbregistrering/api/registrering',
+    hentBrukersNavn: INNLOGGINGSLINJE_URL
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -61,8 +65,6 @@ export function getSyfoFetch(): Promise<SyfoDataState> {
 export function getRegistrering(): Promise<RegistreringDataState> {
     return fetchToJson(API.getRegistrering, requestConfig);
 }
-
-export const INNLOGGINGSLINJE_URL = '/innloggingslinje/auth';
 
 function getHeaders() {
     return new Headers({

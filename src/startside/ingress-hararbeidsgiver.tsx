@@ -48,7 +48,6 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
     }
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        e.preventDefault();
         const maalId: MaalOption = e.target.value as MaalOption;
         this.props.doSettMaalId(maalId);
         klikkPaMaalMetrikk(maalId);
@@ -63,6 +62,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
                     <img
                         src={velgMaalBilde}
                         alt=""
+                        aria-hidden="true"
                         className="velg-maal-bilde blokk-l"
                     />
                     <Innholdstittel tag="h2" className="ingress__tittel">
@@ -83,7 +83,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, IngressState>
                     {MAAL_OPTIONS_REKKEFOLGE.map(tekstId => (
                         <li key={tekstId} className="blokk-xs">
                             <RadioPanel
-                                name={tekstId}
+                                name="situasjon"
                                 checked={maalId === tekstId}
                                 label={utledTekst(tekstId)}
                                 value={tekstId}

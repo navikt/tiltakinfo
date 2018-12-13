@@ -1,7 +1,6 @@
 import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
-import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
-import { FremtidigSituasjonSvar, RegistreringDataState } from '../brukerdata/registrering-duck';
+import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',
@@ -23,15 +22,10 @@ export const brukerOptionsRekkefolge = [
 
 export enum MockConfigPropName {
     UNDER_OPPFOLGING = 'underOppfolging',
-    ER_INNLOGGET = 'erInnlogget',
-    HAR_GYLDIG_OIDC_TOKEN = 'harGyldigOidcToken',
-    NIVA = 'niva',
-    NIVA_OIDC = 'nivaOidc',
     SERVICEGRUPPE = 'servicegruppe',
-    SYFODATA = 'syfoData',
     REGISTRERING = 'registrering',
-    HAR_ARBEIDSGIVER_URLMOCK = 'harArbeidsgiver',
-    ER_SYKMELDT_URLMOCK = 'erSykmeldt',
+    HAR_ARBEIDSGIVER = 'arbeidsSituasjonIAktiveSykmeldinger',
+    ER_SYKMELDT = 'erTiltakSykmeldteInngangAktiv',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
     VIS_TEKSTER = 'vistekster',
     MELDING_BAERUM = 'tiltakInfoMeldingBaerum'
@@ -41,7 +35,8 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.UNDER_OPPFOLGING]: boolean;
     [MockConfigPropName.SERVICEGRUPPE]: string;
     [MockConfigPropName.OPPFOLGINGSENHET]: OppfolgingsEnhet;
-    [MockConfigPropName.SYFODATA]: SyfoDataState;
+    [MockConfigPropName.ER_SYKMELDT]: boolean;
+    [MockConfigPropName.HAR_ARBEIDSGIVER]: string[];
     [MockConfigPropName.REGISTRERING]?: RegistreringDataState;
 }
 
@@ -62,10 +57,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: '0219',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: ['ARBEIDSLEDIG'],
-            erTiltakSykmeldteInngangAktiv: true,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: ['ARBEIDSLEDIG'],
+        [MockConfigPropName.ER_SYKMELDT]: true,
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -75,14 +68,12 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: '0219',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: ['FRILANSER'],
-            erTiltakSykmeldteInngangAktiv: true,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: ['FRILANSER'],
+        [MockConfigPropName.ER_SYKMELDT]: true,
         [MockConfigPropName.REGISTRERING]: {
             registrering: {
                 besvarelse: {
-                    fremtidigSituasjon: FremtidigSituasjonSvar.IKKE_VALGT
+                    fremtidigSituasjon: MaalFraRegistrering.IKKE_VALGT
                 }
             }
         },
@@ -95,10 +86,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: '0219',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -108,10 +97,8 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: '0219',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -121,9 +108,7 @@ export const brukerMocks: BrukerMocks = {
             navn: 'mock',
             enhetId: '0219',
         },
-        [MockConfigPropName.SYFODATA]: {
-            arbeidsSituasjonIAktiveSykmeldinger: [],
-            erTiltakSykmeldteInngangAktiv: false,
-        },
-    }
+        [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
+        [MockConfigPropName.ER_SYKMELDT]: false,
+    },
 };
