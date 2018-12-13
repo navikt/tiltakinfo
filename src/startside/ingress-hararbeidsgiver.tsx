@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './ingress-utenarbeidsgiver.less';
 import Tekst, { utledTekst } from '../finn-tekst';
 import { AppState, maalDuck } from '../redux/reducer';
@@ -33,10 +33,10 @@ interface State {
 class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
 
     static radios = [
-        { label: 'Samme jobb hos samme arbeidsgiver', value: 'maal-samme-stilling', id: 'maal-samme-stilling' },
-        { label: 'Annen jobb hos arbeidsgiveren min', value: 'maal-samme-arbeidsgiver', id: 'maal-samme-arbeidsgiver' },
-        { label: 'Jobbe hos en annen arbeidsgiver', value: 'maal-ny-arbeidsgiver', id: 'maal-ny-arbeidsgiver' },
-        { label: 'Usikker', value: 'maal-usikker', id: 'maal-usikker' }
+        { label: utledTekst('maal-samme-stilling'), value: MaalOption.SAMME_STILLING, id: MaalOption.SAMME_STILLING },
+        { label: utledTekst('maal-samme-arbeidsgiver'), value: MaalOption.SAMME_ARBEIDSGIVER, id: MaalOption.SAMME_ARBEIDSGIVER }, // tslint:disable-line
+        { label: utledTekst('maal-ny-arbeidsgiver'), value: MaalOption.NY_ARBEIDSGIVER, id: MaalOption.NY_ARBEIDSGIVER }, // tslint:disable-line
+        { label: utledTekst('maal-usikker'), value: MaalOption.USIKKER, id: MaalOption.USIKKER }
     ];
 
     constructor(props: IngressProps) {
@@ -72,12 +72,12 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
                         aria-hidden="true"
                         className="velg-maal-bilde blokk-l"
                     />
-                    <Innholdstittel tag="h2" className="ingress__tittel">
+                    <Innholdstittel tag="h2" className="blokk-s">
                         <Tekst id="ingress-medarbeidsgiver"/>
                     </Innholdstittel>
-                    <p className="blokk-m">
+                    <Normaltekst className="blokk-m">
                         <Tekst id="ingress-medarbeidsgiver-tillegg"/>
-                    </p>
+                    </Normaltekst>
                 </div>
                 <RadioPanelGruppe
                     className="ingress__radiopanel"
