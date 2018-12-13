@@ -84,7 +84,7 @@ class Startside extends React.Component<StartsideProps> {
                                     tiltakErBasertPaMaal={sykmeldtMedArbeidsgiver}
                                     sykmeldt={sykmeldt}
                                     sykmeldtMedArbeidsgiver={sykmeldtMedArbeidsgiver}
-                                    oppfolgingsstatus={oppfolgingsstatus.situasjon}
+                                    situasjon={oppfolgingsstatus.situasjon}
                                 />
                             </section>
                             <section className="app-content-kontakte-nav blokk-xl">

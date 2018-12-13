@@ -41,3 +41,6 @@ fasitResources:
     path: /tiltakinfo
 
 webproxy: true
+
+alertProfiles:
+  - pus-decorator
