@@ -1,29 +1,36 @@
 @import '../../node_modules/nav-frontend-core/less/_variabler';
 @import '../farger';
 
-.ingress {
-    margin-bottom: 3rem;
+.ingress__uten {
+    .ingress-container {
+        margin-bottom: 1rem;
 
-    .nav-veilederpanel--kompakt.nav-veilederpanel--plakat {
-        margin-top: 5rem;
-    }
-    .nav-veilederpanel {
-        border: 4px solid @foBlaBackground;
-    }
-    .nav-veileder {
-        img {
-            height: 100%;
+        .nav-veilederpanel--kompakt.nav-veilederpanel--plakat {
+            margin-top: 5rem;
+        }
+
+        .nav-veilederpanel {
+            border: 4px solid @foBlaBackground;
+        }
+
+        .nav-veileder {
+            img {
+                height: 100%;
+            }
         }
     }
 }
 
 @media (min-width: @screen-sm-min) {
-    .ingress {
-        margin-bottom: 104px;
-        .nav-veilederpanel .nav-veileder {
-            & + div {
-                margin-left: auto;
-                margin-right: auto;
+    .ingress__uten {
+        .ingress-container {
+            margin-bottom: 1rem;
+
+            .nav-veilederpanel .nav-veileder {
+                & + div {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
             }
         }
     }
