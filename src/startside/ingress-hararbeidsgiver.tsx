@@ -42,7 +42,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { checked: MaalOption.IKKE_VALGT };
+        this.state = { checked: this.props.maalId };
     }
 
     componentDidUpdate () {
