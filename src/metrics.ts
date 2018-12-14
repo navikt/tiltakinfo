@@ -1,5 +1,6 @@
 import { MaalOption, SituasjonOption } from './startside/tiltak-map';
 import { TiltakId } from './startside/tiltak-config';
+import { erDemo } from './mock/utils';
 
 const w = (window as any); // tslint:disable-line:no-any
 
@@ -15,32 +16,44 @@ export const brukerMetrikk = (
     oppfolgingsEnhetId: string,
     oppfolgingsEnhetNavn: string
 ): void => {
-    logEvent(`${domene}.bruker`, {}, {
-        servicegruppekode,
-        harArbeidsgiverIAktiveSykmeldinger,
-        erTiltakSykmeldteInngangAktiv,
-        underOppfolging,
-        oppfolgingsEnhetId,
-        oppfolgingsEnhetNavn,
-    });
+    if (!erDemo) {
+        logEvent(`${domene}.bruker`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            underOppfolging,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
 };
 
 export const klikkPaMaalMetrikk = (maal: MaalOption) => {
-    logEvent(`${domene}.maal`, {}, {maal});
+    if (!erDemo) {
+        logEvent(`${domene}.maal`, {}, {maal});
+    }
 };
 
 export const klikkPaLesMerMetrikkMedMaal = (maal: MaalOption, tiltak: TiltakId) => {
-    logEvent(`${domene}.lesmermedmaal`, {}, {maal, tiltak});
+    if (!erDemo) {
+        logEvent(`${domene}.lesmermedmaal`, {}, {maal, tiltak});
+    }
 };
 
 export const klikkPaLesMerMetrikk = (tiltak: TiltakId) => {
-    logEvent(`${domene}.lesmer`, {}, {tiltak});
+    if (!erDemo) {
+        logEvent(`${domene}.lesmer`, {}, {tiltak});
+    }
 };
 
 export const klikkPaFortellMegMerMetrikk = () => {
-    logEvent(`${domene}.fortellmegmer`, {}, {});
+    if (!erDemo) {
+        logEvent(`${domene}.fortellmegmer`, {}, {});
+    }
 };
 
 export const klikkPaGaTilAktivitetsplanen = () => {
-    logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
+    if (!erDemo) {
+        logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
+    }
 };
