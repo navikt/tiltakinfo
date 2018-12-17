@@ -1,33 +1,32 @@
-@import '../../node_modules/nav-frontend-core/less/_variabler';
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
 
 .kontakte-nav-container {
+    background-color: @navLysGra;
     padding: 5.5rem 0;
 
-    .kontakte-nav {
-        &.panel {
-            padding: 2.5rem 1.5rem;
+    &.panel {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .kontakte-nav__bilde {
+        text-align: center;
+
+        img {
+            width: 120px;
+            height: 120px;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    .kontakte-nav__innhold {
+        .kontakte-nav__knapp {
+            .knapp {
+                white-space: normal;
+            }
         }
 
-        .kontakte-nav__bilde {
-            text-align: center;
-
-            img {
-                width: 120px;
-                height: 120px;
-                padding-bottom: 1.5rem;
-            }
-        }
-
-        .kontakte-nav__innhold {
-            .kontakte-nav__knapp {
-                .knapp {
-                    white-space: normal;
-                }
-            }
-
-            .kontakt-kontor .knapp--hoved {
-                text-transform: uppercase;
-            }
+        .kontakt-kontor .knapp--hoved {
+            text-transform: uppercase;
         }
     }
 }
@@ -53,11 +52,11 @@
         margin: 2rem 0;
         height: 100%;
         position: relative;
-        padding: 5.5rem 0;
 
         .kontakte-nav {
             display: flex;
             justify-content: space-between;
+            margin: 0 auto;
 
             &.panel {
                 padding: 2.5rem 6rem;
@@ -92,5 +91,12 @@
         .modal {
             width: 23rem;
         }
+    }
+}
+
+@media (min-width: @screen-md) {
+    .kontakte-nav-container {
+        width: 100%;
+        padding: 0;
     }
 }

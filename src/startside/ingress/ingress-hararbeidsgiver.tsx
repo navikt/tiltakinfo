@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
-import './ingress-utenarbeidsgiver.less';
-import Tekst, { utledTekst } from '../finn-tekst';
-import { AppState, maalDuck } from '../redux/reducer';
 import { connect } from 'react-redux';
-import './ingress-hararbeidsgiver.less';
 import { RadioPanel } from 'nav-frontend-skjema';
+import { Innholdstittel } from 'nav-frontend-typografi';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Dispatch } from '../redux/dispatch-type';
-import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from './tiltak-map';
 import { polyfill } from 'smoothscroll-polyfill';
-import { klikkPaMaalMetrikk } from '../metrics';
+import { klikkPaMaalMetrikk } from '../../metrics';
+import Tekst, { utledTekst } from '../../finn-tekst';
+import { Dispatch } from '../../redux/dispatch-type';
+import { AppState, maalDuck } from '../../redux/reducer';
+import { MAAL_OPTIONS_REKKEFOLGE, MaalOption } from '../tiltak/tiltak-map';
+
+import './ingress-hararbeidsgiver.less';
+import velgMaalBilde from '../../ikoner/velg-maal.svg';
 
 polyfill();
-
-import velgMaalBilde from '../ikoner/velg-maal.svg';
 
 interface StateProps {
     maalId: MaalOption;

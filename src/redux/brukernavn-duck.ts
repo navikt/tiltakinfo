@@ -39,7 +39,7 @@ export default function (state: State = initialState, action: Handling): State {
 }
 
 export function hentBrukernavn() {
-    return fetchThenDispatch(() => Api.hentBrukersNavn(), {
+    return fetchThenDispatch(() => Api.getBrukersNavn(), {
         ok: hentBrukernavnOk,
         feilet: hentBrukernavnFeilet,
         pending: hentBrukernavnPending,

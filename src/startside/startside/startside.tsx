@@ -1,26 +1,33 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { AppState, maalDuck } from '../redux/reducer';
-import FlereTiltak from './flere-tiltak';
-import Tiltak from './tiltak-container';
-import KontakteNAV from './kontakte-nav';
-import IngressUtenArbeidsgiver from './ingress-utenarbeidsgiver';
-import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
-import { MaalOption, SituasjonOption } from './tiltak-map';
+import { AppState, maalDuck } from '../../redux/reducer';
+import FlereTiltak from '../flere-tiltak';
+import Tiltak from '../tiltak/tiltak-container';
+import KontakteNAV from '../kontakte-nav/kontakte-nav';
+import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
+import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
+import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import StartsideBanner from './startside-banner';
-import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
+import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
 import AlertStripe from 'nav-frontend-alertstriper';
-import Tekst from '../finn-tekst';
-import IngressMedArbeidsgiver from './ingress-hararbeidsgiver';
-import { MaalFraRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
-import { Dispatch } from '../redux/dispatch-type';
-import { mapTilMaalOption } from '../mock/utils';
+import Tekst from '../../finn-tekst';
+import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
+import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
+import { Dispatch } from '../../redux/dispatch-type';
+import { mapTilMaalOption } from '../../mock/utils';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
+
+import './startside.less';
 
 interface StateProps {
     maalId: MaalOption;
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     registrering: RegistreringState;
+    oppfolging: OppfolgingState;
+    oppfolgingsEnhet: OppfolgingsEnhet;
+    harSendtMelding: boolean;
 }
 
 interface DispatchProps {
@@ -46,7 +53,7 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {maalId, oppfolgingsstatus, syfoSituasjon} = this.props;
+        const {maalId, oppfolgingsstatus, syfoSituasjon, oppfolging, oppfolgingsEnhet, harSendtMelding} = this.props;
 
         const sykmeldtMedArbeidsgiver =
             syfoSituasjon.erSykmeldt
@@ -87,8 +94,24 @@ class Startside extends React.Component<StartsideProps> {
                                     situasjon={oppfolgingsstatus.situasjon}
                                 />
                             </section>
-                            <section className="app-content-kontakte-nav blokk-xl">
-                                <KontakteNAV/>
+                            <section className="app-content kontakte-nav-container blokk-xl">
+                                {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
+                                    harSendtMelding ? (
+                                        <div className="kontakt-kontor">
+                                            <section className="har-sendt-melding">
+                                                <Innholdstittel tag="h1" className="blokk-s">
+                                                    NAV Bærum har fått beskjed
+                                                </Innholdstittel>
+                                                <Normaltekst>
+                                                    Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter.
+                                                    De tar kontakt med deg innen et par dager.
+                                                </Normaltekst>
+                                            </section>
+                                        </div>
+                                    ) : (
+                                        <KontakteNAV/>
+                                    )
+                                )}
                             </section>
                         </>
                         }
@@ -114,7 +137,10 @@ const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
-    registrering: state.registrering
+    registrering: state.registrering,
+    oppfolging: state.oppfolging,
+    oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
+    harSendtMelding: false
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

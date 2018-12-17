@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
-import './tiltak.less';
-import Tekst, { utledTekst } from '../finn-tekst';
-import { Tiltak } from './tiltak-config';
-import UtvidetInformasjon from './utvidet-informasjon';
 import * as classnames from 'classnames';
-import { klikkPaLesMerMetrikk, klikkPaLesMerMetrikkMedMaal } from '../metrics';
+import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
+import { Tiltak } from './tiltak-config';
 import { MaalOption } from './tiltak-map';
+import Tekst, { utledTekst } from '../../finn-tekst';
+import UtvidetInformasjon from '../utvidet-informasjon';
+import { klikkPaLesMerMetrikk, klikkPaLesMerMetrikkMedMaal } from '../../metrics';
 
 interface OwnProps {
     tiltak: Tiltak;

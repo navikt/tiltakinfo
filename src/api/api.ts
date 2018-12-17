@@ -66,23 +66,12 @@ export function getRegistrering(): Promise<RegistreringDataState> {
     return fetchToJson(API.getRegistrering, requestConfig);
 }
 
-function getHeaders() {
-    return new Headers({
-        'Content-Type': 'application/json',
-        'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'), // eslint-disable-line quote-props
-    });
-}
-
-const MED_CREDENTIALS = {
-    credentials: ('same-origin' as RequestCredentials)
-};
-
-export function hentBrukersNavn() {
+export function getBrukersNavn() {
     return fetchToJson(
         `${INNLOGGINGSLINJE_URL}?randomness=${Math.random()}`,
         {
-            ...MED_CREDENTIALS,
-            headers: getHeaders(),
+            credentials: ('same-origin' as RequestCredentials),
+            headers: requestConfig.headers,
         }
     );
 }

@@ -5,7 +5,7 @@ import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duc
 import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { ActionType } from './actions';
-import { MaalOption } from '../startside/tiltak-map';
+import { MaalOption } from '../startside/tiltak/tiltak-map';
 import genericDuck from './generic-duck';
 import { Bruker } from '../mock/mock-data-config';
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';

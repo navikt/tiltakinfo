@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Undertittel } from 'nav-frontend-typografi';
-import './tiltak.less';
-import Tekst from '../finn-tekst';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+import Tekst from '../../finn-tekst';
+import { AppState } from '../../redux/reducer';
+import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
-import { AppState } from '../redux/reducer';
-import { connect } from 'react-redux';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import TiltakKomponent from './tiltak-komponent';
 
-import veilederBilde from '../ikoner/veileder-dame.svg';
+import './tiltak.less';
+import veilederBilde from '../../ikoner/veileder-dame.svg';
 
 interface OwnProps {
     tiltakErBasertPaMaal: boolean;

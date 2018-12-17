@@ -36,7 +36,8 @@ const Datalaster = ({avhengigheter, ventPa, children}: DatalasterProps) => {
         return (
             <AlertStripe type="advarsel" className={'app-content feilmelding-container'}>
                 <Tekst id={'feilmelding-tekniskfeil'}/>
-            </AlertStripe>);
+            </AlertStripe>
+        );
     }
 
     return <Spinner type="XXL"/>;
