@@ -15,9 +15,10 @@ import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
 import { Dispatch } from '../../redux/dispatch-type';
 import { mapTilMaalOption } from '../../mock/utils';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 
+const velgMaalBilde = require('../../ikoner/check_blaa.svg');
 import './startside.less';
 
 interface StateProps {
@@ -97,16 +98,17 @@ class Startside extends React.Component<StartsideProps> {
                             <section className="app-content kontakte-nav-container blokk-xl">
                                 {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
                                     harSendtMelding ? (
-                                        <div className="kontakt-kontor">
-                                            <section className="har-sendt-melding">
-                                                <Innholdstittel tag="h1" className="blokk-s">
-                                                    NAV Bærum har fått beskjed
-                                                </Innholdstittel>
-                                                <Normaltekst>
-                                                    Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter.
-                                                    De tar kontakt med deg innen et par dager.
-                                                </Normaltekst>
-                                            </section>
+                                        <div className="har-sendt-melding panel panel--border">
+                                            <div className="har-sendt-melding__ikon">
+                                                <img src={velgMaalBilde} alt=""/>
+                                            </div>
+                                            <Sidetittel tag="h1" className="har-sendt-melding__tittel blokk-s">
+                                                NAV Bærum har fått beskjed
+                                            </Sidetittel>
+                                            <Normaltekst>
+                                                Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter.
+                                                De tar kontakt med deg innen et par dager.
+                                            </Normaltekst>
                                         </div>
                                     ) : (
                                         <KontakteNAV/>
@@ -140,7 +142,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     registrering: state.registrering,
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: false
+    harSendtMelding: true
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

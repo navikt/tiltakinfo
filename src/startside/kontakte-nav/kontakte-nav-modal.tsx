@@ -1,7 +1,7 @@
-import NavFrontendModal from 'nav-frontend-modal';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import NavFrontendModal from 'nav-frontend-modal';
+import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { AppState } from '../../redux/reducer';
 
 interface StateProps {

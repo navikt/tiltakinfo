@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import 'nav-frontend-paneler-style';
+import { connect } from 'react-redux';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst from '../../finn-tekst';
 import Datalaster from '../../api/datalaster';
@@ -12,9 +12,9 @@ import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import Feature from '../../unleash/feature';
 
+import './kontakte-nav.less';
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
 
-import './kontakte-nav.less';
 import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import KontakteNavModal from './kontakte-nav-modal';
 
@@ -57,7 +57,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
         return (
             <Datalaster avhengigheter={[oppfolging]}>
-                <section className="kontakte-nav">
+                <>
                     <div className="panel panel--border kontakte-nav__panel">
                         <div className="kontakte-nav__bilde">
                             <img src={kontakteNavBilde} alt="" aria-hidden="true"/>
@@ -99,7 +99,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         </div>
                     </div>
                     <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal}/>
-                </section>
+                </>
             </Datalaster>
         );
     }
@@ -108,7 +108,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): KontakteNavProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: false
+    harSendtMelding: true
 });
 
 export default connect(mapStateToProps)(KontakteNAV);
