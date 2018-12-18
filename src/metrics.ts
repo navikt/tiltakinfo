@@ -16,7 +16,7 @@ export const brukerMetrikk = (
     oppfolgingsEnhetId: string,
     oppfolgingsEnhetNavn: string
 ): void => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.bruker`, {}, {
             servicegruppekode,
             harArbeidsgiverIAktiveSykmeldinger,
@@ -29,31 +29,31 @@ export const brukerMetrikk = (
 };
 
 export const klikkPaMaalMetrikk = (maal: MaalOption) => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.maal`, {}, {maal});
     }
 };
 
 export const klikkPaLesMerMetrikkMedMaal = (maal: MaalOption, tiltak: TiltakId) => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.lesmermedmaal`, {}, {maal, tiltak});
     }
 };
 
 export const klikkPaLesMerMetrikk = (tiltak: TiltakId) => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.lesmer`, {}, {tiltak});
     }
 };
 
 export const klikkPaFortellMegMerMetrikk = () => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.fortellmegmer`, {}, {});
     }
 };
 
 export const klikkPaGaTilAktivitetsplanen = () => {
-    if (!erDemo) {
+    if (!erDemo()) {
         logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
     }
 };
