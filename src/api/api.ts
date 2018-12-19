@@ -1,10 +1,11 @@
 import { fetchToJson } from './fetch-utils';
-import { UnleashState } from '../unleash/unleash-duck';
-import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { contextRoot } from '../konstanter';
-import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
+import { UnleashState } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
+import { MeldingNavKontorFetchState } from '../brukerdata/melding-nav-kontor-duck';
+import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 
 export const INNLOGGINGSLINJE_URL = '/innloggingslinje/auth';
 
@@ -28,7 +29,8 @@ interface ApiProps {
     getOppfolgingsstatus: string;
     getSyfo: string;
     getRegistrering: string;
-    hentBrukersNavn: string;
+    getBrukersNavn: string;
+    getMeldingNavKontor: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -42,7 +44,8 @@ export const API: ApiProps = {
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
-    hentBrukersNavn: INNLOGGINGSLINJE_URL
+    getBrukersNavn: INNLOGGINGSLINJE_URL,
+    getMeldingNavKontor: '/veilarbtiltakinfo/api/bruker/harsendtmeldingtilnavkontor',
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -74,4 +77,8 @@ export function getBrukersNavn() {
             headers: requestConfig.headers,
         }
     );
+}
+
+export function getMeldingNavKontorFetch(): Promise<MeldingNavKontorFetchState> {
+    return fetchToJson(API.getMeldingNavKontor, requestConfig);
 }

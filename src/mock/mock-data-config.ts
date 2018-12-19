@@ -1,5 +1,5 @@
-import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
+import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
 import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum Bruker {

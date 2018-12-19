@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { AppState, maalDuck } from '../../redux/reducer';
 import Tekst from '../../finn-tekst';
 import FlereTiltak from '../flere-tiltak';
 import Tiltak from '../tiltak/tiltak-container';
@@ -9,6 +8,7 @@ import StartsideBanner from './startside-banner';
 import { mapTilMaalOption } from '../../mock/utils';
 import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
+import { AppState, maalDuck } from '../../redux/reducer';
 import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
 import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';

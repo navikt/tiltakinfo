@@ -1,7 +1,7 @@
-import { DataElement, Status } from '../api/datalaster';
+import { getRegistrering } from '../api/api';
 import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
-import { getRegistrering } from '../api/api';
+import { DataElement, Status } from '../api/datalaster';
 import {
     ActionType, Handling,
     HentRegistreringFEILETAction, HentRegistreringLASTERAction, HentRegistreringOKAction

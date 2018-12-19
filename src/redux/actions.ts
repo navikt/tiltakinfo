@@ -1,7 +1,7 @@
-import { UnleashState } from '../unleash/unleash-duck';
-import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { Data } from './generic-duck';
+import { UnleashState } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum ActionType {
@@ -25,7 +25,10 @@ export enum ActionType {
     HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET',
     HENT_BRUKERS_NAVN_OK = 'HENT_BRUKERS_NAVN_OK',
     HENT_BRUKERS_NAVN_PENDING = 'HENT_BRUKERS_NAVN_PENDING',
-    HENT_BRUKERS_NAVN_FEILET = 'HENT_BRUKERS_NAVN_FEILET'
+    HENT_BRUKERS_NAVN_FEILET = 'HENT_BRUKERS_NAVN_FEILET',
+    HENT_MELDING_NAV_KONTOR_OK = 'HENT_MELDING_NAV_KONTOR_OK',
+    HENT_MELDING_NAV_KONTOR_PENDING = 'HENT_MELDING_NAV_KONTOR_PENDING',
+    HENT_MELDING_NAV_KONTOR_FEILET = 'HENT_MELDING_NAV_KONTOR_FEILET',
 }
 
 export interface TestAction extends Data {
@@ -109,6 +112,19 @@ export interface HentBrukersNavnFEILETAction {
     type: ActionType.HENT_BRUKERS_NAVN_FEILET;
 }
 
+export interface HentMeldingNavKontorOKAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_OK;
+    harSendtMelding: boolean;
+}
+
+export interface HentMeldingNavKontorFEILETAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_FEILET;
+}
+
+export interface HentMeldingNavKontorPENDINGAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_PENDING;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -128,4 +144,7 @@ export type Handling =
     | HentRegistreringFEILETAction
     | HentBrukersNavnOKAction
     | HentBrukersNavnPENDINGAction
-    | HentBrukersNavnFEILETAction;
+    | HentBrukersNavnFEILETAction
+    | HentMeldingNavKontorOKAction
+    | HentMeldingNavKontorPENDINGAction
+    | HentMeldingNavKontorFEILETAction;

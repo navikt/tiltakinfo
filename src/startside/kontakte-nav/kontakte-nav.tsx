@@ -7,21 +7,22 @@ import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst from '../../finn-tekst';
 import Feature from '../../unleash/feature';
 import Datalaster from '../../api/datalaster';
+import KontakteKontor from './kontakte-kontor';
 import { AppState } from '../../redux/reducer';
 import KontakteNavModal from './kontakte-nav-modal';
 import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
+import { MeldingNavKontorState } from '../../brukerdata/melding-nav-kontor-duck';
 
 import './kontakte-nav.less';
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
-import KontakteKontor from './kontakte-kontor';
 
 interface KontakteNavProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
-    harSendtMelding: boolean;
+    harSendtMelding: MeldingNavKontorState;
 }
 
 interface StateType {
@@ -96,7 +97,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): KontakteNavProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: false
+    harSendtMelding: state.harSendtMelding
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

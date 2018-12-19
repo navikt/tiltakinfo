@@ -8,6 +8,7 @@ import { hentSyfo, SyfoSituasjonState } from './brukerdata/syfo-duck';
 import Datalaster from './api/datalaster';
 import { hentRegistrering, RegistreringState } from './brukerdata/registrering-duck';
 import { hentBrukernavn } from './redux/brukernavn-duck';
+import { hentMeldingNavKontor, MeldingNavKontorState } from './brukerdata/melding-nav-kontor-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -18,6 +19,7 @@ interface StateProps {
     syfoSituasjon: SyfoSituasjonState;
     oppfolging: OppfolgingState;
     registrering: RegistreringState;
+    harSendtMelding: MeldingNavKontorState;
 }
 
 interface DispatchProps {
@@ -26,6 +28,7 @@ interface DispatchProps {
     doHentSyfo: () => void;
     doHentRegistrering: () => void;
     doHentBrukersNavn: () => void;
+    doHentMeldingNavKontor: () => void;
 }
 
 type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
@@ -41,6 +44,7 @@ class DataProvider extends React.Component<UnleashProviderProps> {
         this.props.doHentSyfo();
         this.props.doHentRegistrering();
         this.props.doHentBrukersNavn();
+        this.props.doHentMeldingNavKontor();
     }
 
     render() {
@@ -60,7 +64,8 @@ const mapStateToProps = (state: AppState): StateProps => ({
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
     oppfolging: state.oppfolging,
-    registrering: state.registrering
+    registrering: state.registrering,
+    harSendtMelding: state.harSendtMelding,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -68,7 +73,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doHentOppfolgingsstatus: () => hentOppfolgingsstatus()(dispatch),
     doHentSyfo: () => hentSyfo()(dispatch),
     doHentRegistrering: () => hentRegistrering()(dispatch),
-    doHentBrukersNavn: () => hentBrukernavn()(dispatch)
+    doHentBrukersNavn: () => hentBrukernavn()(dispatch),
+    doHentMeldingNavKontor: () => hentMeldingNavKontor()(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataProvider);

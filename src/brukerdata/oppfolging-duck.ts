@@ -5,8 +5,8 @@ import {
     HentOppfolgingOKAction,
     HentOppfolgingLASTERAction,
 } from '../redux/actions';
-import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingFetch } from '../api/api';
+import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 

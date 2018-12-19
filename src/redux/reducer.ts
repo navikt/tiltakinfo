@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
-import persistent from './persistent-reducer';
-import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
-import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
-import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
-import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { ActionType } from './actions';
-import { MaalOption } from '../startside/tiltak/tiltak-map';
 import genericDuck from './generic-duck';
+import persistent from './persistent-reducer';
 import { Bruker } from '../mock/mock-data-config';
-import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
+import { MaalOption } from '../startside/tiltak/tiltak-map';
+import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
+import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import brukersNavn, { State as BrukersNavnState } from './brukernavn-duck';
+import { MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
+import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
+import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
+import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 
 export interface MaalState {
     id: MaalOption;
@@ -46,6 +47,7 @@ export interface AppState {
     demobruker: DemoBrukerState;
     registrering: RegistreringState;
     brukersNavn: BrukersNavnState;
+    harSendtMelding: MeldingNavKontorState;
 }
 
 export const reducer = combineReducers<AppState>({
