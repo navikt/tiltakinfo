@@ -5,18 +5,18 @@ import 'nav-frontend-paneler-style';
 import { connect } from 'react-redux';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst from '../../finn-tekst';
+import Feature from '../../unleash/feature';
 import Datalaster from '../../api/datalaster';
 import { AppState } from '../../redux/reducer';
-import { klikkPaGaTilAktivitetsplanen } from '../../metrics';
+import KontakteNavModal from './kontakte-nav-modal';
+import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
+import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
-import Feature from '../../unleash/feature';
 
 import './kontakte-nav.less';
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
-
-import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
-import KontakteNavModal from './kontakte-nav-modal';
+import KontakteKontor from './kontakte-kontor';
 
 interface KontakteNavProps {
     oppfolging: OppfolgingState;
@@ -49,7 +49,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     }
 
     render() {
-        const lenkeAktivitetsplan = '/aktivitetsplan';
         const {oppfolging, oppfolgingsEnhet, harSendtMelding} = this.props;
         const tekstId = oppfolging.underOppfolging
             ? 'kontaktenav-takontakt-underoppfolging'
@@ -62,6 +61,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         <div className="kontakte-nav__bilde">
                             <img src={kontakteNavBilde} alt="" aria-hidden="true"/>
                         </div>
+
                         <div className="kontakte-nav__innhold">
                             <Innholdstittel className="blokk-s">
                                 <Tekst id={'kontaktenav-snakkmednav'}/>
@@ -69,33 +69,21 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                             <Normaltekst className="blokk-s">
                                 <Tekst id={tekstId}/>
                             </Normaltekst>
+
                             {oppfolging.underOppfolging && (
-                                <div className="kontakte-nav__knapp">
-                                    <a
-                                        className="knapp knapp--hoved"
-                                        href={lenkeAktivitetsplan}
-                                        onClick={() => klikkPaGaTilAktivitetsplanen()}
-                                    >
-                                        <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
-                                    </a>
-                                </div>
+                                <KontakteNavKnapp />
                             )}
+
                             <Feature name={tiltakInfoMeldingBaerum}>
                                 <>
                                     {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
                                         !harSendtMelding && (
-                                            <div className="kontakt-kontor">
-                                                <Normaltekst className="blokk-s">
-                                                    Ditt kontor er <strong>NAV Bærum</strong>.
-                                                </Normaltekst>
-                                                <button className="knapp knapp--hoved" onClick={() => this.openModal()}>
-                                                    Kontakt NAV Bærum
-                                                </button>
-                                            </div>
+                                            <KontakteKontor openModal={this.openModal} />
                                         )
                                     )}
                                 </>
                             </Feature>
+
                         </div>
                     </div>
                     <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal}/>
@@ -108,7 +96,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): KontakteNavProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: true
+    harSendtMelding: false
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

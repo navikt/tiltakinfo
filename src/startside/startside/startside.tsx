@@ -1,25 +1,24 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { AppState, maalDuck } from '../../redux/reducer';
+import Tekst from '../../finn-tekst';
 import FlereTiltak from '../flere-tiltak';
 import Tiltak from '../tiltak/tiltak-container';
-import KontakteNAV from '../kontakte-nav/kontakte-nav';
-import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
-import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
-import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import StartsideBanner from './startside-banner';
-import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
-import AlertStripe from 'nav-frontend-alertstriper';
-import Tekst from '../../finn-tekst';
-import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
-import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
-import { Dispatch } from '../../redux/dispatch-type';
 import { mapTilMaalOption } from '../../mock/utils';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
+import { Dispatch } from '../../redux/dispatch-type';
+import KontakteNAV from '../kontakte-nav/kontakte-nav';
+import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
+import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
+import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
+import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
+import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
+import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
 
-const velgMaalBilde = require('../../ikoner/check_blaa.svg');
 import './startside.less';
+import HarSendtMelding from './har-sendt-melding';
 
 interface StateProps {
     maalId: MaalOption;
@@ -54,13 +53,9 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {maalId, oppfolgingsstatus, syfoSituasjon, oppfolging, oppfolgingsEnhet, harSendtMelding} = this.props;
-
-        const sykmeldtMedArbeidsgiver =
-            syfoSituasjon.erSykmeldt
-            && syfoSituasjon.harArbeidsgiver;
-        const sykmeldtUtenArbeidsgiver =
-            syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
+        const {maalId, oppfolgingsstatus, syfoSituasjon, oppfolgingsEnhet, harSendtMelding} = this.props;
+        const sykmeldtMedArbeidsgiver = syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver;
+        const sykmeldtUtenArbeidsgiver = syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
 
         const arbeidsledig =
@@ -83,6 +78,7 @@ class Startside extends React.Component<StartsideProps> {
                         <section className="app-content ingress-container">
                             <IngressKomponent/>
                         </section>
+
                         {((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
                             || sykmeldtUtenArbeidsgiver
                             || arbeidsledig) &&
@@ -95,24 +91,12 @@ class Startside extends React.Component<StartsideProps> {
                                     situasjon={oppfolgingsstatus.situasjon}
                                 />
                             </section>
+
                             <section className="app-content kontakte-nav-container blokk-xl">
-                                {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
-                                    harSendtMelding ? (
-                                        <div className="har-sendt-melding panel panel--border">
-                                            <div className="har-sendt-melding__ikon">
-                                                <img src={velgMaalBilde} alt=""/>
-                                            </div>
-                                            <Sidetittel tag="h1" className="har-sendt-melding__tittel blokk-s">
-                                                NAV Bærum har fått beskjed
-                                            </Sidetittel>
-                                            <Normaltekst>
-                                                Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter.
-                                                De tar kontakt med deg innen et par dager.
-                                            </Normaltekst>
-                                        </div>
-                                    ) : (
-                                        <KontakteNAV/>
-                                    )
+                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding) ? (
+                                    <HarSendtMelding />
+                                ) : (
+                                    <KontakteNAV />
                                 )}
                             </section>
                         </>
@@ -125,6 +109,7 @@ class Startside extends React.Component<StartsideProps> {
                         </AlertStripe>
                     </div>
                 }
+
                 {!(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
                 <section className="app-content flere-tiltak-container">
                     <FlereTiltak/>
@@ -142,7 +127,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     registrering: state.registrering,
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: true
+    harSendtMelding: false
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
