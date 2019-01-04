@@ -7,8 +7,6 @@ import { RegistreringDataState } from '../brukerdata/registrering-duck';
 import { MeldingNavKontorFetchState } from '../brukerdata/melding-nav-kontor-duck';
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 
-export const INNLOGGINGSLINJE_URL = '/innloggingslinje/auth';
-
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
     const match = re.exec(document.cookie);
@@ -44,7 +42,7 @@ export const API: ApiProps = {
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
-    getBrukersNavn: INNLOGGINGSLINJE_URL,
+    getBrukersNavn: '/innloggingslinje/auth',
     getMeldingNavKontor: '/veilarbtiltakinfo/api/bruker/harsendtmeldingtilnavkontor',
 };
 
@@ -70,13 +68,7 @@ export function getRegistrering(): Promise<RegistreringDataState> {
 }
 
 export function getBrukersNavn() {
-    return fetchToJson(
-        `${INNLOGGINGSLINJE_URL}?randomness=${Math.random()}`,
-        {
-            credentials: ('same-origin' as RequestCredentials),
-            headers: requestConfig.headers,
-        }
-    );
+    return fetchToJson(API.getBrukersNavn, requestConfig);
 }
 
 export function getMeldingNavKontorFetch(): Promise<MeldingNavKontorFetchState> {

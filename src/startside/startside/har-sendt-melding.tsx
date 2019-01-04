@@ -17,7 +17,7 @@ const HarSendtMelding = () => {
                 De tar kontakt med deg innen et par dager.
             </Normaltekst>
         </div>
-    )
+    );
 };
 
 export default HarSendtMelding;

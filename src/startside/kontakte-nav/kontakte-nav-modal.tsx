@@ -40,7 +40,7 @@ function KontakteNavModal({modalIsOpen, closeModal, fulltNavn}: KontakteNavModal
             </Normaltekst>
             <button className="knapp knapp--hoved blokk-xs">Send Melding</button>
             <Normaltekst className="subtekst">
-                Dette er en ny tjeneste NAV tester ut. Informasonen din vil
+                Dette er en ny tjeneste NAV tester ut. Informasjonen din vil
                 bli lagret og delt med utviklingsteamet og NAV Bærum.
                 Personopplysninger slettes etter testperioden.
             </Normaltekst>

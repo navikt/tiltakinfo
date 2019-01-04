@@ -16,8 +16,8 @@ import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingNavKontorState } from '../../brukerdata/melding-nav-kontor-duck';
 
-import './kontakte-nav.less';
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
+import './kontakte-nav.less';
 
 interface KontakteNavProps {
     oppfolging: OppfolgingState;
@@ -87,7 +87,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
                         </div>
                     </div>
-                    <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal}/>
+                    <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
                 </>
             </Datalaster>
         );
