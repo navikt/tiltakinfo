@@ -29,6 +29,9 @@ export enum ActionType {
     HENT_MELDING_NAV_KONTOR_OK = 'HENT_MELDING_NAV_KONTOR_OK',
     HENT_MELDING_NAV_KONTOR_PENDING = 'HENT_MELDING_NAV_KONTOR_PENDING',
     HENT_MELDING_NAV_KONTOR_FEILET = 'HENT_MELDING_NAV_KONTOR_FEILET',
+    LAGRE_BRUKER_OK = 'LAGRE_BRUKER_OK',
+    LAGRE_BRUKER_PENDING = 'LAGRE_BRUKER_PENDING',
+    LAGRE_BRUKER_FEILET = 'LAGRE_BRUKER_FEILET',
 }
 
 export interface TestAction extends Data {
@@ -125,6 +128,19 @@ export interface HentMeldingNavKontorPENDINGAction {
     type: ActionType.HENT_MELDING_NAV_KONTOR_PENDING;
 }
 
+export interface LagreBrukerOKAction {
+    type: ActionType.LAGRE_BRUKER_OK;
+    lagretBruker: User;
+}
+
+export interface LagreBrukerPENDINGAction {
+    type: ActionType.LAGRE_BRUKER_PENDING;
+}
+
+export interface LagreBrukerFEILETAction {
+    type: ActionType.LAGRE_BRUKER_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -147,4 +163,7 @@ export type Handling =
     | HentBrukersNavnFEILETAction
     | HentMeldingNavKontorOKAction
     | HentMeldingNavKontorPENDINGAction
-    | HentMeldingNavKontorFEILETAction;
+    | HentMeldingNavKontorFEILETAction
+    | LagreBrukerOKAction
+    | LagreBrukerPENDINGAction
+    | LagreBrukerFEILETAction;

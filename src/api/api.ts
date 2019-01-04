@@ -6,6 +6,7 @@ import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
 import { MeldingNavKontorFetchState } from '../brukerdata/melding-nav-kontor-duck';
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
+import { User } from '../brukerdata/bruker-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -25,6 +26,7 @@ interface ApiProps {
     getUnleash: string;
     getOppfolging: string;
     getOppfolgingsstatus: string;
+    postBruker: string;
     getSyfo: string;
     getRegistrering: string;
     getBrukersNavn: string;
@@ -40,6 +42,7 @@ export const API: ApiProps = {
     getUnleash: `${contextRoot}/api/feature`,
     getOppfolging: '/veilarboppfolging/api/oppfolging',
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
+    postBruker: '/veilarbtiltakinfo/api/bruker',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
     getBrukersNavn: '/innloggingslinje/auth',
@@ -57,6 +60,11 @@ export function getOppfolgingFetch(): Promise<OppfolgingState> {
 
 export function getOppfolgingsstatusFetch(): Promise<OppfolgingsstatusFetchState> {
     return fetchToJson(API.getOppfolgingsstatus, requestConfig);
+}
+
+export function postBrukerFetch(bruker: User): Promise<User> {
+    const config = {...requestConfig, method: 'post', body: JSON.stringify(bruker)};
+    return fetchToJson(API.postBruker, config);
 }
 
 export function getSyfoFetch(): Promise<SyfoDataState> {

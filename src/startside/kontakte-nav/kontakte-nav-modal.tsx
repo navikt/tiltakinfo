@@ -13,6 +13,10 @@ interface OwnProps {
     closeModal: () => void;
 }
 
+const handleSendMelding = () => {
+
+};
+
 export type KontakteNavModalProps = StateProps & OwnProps;
 
 function KontakteNavModal({modalIsOpen, closeModal, fulltNavn}: KontakteNavModalProps) {
@@ -38,7 +42,7 @@ function KontakteNavModal({modalIsOpen, closeModal, fulltNavn}: KontakteNavModal
                 Etter at du har sendt meldingen, vil NAV
                 Bærum ta kontakt med deg innen et par dager.
             </Normaltekst>
-            <button className="knapp knapp--hoved blokk-xs">Send Melding</button>
+            <button className="knapp knapp--hoved blokk-xs" onClick={handleSendMelding}>Send Melding</button>
             <Normaltekst className="subtekst">
                 Dette er en ny tjeneste NAV tester ut. Informasjonen din vil
                 bli lagret og delt med utviklingsteamet og NAV Bærum.
