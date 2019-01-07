@@ -61,7 +61,6 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 
         const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, situasjon} = this.props;
 
-        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const finnTiltakMapKey = (): string => {
             if (sykmeldt) {
                 if (sykmeldtMedArbeidsgiver) {
@@ -75,8 +74,9 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 
         };
         const tiltakNokler: TiltakId[] = tiltakMap[finnTiltakMapKey()];
-
         this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+
+        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
 
         const tiltakSomVises: Tiltak[] = tiltakNokler.map(mapTiltakConfig);
 
