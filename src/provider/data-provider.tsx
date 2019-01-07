@@ -31,10 +31,10 @@ interface DispatchProps {
     doHentMeldingNavKontor: () => void;
 }
 
-type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
+type DataProviderProps = OwnProps & DispatchProps & StateProps;
 
-class DataProvider extends React.Component<UnleashProviderProps> {
-    constructor(props: UnleashProviderProps) {
+class DataProvider extends React.Component<DataProviderProps> {
+    constructor(props: DataProviderProps) {
         super(props);
     }
 
