@@ -63,7 +63,7 @@ export function getOppfolgingsstatusFetch(): Promise<OppfolgingsstatusFetchState
 }
 
 export function postBrukerFetch(bruker: User): Promise<User> {
-    const config = {...requestConfig, method: 'post', body: JSON.stringify(bruker)};
+    const config = {...requestConfig, method: 'POST', body: JSON.stringify(bruker)};
     return fetchToJson(API.postBruker, config);
 }
 

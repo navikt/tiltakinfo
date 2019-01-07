@@ -3,6 +3,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
+import { User } from '../brukerdata/bruker-duck';
 
 export enum ActionType {
     TEST_ACTION = 'TEST_ACTION',
@@ -13,6 +14,7 @@ export enum ActionType {
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
     HENT_OPPFOLGING_LASTER = 'HENT_OPPFOLGING_LASTER',
     SETT_MAAL = 'SETT_MAAL',
+    SETT_TILTAK = 'SETT_TILTAK',
     HENT_OPPFOLGINGSSTATUS_OK = 'HENT_OPPFOLGINGSSTATUS_OK',
     HENT_OPPFOLGINGSSTATUS_FEILET = 'HENT_OPPFOLGINGSSTATUS_FEILET',
     HENT_OPPFOLGINGSSTATUS_LASTER = 'HENT_OPPFOLGINGSSTATUS_LASTER',

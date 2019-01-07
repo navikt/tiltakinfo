@@ -11,7 +11,7 @@ interface Demobruker {
 export default () => {
 
     const loggingMiddleware: Middleware = (request, response) => {
-        console.log(request.url, response); // tslint:disable-line:no-console
+        console.log(request.url, request.method, response); // tslint:disable-line:no-console
         return response;
     };
 
@@ -87,4 +87,6 @@ export default () => {
     fetchMock.get(API.getUnleash, {
         [tiltakInfoMeldingBaerum]: mockData[tiltakInfoMeldingBaerum]
     });
+
+    fetchMock.post(API.postBruker, ({body}) => body);
 };

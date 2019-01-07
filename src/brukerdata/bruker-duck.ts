@@ -55,15 +55,16 @@ function lagreBrukerPENDING(): LagreBrukerPENDINGAction {
     };
 }
 
+export interface Tiltak {
+    nokkel: string;
+}
+
 export interface User {
-    fnr: string;
     erSykmeldt: boolean;
     harArbeidsgiver: boolean;
     servicegruppeKode: string;
     oppfolgingsEnhetId: string;
     underOppfolging: boolean;
-    maal: string,
-    tiltak: [
-        { nokkel: string }
-        ],
+    maal: string;
+    tiltak: Tiltak[];
 }

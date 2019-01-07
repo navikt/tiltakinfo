@@ -25,6 +25,18 @@ export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
     ActionType.SETT_MAAL
 );
 
+export interface TiltakState {
+    nokkelEn: string;
+    nokkelTo: string;
+}
+
+const initialTiltakState: TiltakState = {
+    nokkelEn: '',
+    nokkelTo: ''
+};
+
+export const tiltakDuck = genericDuck<TiltakState, ActionType.SETT_TILTAK>(initialTiltakState, ActionType.SETT_TILTAK);
+
 export interface DemoBrukerState {
     id: Bruker;
 }
@@ -48,6 +60,7 @@ export interface AppState {
     registrering: RegistreringState;
     brukersNavn: BrukersNavnState;
     harSendtMelding: MeldingNavKontorState;
+    tiltak: TiltakState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -59,4 +72,5 @@ export const reducer = combineReducers<AppState>({
     maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
     brukersNavn,
+    tiltak: tiltakDuck.reducer,
 });
