@@ -1,4 +1,4 @@
-import { DemoBrukerState, MaalState } from './reducer';
+import { DemoBrukerState, MaalState } from './generic-reducers';
 
 function read(scope: string) {
     const content = localStorage.getItem(scope);
