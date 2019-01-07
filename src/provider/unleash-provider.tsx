@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from './redux/dispatch-type';
-import { hentUnleash, UnleashState } from './unleash/unleash-duck';
-import { AppState } from './redux/reducer';
-import { default as Datalaster } from './api/datalaster';
+import { Dispatch } from '../redux/dispatch-type';
+import { hentUnleash, UnleashState } from '../unleash/unleash-duck';
+import { AppState } from '../redux/reducer';
+import { default as Datalaster } from '../api/datalaster';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
