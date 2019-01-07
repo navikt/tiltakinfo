@@ -7,7 +7,7 @@ import { OppfolgingsstatusState, hentOppfolgingsstatus } from '../brukerdata/opp
 import { hentSyfo, SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import Datalaster from '../api/datalaster';
 import { hentRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
-import { hentBrukernavn } from '../redux/brukernavn-duck';
+import { hentBrukernavn } from '../brukerdata/brukernavn-duck';
 import { hentMeldingNavKontor, MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
 
 interface OwnProps {

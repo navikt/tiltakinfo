@@ -4,7 +4,7 @@ import {
     HentBrukersNavnFEILETAction,
     HentBrukersNavnOKAction,
     HentBrukersNavnPENDINGAction,
-} from './actions';
+} from '../redux/actions';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
