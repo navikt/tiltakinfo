@@ -19,13 +19,13 @@ export interface MeldingNavKontorState extends DataElement {
     harSendtMelding: boolean;
 }
 
-export const initialState: MeldingNavKontorState = {
+export const initialMeldingNavKontorState: MeldingNavKontorState = {
     harSendtMelding: false,
     status: Status.IKKE_STARTET,
 };
 
 // Reducer
-export default function reducer(state: MeldingNavKontorState = initialState, action: Handling): MeldingNavKontorState {
+export default function reducer(state: MeldingNavKontorState = initialMeldingNavKontorState, action: Handling): MeldingNavKontorState {
     switch (action.type) {
         case ActionType.HENT_MELDING_NAV_KONTOR_OK:
             return {...state, status: Status.OK};

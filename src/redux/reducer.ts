@@ -7,7 +7,7 @@ import { MaalOption } from '../startside/tiltak/tiltak-map';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import brukersNavn, { State as BrukersNavnState } from './brukernavn-duck';
-import { MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
+import { initialMeldingNavKontorState, MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
 import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
@@ -36,6 +36,10 @@ const initialTiltakState: TiltakState = {
 };
 
 export const tiltakDuck = genericDuck<TiltakState, ActionType.SETT_TILTAK>(initialTiltakState, ActionType.SETT_TILTAK);
+
+export const meldingNavKontorDuck = genericDuck<MeldingNavKontorState, ActionType.HENT_MELDING_NAV_KONTOR_OK>(
+    initialMeldingNavKontorState, ActionType.HENT_MELDING_NAV_KONTOR_OK
+);
 
 export interface DemoBrukerState {
     id: Bruker;
@@ -73,4 +77,5 @@ export const reducer = combineReducers<AppState>({
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
     brukersNavn,
     tiltak: tiltakDuck.reducer,
+    harSendtMelding: meldingNavKontorDuck.reducer,
 });

@@ -1,5 +1,3 @@
-import { Dispatch as ReduxDispatch } from 'redux';
-import { AppState } from './reducer';
+import { Action, Dispatch as ReduxDispatch } from 'redux';
 
-export interface Dispatch extends ReduxDispatch<AppState> {
-}
+export interface Dispatch extends ReduxDispatch<Action> { }
