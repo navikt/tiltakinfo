@@ -8,7 +8,7 @@ import StartsideBanner from './startside-banner';
 import { mapTilMaalOption } from '../../mock/utils';
 import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
-import { AppState, maalDuck } from '../../redux/reducer';
+import { AppState } from '../../redux/reducer';
 import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
 import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
@@ -16,9 +16,9 @@ import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
 import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
 import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
-
 import './startside.less';
 import HarSendtMelding from './har-sendt-melding';
+import { maalDuck } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;

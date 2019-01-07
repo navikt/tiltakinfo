@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Undertittel } from 'nav-frontend-typografi';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import Tekst from '../../finn-tekst';
-import { AppState, tiltakDuck } from '../../redux/reducer';
+import { AppState } from '../../redux/reducer';
 import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
@@ -11,6 +11,7 @@ import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
 import './tiltak.less';
 import veilederBilde from '../../ikoner/veileder-dame.svg';
 import { Dispatch } from '../../redux/dispatch-type';
+import { tiltakDuck } from '../../redux/generic-reducers';
 
 interface OwnProps {
     tiltakErBasertPaMaal: boolean;
