@@ -3,6 +3,24 @@ import genericDuck from './generic-duck';
 import { ActionType } from './actions';
 import { Bruker } from '../mock/mock-data-config';
 
+export enum BrukerType {
+    SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',
+    SYKMELDT_UTEN_ARBEIDSGIVER = 'bruker-sykmeldt-uten-arbeidsgiver',
+    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'bruker-arbeidsledig-situasjonsbestemt',
+    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'bruker-arbeidsledig-spesielt-tilpasset',
+    UTENFOR_MAALGRUPPE = 'bruker-utenfor-maalgruppe',
+}
+
+export interface BrukerState {
+    brukerType: BrukerType;
+}
+
+const inititalBrukerState = {
+    brukerType: BrukerType.UTENFOR_MAALGRUPPE,
+};
+
+export const brukerDuck = genericDuck<BrukerState, ActionType.SETT_BRUKER>(inititalBrukerState, ActionType.SETT_BRUKER);
+
 export interface MaalState {
     id: MaalOption;
 }
