@@ -7,21 +7,17 @@ import { AppState } from '../../redux/reducer';
 import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
-
 import './tiltak.less';
 import veilederBilde from '../../ikoner/veileder-dame.svg';
 import { Dispatch } from '../../redux/dispatch-type';
-import { tiltakDuck } from '../../redux/generic-reducers';
-
-interface OwnProps {
-    tiltakErBasertPaMaal: boolean;
-    sykmeldt: boolean;
-    sykmeldtMedArbeidsgiver: boolean;
-}
+import { BrukerType, tiltakDuck } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;
     situasjon: SituasjonOption;
+    tiltakErBasertPaMaal: boolean;
+    sykmeldt: boolean;
+    sykmeldtMedArbeidsgiver: boolean;
 
 }
 
@@ -29,7 +25,7 @@ interface DispatchProps {
     doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
 }
 
-type TiltakContainerProps = OwnProps & StateProps & DispatchProps;
+type TiltakContainerProps = StateProps & DispatchProps;
 
 interface State {
     windowSize: number;
@@ -129,6 +125,10 @@ const mapStateToProps = (state: AppState): StateProps => {
     return {
         maalId: state.maal.id,
         situasjon: state.oppfolgingsstatus.situasjon,
+        tiltakErBasertPaMaal: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+        sykmeldtMedArbeidsgiver: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+        sykmeldt: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER
+            || state.bruker.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
 
     };
 };
