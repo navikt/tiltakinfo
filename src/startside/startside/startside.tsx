@@ -9,18 +9,18 @@ import { mapTilMaalOption } from '../../mock/utils';
 import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
 import { AppState, maalDuck } from '../../redux/reducer';
+import { featureErAktivert } from '../../unleash/feature';
 import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
+import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
 import { MaalOption, SituasjonOption } from '../tiltak/tiltak-map';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
+import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
 import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
 
 import './startside.less';
-import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
-import { featureErAktivert } from '../../unleash/feature';
-import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 
 interface StateProps {
     maalId: MaalOption;
