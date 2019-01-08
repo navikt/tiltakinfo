@@ -27,7 +27,8 @@ export enum MockConfigPropName {
     HAR_ARBEIDSGIVER = 'arbeidsSituasjonIAktiveSykmeldinger',
     ER_SYKMELDT = 'erTiltakSykmeldteInngangAktiv',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
-    BRUKERNAVN = 'name'
+    BRUKERNAVN = 'name',
+    HAR_SENDT_MELDING_NAV_KONTOR = 'harSendtMeldingNavKontor',
 }
 
 export interface MockConfig extends ActiveUnleashFeatures {
@@ -38,6 +39,7 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.HAR_ARBEIDSGIVER]: string[];
     [MockConfigPropName.REGISTRERING]?: RegistreringDataState;
     [MockConfigPropName.BRUKERNAVN]: string;
+    [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: boolean;
 }
 
 export interface BrukerMocks {
@@ -60,6 +62,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: ['ARBEIDSLEDIG'],
         [MockConfigPropName.ER_SYKMELDT]: true,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -79,6 +82,7 @@ export const brukerMocks: BrukerMocks = {
             }
         },
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: true
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -91,6 +95,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -103,6 +108,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [tiltakInfoMeldingBaerum]: true,
@@ -115,5 +121,6 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
 };

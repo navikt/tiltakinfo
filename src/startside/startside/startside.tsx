@@ -127,7 +127,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     registrering: state.registrering,
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: false
+    harSendtMelding: state.harSendtMelding.harSendtMelding,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

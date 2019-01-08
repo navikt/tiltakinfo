@@ -22,7 +22,7 @@ import './kontakte-nav.less';
 interface KontakteNavProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
-    harSendtMelding: MeldingNavKontorState;
+    meldingState: MeldingNavKontorState;
 }
 
 interface StateType {
@@ -50,10 +50,14 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     }
 
     render() {
-        const {oppfolging, oppfolgingsEnhet, harSendtMelding} = this.props;
+        const {oppfolging, oppfolgingsEnhet, meldingState} = this.props;
         const tekstId = oppfolging.underOppfolging
             ? 'kontaktenav-takontakt-underoppfolging'
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
+
+        console.log('oppfolging', oppfolging); // tslint:disable-line
+        console.log('oppfolgingsEnhet', oppfolgingsEnhet); // tslint:disable-line
+        console.log('harSendtMelding', meldingState); // tslint:disable-line
 
         return (
             <Datalaster avhengigheter={[oppfolging]}>
@@ -77,10 +81,8 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
                             <Feature name={tiltakInfoMeldingBaerum}>
                                 <>
-                                    {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
-                                        !harSendtMelding && (
-                                            <KontakteKontor openModal={this.openModal} />
-                                        )
+                                    {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && meldingState.harSendtMelding === false && (
+                                        <KontakteKontor openModal={this.openModal} />
                                     )}
                                 </>
                             </Feature>
@@ -97,7 +99,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): KontakteNavProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: state.harSendtMelding
+    meldingState: state.harSendtMelding
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

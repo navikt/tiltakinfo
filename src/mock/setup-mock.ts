@@ -89,4 +89,8 @@ export default () => {
     });
 
     fetchMock.post(API.postBruker, ({body}) => body);
+
+    fetchMock.get(API.getHarSendtMeldingNavKontor, {
+        harSendtMelding: mockData[MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR],
+    });
 };

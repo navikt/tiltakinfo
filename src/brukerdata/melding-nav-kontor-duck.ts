@@ -28,7 +28,7 @@ export const initialMeldingNavKontorState: MeldingNavKontorState = {
 export default function reducer(state: MeldingNavKontorState = initialMeldingNavKontorState, action: Handling): MeldingNavKontorState {
     switch (action.type) {
         case ActionType.HENT_MELDING_NAV_KONTOR_OK:
-            return {...state, status: Status.OK};
+            return {...state, status: Status.OK, harSendtMelding: action.harSendtMelding};
         case ActionType.HENT_MELDING_NAV_KONTOR_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_MELDING_NAV_KONTOR_PENDING:
