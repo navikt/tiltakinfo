@@ -12,7 +12,7 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
 export interface MeldingNavKontorFetchState extends JSONObject {
-    harSendtMelding: boolean;
+    brukerHarSendtMeldingTilNavKontor: boolean;
 }
 
 export interface MeldingNavKontorState extends DataElement {
@@ -49,7 +49,7 @@ export function hentMeldingNavKontor(): (dispatch: Dispatch) => Promise<void> {
 function hentMeldingNavKontorOk(meldingNavKontorState: MeldingNavKontorFetchState): HentMeldingNavKontorOKAction {
     return {
         type: ActionType.HENT_MELDING_NAV_KONTOR_OK,
-        harSendtMelding: meldingNavKontorState.harSendtMelding,
+        harSendtMelding: meldingNavKontorState.brukerHarSendtMeldingTilNavKontor,
     };
 }
 
