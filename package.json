@@ -17,7 +17,6 @@
     "build": "npm run build:ts",
     "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js"
   },
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "ajv": "6.5.1",
     "babel-polyfill": "6.26.0",
