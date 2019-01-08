@@ -55,10 +55,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             ? 'kontaktenav-takontakt-underoppfolging'
             : 'kontaktenav-takontakt-ikkeunderoppfolging';
 
-        console.log('oppfolging', oppfolging); // tslint:disable-line
-        console.log('oppfolgingsEnhet', oppfolgingsEnhet); // tslint:disable-line
-        console.log('harSendtMelding', meldingState); // tslint:disable-line
-
         return (
             <Datalaster avhengigheter={[oppfolging]}>
                 <>
