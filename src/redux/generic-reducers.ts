@@ -2,6 +2,7 @@ import { MaalOption } from '../startside/tiltak/tiltak-map';
 import genericDuck from './generic-duck';
 import { ActionType } from './actions';
 import { Bruker } from '../mock/mock-data-config';
+import { TiltakId } from '../startside/tiltak/tiltak-config';
 
 export enum BrukerType {
     SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',
@@ -35,13 +36,13 @@ export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
 );
 
 export interface TiltakState {
-    nokkelEn: string;
-    nokkelTo: string;
+    nokkelEn?: TiltakId;
+    nokkelTo?: TiltakId;
 }
 
 const initialTiltakState: TiltakState = {
-    nokkelEn: '',
-    nokkelTo: ''
+    nokkelEn: undefined,
+    nokkelTo: undefined
 };
 
 export const tiltakDuck = genericDuck<TiltakState, ActionType.SETT_TILTAK>(initialTiltakState, ActionType.SETT_TILTAK);

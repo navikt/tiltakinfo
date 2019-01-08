@@ -86,14 +86,14 @@ class Startside extends React.Component<StartsideProps> {
                             || arbeidsledig) &&
                         <>
                             <section className="app-content tiltak-container">
-                                <Tiltak />
+                                <Tiltak/>
                             </section>
 
                             <section className="app-content kontakte-nav-container blokk-xl">
                                 {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding) ? (
-                                    <HarSendtMelding />
+                                    <HarSendtMelding/>
                                 ) : (
-                                    <KontakteNAV />
+                                    <KontakteNAV/>
                                 )}
                             </section>
                         </>
