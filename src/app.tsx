@@ -9,6 +9,7 @@ import setupMock from './mock/setup-mock';
 import UnleashProvider from './provider/unleash-provider';
 import { contextRoot } from './konstanter';
 import mockDashboardInjecter from './mock/mock-dashboard-injecter';
+import BrukerProvider from './provider/bruker-provider';
 
 if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();
@@ -22,7 +23,9 @@ class App extends React.Component {
             <BrowserRouter basename={contextRoot}>
                 <UnleashProvider>
                     <DataProvider>
-                        <Innhold/>
+                        <BrukerProvider>
+                            <Innhold/>
+                        </BrukerProvider>
                     </DataProvider>
                 </UnleashProvider>
             </BrowserRouter>

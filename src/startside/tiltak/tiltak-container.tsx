@@ -17,11 +17,12 @@ interface OwnProps {
     tiltakErBasertPaMaal: boolean;
     sykmeldt: boolean;
     sykmeldtMedArbeidsgiver: boolean;
-    situasjon: SituasjonOption;
 }
 
 interface StateProps {
     maalId: MaalOption;
+    situasjon: SituasjonOption;
+
 }
 
 interface DispatchProps {
@@ -127,6 +128,8 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 const mapStateToProps = (state: AppState): StateProps => {
     return {
         maalId: state.maal.id,
+        situasjon: state.oppfolgingsstatus.situasjon,
+
     };
 };
 
