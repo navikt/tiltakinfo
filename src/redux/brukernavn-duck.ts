@@ -24,9 +24,6 @@ const initialState: State = {
 export default function (state: State = initialState, action: Handling): State {
     switch (action.type) {
         case ActionType.HENT_BRUKERS_NAVN_PENDING:
-            if (state.status === Status.OK) {
-                return {...state, status: Status.RELASTER};
-            }
             return {...state, status: Status.LASTER};
         case ActionType.HENT_BRUKERS_NAVN_FEILET:
             return {...state, status: Status.FEILET};
