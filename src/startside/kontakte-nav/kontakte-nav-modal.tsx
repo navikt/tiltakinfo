@@ -24,10 +24,12 @@ export type KontakteNavModalProps = StateProps & OwnProps & DispatchProps;
 
 class KontakteNavModal extends React.Component<KontakteNavModalProps> {
     render() {
+        const {fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal} = this.props;
+
         return (
             <NavFrontendModal
-                isOpen={this.props.modalIsOpen}
-                onRequestClose={this.props.closeModal}
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
                 closeButton={true}
                 contentClass="kontaktModalInnhold"
                 contentLabel="Kontakt NAV Bærum"
@@ -38,7 +40,7 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                 <Sidetittel tag="h1" className="blokk-s">Kontakt<br/>NAV Bærum</Sidetittel>
                 <Normaltekst className="blokk-s">Denne meldingen blir sendt til NAV Bærum:</Normaltekst>
                 <Normaltekst className="sitat">
-                    "<strong>{this.props.fulltNavn}</strong> så informasjon om
+                    "<strong>{fulltNavn}</strong> så informasjon om
                     <strong> Arbeidsrettet rehabilitering</strong> og er interessert
                     i å snakke om muligheter."
                 </Normaltekst>
@@ -48,7 +50,10 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                 </Normaltekst>
                 <button
                     className="knapp knapp--hoved blokk-xs"
-                    onClick={() => this.props.doLagreBruker(this.props.bruker)}
+                    onClick={() => {
+                        doLagreBruker(bruker);
+                        closeModal();
+                    }}
                 >
                     Send Melding
                 </button>
@@ -83,7 +88,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doLagreBruker: (bruker: User) => dispatch(lagreBruker(bruker))
+    doLagreBruker: (bruker: User) => lagreBruker(bruker)(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(KontakteNavModal);

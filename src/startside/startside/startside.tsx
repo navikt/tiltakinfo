@@ -17,8 +17,8 @@ import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registr
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import './startside.less';
 import HarSendtMelding from './har-sendt-melding';
-import { BrukerType, maalDuck, tiltakDuck } from '../../redux/generic-reducers';
 import { TiltakId } from '../tiltak/tiltak-config';
+import { BrukerType, maalDuck, tiltakDuck } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;
@@ -60,7 +60,7 @@ class Startside extends React.Component<StartsideProps> {
     componentDidUpdate(prevProps: Readonly<StartsideProps>) {
         const { brukerType, maalId, situasjon, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver, doSettTiltak } = this.props;
         if (brukerType !== prevProps.brukerType || maalId !== prevProps.maalId) {
-
+            debugger;
             const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
 
             const finnTiltakMapKey = (): string => {
@@ -147,13 +147,13 @@ const mapStateToProps = (state: AppState): StateProps => ({
     syfoSituasjon: state.syfoSituasjon,
     registrering: state.registrering,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    harSendtMelding: false,
     brukerType: state.bruker.brukerType,
     situasjon: state.oppfolgingsstatus.situasjon,
     sykmeldtMedArbeidsgiver: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
     sykmeldtUtenArbeidsgiver: state.bruker.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
     arbeidsledigSituasjonsbestemt: state.bruker.brukerType === BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT,
     arbeidsledigSpesieltTilpasset: state.bruker.brukerType === BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET,
+    harSendtMelding: state.harSendtMelding.harSendtMelding,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

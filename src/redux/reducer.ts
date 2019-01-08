@@ -18,6 +18,7 @@ import {
     tiltakDuck,
     TiltakState
 } from './generic-reducers';
+import meldingNavKontorReducer from '../brukerdata/melding-nav-kontor-duck';
 
 export interface AppState {
     unleash: UnleashState;
@@ -44,4 +45,5 @@ export const reducer = combineReducers<AppState>({
     brukersNavn,
     tiltak: tiltakDuck.reducer,
     bruker: brukerDuck.reducer,
+    harSendtMelding: meldingNavKontorReducer,
 });

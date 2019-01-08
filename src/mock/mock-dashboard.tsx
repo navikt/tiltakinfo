@@ -24,7 +24,6 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
 
     constructor(props: MockDashboardProps) {
         super(props);
-
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -46,13 +45,13 @@ export class MockDashboard extends React.Component<MockDashboardProps> {
                     label={utledTekst('demo-velg-brukertype')}
                     onChange={this.handleChange}
                     id="velg-bruker"
+                    defaultValue={demobruker}
                 >
                     {
                         brukerOptionsRekkefolge.map((bruker: string) =>
                             <option
                                 key={bruker}
                                 value={bruker}
-                                selected={demobruker === bruker}
                             >
                                 {utledTekst(bruker)}
                             </option>

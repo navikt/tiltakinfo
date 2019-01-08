@@ -30,7 +30,7 @@ interface ApiProps {
     getSyfo: string;
     getRegistrering: string;
     getBrukersNavn: string;
-    getMeldingNavKontor: string;
+    getHarSendtMeldingNavKontor: string;
 }
 
 export const featureQueryParams = (features: string[]): string => {
@@ -46,7 +46,7 @@ export const API: ApiProps = {
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
     getBrukersNavn: '/innloggingslinje/auth',
-    getMeldingNavKontor: '/veilarbtiltakinfo/api/bruker/harsendtmeldingtilnavkontor',
+    getHarSendtMeldingNavKontor: '/veilarbtiltakinfo/api/bruker/harsendtmeldingtilnavkontor',
 };
 
 export function getUnleashFetch(features: string[]): Promise<UnleashState> {
@@ -80,5 +80,5 @@ export function getBrukersNavn() {
 }
 
 export function getMeldingNavKontorFetch(): Promise<MeldingNavKontorFetchState> {
-    return fetchToJson(API.getMeldingNavKontor, requestConfig);
+    return fetchToJson(API.getHarSendtMeldingNavKontor, requestConfig);
 }
