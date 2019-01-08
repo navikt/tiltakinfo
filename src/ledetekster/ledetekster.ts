@@ -70,6 +70,8 @@ export default {
     'bruker-arbeidsledig-spesielt-tilpasset': 'Arbeidsledig spesielt tilpasset',
     'bruker-utenfor-maalgruppe': 'Utenfor målgruppe',
     'tekst-ditt-kontor-er': 'Ditt kontor er <strong>NAV Bærum</strong>.',
+    'kontakt-nav-baerum': 'Kontakt<br/>NAV Bærum',
+    'meldingen-blir-sendt': 'Denne meldingen blir sendt til NAV Bærum:',
     'kontakte-nav-baerum': 'Kontakt NAV Bærum',
     'beskjed-sendt-nav-baerum': 'NAV Bærum har fått beskjed',
     'nav-baerum-tar-kontakt': 'Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter. De tar kontakt med deg innen et par dager.',

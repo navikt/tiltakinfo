@@ -39,8 +39,12 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                 bodyOpenClassName="modal__kontakt-nav"
 
             >
-                <Sidetittel tag="h1" className="blokk-s">Kontakt<br/>NAV Bærum</Sidetittel>
-                <Normaltekst className="blokk-s">Denne meldingen blir sendt til NAV Bærum:</Normaltekst>
+                <Sidetittel tag="h1" className="blokk-s">
+                    {Parser(utledTekst('kontakt-nav-baerum'))}
+                </Sidetittel>
+                <Normaltekst className="blokk-s">
+                    {Parser(utledTekst('meldingen-blir-sendt'))}
+                </Normaltekst>
                 <Normaltekst className="sitat">
                     "<strong>{fulltNavn}</strong>
                     {Parser(utledTekst('interessert-i-muligheter'))}"
