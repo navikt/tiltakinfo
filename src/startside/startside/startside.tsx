@@ -18,7 +18,9 @@ import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registr
 import { OppfolgingsEnhet, OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
 
 import './startside.less';
-import HarSendtMelding from './har-sendt-melding';
+import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
+import { featureErAktivert } from '../../unleash/feature';
+import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 
 interface StateProps {
     maalId: MaalOption;
@@ -28,6 +30,7 @@ interface StateProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     harSendtMelding: boolean;
+    features: UnleashState;
 }
 
 interface DispatchProps {
@@ -53,7 +56,7 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {maalId, oppfolgingsstatus, syfoSituasjon, oppfolgingsEnhet, harSendtMelding} = this.props;
+        const {maalId, oppfolgingsstatus, syfoSituasjon, oppfolgingsEnhet, harSendtMelding, features} = this.props;
         const sykmeldtMedArbeidsgiver = syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver;
         const sykmeldtUtenArbeidsgiver = syfoSituasjon.erSykmeldt && !syfoSituasjon.harArbeidsgiver;
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
@@ -93,10 +96,11 @@ class Startside extends React.Component<StartsideProps> {
                             </section>
 
                             <section className="app-content kontakte-nav-container blokk-xl">
-                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding) ? (
-                                    <HarSendtMelding />
+                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
+                                    featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
+                                    <HarSendtMelding/>
                                 ) : (
-                                    <KontakteNAV />
+                                    <KontakteNAV/>
                                 )}
                             </section>
                         </>
@@ -128,6 +132,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
     harSendtMelding: state.harSendtMelding.harSendtMelding,
+    features: state.unleash,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
