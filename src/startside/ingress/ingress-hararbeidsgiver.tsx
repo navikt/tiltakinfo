@@ -8,9 +8,10 @@ import { MaalOption } from '../tiltak/tiltak-map';
 import { klikkPaMaalMetrikk } from '../../metrics';
 import Tekst, { utledTekst } from '../../finn-tekst';
 import { Dispatch } from '../../redux/dispatch-type';
-import { AppState, maalDuck } from '../../redux/reducer';
-
+import { AppState } from '../../redux/reducer';
+import { maalDuck } from '../../redux/generic-reducers';
 import './ingress-hararbeidsgiver.less';
+
 const velgMaalBilde = require('../../ikoner/velg-maal.svg');
 
 polyfill();

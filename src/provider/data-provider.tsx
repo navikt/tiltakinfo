@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Datalaster from './api/datalaster';
-import { AppState } from './redux/reducer';
-import { Dispatch } from './redux/dispatch-type';
-import { hentSyfo, SyfoSituasjonState } from './brukerdata/syfo-duck';
-import { hentOppfolging, OppfolgingState } from './brukerdata/oppfolging-duck';
-import { hentBrukernavn, State as BrukernavnState } from './redux/brukernavn-duck';
-import { hentRegistrering, RegistreringState } from './brukerdata/registrering-duck';
-import { hentMeldingNavKontor, MeldingNavKontorState } from './brukerdata/melding-nav-kontor-duck';
-import { OppfolgingsstatusState, hentOppfolgingsstatus } from './brukerdata/oppfolgingsstatus-duck';
+import { Dispatch } from '../redux/dispatch-type';
+import { hentOppfolging, OppfolgingState } from '../brukerdata/oppfolging-duck';
+import { AppState } from '../redux/reducer';
+import { OppfolgingsstatusState, hentOppfolgingsstatus } from '../brukerdata/oppfolgingsstatus-duck';
+import { hentSyfo, SyfoSituasjonState } from '../brukerdata/syfo-duck';
+import Datalaster from '../api/datalaster';
+import { hentRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
+import { hentMeldingNavKontor, MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
+import { hentBrukernavn, State as BrukernavnState } from '../brukerdata/brukernavn-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -32,10 +32,10 @@ interface DispatchProps {
     doHentMeldingNavKontor: () => void;
 }
 
-type UnleashProviderProps = OwnProps & DispatchProps & StateProps;
+type DataProviderProps = OwnProps & DispatchProps & StateProps;
 
-class DataProvider extends React.Component<UnleashProviderProps> {
-    constructor(props: UnleashProviderProps) {
+class DataProvider extends React.Component<DataProviderProps> {
+    constructor(props: DataProviderProps) {
         super(props);
     }
 

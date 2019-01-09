@@ -1,55 +1,24 @@
 import { combineReducers } from 'redux';
-import { ActionType } from './actions';
-import genericDuck from './generic-duck';
 import persistent from './persistent-reducer';
-import { Bruker } from '../mock/mock-data-config';
-import { MaalOption } from '../startside/tiltak/tiltak-map';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import brukersNavn, { State as BrukersNavnState } from './brukernavn-duck';
+import brukersNavn, { State as BrukersNavnState } from '../brukerdata/brukernavn-duck';
 import { MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
 import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
-import meldingNavKontorReducer from '../brukerdata/melding-nav-kontor-duck';
-
-export interface MaalState {
-    id: MaalOption;
-}
-
-const initialMaalState: MaalState = {
-    id: MaalOption.IKKE_VALGT
-};
-
-export const maalDuck = genericDuck<MaalState, ActionType.SETT_MAAL>(
+import {
+    brukertypeDuck,
+    BrukertypeState,
+    demoBrukerDuck,
+    DemoBrukerState, initialDemoBrukerState,
     initialMaalState,
-    ActionType.SETT_MAAL
-);
-
-export interface TiltakState {
-    nokkelEn: string;
-    nokkelTo: string;
-}
-
-const initialTiltakState: TiltakState = {
-    nokkelEn: '',
-    nokkelTo: ''
-};
-
-export const tiltakDuck = genericDuck<TiltakState, ActionType.SETT_TILTAK>(initialTiltakState, ActionType.SETT_TILTAK);
-
-export interface DemoBrukerState {
-    id: Bruker;
-}
-
-const initialDemoBrukerState: DemoBrukerState = {
-    id: Bruker.DEFAULT_MOCK,
-};
-
-export const demoBrukerDuck = genericDuck<DemoBrukerState, ActionType.SETT_BRUKERTYPE>(
-    initialDemoBrukerState,
-    ActionType.SETT_BRUKERTYPE
-);
+    maalDuck,
+    MaalState,
+    tiltakDuck,
+    TiltakState
+} from './generic-reducers';
+import meldingNavKontorReducer from '../brukerdata/melding-nav-kontor-duck';
 
 export interface AppState {
     unleash: UnleashState;
@@ -62,6 +31,7 @@ export interface AppState {
     brukersNavn: BrukersNavnState;
     harSendtMelding: MeldingNavKontorState;
     tiltak: TiltakState;
+    brukertype: BrukertypeState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -74,5 +44,6 @@ export const reducer = combineReducers<AppState>({
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
     brukersNavn,
     tiltak: tiltakDuck.reducer,
+    brukertype: brukertypeDuck.reducer,
     harSendtMelding: meldingNavKontorReducer,
 });

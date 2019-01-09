@@ -9,6 +9,7 @@ import { postBrukerFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { Dispatch } from '../redux/dispatch-type';
+import { TiltakId } from '../startside/tiltak/tiltak-config';
 
 export const initialState: DataElement = {
     status: Status.IKKE_STARTET,
@@ -56,7 +57,7 @@ function lagreBrukerPENDING(): LagreBrukerPENDINGAction {
 }
 
 export interface Tiltak {
-    nokkel: string;
+    nokkel?: TiltakId;
 }
 
 export interface User {

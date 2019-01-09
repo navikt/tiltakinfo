@@ -3,11 +3,12 @@ import './mock-dashboard.less';
 import { Select as SelectKomponent } from 'nav-frontend-skjema';
 import { Bruker, brukerOptionsRekkefolge } from './mock-data-config';
 import './mock-dashboard.less';
-import { AppState, demoBrukerDuck } from '../redux/reducer';
+import { AppState } from '../redux/reducer';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { Dispatch } from '../redux/dispatch-type';
 import { connect } from 'react-redux';
 import Tekst, { utledTekst } from '../finn-tekst';
+import { demoBrukerDuck } from '../redux/generic-reducers';
 
 interface StateProps {
     demobruker: Bruker;

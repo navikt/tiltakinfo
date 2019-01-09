@@ -3,31 +3,24 @@ import { connect } from 'react-redux';
 import { Undertittel } from 'nav-frontend-typografi';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import Tekst from '../../finn-tekst';
-import { AppState, tiltakDuck } from '../../redux/reducer';
+import { AppState } from '../../redux/reducer';
 import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
-
+import { MaalOption, SituasjonOption } from './tiltak-map';
 import './tiltak.less';
 import veilederBilde from '../../ikoner/veileder-dame.svg';
-import { Dispatch } from '../../redux/dispatch-type';
-
-interface OwnProps {
-    tiltakErBasertPaMaal: boolean;
-    sykmeldt: boolean;
-    sykmeldtMedArbeidsgiver: boolean;
-    situasjon: SituasjonOption;
-}
+import { BrukerType } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;
+    situasjon: SituasjonOption;
+    tiltakErBasertPaMaal: boolean;
+    sykmeldt: boolean;
+    sykmeldtMedArbeidsgiver: boolean;
+    tiltakNokler?: TiltakId[];
 }
 
-interface DispatchProps {
-    doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
-}
-
-type TiltakContainerProps = OwnProps & StateProps & DispatchProps;
+type TiltakContainerProps = StateProps;
 
 interface State {
     windowSize: number;
@@ -59,24 +52,13 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
     render() {
         const erDesktop = this.state.windowSize > 767;
 
-        const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, situasjon} = this.props;
+        const {maalId, sykmeldtMedArbeidsgiver, tiltakNokler} = this.props;
+
+        if (!tiltakNokler) {
+            return null;
+        }
 
         const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
-        const finnTiltakMapKey = (): string => {
-            if (sykmeldt) {
-                if (sykmeldtMedArbeidsgiver) {
-                    return maalId;
-                } else {
-                    return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
-                }
-            } else {
-                return situasjon;
-            }
-
-        };
-        const tiltakNokler: TiltakId[] = tiltakMap[finnTiltakMapKey()];
-
-        this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
 
         const tiltakSomVises: Tiltak[] = tiltakNokler.map(mapTiltakConfig);
 
@@ -123,14 +105,15 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        maalId: state.maal.id,
-    };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doSettTiltak: (tiltakEn, tiltakTo) => dispatch(tiltakDuck.actionCreator({tiltakEn, tiltakTo})),
+const mapStateToProps = (state: AppState): StateProps => ({
+    maalId: state.maal.id,
+    situasjon: state.oppfolgingsstatus.situasjon,
+    tiltakErBasertPaMaal: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+    sykmeldtMedArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+    sykmeldt: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER
+        || state.brukertype.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
+    tiltakNokler: (state.tiltak.nokkelEn && state.tiltak.nokkelTo)
+        ? [state.tiltak.nokkelEn, state.tiltak.nokkelTo] : undefined,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TiltakContainer);
+export default connect(mapStateToProps)(TiltakContainer);
