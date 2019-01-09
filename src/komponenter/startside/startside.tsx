@@ -58,29 +58,23 @@ class Startside extends React.Component<StartsideProps> {
             const fremtidigSituasjon = registrering.maalFraRegistrering;
             doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
         }
+
+        if (maalId !== MaalOption.IKKE_VALGT) {
+            this.utledOgSettTiltak(maalId);
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<StartsideProps>) {
-        const { brukerType, maalId, situasjon, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver, doSettTiltak } = this.props;
-        if (brukerType !== prevProps.brukerType || maalId !== prevProps.maalId) {
-            const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
+        const { maalId } = this.props;
 
-            const finnTiltakMapKey = (): string => {
-                if (sykmeldt) {
-                    if (sykmeldtMedArbeidsgiver) {
-                        return maalId;
-                    } else {
-                        return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
-                    }
-                } else {
-                    return situasjon;
-                }
-
-            };
-            const tiltakNokler: TiltakId[] = tiltakMap[finnTiltakMapKey()];
-            doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+        if (maalId !== prevProps.maalId) {
+            this.utledOgSettTiltak(maalId);
         }
+    }
 
+    utledOgSettTiltak(maalId: MaalOption) {
+        const tiltakNokler: TiltakId[] = tiltakMap[maalId];
+        this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
     }
 
     render() {

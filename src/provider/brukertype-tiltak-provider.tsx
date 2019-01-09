@@ -4,8 +4,9 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import { BrukerType, brukertypeDuck } from '../redux/generic-reducers';
-import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
+import { BrukerType, brukertypeDuck, tiltakDuck } from '../redux/generic-reducers';
+import { SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
+import { TiltakId } from '../komponenter/tiltak/tiltak-config';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -18,6 +19,7 @@ interface StateProps {
 
 interface DispatchProps {
     doSettBruker: (brukerType: BrukerType) => void;
+    doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
 }
 
 type BrukerProviderProps = OwnProps & DispatchProps & StateProps;
@@ -30,9 +32,14 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
     componentDidMount() {
         const brukertype: BrukerType = this.utledBrukertype();
         this.props.doSettBruker(brukertype);
+
+        if (brukertype !== BrukerType.SYKMELDT_MED_ARBEIDSGIVER && brukertype !== BrukerType.UTENFOR_MAALGRUPPE) {
+            const tiltakNokler: TiltakId[] = this.utledTiltak(brukertype);
+            this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+        }
     }
 
-    utledBrukertype() {
+    utledBrukertype(): BrukerType {
         const {oppfolgingsstatus, syfoSituasjon} = this.props;
 
         if (syfoSituasjon.erSykmeldt) {
@@ -50,6 +57,21 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
         }
     }
 
+    utledTiltak(brukertype: BrukerType): TiltakId[] {
+
+        const finnTiltakMapKey = (b: BrukerType): SituasjonOption => {
+            if (b === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER) {
+                return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
+            } else if (b === BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT) {
+                return SituasjonOption.SITUASJONSBESTEMT;
+            } else { // brukertype === BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET
+                return SituasjonOption.SPESIELT_TILPASSET;
+            }
+        };
+
+        return tiltakMap[finnTiltakMapKey(brukertype)];
+    }
+
     render() {
         return this.props.children;
     }
@@ -61,6 +83,10 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+    doSettTiltak: (tiltakEn, tiltakTo) => dispatch(tiltakDuck.actionCreator({
+        nokkelEn: tiltakEn,
+        nokkelTo: tiltakTo
+    })),
     doSettBruker: (brukerType: BrukerType) => dispatch(brukertypeDuck.actionCreator({brukerType}))
 });
 
