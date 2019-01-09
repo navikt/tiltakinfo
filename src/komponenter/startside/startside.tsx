@@ -58,10 +58,6 @@ class Startside extends React.Component<StartsideProps> {
             const fremtidigSituasjon = registrering.maalFraRegistrering;
             doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
         }
-
-        if (maalId !== MaalOption.IKKE_VALGT) {
-            this.utledOgSettTiltak(maalId);
-        }
     }
 
     componentDidUpdate(prevProps: Readonly<StartsideProps>) {

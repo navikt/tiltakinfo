@@ -5,7 +5,7 @@ import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { BrukerType, brukertypeDuck, tiltakDuck } from '../redux/generic-reducers';
-import { SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
+import { MaalOption, SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
 
 interface OwnProps {
@@ -15,6 +15,7 @@ interface OwnProps {
 interface StateProps {
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
+    maalId: MaalOption;
 }
 
 interface DispatchProps {
@@ -30,12 +31,17 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
     }
 
     componentDidMount() {
+        const { doSettBruker, doSettTiltak, maalId } = this.props;
+
         const brukertype: BrukerType = this.utledBrukertype();
-        this.props.doSettBruker(brukertype);
+        doSettBruker(brukertype);
 
         if (brukertype !== BrukerType.SYKMELDT_MED_ARBEIDSGIVER && brukertype !== BrukerType.UTENFOR_MAALGRUPPE) {
             const tiltakNokler: TiltakId[] = this.utledTiltak(brukertype);
-            this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+            doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+        } else if (maalId !== MaalOption.IKKE_VALGT) {
+            const tiltakNokler: TiltakId[] = tiltakMap[maalId];
+            doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
         }
     }
 
@@ -80,6 +86,7 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
 const mapStateToProps = (state: AppState): StateProps => ({
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
+    maalId: state.maal.id,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
