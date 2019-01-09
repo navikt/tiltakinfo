@@ -7,6 +7,7 @@ import { utledTekst } from '../../finn-tekst';
 import { AppState } from '../../redux/reducer';
 import { Dispatch } from '../../redux/dispatch-type';
 import { lagreBruker, User } from '../../brukerdata/bruker-duck';
+import tiltakConfig from '../tiltak/tiltak-config';
 
 interface StateProps {
     fulltNavn?: string;
@@ -27,6 +28,11 @@ export type KontakteNavModalProps = StateProps & OwnProps & DispatchProps;
 class KontakteNavModal extends React.Component<KontakteNavModalProps> {
     render() {
         const {fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal} = this.props;
+        const navn = fulltNavn ? fulltNavn : 'Jeg';
+        const tiltak = bruker.tiltak
+            .map(t => t.nokkel!)
+            .map(n => tiltakConfig(n).tittel)
+            .map(tittelId => utledTekst(tittelId));
 
         return (
             <NavFrontendModal
@@ -46,8 +52,7 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                     {Parser(utledTekst('meldingen-blir-sendt'))}
                 </Normaltekst>
                 <Normaltekst className="sitat">
-                    "<strong>{fulltNavn}</strong>
-                    {Parser(utledTekst('interessert-i-muligheter'))}"
+                    {Parser(utledTekst('interessert-i-muligheter', [navn].concat(tiltak)))}
                 </Normaltekst>
                 <Normaltekst className="blokk-s">
                     {Parser(utledTekst('tar-kontakt-etter-meldingen'))}
