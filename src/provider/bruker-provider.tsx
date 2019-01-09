@@ -5,7 +5,7 @@ import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { brukerDuck, BrukerType } from '../redux/generic-reducers';
-import { SituasjonOption } from '../startside/tiltak/tiltak-map';
+import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any

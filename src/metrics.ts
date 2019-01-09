@@ -1,5 +1,5 @@
-import { MaalOption, SituasjonOption } from './startside/tiltak/tiltak-map';
-import { TiltakId } from './startside/tiltak/tiltak-config';
+import { MaalOption, SituasjonOption } from './komponenter/tiltak/tiltak-map';
+import { TiltakId } from './komponenter/tiltak/tiltak-config';
 import { erDemo } from './mock/utils';
 
 const w = (window as any); // tslint:disable-line:no-any
