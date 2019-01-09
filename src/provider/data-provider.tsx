@@ -7,8 +7,8 @@ import { OppfolgingsstatusState, hentOppfolgingsstatus } from '../brukerdata/opp
 import { hentSyfo, SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import Datalaster from '../api/datalaster';
 import { hentRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
-import { hentBrukernavn } from '../brukerdata/brukernavn-duck';
 import { hentMeldingNavKontor, MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
+import { hentBrukernavn, State as BrukernavnState } from '../brukerdata/brukernavn-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -19,6 +19,7 @@ interface StateProps {
     syfoSituasjon: SyfoSituasjonState;
     oppfolging: OppfolgingState;
     registrering: RegistreringState;
+    brukersNavn: BrukernavnState;
     harSendtMelding: MeldingNavKontorState;
 }
 
@@ -48,10 +49,10 @@ class DataProvider extends React.Component<DataProviderProps> {
     }
 
     render() {
-        const {oppfolgingsstatus, syfoSituasjon, oppfolging, registrering} = this.props;
+        const {oppfolgingsstatus, syfoSituasjon, oppfolging, registrering, brukersNavn, harSendtMelding} = this.props;
         return (
             <Datalaster
-                avhengigheter={[oppfolgingsstatus, syfoSituasjon, oppfolging]}
+                avhengigheter={[oppfolgingsstatus, syfoSituasjon, oppfolging, brukersNavn, harSendtMelding]}
                 ventPa={[registrering]}
             >
                 {this.props.children}
@@ -65,6 +66,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     syfoSituasjon: state.syfoSituasjon,
     oppfolging: state.oppfolging,
     registrering: state.registrering,
+    brukersNavn: state.brukersNavn,
     harSendtMelding: state.harSendtMelding,
 });
 

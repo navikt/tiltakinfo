@@ -82,7 +82,7 @@ export const brukerMocks: BrukerMocks = {
             }
         },
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: true
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [tiltakInfoMeldingBaerum]: true,

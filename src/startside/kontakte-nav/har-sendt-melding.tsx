@@ -1,5 +1,7 @@
 import * as React from 'react';
+import Parser from 'html-react-parser';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
+import { utledTekst } from '../../finn-tekst';
 
 const velgMaalBilde = require('../../ikoner/check_blaa.svg');
 
@@ -10,11 +12,10 @@ const HarSendtMelding = () => {
                 <img src={velgMaalBilde} alt=""/>
             </div>
             <Sidetittel tag="h1" className="har-sendt-melding__tittel blokk-s">
-                NAV Bærum har fått beskjed
+                {Parser(utledTekst('beskjed-sendt-nav-baerum'))}
             </Sidetittel>
             <Normaltekst>
-                Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter.
-                De tar kontakt med deg innen et par dager.
+                {Parser(utledTekst('nav-baerum-tar-kontakt'))}
             </Normaltekst>
         </div>
     );

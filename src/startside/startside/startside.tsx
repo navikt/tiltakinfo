@@ -8,17 +8,19 @@ import StartsideBanner from './startside-banner';
 import { mapTilMaalOption } from '../../mock/utils';
 import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
+import { featureErAktivert } from '../../unleash/feature';
 import { AppState } from '../../redux/reducer';
 import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
 import { MaalOption, SituasjonOption, tiltakMap } from '../tiltak/tiltak-map';
 import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
+import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import './startside.less';
-import HarSendtMelding from './har-sendt-melding';
 import { TiltakId } from '../tiltak/tiltak-config';
 import { BrukerType, maalDuck, tiltakDuck } from '../../redux/generic-reducers';
+import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
 
 interface StateProps {
     maalId: MaalOption;
@@ -32,6 +34,7 @@ interface StateProps {
     sykmeldtUtenArbeidsgiver: boolean;
     arbeidsledigSituasjonsbestemt: boolean;
     arbeidsledigSpesieltTilpasset: boolean;
+    features: UnleashState;
 }
 
 interface DispatchProps {
@@ -82,7 +85,7 @@ class Startside extends React.Component<StartsideProps> {
 
     render() {
         const {maalId, oppfolgingsEnhet, harSendtMelding, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver,
-            arbeidsledigSituasjonsbestemt, arbeidsledigSpesieltTilpasset} = this.props;
+            arbeidsledigSituasjonsbestemt, arbeidsledigSpesieltTilpasset, features} = this.props;
 
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
 
@@ -114,7 +117,8 @@ class Startside extends React.Component<StartsideProps> {
                             </section>
 
                             <section className="app-content kontakte-nav-container blokk-xl">
-                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding) ? (
+                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
+                                    featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
                                     <HarSendtMelding/>
                                 ) : (
                                     <KontakteNAV/>
@@ -153,6 +157,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     arbeidsledigSituasjonsbestemt: state.bruker.brukerType === BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT,
     arbeidsledigSpesieltTilpasset: state.bruker.brukerType === BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET,
     harSendtMelding: state.harSendtMelding.harSendtMelding,
+    features: state.unleash,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

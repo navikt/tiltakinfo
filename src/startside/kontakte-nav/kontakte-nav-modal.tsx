@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Parser from 'html-react-parser';
 import NavFrontendModal from 'nav-frontend-modal';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
+import { utledTekst } from '../../finn-tekst';
 import { AppState } from '../../redux/reducer';
-import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 import { Dispatch } from '../../redux/dispatch-type';
+import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 
 interface StateProps {
     fulltNavn?: string;
@@ -37,16 +39,18 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                 bodyOpenClassName="modal__kontakt-nav"
 
             >
-                <Sidetittel tag="h1" className="blokk-s">Kontakt<br/>NAV Bærum</Sidetittel>
-                <Normaltekst className="blokk-s">Denne meldingen blir sendt til NAV Bærum:</Normaltekst>
+                <Sidetittel tag="h1" className="blokk-s">
+                    {Parser(utledTekst('kontakt-nav-baerum'))}
+                </Sidetittel>
+                <Normaltekst className="blokk-s">
+                    {Parser(utledTekst('meldingen-blir-sendt'))}
+                </Normaltekst>
                 <Normaltekst className="sitat">
-                    "<strong>{fulltNavn}</strong> så informasjon om
-                    <strong> Arbeidsrettet rehabilitering</strong> og er interessert
-                    i å snakke om muligheter."
+                    "<strong>{fulltNavn}</strong>
+                    {Parser(utledTekst('interessert-i-muligheter'))}"
                 </Normaltekst>
                 <Normaltekst className="blokk-s">
-                    Etter at du har sendt meldingen, vil NAV
-                    Bærum ta kontakt med deg innen et par dager.
+                    {Parser(utledTekst('tar-kontakt-etter-meldingen'))}
                 </Normaltekst>
                 <button
                     className="knapp knapp--hoved blokk-xs"
@@ -55,12 +59,10 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                         closeModal();
                     }}
                 >
-                    Send Melding
+                    {Parser(utledTekst('send-melding'))}
                 </button>
                 <Normaltekst className="subtekst">
-                    Dette er en ny tjeneste NAV tester ut. Informasjonen din vil
-                    bli lagret og delt med utviklingsteamet og NAV Bærum.
-                    Personopplysninger slettes etter testperioden.
+                    {Parser(utledTekst('tester-ny-tjeneste'))}
                 </Normaltekst>
             </NavFrontendModal>
         );
