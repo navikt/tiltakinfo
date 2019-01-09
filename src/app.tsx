@@ -9,7 +9,7 @@ import setupMock from './mock/setup-mock';
 import UnleashProvider from './provider/unleash-provider';
 import { contextRoot } from './konstanter';
 import mockDashboardInjecter from './mock/mock-dashboard-injecter';
-import BrukerProvider from './provider/bruker-provider';
+import BrukerProvider from './provider/bruker-tiltak-provider';
 
 if (erFullMock() || erLocalhost() || erDemo()) {
     setupMock();

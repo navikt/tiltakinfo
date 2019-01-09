@@ -22,7 +22,7 @@ interface DispatchProps {
 
 type BrukerProviderProps = OwnProps & DispatchProps & StateProps;
 
-class BrukerProvider extends React.Component<BrukerProviderProps> {
+class BrukerTiltakProvider extends React.Component<BrukerProviderProps> {
     constructor(props: BrukerProviderProps) {
         super(props);
     }
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doSettBruker: (brukerType: BrukerType) => dispatch(brukertypeDuck.actionCreator({brukerType}))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrukerProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(BrukerTiltakProvider);
