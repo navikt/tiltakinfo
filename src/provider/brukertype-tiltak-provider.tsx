@@ -7,8 +7,7 @@ import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { BrukerType, brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
 import { MaalOption, SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
-import { MaalFraRegistrering } from '../brukerdata/registrering-duck';
-import { mapTilMaalOption } from '../mock/utils';
+import { MaalFraRegistrering, mapTilMaalOption } from '../brukerdata/registrering-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
