@@ -18,7 +18,7 @@ export function utledTekst (id: string, variabler?: string[]): string {
     const ledetekst: string = ledetekster[id];
 
     if (ledetekst.search(VARIABEL) > -1 && !variabler) {
-        console.error(`Ledeteksten med id ${id} er definert med variabler men ingen er sendt inn`);
+        console.error(`Ledeteksten med id ${id} er definert med variabler men ingen er sendt inn`); // tslint:disable-line:no-console
         return id;
     }
 
