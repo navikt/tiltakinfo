@@ -10,7 +10,7 @@ import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingsstatusFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
-import { SituasjonOption } from '../startside/tiltak/tiltak-map';
+import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
 
 export interface OppfolgingsEnhet extends JSONObject {
     navn: string;

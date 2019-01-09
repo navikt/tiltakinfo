@@ -4,8 +4,8 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import { brukertypeDuck, BrukerType } from '../redux/generic-reducers';
-import { SituasjonOption } from '../startside/tiltak/tiltak-map';
+import { BrukerType, brukertypeDuck } from '../redux/generic-reducers';
+import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any

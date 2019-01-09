@@ -1,8 +1,8 @@
-import { MaalOption } from '../startside/tiltak/tiltak-map';
+import { MaalOption } from '../komponenter/tiltak/tiltak-map';
 import genericDuck from './generic-duck';
 import { ActionType } from './actions';
 import { Bruker } from '../mock/mock-data-config';
-import { TiltakId } from '../startside/tiltak/tiltak-config';
+import { TiltakId } from '../komponenter/tiltak/tiltak-config';
 
 export enum BrukerType {
     SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',

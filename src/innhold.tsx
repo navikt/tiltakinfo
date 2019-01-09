@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
-import Startside from './startside/startside/startside';
+import Startside from './komponenter/startside/startside';
 import { AppState } from './redux/reducer';
 import { connect } from 'react-redux';
 import { OppfolgingState } from './brukerdata/oppfolging-duck';

@@ -9,7 +9,7 @@ import { postBrukerFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { Dispatch } from '../redux/dispatch-type';
-import { TiltakId } from '../startside/tiltak/tiltak-config';
+import { TiltakId } from '../komponenter/tiltak/tiltak-config';
 
 export const initialState: DataElement = {
     status: Status.IKKE_STARTET,

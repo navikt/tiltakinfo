@@ -4,7 +4,7 @@ import { Innholdstittel, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { Tiltak } from './tiltak-config';
 import { MaalOption } from './tiltak-map';
 import Tekst, { utledTekst } from '../../finn-tekst';
-import UtvidetInformasjon from '../utvidet-informasjon';
+import UtvidetInformasjon from './utvidet-informasjon';
 import { klikkPaLesMerMetrikk, klikkPaLesMerMetrikkMedMaal } from '../../metrics';
 
 interface OwnProps {
