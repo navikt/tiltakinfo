@@ -60,7 +60,6 @@ class Startside extends React.Component<StartsideProps> {
     componentDidUpdate(prevProps: Readonly<StartsideProps>) {
         const { brukerType, maalId, situasjon, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver, doSettTiltak } = this.props;
         if (brukerType !== prevProps.brukerType || maalId !== prevProps.maalId) {
-            debugger;
             const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
 
             const finnTiltakMapKey = (): string => {
