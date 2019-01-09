@@ -4,7 +4,7 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import { brukerDuck, BrukerType } from '../redux/generic-reducers';
+import { brukertypeDuck, BrukerType } from '../redux/generic-reducers';
 import { SituasjonOption } from '../startside/tiltak/tiltak-map';
 
 interface OwnProps {
@@ -57,7 +57,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doSettBruker: (brukerType: BrukerType) => dispatch(brukerDuck.actionCreator({brukerType}))
+    doSettBruker: (brukerType: BrukerType) => dispatch(brukertypeDuck.actionCreator({brukerType}))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BrukerProvider);

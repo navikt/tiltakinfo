@@ -8,8 +8,8 @@ import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duc
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
 import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import {
-    brukerDuck,
-    BrukerState,
+    brukertypeDuck,
+    BrukertypeState,
     demoBrukerDuck,
     DemoBrukerState, initialDemoBrukerState,
     initialMaalState,
@@ -31,7 +31,7 @@ export interface AppState {
     brukersNavn: BrukersNavnState;
     harSendtMelding: MeldingNavKontorState;
     tiltak: TiltakState;
-    bruker: BrukerState;
+    brukertype: BrukertypeState;
 }
 
 export const reducer = combineReducers<AppState>({
@@ -44,6 +44,6 @@ export const reducer = combineReducers<AppState>({
     demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
     brukersNavn,
     tiltak: tiltakDuck.reducer,
-    bruker: brukerDuck.reducer,
+    brukertype: brukertypeDuck.reducer,
     harSendtMelding: meldingNavKontorReducer,
 });

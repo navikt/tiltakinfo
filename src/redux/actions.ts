@@ -34,7 +34,7 @@ export enum ActionType {
     LAGRE_BRUKER_OK = 'LAGRE_BRUKER_OK',
     LAGRE_BRUKER_PENDING = 'LAGRE_BRUKER_PENDING',
     LAGRE_BRUKER_FEILET = 'LAGRE_BRUKER_FEILET',
-    SETT_BRUKER = 'SETT_BRUKER',
+    SETT_DEMOBRUKER = 'SETT_DEMOBRUKER',
 }
 
 export interface TestAction extends Data {

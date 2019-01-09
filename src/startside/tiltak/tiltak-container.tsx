@@ -108,10 +108,10 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
     situasjon: state.oppfolgingsstatus.situasjon,
-    tiltakErBasertPaMaal: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
-    sykmeldtMedArbeidsgiver: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
-    sykmeldt: state.bruker.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER
-        || state.bruker.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
+    tiltakErBasertPaMaal: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+    sykmeldtMedArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
+    sykmeldt: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER
+        || state.brukertype.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
     tiltakNokler: (state.tiltak.nokkelEn && state.tiltak.nokkelTo)
         ? [state.tiltak.nokkelEn, state.tiltak.nokkelTo] : undefined,
 });
