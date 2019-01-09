@@ -4,9 +4,11 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import { BrukerType, brukertypeDuck, tiltakDuck } from '../redux/generic-reducers';
+import { BrukerType, brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
 import { MaalOption, SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
+import { MaalFraRegistrering } from '../brukerdata/registrering-duck';
+import { mapTilMaalOption } from '../mock/utils';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -16,11 +18,13 @@ interface StateProps {
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
     maalId: MaalOption;
+    maalFraRegistrering: MaalFraRegistrering;
 }
 
 interface DispatchProps {
     doSettBruker: (brukerType: BrukerType) => void;
     doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
+    doSettMaalId: (id: MaalOption) => void;
 }
 
 type BrukerProviderProps = OwnProps & DispatchProps & StateProps;
@@ -31,7 +35,7 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
     }
 
     componentDidMount() {
-        const { doSettBruker, doSettTiltak, maalId } = this.props;
+        const { doSettBruker, doSettTiltak, maalId, maalFraRegistrering, doSettMaalId } = this.props;
 
         const brukertype: BrukerType = this.utledBrukertype();
         doSettBruker(brukertype);
@@ -42,7 +46,10 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
         } else if (maalId !== MaalOption.IKKE_VALGT) {
             const tiltakNokler: TiltakId[] = tiltakMap[maalId];
             doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+        } else if (brukertype === BrukerType.SYKMELDT_MED_ARBEIDSGIVER && maalFraRegistrering !== MaalFraRegistrering.IKKE_VALGT) {
+            doSettMaalId(mapTilMaalOption(maalFraRegistrering));
         }
+
     }
 
     utledBrukertype(): BrukerType {
@@ -87,6 +94,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
     maalId: state.maal.id,
+    maalFraRegistrering: state.registrering.maalFraRegistrering,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -94,7 +102,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
         nokkelEn: tiltakEn,
         nokkelTo: tiltakTo
     })),
-    doSettBruker: (brukerType: BrukerType) => dispatch(brukertypeDuck.actionCreator({brukerType}))
+    doSettBruker: (brukerType: BrukerType) => dispatch(brukertypeDuck.actionCreator({brukerType})),
+    doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id}))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BrukertypeTiltakProvider);
