@@ -28,20 +28,25 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
     }
 
     componentDidMount() {
+        const brukertype: BrukerType = this.utledBrukertype();
+        this.props.doSettBruker(brukertype);
+    }
+
+    utledBrukertype() {
         const {oppfolgingsstatus, syfoSituasjon} = this.props;
 
         if (syfoSituasjon.erSykmeldt) {
             if (syfoSituasjon.harArbeidsgiver) {
-                this.props.doSettBruker(BrukerType.SYKMELDT_MED_ARBEIDSGIVER);
+                return BrukerType.SYKMELDT_MED_ARBEIDSGIVER;
             } else {
-                this.props.doSettBruker(BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER);
+                return BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER;
             }
         } else if (oppfolgingsstatus.situasjon === SituasjonOption.SITUASJONSBESTEMT) {
-            this.props.doSettBruker(BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT);
+            return BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT;
         } else if (oppfolgingsstatus.situasjon === SituasjonOption.SPESIELT_TILPASSET) {
-            this.props.doSettBruker(BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET);
+            return BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET;
         } else {
-            this.props.doSettBruker(BrukerType.UTENFOR_MAALGRUPPE);
+            return BrukerType.UTENFOR_MAALGRUPPE;
         }
     }
 
