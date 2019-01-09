@@ -16,7 +16,7 @@ import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duc
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import './startside.less';
 import { TiltakId } from '../tiltak/tiltak-config';
-import { BrukerType, maalDuck, tiltakDuck } from '../../redux/generic-reducers';
+import { BrukerType, tiltakDuck } from '../../redux/generic-reducers';
 import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
 
 interface StateProps {
@@ -31,7 +31,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    doSettMaalId: (id: MaalOption) => void;
     doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
 }
 
@@ -130,7 +129,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
     doSettTiltak: (tiltakEn, tiltakTo) => dispatch(tiltakDuck.actionCreator({
         nokkelEn: tiltakEn,
         nokkelTo: tiltakTo
