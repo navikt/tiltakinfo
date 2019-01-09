@@ -12,15 +12,15 @@ export enum BrukerType {
     UTENFOR_MAALGRUPPE = 'bruker-utenfor-maalgruppe',
 }
 
-export interface BrukerState {
+export interface BrukertypeState {
     brukerType: BrukerType;
 }
 
-const inititalBrukerState = {
+const inititalBrukertypeState = {
     brukerType: BrukerType.UTENFOR_MAALGRUPPE,
 };
 
-export const brukerDuck = genericDuck<BrukerState, ActionType.SETT_BRUKER>(inititalBrukerState, ActionType.SETT_BRUKER);
+export const brukertypeDuck = genericDuck<BrukertypeState, ActionType.SETT_BRUKERTYPE>(inititalBrukertypeState, ActionType.SETT_BRUKERTYPE);
 
 export interface MaalState {
     id: MaalOption;
@@ -55,7 +55,7 @@ export const initialDemoBrukerState: DemoBrukerState = {
     id: Bruker.DEFAULT_MOCK,
 };
 
-export const demoBrukerDuck = genericDuck<DemoBrukerState, ActionType.SETT_BRUKERTYPE>(
+export const demoBrukerDuck = genericDuck<DemoBrukerState, ActionType.SETT_DEMOBRUKER>(
     initialDemoBrukerState,
-    ActionType.SETT_BRUKERTYPE
+    ActionType.SETT_DEMOBRUKER
 );

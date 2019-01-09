@@ -75,10 +75,7 @@ export default () => {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: mockData[MockConfigPropName.HAR_ARBEIDSGIVER],
     });
 
-    const mockDataRegistrering = mockData[MockConfigPropName.REGISTRERING];
-    if (mockDataRegistrering !== undefined) {
-        fetchMock.get(API.getRegistrering, mockDataRegistrering);
-    }
+    fetchMock.get(API.getRegistrering, mockData[MockConfigPropName.REGISTRERING]!);
 
     fetchMock.get(API.getBrukersNavn, {
         [MockConfigPropName.BRUKERNAVN]: mockData[MockConfigPropName.BRUKERNAVN]
