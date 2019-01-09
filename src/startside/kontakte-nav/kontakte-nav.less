@@ -1,0 +1,123 @@
+@import '../../../node_modules/nav-frontend-core/less/_variabler';
+@import '../../variabler';
+
+@har-sendt-width: 600px;
+
+.kontakte-nav-container.app-content {
+    background-color: @navLysGra;
+    padding: 3.5rem 1rem;
+
+    .kontakte-nav__panel {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .kontakte-nav__bilde {
+        text-align: center;
+
+        img {
+            width: 120px;
+            height: 120px;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    .kontakte-nav__innhold {
+        .kontakte-nav__knapp {
+            .knapp {
+                white-space: normal;
+            }
+        }
+
+        .kontakte-kontor .knapp--hoved {
+            text-transform: uppercase;
+        }
+    }
+
+    .har-sendt-melding {
+        padding: 2rem;
+    }
+
+    .har-sendt-melding__ikon {
+        text-align: center;
+        margin: 1rem 0 2rem;
+    }
+}
+
+.modal__kontakt-nav {
+    overflow: hidden;
+
+    .sitat {
+        margin: 0 -1rem 20px;
+        padding: 1rem;
+        background-color: @navLysGra;
+    }
+
+    .subtekst {
+        border-top: 1px solid @navGra40;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .kontakte-nav-container.app-content {
+        .kontakte-nav__panel, .har-sendt-melding {
+            padding: 2.5rem 3rem;
+        }
+
+        .kontakte-nav__panel {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .har-sendt-melding {
+            width: @har-sendt-width;
+            margin: 0 auto;
+        }
+
+        .kontakte-nav__bilde {
+            order: 2;
+            width: calc(30% - 1rem);
+
+            img {
+                width: 164px;
+                height: 164px;
+                padding-bottom: 0;
+            }
+        }
+
+        .kontakte-nav__innhold {
+            order: 1;
+            width: calc(70% - 1rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .kontakte-nav__knapp {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+
+    .modal__kontakt-nav {
+        .modal {
+            width: 23rem;
+        }
+    }
+}
+
+@media (min-width: @screen-md) {
+    .kontakte-nav-container.app-content {
+        width: 100%;
+        padding: 5.5rem 0;
+
+        .kontakte-nav__panel {
+            width: @desktopLimitWidth;
+        }
+
+        .har-sendt-melding__tittel {
+            text-align: center;
+        }
+    }
+}

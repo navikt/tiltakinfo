@@ -1,23 +1,29 @@
 <!doctype html>
 <html lang="no">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <title>Tiltakinfo</title>
-    <script type="application/javascript">
-        window.frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){}};
-        window.frontendlogger.appname = 'Tiltakinfo';
-    </script>
-    <script type="application/javascript" src="/frontendlogger/logger.js"></script>
-</head>
-<body>
-<div id="app-root"></div>
-</body>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="theme-color" content="#000">
+        <!--
+          manifest.json provides metadata used when your web app is added to the
+          homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+        -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+        <title>Tiltakinfo</title>
+        <script type="application/javascript">
+            window.frontendlogger = {
+                info: function() {
+                }, warn: function() {
+                }, error: function() {
+                }, event: function() {
+                }
+            };
+            window.frontendlogger.appname = 'Tiltakinfo';
+        </script>
+        <script type="application/javascript" src="/frontendlogger/logger.js"></script>
+    </head>
+    <body>
+        <div id="app-root"/>
+    </body>
 </html>

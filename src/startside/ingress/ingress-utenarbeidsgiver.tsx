@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
-import { Ingress as Ingresskomponent } from 'nav-frontend-typografi';
-import './ingress-utenarbeidsgiver.less';
-import Tekst from '../finn-tekst';
 import Veilederpanel from 'nav-frontend-veilederpanel';
+import { Ingress as Ingresskomponent } from 'nav-frontend-typografi';
+import Tekst from '../../finn-tekst';
 
-const veilederBilde = require('../ikoner/veileder-dame.svg');
+import './ingress-utenarbeidsgiver.less';
+const veilederBilde = require('../../ikoner/veileder-dame.svg');
 
 export default function IngressUtenArbeidsgiver() {
     return (

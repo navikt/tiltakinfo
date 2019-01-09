@@ -16,31 +16,26 @@ export interface OwnProps {
     harEkspanderbartInnhold?: boolean;
 }
 
-const EkspanderbartInnhold: React.StatelessComponent<OwnProps> = ({
-                                                                      children,
-                                                                      animert = true,
-                                                                      harEkspanderbartInnhold = false,
-                                                                      erApen = false,
-                                                                      ariaLive = 'off'
-                                                                  }) => {
-    const content = (
-        <div aria-live={ariaLive}>{erApen ? <>{children}</> : null}</div>
-    );
-    if (!animert) {
-        return content;
+class EkspanderbartInnhold extends React.Component<OwnProps> {
+    render() {
+        const {children, animert = true, harEkspanderbartInnhold = false, erApen = false, ariaLive = 'off'} = this.props;
+        const content = <div aria-live={ariaLive}>{erApen ? <>{children}</> : null}</div>;
+        if (!animert) {
+            return content;
+        }
+        return (
+            <Collapse
+                isOpened={erApen}
+                springConfig={{stiffness: 250, damping: 30}}
+                className={classnames('ekspanderbartInnhold', {
+                    'ekspanderbartInnhold--apen': erApen
+                })}
+                hasNestedCollapse={harEkspanderbartInnhold}
+            >
+                {content}
+            </Collapse>
+        );
     }
-    return (
-        <Collapse
-            isOpened={erApen}
-            springConfig={{stiffness: 250, damping: 30}}
-            className={classnames('ekspanderbartInnhold', {
-                'ekspanderbartInnhold--apen': erApen
-            })}
-            hasNestedCollapse={harEkspanderbartInnhold}
-        >
-            {content}
-        </Collapse>
-    );
-};
+}
 
 export default EkspanderbartInnhold;

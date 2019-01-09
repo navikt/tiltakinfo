@@ -8,7 +8,7 @@ import { AppState } from '../redux/reducer';
 import { connect } from 'react-redux';
 import { klikkPaFortellMegMerMetrikk } from '../metrics';
 
-const flereTiltakBilde = require('../ikoner/flere-alternativer.svg');
+import flereTiltakBilde from '../ikoner/flere-alternativer.svg';
 
 interface StateProps {
 }

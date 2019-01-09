@@ -1,15 +1,16 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Undertittel } from 'nav-frontend-typografi';
-import './tiltak.less';
-import Tekst from '../finn-tekst';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+import Tekst from '../../finn-tekst';
+import { AppState, tiltakDuck } from '../../redux/reducer';
+import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
 import { MaalOption, SituasjonOption, tiltakMap } from './tiltak-map';
-import { AppState } from '../redux/reducer';
-import { connect } from 'react-redux';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import TiltakKomponent from './tiltak-komponent';
 
-const veilederBilde = require('../ikoner/veileder-dame.svg');
+import './tiltak.less';
+import veilederBilde from '../../ikoner/veileder-dame.svg';
+import { Dispatch } from '../../redux/dispatch-type';
 
 interface OwnProps {
     tiltakErBasertPaMaal: boolean;
@@ -22,7 +23,11 @@ interface StateProps {
     maalId: MaalOption;
 }
 
-type TiltakContainerProps = OwnProps & StateProps;
+interface DispatchProps {
+    doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
+}
+
+type TiltakContainerProps = OwnProps & StateProps & DispatchProps;
 
 interface State {
     windowSize: number;
@@ -54,13 +59,9 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
     render() {
         const erDesktop = this.state.windowSize > 767;
 
-        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
-        const finnTiltak = (tiltakMapKey: string): Tiltak[] => {
-            return tiltakMap[tiltakMapKey].map(mapTiltakConfig);
-        };
-
         const {maalId, sykmeldt, sykmeldtMedArbeidsgiver, situasjon} = this.props;
 
+        const mapTiltakConfig = (tiltakId: TiltakId) => tiltakConfig(tiltakId);
         const finnTiltakMapKey = (): string => {
             if (sykmeldt) {
                 if (sykmeldtMedArbeidsgiver) {
@@ -71,33 +72,37 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
             } else {
                 return situasjon;
             }
-        };
 
-        const tiltakSomVises: Tiltak[] = finnTiltak(finnTiltakMapKey());
+        };
+        const tiltakNokler: TiltakId[] = tiltakMap[finnTiltakMapKey()];
+
+        this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
+
+        const tiltakSomVises: Tiltak[] = tiltakNokler.map(mapTiltakConfig);
 
         return (
             <>
-                { sykmeldtMedArbeidsgiver &&
-                    <section className="tiltak-ingress">
-                        <Veilederpanel
-                            svg={<img src={veilederBilde} alt="" aria-hidden="true"/>}
-                            type={erDesktop ? 'normal' : 'plakat'}
-                            kompakt={true}
-                        >
-                            { (maalId === MaalOption.SAMME_ARBEIDSGIVER || maalId === MaalOption.SAMME_STILLING) &&
-                            <Tekst id="veileder-maal-samme-arbeidsgiver"/>
-                            }
-                            { maalId === MaalOption.NY_ARBEIDSGIVER &&
-                            <Tekst id="veileder-maal-ny-arbeidsgiver"/>
-                            }
-                            { maalId === MaalOption.USIKKER &&
-                            <Tekst id="veileder-maal-usikker"/>
-                            }
-                        </Veilederpanel>
-                    </section>
+                {sykmeldtMedArbeidsgiver &&
+                <section className="tiltak-ingress">
+                    <Veilederpanel
+                        svg={<img src={veilederBilde} alt="" aria-hidden="true"/>}
+                        type={erDesktop ? 'normal' : 'plakat'}
+                        kompakt={true}
+                    >
+                        {(maalId === MaalOption.SAMME_ARBEIDSGIVER || maalId === MaalOption.SAMME_STILLING) &&
+                        <Tekst id="veileder-maal-samme-arbeidsgiver"/>
+                        }
+                        {maalId === MaalOption.NY_ARBEIDSGIVER &&
+                        <Tekst id="veileder-maal-ny-arbeidsgiver"/>
+                        }
+                        {maalId === MaalOption.USIKKER &&
+                        <Tekst id="veileder-maal-usikker"/>
+                        }
+                    </Veilederpanel>
+                </section>
                 }
                 <section className="tiltak-oversikt">
-                    { !(sykmeldtMedArbeidsgiver) &&
+                    {!(sykmeldtMedArbeidsgiver) &&
                     <Undertittel className="tiltak-overskrift blokk-s">
                         <Tekst id={'informasjon-totiltak'}/>
                     </Undertittel>
@@ -124,4 +129,8 @@ const mapStateToProps = (state: AppState): StateProps => {
     };
 };
 
-export default connect(mapStateToProps)(TiltakContainer);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+    doSettTiltak: (tiltakEn, tiltakTo) => dispatch(tiltakDuck.actionCreator({tiltakEn, tiltakTo})),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TiltakContainer);

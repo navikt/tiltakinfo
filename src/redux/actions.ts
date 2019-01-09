@@ -1,8 +1,9 @@
-import { UnleashState } from '../unleash/unleash-duck';
-import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { Data } from './generic-duck';
+import { UnleashState } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
+import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
+import { User } from '../brukerdata/bruker-duck';
 
 export enum ActionType {
     TEST_ACTION = 'TEST_ACTION',
@@ -13,6 +14,7 @@ export enum ActionType {
     HENT_OPPFOLGING_FEILET = 'HENT_OPPFOLGING_FEILET',
     HENT_OPPFOLGING_LASTER = 'HENT_OPPFOLGING_LASTER',
     SETT_MAAL = 'SETT_MAAL',
+    SETT_TILTAK = 'SETT_TILTAK',
     HENT_OPPFOLGINGSSTATUS_OK = 'HENT_OPPFOLGINGSSTATUS_OK',
     HENT_OPPFOLGINGSSTATUS_FEILET = 'HENT_OPPFOLGINGSSTATUS_FEILET',
     HENT_OPPFOLGINGSSTATUS_LASTER = 'HENT_OPPFOLGINGSSTATUS_LASTER',
@@ -22,7 +24,16 @@ export enum ActionType {
     SETT_BRUKERTYPE = 'SETT_BRUKERTYPE',
     HENT_REGISTRERING_OK = 'HENT_REGISTRERING_OK',
     HENT_REGISTRERING_LASTER = 'HENT_REGISTRERING_LASTER',
-    HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET'
+    HENT_REGISTRERING_FEILET = 'HENT_REGISTRERING_FEILET',
+    HENT_BRUKERS_NAVN_OK = 'HENT_BRUKERS_NAVN_OK',
+    HENT_BRUKERS_NAVN_PENDING = 'HENT_BRUKERS_NAVN_PENDING',
+    HENT_BRUKERS_NAVN_FEILET = 'HENT_BRUKERS_NAVN_FEILET',
+    HENT_MELDING_NAV_KONTOR_OK = 'HENT_MELDING_NAV_KONTOR_OK',
+    HENT_MELDING_NAV_KONTOR_PENDING = 'HENT_MELDING_NAV_KONTOR_PENDING',
+    HENT_MELDING_NAV_KONTOR_FEILET = 'HENT_MELDING_NAV_KONTOR_FEILET',
+    LAGRE_BRUKER_OK = 'LAGRE_BRUKER_OK',
+    LAGRE_BRUKER_PENDING = 'LAGRE_BRUKER_PENDING',
+    LAGRE_BRUKER_FEILET = 'LAGRE_BRUKER_FEILET',
 }
 
 export interface TestAction extends Data {
@@ -93,6 +104,45 @@ export interface HentRegistreringFEILETAction {
     type: ActionType.HENT_REGISTRERING_FEILET;
 }
 
+export interface HentBrukersNavnOKAction {
+    name: string;
+    type: ActionType.HENT_BRUKERS_NAVN_OK;
+}
+
+export interface HentBrukersNavnPENDINGAction {
+    type: ActionType.HENT_BRUKERS_NAVN_PENDING;
+}
+
+export interface HentBrukersNavnFEILETAction {
+    type: ActionType.HENT_BRUKERS_NAVN_FEILET;
+}
+
+export interface HentMeldingNavKontorOKAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_OK;
+    harSendtMelding: boolean;
+}
+
+export interface HentMeldingNavKontorFEILETAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_FEILET;
+}
+
+export interface HentMeldingNavKontorPENDINGAction {
+    type: ActionType.HENT_MELDING_NAV_KONTOR_PENDING;
+}
+
+export interface LagreBrukerOKAction {
+    type: ActionType.LAGRE_BRUKER_OK;
+    lagretBruker: User;
+}
+
+export interface LagreBrukerPENDINGAction {
+    type: ActionType.LAGRE_BRUKER_PENDING;
+}
+
+export interface LagreBrukerFEILETAction {
+    type: ActionType.LAGRE_BRUKER_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -109,4 +159,13 @@ export type Handling =
     | HentSyfoFEILETAction
     | HentRegistreringOKAction
     | HentRegistreringLASTERAction
-    | HentRegistreringFEILETAction;
+    | HentRegistreringFEILETAction
+    | HentBrukersNavnOKAction
+    | HentBrukersNavnPENDINGAction
+    | HentBrukersNavnFEILETAction
+    | HentMeldingNavKontorOKAction
+    | HentMeldingNavKontorPENDINGAction
+    | HentMeldingNavKontorFEILETAction
+    | LagreBrukerOKAction
+    | LagreBrukerPENDINGAction
+    | LagreBrukerFEILETAction;

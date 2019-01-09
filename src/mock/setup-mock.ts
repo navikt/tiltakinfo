@@ -1,7 +1,8 @@
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { API } from '../api/api';
-import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
 import { erDemo } from './utils';
+import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
+import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
 
 interface Demobruker {
     [key: string]: string;
@@ -10,7 +11,7 @@ interface Demobruker {
 export default () => {
 
     const loggingMiddleware: Middleware = (request, response) => {
-        console.log(request.url, response); // tslint:disable-line:no-console
+        console.log(request.url, request.method, response); // tslint:disable-line:no-console
         return response;
     };
 
@@ -78,4 +79,18 @@ export default () => {
     if (mockDataRegistrering !== undefined) {
         fetchMock.get(API.getRegistrering, mockDataRegistrering);
     }
+
+    fetchMock.get(API.getBrukersNavn, {
+        [MockConfigPropName.BRUKERNAVN]: mockData[MockConfigPropName.BRUKERNAVN]
+    });
+
+    fetchMock.get(API.getUnleash, {
+        [tiltakInfoMeldingBaerum]: mockData[tiltakInfoMeldingBaerum]
+    });
+
+    fetchMock.post(API.postBruker, ({body}) => body);
+
+    fetchMock.get(API.getHarSendtMeldingNavKontor, {
+        brukerHarSendtMeldingTilNavKontor: mockData[MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR],
+    });
 };

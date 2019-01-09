@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Sidetittel } from 'nav-frontend-typografi';
 import './startside-banner.less';
-import Tekst from '../finn-tekst';
-import Brodsmuler from './brodsmuler';
+import Tekst from '../../finn-tekst';
+import Brodsmuler from './../brodsmuler';
 
 interface OwnProps {
     sykmeldt: boolean;

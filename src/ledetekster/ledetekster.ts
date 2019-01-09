@@ -69,4 +69,14 @@ export default {
     'bruker-arbeidsledig-situasjonsbestemt': 'Arbeidsledig situasjonsbestemt',
     'bruker-arbeidsledig-spesielt-tilpasset': 'Arbeidsledig spesielt tilpasset',
     'bruker-utenfor-maalgruppe': 'Utenfor målgruppe',
+    'tekst-ditt-kontor-er': 'Ditt kontor er <strong>NAV Bærum</strong>.',
+    'kontakt-nav-baerum': 'Kontakt<br/>NAV Bærum',
+    'meldingen-blir-sendt': 'Denne meldingen blir sendt til NAV Bærum:',
+    'kontakte-nav-baerum': 'Kontakt NAV Bærum',
+    'beskjed-sendt-nav-baerum': 'NAV Bærum har fått beskjed',
+    'nav-baerum-tar-kontakt': 'Du har sagt ifra til NAV Bærum om at du ønsker å snakke om muligheter. De tar kontakt med deg innen et par dager.',
+    'interessert-i-muligheter': ' så informasjon om <strong>Arbeidsrettet rehabilitering</strong> og er interessert i å snakke om muligheter.',
+    'tar-kontakt-etter-meldingen': 'Etter at du har sendt meldingen, vil NAV Bærum ta kontakt med deg innen et par dager.',
+    'send-melding': 'Send Melding',
+    'tester-ny-tjeneste': 'Dette er en ny tjeneste NAV tester ut. Informasjonen din vil bli lagret og delt med utviklingsteamet og NAV Bærum. Personopplysninger slettes etter testperioden.'
 };

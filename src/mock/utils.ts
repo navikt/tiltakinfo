@@ -1,5 +1,5 @@
 import { MaalFraRegistrering } from '../brukerdata/registrering-duck';
-import { MaalOption } from '../startside/tiltak-map';
+import { MaalOption } from '../startside/tiltak/tiltak-map';
 
 export function erLocalhost() {
     const host: string = window.location.host;
