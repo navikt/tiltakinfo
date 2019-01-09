@@ -7,6 +7,7 @@ import {
     HentRegistreringFEILETAction, HentRegistreringLASTERAction, HentRegistreringOKAction
 } from '../redux/actions';
 import { JSONObject } from 'yet-another-fetch-mock';
+import { MaalOption } from '../komponenter/tiltak/tiltak-map';
 
 export enum MaalFraRegistrering {
     IKKE_VALGT = 'IKKE_VALGT',
@@ -15,6 +16,25 @@ export enum MaalFraRegistrering {
     NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
     USIKKER = 'USIKKER',
     INGEN_PASSER = 'INGEN_PASSER'
+}
+
+export function mapTilMaalOption(fremtidigSituasjon: MaalFraRegistrering): MaalOption {
+
+    switch (fremtidigSituasjon) {
+
+        case MaalFraRegistrering.NY_ARBEIDSGIVER:
+            return MaalOption.NY_ARBEIDSGIVER;
+        case MaalFraRegistrering.SAMME_ARBEIDSGIVER_NY_STILLING:
+            return MaalOption.SAMME_ARBEIDSGIVER;
+        case MaalFraRegistrering.SAMME_ARBEIDSGIVER:
+            return MaalOption.SAMME_STILLING;
+        case MaalFraRegistrering.USIKKER || MaalFraRegistrering.INGEN_PASSER:
+            return MaalOption.USIKKER;
+        default:
+            return MaalOption.IKKE_VALGT;
+
+    }
+
 }
 
 export interface RegistreringDataState extends JSONObject {

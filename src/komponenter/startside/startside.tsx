@@ -5,31 +5,24 @@ import Tekst from '../../finn-tekst';
 import FlereTiltak from '../flere-tiltak';
 import Tiltak from '../tiltak/tiltak-container';
 import StartsideBanner from './startside-banner';
-import { mapTilMaalOption } from '../../mock/utils';
 import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
 import { featureErAktivert } from '../../unleash/feature';
 import { AppState } from '../../redux/reducer';
-import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
-import { MaalOption, SituasjonOption, tiltakMap } from '../tiltak/tiltak-map';
+import { MaalOption, tiltakMap } from '../tiltak/tiltak-map';
 import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
 import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
-import { MaalFraRegistrering, RegistreringState } from '../../brukerdata/registrering-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import './startside.less';
 import { TiltakId } from '../tiltak/tiltak-config';
-import { BrukerType, maalDuck, tiltakDuck } from '../../redux/generic-reducers';
+import { BrukerType, tiltakDuck } from '../../redux/generic-reducers';
 import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
 
 interface StateProps {
     maalId: MaalOption;
-    syfoSituasjon: SyfoSituasjonState;
-    registrering: RegistreringState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     harSendtMelding: boolean;
-    brukerType: BrukerType;
-    situasjon: SituasjonOption;
     sykmeldtMedArbeidsgiver: boolean;
     sykmeldtUtenArbeidsgiver: boolean;
     arbeidsledigSituasjonsbestemt: boolean;
@@ -38,7 +31,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    doSettMaalId: (id: MaalOption) => void;
     doSettTiltak: (tiltakEn: string, tiltakTo: string) => void;
 }
 
@@ -50,37 +42,17 @@ class Startside extends React.Component<StartsideProps> {
         super(props);
     }
 
-    componentDidMount() {
-        const {maalId, registrering, doSettMaalId, syfoSituasjon} = this.props;
+    componentDidUpdate(prevProps: Readonly<StartsideProps>) {
+        const { maalId } = this.props;
 
-        if (maalId === MaalOption.IKKE_VALGT && registrering.maalFraRegistrering !== MaalFraRegistrering.IKKE_VALGT
-            && syfoSituasjon.erSykmeldt && syfoSituasjon.harArbeidsgiver) {
-            const fremtidigSituasjon = registrering.maalFraRegistrering;
-            doSettMaalId(mapTilMaalOption(fremtidigSituasjon));
+        if (maalId !== prevProps.maalId) {
+            this.utledOgSettTiltak(maalId);
         }
     }
 
-    componentDidUpdate(prevProps: Readonly<StartsideProps>) {
-        const { brukerType, maalId, situasjon, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver, doSettTiltak } = this.props;
-        if (brukerType !== prevProps.brukerType || maalId !== prevProps.maalId) {
-            const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
-
-            const finnTiltakMapKey = (): string => {
-                if (sykmeldt) {
-                    if (sykmeldtMedArbeidsgiver) {
-                        return maalId;
-                    } else {
-                        return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
-                    }
-                } else {
-                    return situasjon;
-                }
-
-            };
-            const tiltakNokler: TiltakId[] = tiltakMap[finnTiltakMapKey()];
-            doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
-        }
-
+    utledOgSettTiltak(maalId: MaalOption) {
+        const tiltakNokler: TiltakId[] = tiltakMap[maalId];
+        this.props.doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
     }
 
     render() {
@@ -147,11 +119,7 @@ class Startside extends React.Component<StartsideProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
-    syfoSituasjon: state.syfoSituasjon,
-    registrering: state.registrering,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    brukerType: state.brukertype.brukerType,
-    situasjon: state.oppfolgingsstatus.situasjon,
     sykmeldtMedArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
     sykmeldtUtenArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
     arbeidsledigSituasjonsbestemt: state.brukertype.brukerType === BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT,
@@ -161,7 +129,6 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doSettMaalId: (id) => dispatch(maalDuck.actionCreator({id})),
     doSettTiltak: (tiltakEn, tiltakTo) => dispatch(tiltakDuck.actionCreator({
         nokkelEn: tiltakEn,
         nokkelTo: tiltakTo
