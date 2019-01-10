@@ -57,3 +57,22 @@ export const klikkPaGaTilAktivitetsplanen = () => {
         logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
     }
 };
+
+export const klikkPaKontaktNavKontor = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.kontaktnavkontor`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
+};
+
