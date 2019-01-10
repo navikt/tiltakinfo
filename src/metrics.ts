@@ -52,9 +52,9 @@ export const klikkPaFortellMegMerMetrikk = () => {
     }
 };
 
-export const klikkPaGaTilAktivitetsplanen = () => {
+export const klikkPaGaTilAktivitetsplanen = (oppfolgingsEnhetId: string) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
+        logEvent(`${domene}.gatilaktivitetsplanen`, {}, {oppfolgingsEnhetId});
     }
 };
 
