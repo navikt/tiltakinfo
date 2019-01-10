@@ -4,7 +4,7 @@ import { UnleashState } from '../unleash/unleash-duck';
 import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
-import { MeldingNavKontorFetchState } from '../brukerdata/melding-nav-kontor-duck';
+import { MeldingTilNavKontorFetchState } from '../brukerdata/melding-til-nav-kontor-duck';
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 import { User } from '../brukerdata/bruker-duck';
 
@@ -79,6 +79,6 @@ export function getBrukersNavn() {
     return fetchToJson(API.getBrukersNavn, requestConfig);
 }
 
-export function getMeldingNavKontorFetch(): Promise<MeldingNavKontorFetchState> {
+export function getMeldingNavKontorFetch(): Promise<MeldingTilNavKontorFetchState> {
     return fetchToJson(API.getHarSendtMeldingNavKontor, requestConfig);
 }

@@ -11,21 +11,21 @@ import { getMeldingNavKontorFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
-export interface MeldingNavKontorFetchState extends JSONObject {
+export interface MeldingTilNavKontorFetchState extends JSONObject {
     brukerHarSendtMeldingTilNavKontor: boolean;
 }
 
-export interface MeldingNavKontorState extends DataElement {
+export interface MeldingTilNavKontorState extends DataElement {
     harSendtMelding: boolean;
 }
 
-export const initialMeldingNavKontorState: MeldingNavKontorState = {
+export const initialMeldingTilNavKontorState: MeldingTilNavKontorState = {
     harSendtMelding: false,
     status: Status.IKKE_STARTET,
 };
 
 // Reducer
-export default function reducer(state: MeldingNavKontorState = initialMeldingNavKontorState, action: Handling): MeldingNavKontorState {
+export default function reducer(state: MeldingTilNavKontorState = initialMeldingTilNavKontorState, action: Handling): MeldingTilNavKontorState {
     switch (action.type) {
         case ActionType.HENT_MELDING_NAV_KONTOR_OK:
             return {...state, status: Status.OK, harSendtMelding: action.harSendtMelding};
@@ -33,20 +33,22 @@ export default function reducer(state: MeldingNavKontorState = initialMeldingNav
             return {...state, status: Status.FEILET};
         case ActionType.HENT_MELDING_NAV_KONTOR_PENDING:
             return {...state, status: Status.LASTER};
+        case ActionType.LAGRE_BRUKER_OK:
+            return {...state, status: Status.OK, harSendtMelding: true };
         default:
             return state;
     }
 }
 
 export function hentMeldingNavKontor(): (dispatch: Dispatch) => Promise<void> {
-    return fetchThenDispatch<MeldingNavKontorFetchState>(() => getMeldingNavKontorFetch(), {
+    return fetchThenDispatch<MeldingTilNavKontorFetchState>(() => getMeldingNavKontorFetch(), {
         ok: hentMeldingNavKontorOk,
         feilet: hentMeldingNavKontorFeilet,
         pending: hentMeldingNavKontorPending,
     });
 }
 
-function hentMeldingNavKontorOk(meldingNavKontorState: MeldingNavKontorFetchState): HentMeldingNavKontorOKAction {
+function hentMeldingNavKontorOk(meldingNavKontorState: MeldingTilNavKontorFetchState): HentMeldingNavKontorOKAction {
     return {
         type: ActionType.HENT_MELDING_NAV_KONTOR_OK,
         harSendtMelding: meldingNavKontorState.brukerHarSendtMeldingTilNavKontor,
