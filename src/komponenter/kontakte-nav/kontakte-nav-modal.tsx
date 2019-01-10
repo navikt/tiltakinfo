@@ -10,7 +10,7 @@ import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 import tiltakConfig from '../tiltak/tiltak-config';
 import { klikkPaSendMelding } from '../../metrics';
 
-interface StateProps {
+interface StoreProps {
     fulltNavn?: string;
     bruker: User;
     oppfolgingsenhetNavn: string;
@@ -25,7 +25,7 @@ interface OwnProps {
     closeModal: () => void;
 }
 
-export type KontakteNavModalProps = StateProps & OwnProps & DispatchProps;
+export type KontakteNavModalProps = StoreProps & OwnProps & DispatchProps;
 
 class KontakteNavModal extends React.Component<KontakteNavModalProps> {
     render() {
@@ -83,7 +83,7 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
     }
 }
 
-const mapStateToProps = (state: AppState): StateProps => ({
+const mapStateToProps = (state: AppState): StoreProps => ({
     fulltNavn: state.brukersNavn.data.name,
     bruker: {
         erSykmeldt: state.syfoSituasjon.erSykmeldt,
