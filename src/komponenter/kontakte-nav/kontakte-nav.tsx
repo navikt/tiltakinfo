@@ -14,7 +14,7 @@ import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
-import { MeldingNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
+import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
 
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
 import './kontakte-nav.less';
@@ -22,7 +22,7 @@ import './kontakte-nav.less';
 interface KontakteNavProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
-    meldingState: MeldingNavKontorState;
+    meldingState: MeldingTilNavKontorState;
 }
 
 interface StateType {
