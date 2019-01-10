@@ -33,6 +33,8 @@ export default function reducer(state: MeldingTilNavKontorState = initialMelding
             return {...state, status: Status.FEILET};
         case ActionType.HENT_MELDING_NAV_KONTOR_PENDING:
             return {...state, status: Status.LASTER};
+        case ActionType.LAGRE_BRUKER_OK:
+            return {...state, status: Status.OK, harSendtMelding: true };
         default:
             return state;
     }
