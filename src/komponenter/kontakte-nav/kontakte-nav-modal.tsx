@@ -8,10 +8,12 @@ import { AppState } from '../../redux/reducer';
 import { Dispatch } from '../../redux/dispatch-type';
 import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 import tiltakConfig from '../tiltak/tiltak-config';
+import { klikkPaSendMelding } from '../../metrics';
 
 interface StateProps {
     fulltNavn?: string;
     bruker: User;
+    oppfolgingsenhetNavn: string;
 }
 
 interface DispatchProps {
@@ -27,7 +29,7 @@ export type KontakteNavModalProps = StateProps & OwnProps & DispatchProps;
 
 class KontakteNavModal extends React.Component<KontakteNavModalProps> {
     render() {
-        const {fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal} = this.props;
+        const {fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal, oppfolgingsenhetNavn} = this.props;
         const navn = fulltNavn ? fulltNavn : 'Jeg';
         const tiltak = bruker.tiltak
             .map(t => t.nokkel!)
@@ -62,6 +64,13 @@ class KontakteNavModal extends React.Component<KontakteNavModalProps> {
                     onClick={() => {
                         doLagreBruker(bruker);
                         closeModal();
+                        klikkPaSendMelding(
+                            bruker.servicegruppeKode,
+                            bruker.harArbeidsgiver,
+                            bruker.erSykmeldt,
+                            bruker.oppfolgingsEnhetId,
+                            oppfolgingsenhetNavn,
+                        );
                     }}
                 >
                     {Parser(utledTekst('send-melding'))}
@@ -91,7 +100,8 @@ const mapStateToProps = (state: AppState): StateProps => ({
                 nokkel: state.tiltak.nokkelTo
             },
         ]
-    }
+    },
+    oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
