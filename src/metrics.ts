@@ -52,8 +52,44 @@ export const klikkPaFortellMegMerMetrikk = () => {
     }
 };
 
-export const klikkPaGaTilAktivitetsplanen = () => {
+export const klikkPaGaTilAktivitetsplanen = (oppfolgingsEnhetId: string) => {
     if (!erDemo()) {
-        logEvent(`${domene}.gatilaktivitetsplanen`, {}, {});
+        logEvent(`${domene}.gatilaktivitetsplanen`, {}, {oppfolgingsEnhetId});
+    }
+};
+
+export const klikkPaKontaktNavKontor = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.kontaktnavkontor`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
+};
+
+export const klikkPaSendMelding = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.sendmelding`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
     }
 };

@@ -1,19 +1,29 @@
 import * as React from 'react';
 import Tekst from '../../finn-tekst';
 import { klikkPaGaTilAktivitetsplanen } from '../../metrics';
+import { AppState } from '../../redux/reducer';
+import { connect } from 'react-redux';
 
 const lenkeAktivitetsplan = '/aktivitetsplan';
 
-const KontakteNavKnapp = () => (
+interface StoreProps {
+    oppfolgingsenhetId: string;
+}
+
+const KontakteNavKnapp = ({oppfolgingsenhetId}: StoreProps) => (
     <div className="kontakte-nav__knapp">
         <a
             className="knapp knapp--hoved"
             href={lenkeAktivitetsplan}
-            onClick={() => klikkPaGaTilAktivitetsplanen()}
+            onClick={() => klikkPaGaTilAktivitetsplanen(oppfolgingsenhetId)}
         >
             <Tekst id={'kontaktenav-lenke-underoppfolging'}/>
         </a>
     </div>
 );
 
-export default KontakteNavKnapp;
+const mapStateToProps = (state: AppState): StoreProps => ({
+    oppfolgingsenhetId: state.oppfolgingsstatus.oppfolgingsenhet.enhetId,
+});
+
+export default connect(mapStateToProps)(KontakteNavKnapp);
