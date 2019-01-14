@@ -10,7 +10,6 @@ import Datalaster from '../../api/datalaster';
 import KontakteKontor from './kontakte-kontor';
 import { AppState } from '../../redux/reducer';
 import KontakteNavModal from './kontakte-nav-modal';
-import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
@@ -19,18 +18,20 @@ import { MeldingNavKontorState } from '../../brukerdata/melding-nav-kontor-duck'
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
 import './kontakte-nav.less';
 
-interface KontakteNavProps {
+interface StateProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     meldingState: MeldingNavKontorState;
 }
 
-interface StateType {
+interface State {
     modalIsOpen: boolean;
 }
 
+type KontakteNavProps = StateProps;
+
 class KontakteNAV extends React.Component<KontakteNavProps> {
-    public state: StateType;
+    public state: State;
 
     constructor(props: KontakteNavProps) {
         super(props);
@@ -71,14 +72,11 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                 <Tekst id={tekstId}/>
                             </Normaltekst>
 
-                            {oppfolging.underOppfolging && (
-                                <KontakteNavKnapp />
-                            )}
-
                             <Feature name={tiltakInfoMeldingBaerum}>
                                 <>
-                                    {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && meldingState.harSendtMelding === false && (
-                                        <KontakteKontor openModal={this.openModal} />
+                                    {(oppfolging.underOppfolging || (oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging))
+                                    && !meldingState.harSendtMelding && (
+                                        <KontakteKontor openModal={this.openModal} oppfolgingsEnhet={oppfolgingsEnhet} oppfolging={oppfolging} />
                                     )}
                                 </>
                             </Feature>

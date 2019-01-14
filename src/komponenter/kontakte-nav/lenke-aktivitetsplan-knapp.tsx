@@ -4,7 +4,7 @@ import { klikkPaGaTilAktivitetsplanen } from '../../metrics';
 
 const lenkeAktivitetsplan = '/aktivitetsplan';
 
-const KontakteNavKnapp = () => (
+const LenkeAktivitetsplanKnapp = () => (
     <div className="kontakte-nav__knapp">
         <a
             className="knapp knapp--hoved"
@@ -16,4 +16,4 @@ const KontakteNavKnapp = () => (
     </div>
 );
 
-export default KontakteNavKnapp;
+export default LenkeAktivitetsplanKnapp;
