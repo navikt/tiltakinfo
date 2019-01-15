@@ -74,6 +74,11 @@ const KontakteNavModal = ({fulltNavn, bruker,  oppfolging, doLagreBruker,
             <Normaltekst className="blokk-s">
                 {NavTarKontaktTekst}
             </Normaltekst>
+            { bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging && (
+                <Normaltekst className="subtekst">
+                    {subtekst}
+                </Normaltekst>
+            )}
             <button
                 className="knapp knapp--hoved blokk-xs"
                 onClick={() => {
@@ -88,13 +93,8 @@ const KontakteNavModal = ({fulltNavn, bruker,  oppfolging, doLagreBruker,
                     );
                 }}
             >
-                {Parser(utledTekst('kontaktenav-send-melding'))}
+                {Parser(utledTekst('kontaktenav-send-melding blokk-m'))}
             </button>
-            { bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging && (
-            <Normaltekst className="subtekst">
-                {subtekst}
-            </Normaltekst>
-            )}
         </NavFrontendModal>
     );
 };

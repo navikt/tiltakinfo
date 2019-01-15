@@ -20,7 +20,7 @@ export default {
     'maal-usikker': 'Usikker',
     'ingress-radiopanelgruppe-skjult': 'Svaralternativer',
     'informasjon-totiltak': 'Her er to eksempler:',
-    'kontaktenav-beskjed-sendt-nav': '{var} har fått beskjed',
+    'kontaktenav-beskjed-sendt-nav': 'Meldingen er mottatt!',
     'kontaktenav-kontor-tar-kontakt': 'Du har sagt ifra til {var} om at du ønsker å snakke om muligheter. De tar kontakt med deg innen et par dager.',
     'kontaktenav-veileder-tar-kontakt': 'Du har sagt ifra til din veileder om at du ønsker å snakke om muligheter. Du kan følge dialogen i aktivitetsplanen din på nav.no.',
     'kontaktenav-lenke-underoppfolging': 'Gå til dialogen med veileder',
