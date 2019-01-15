@@ -18,20 +18,20 @@ import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-konto
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
 import './kontakte-nav.less';
 
-interface StateProps {
+interface StoreProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     meldingState: MeldingTilNavKontorState;
 }
 
-interface State {
+interface StateType {
     modalIsOpen: boolean;
 }
 
-type KontakteNavProps = StateProps;
+type KontakteNavProps = StoreProps;
 
 class KontakteNAV extends React.Component<KontakteNavProps> {
-    public state: State;
+    public state: StateType;
 
     constructor(props: KontakteNavProps) {
         super(props);
@@ -76,11 +76,10 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                 <>
                                     {(oppfolging.underOppfolging || (oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging))
                                     && !meldingState.harSendtMelding && (
-                                        <KontakteKontor openModal={this.openModal} oppfolgingsEnhet={oppfolgingsEnhet} oppfolging={oppfolging} />
+                                        <KontakteKontor openModal={this.openModal} />
                                     )}
                                 </>
                             </Feature>
-
                         </div>
                     </div>
                     <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />

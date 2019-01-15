@@ -10,14 +10,12 @@ import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 import tiltakConfig from '../tiltak/tiltak-config';
 import { klikkPaSendMelding } from '../../metrics';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
-import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 
 interface StoreProps {
     fulltNavn?: string;
     bruker: User;
     oppfolgingsenhetNavn: string;
     oppfolging: OppfolgingState;
-    oppfolgingsEnhet: OppfolgingsEnhet;
 }
 
 interface DispatchProps {
@@ -31,33 +29,27 @@ interface OwnProps {
 
 export type KontakteNavModalProps = StoreProps & OwnProps & DispatchProps;
 
-const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal, oppfolgingsenhetNavn}: KontakteNavModalProps) => {
+const KontakteNavModal = ({fulltNavn, bruker,  oppfolging, doLagreBruker,
+                           modalIsOpen, closeModal, oppfolgingsenhetNavn}: KontakteNavModalProps) => {
     const navn = fulltNavn ? fulltNavn : 'Jeg';
     const tiltak = bruker.tiltak
         .map(t => t.nokkel!)
         .map(n => tiltakConfig(n).tittel)
         .map(tittelId => utledTekst(tittelId));
 
-    const {fulltNavn, bruker, oppfolging, oppfolgingsEnhet, doLagreBruker, modalIsOpen, closeModal} = this.props;
-    const navn = fulltNavn ? fulltNavn : 'Jeg';
-    const tiltak = bruker.tiltak
-        .map(t => t.nokkel!)
-        .map(n => tiltakConfig(n).tittel)
-        .map(tittelId => utledTekst(tittelId));
-    const tittel = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-        ? Parser(utledTekst('kontaktenav-kontor', [oppfolgingsEnhet.navn]))
+    const tittel = bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-kontor', [oppfolgingsenhetNavn]))
         : Parser(utledTekst('kontaktenav-veileder'));
-    const ingress = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+    const ingress = bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging
         ? Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'))
         : Parser(utledTekst('kontaktenav-meldingen-blir-sendt-veileder'));
-    const meldingsTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+    const meldingsTekst = bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging
         ? Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltak)))
         : Parser(utledTekst('kontaktenav-interessert-i-muligheter-veileder', tiltak));
-    const NavTarKontaktTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-        ? Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsEnhet.navn]))
+    const NavTarKontaktTekst = bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsenhetNavn]))
         : Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-veileder'));
-    const subtekst = Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsEnhet.navn]));
-
+    const subtekst = Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsenhetNavn]));
 
     return (
         <NavFrontendModal
@@ -65,7 +57,7 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
             onRequestClose={closeModal}
             closeButton={true}
             contentClass="kontaktModalInnhold"
-            contentLabel="Kontakt NAV Bærum"
+            contentLabel="Kontakt NAV"
             ariaHideApp={false}
             bodyOpenClassName="modal__kontakt-nav"
 
@@ -96,9 +88,9 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
                     );
                 }}
             >
-                {Parser(utledTekst('send-melding'))}
+                {Parser(utledTekst('kontaktenav-send-melding'))}
             </button>
-            { oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
+            { bruker.oppfolgingsEnhetId === '0219' && !oppfolging.underOppfolging && (
             <Normaltekst className="subtekst">
                 {subtekst}
             </Normaltekst>
@@ -110,7 +102,6 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
 const mapStateToProps = (state: AppState): StoreProps => ({
     fulltNavn: state.brukersNavn.data.name,
     oppfolging: state.oppfolging,
-    oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
     bruker: {
         erSykmeldt: state.syfoSituasjon.erSykmeldt,
         harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
