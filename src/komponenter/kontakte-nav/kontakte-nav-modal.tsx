@@ -8,12 +8,14 @@ import { AppState } from '../../redux/reducer';
 import { Dispatch } from '../../redux/dispatch-type';
 import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 import tiltakConfig from '../tiltak/tiltak-config';
+import { klikkPaSendMelding } from '../../metrics';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 
-interface StateProps {
+interface StoreProps {
     fulltNavn?: string;
     bruker: User;
+    oppfolgingsenhetNavn: string;
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
 }
@@ -27,75 +29,85 @@ interface OwnProps {
     closeModal: () => void;
 }
 
-export type KontakteNavModalProps = StateProps & OwnProps & DispatchProps;
+export type KontakteNavModalProps = StoreProps & OwnProps & DispatchProps;
 
-class KontakteNavModal extends React.Component<KontakteNavModalProps> {
-    render() {
-        const {fulltNavn, bruker, oppfolging, oppfolgingsEnhet, doLagreBruker, modalIsOpen, closeModal} = this.props;
-        const navn = fulltNavn ? fulltNavn : 'Jeg';
-        const tiltak = bruker.tiltak
-            .map(t => t.nokkel!)
-            .map(n => tiltakConfig(n).tittel)
-            .map(tittelId => utledTekst(tittelId));
-        const tittel = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-            ? Parser(utledTekst('kontaktenav-kontor', [oppfolgingsEnhet.navn]))
-            : Parser(utledTekst('kontaktenav-veileder'));
-        const ingress = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-            ? Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'))
-            : Parser(utledTekst('kontaktenav-meldingen-blir-sendt-veileder'));
-        const meldingsTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-            ? Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltak)))
-            : Parser(utledTekst('kontaktenav-interessert-i-muligheter-veileder', tiltak));
-        const NavTarKontaktTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
-            ? Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsEnhet.navn]))
-            : Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-veileder'));
-        const subtekst = Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsEnhet.navn]));
+const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal, oppfolgingsenhetNavn}: KontakteNavModalProps) => {
+    const navn = fulltNavn ? fulltNavn : 'Jeg';
+    const tiltak = bruker.tiltak
+        .map(t => t.nokkel!)
+        .map(n => tiltakConfig(n).tittel)
+        .map(tittelId => utledTekst(tittelId));
 
-        return (
-            <NavFrontendModal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                closeButton={true}
-                contentClass="kontaktModalInnhold"
-                contentLabel="Kontakt NAV"
-                ariaHideApp={false}
-                bodyOpenClassName="modal__kontakt-nav"
+    const {fulltNavn, bruker, oppfolging, oppfolgingsEnhet, doLagreBruker, modalIsOpen, closeModal} = this.props;
+    const navn = fulltNavn ? fulltNavn : 'Jeg';
+    const tiltak = bruker.tiltak
+        .map(t => t.nokkel!)
+        .map(n => tiltakConfig(n).tittel)
+        .map(tittelId => utledTekst(tittelId));
+    const tittel = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-kontor', [oppfolgingsEnhet.navn]))
+        : Parser(utledTekst('kontaktenav-veileder'));
+    const ingress = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'))
+        : Parser(utledTekst('kontaktenav-meldingen-blir-sendt-veileder'));
+    const meldingsTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltak)))
+        : Parser(utledTekst('kontaktenav-interessert-i-muligheter-veileder', tiltak));
+    const NavTarKontaktTekst = oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging
+        ? Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsEnhet.navn]))
+        : Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-veileder'));
+    const subtekst = Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsEnhet.navn]));
 
+
+    return (
+        <NavFrontendModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            closeButton={true}
+            contentClass="kontaktModalInnhold"
+            contentLabel="Kontakt NAV Bærum"
+            ariaHideApp={false}
+            bodyOpenClassName="modal__kontakt-nav"
+
+        >
+            <Sidetittel tag="h1" className="blokk-s">
+                {tittel}
+            </Sidetittel>
+            <Normaltekst className="blokk-s">
+                {ingress}
+            </Normaltekst>
+            <Normaltekst className="sitat">
+                {meldingsTekst}
+            </Normaltekst>
+            <Normaltekst className="blokk-s">
+                {NavTarKontaktTekst}
+            </Normaltekst>
+            <button
+                className="knapp knapp--hoved blokk-xs"
+                onClick={() => {
+                    doLagreBruker(bruker);
+                    closeModal();
+                    klikkPaSendMelding(
+                        bruker.servicegruppeKode,
+                        bruker.harArbeidsgiver,
+                        bruker.erSykmeldt,
+                        bruker.oppfolgingsEnhetId,
+                        oppfolgingsenhetNavn,
+                    );
+                }}
             >
-                <Sidetittel tag="h1" className="tittel blokk-s">
-                    {tittel}
-                </Sidetittel>
-                <Normaltekst className="ingress blokk-s">
-                    {ingress}
-                </Normaltekst>
-                <Normaltekst className="sitat">
-                    {meldingsTekst}
-                </Normaltekst>
-                <Normaltekst className="infotekst blokk-s">
-                    {NavTarKontaktTekst}
-                </Normaltekst>
+                {Parser(utledTekst('send-melding'))}
+            </button>
+            { oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
+            <Normaltekst className="subtekst">
+                {subtekst}
+            </Normaltekst>
+            )}
+        </NavFrontendModal>
+    );
+};
 
-                { oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && (
-                <Normaltekst className="subtekst blokk-m">
-                    {subtekst}
-                </Normaltekst>
-                )}
-
-                <button
-                    className="knapp knapp--hoved blokk-xs"
-                    onClick={() => {
-                        doLagreBruker(bruker);
-                        closeModal();
-                    }}
-                >
-                    {Parser(utledTekst('kontaktenav-send-melding'))}
-                </button>
-            </NavFrontendModal>
-        );
-    }
-}
-
-const mapStateToProps = (state: AppState): StateProps => ({
+const mapStateToProps = (state: AppState): StoreProps => ({
     fulltNavn: state.brukersNavn.data.name,
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
@@ -114,7 +126,8 @@ const mapStateToProps = (state: AppState): StateProps => ({
                 nokkel: state.tiltak.nokkelTo
             },
         ]
-    }
+    },
+    oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

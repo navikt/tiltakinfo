@@ -10,6 +10,7 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 import { Dispatch } from '../redux/dispatch-type';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
+import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
 
 export const initialState: DataElement = {
     status: Status.IKKE_STARTET,
@@ -63,7 +64,7 @@ export interface Tiltak {
 export interface User {
     erSykmeldt: boolean;
     harArbeidsgiver: boolean;
-    servicegruppeKode: string;
+    servicegruppeKode: SituasjonOption;
     oppfolgingsEnhetId: string;
     underOppfolging: boolean;
     maal: string;

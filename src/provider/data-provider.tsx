@@ -7,7 +7,7 @@ import { OppfolgingsstatusState, hentOppfolgingsstatus } from '../brukerdata/opp
 import { hentSyfo, SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import Datalaster from '../api/datalaster';
 import { hentRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
-import { hentMeldingNavKontor, MeldingNavKontorState } from '../brukerdata/melding-nav-kontor-duck';
+import { hentMeldingNavKontor, MeldingTilNavKontorState } from '../brukerdata/melding-til-nav-kontor-duck';
 import { hentBrukernavn, State as BrukernavnState } from '../brukerdata/brukernavn-duck';
 
 interface OwnProps {
@@ -20,7 +20,7 @@ interface StateProps {
     oppfolging: OppfolgingState;
     registrering: RegistreringState;
     brukersNavn: BrukernavnState;
-    harSendtMelding: MeldingNavKontorState;
+    harSendtMelding: MeldingTilNavKontorState;
 }
 
 interface DispatchProps {
