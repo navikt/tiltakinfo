@@ -57,6 +57,9 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
             <Normaltekst className="blokk-s">
                 {Parser(utledTekst('tar-kontakt-etter-meldingen'))}
             </Normaltekst>
+            <Normaltekst className="subtekst blokk-m">
+                {Parser(utledTekst('tester-ny-tjeneste'))}
+            </Normaltekst>
             <button
                 className="knapp knapp--hoved blokk-xs"
                 onClick={() => {
@@ -73,9 +76,6 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
             >
                 {Parser(utledTekst('send-melding'))}
             </button>
-            <Normaltekst className="subtekst">
-                {Parser(utledTekst('tester-ny-tjeneste'))}
-            </Normaltekst>
         </NavFrontendModal>
     );
 };

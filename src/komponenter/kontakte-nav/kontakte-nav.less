@@ -35,6 +35,9 @@
 
     .har-sendt-melding {
         padding: 2rem;
+        h1 {
+            text-align: center;
+        }
     }
 
     .har-sendt-melding__ikon {
@@ -46,16 +49,14 @@
 .modal__kontakt-nav {
     overflow: hidden;
 
+    .tittel {
+        padding-right: 3rem;
+    }
+
     .sitat {
         margin: 0 -1rem 20px;
         padding: 1rem;
         background-color: @navLysGra;
-    }
-
-    .subtekst {
-        border-top: 1px solid @navGra40;
-        margin-top: 1rem;
-        padding-top: 1rem;
     }
 }
 
@@ -74,6 +75,7 @@
         .har-sendt-melding {
             width: @har-sendt-width;
             margin: 0 auto;
+            text-align: center;
         }
 
         .kontakte-nav__bilde {
