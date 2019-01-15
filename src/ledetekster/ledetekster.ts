@@ -74,7 +74,7 @@ export default {
     'meldingen-blir-sendt': 'Du sender denne meldingen:',
     'kontakte-nav-baerum': 'Kontakt NAV Bærum',
     'beskjed-sendt-nav-baerum': 'Meldingen er mottatt!',
-    'nav-baerum-tar-kontakt': 'NAV Bærum har fått meldingen din om at du ønsker å snakker om muligheter. De tar kontakt med deg i løpet av et par dager.',
+    'nav-baerum-tar-kontakt': 'NAV Bærum har fått meldingen din om at du ønsker å snakke om muligheter. De tar kontakt med deg i løpet av et par dager.',
     'interessert-i-muligheter': '<strong>{var}</strong> leste om <strong>{var}</strong> og <strong>{var}</strong>, og er interessert i å snakke om muligheter.',
     'tar-kontakt-etter-meldingen': 'Etter at du har sendt meldingen, vil NAV Bærum ta kontakt med deg i løpet av et par dager.',
     'send-melding': 'Send Melding',
