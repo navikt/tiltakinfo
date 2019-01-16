@@ -52,7 +52,7 @@ export interface BrukerMocks {
 
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
-        [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingBaerum]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -65,7 +65,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
-        [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingBaerum]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -85,7 +85,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
-        [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingBaerum]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -98,7 +98,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
-        [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingBaerum]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -111,7 +111,7 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
-        [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingBaerum]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
