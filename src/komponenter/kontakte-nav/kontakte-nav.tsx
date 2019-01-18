@@ -5,14 +5,14 @@ import 'nav-frontend-paneler-style';
 import { connect } from 'react-redux';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst from '../../finn-tekst';
-import Feature from '../../unleash/feature';
+import Feature, { featureErAktivert } from '../../unleash/feature';
 import Datalaster from '../../api/datalaster';
 import KontakteKontor from './kontakte-kontor';
 import { AppState } from '../../redux/reducer';
 import KontakteNavModal from './kontakte-nav-modal';
 import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
-import { tiltakInfoMeldingBaerum } from '../../unleash/unleash-duck';
+import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
 
@@ -23,6 +23,7 @@ interface KontakteNavProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     meldingState: MeldingTilNavKontorState;
+    features: UnleashState;
 }
 
 interface StateType {
@@ -50,10 +51,13 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     }
 
     render() {
-        const {oppfolging, oppfolgingsEnhet, meldingState} = this.props;
+        const {oppfolging, oppfolgingsEnhet, meldingState, features} = this.props;
+
+        const erNavBaerumPilot = oppfolgingsEnhet.enhetId === '0219' && featureErAktivert(tiltakInfoMeldingBaerum, features);
+
         const tekstId = oppfolging.underOppfolging
             ? 'kontaktenav-takontakt-underoppfolging'
-            : 'kontaktenav-takontakt-ikkeunderoppfolging';
+            : erNavBaerumPilot ? 'kontaktenav-takontakt-ikkeunderoppfolging-navbaerumpilot' : 'kontaktenav-takontakt-ikkeunderoppfolging';
 
         return (
             <Datalaster avhengigheter={[oppfolging]}>
@@ -67,7 +71,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                             <Innholdstittel className="blokk-s">
                                 <Tekst id={'kontaktenav-snakkmednav'}/>
                             </Innholdstittel>
-                            <Normaltekst className="blokk-l">
+                            <Normaltekst className="blokk-s">
                                 <Tekst id={tekstId}/>
                             </Normaltekst>
 
@@ -95,7 +99,8 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 const mapStateToProps = (state: AppState): KontakteNavProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
-    meldingState: state.harSendtMelding
+    meldingState: state.harSendtMelding,
+    features: state.unleash
 });
 
 export default connect(mapStateToProps)(KontakteNAV);
