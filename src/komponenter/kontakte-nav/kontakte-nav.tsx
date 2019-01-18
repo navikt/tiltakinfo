@@ -67,7 +67,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                             <Innholdstittel className="blokk-s">
                                 <Tekst id={'kontaktenav-snakkmednav'}/>
                             </Innholdstittel>
-                            <Normaltekst className="blokk-s">
+                            <Normaltekst className="blokk-l">
                                 <Tekst id={tekstId}/>
                             </Normaltekst>
 
