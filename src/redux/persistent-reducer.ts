@@ -31,21 +31,22 @@ function erBesvarelseEndret(
     );
 }
 
-export default (
+export default <S>(
     scope: string,
     location: Location,
     reducer: any, // tslint:disable-line
-    initialState: PersistentType
+    initialState: PersistentType,
+    isValid: (storageState: S) => boolean // tslint:disable-line:no-any
 ) => (state: any, action: any) => { // tslint:disable-line
     let nState = state;
-    if (
-        erBesvarelseEndret(scope, initialState) ||
-        erBesvarelseEndret(scope, initialState)
-    ) {
+    if (erBesvarelseEndret(scope, initialState)) {
         write(scope, undefined);
     }
     if (state === undefined) {
-        nState = read(scope);
+        const storageState = read(scope);
+        if (isValid(storageState)) {
+            nState = storageState;
+        }
     }
 
     const rState = reducer(nState, action);
