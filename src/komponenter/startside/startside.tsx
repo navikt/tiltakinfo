@@ -18,11 +18,9 @@ import './startside.less';
 import { TiltakId } from '../tiltak/tiltak-config';
 import { BrukerType, tiltakDuck } from '../../redux/generic-reducers';
 import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
-import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 
 interface StateProps {
     maalId: MaalOption;
-    oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     harSendtMelding: boolean;
     sykmeldtMedArbeidsgiver: boolean;
@@ -58,7 +56,7 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {maalId, oppfolging, oppfolgingsEnhet, harSendtMelding, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver,
+        const {maalId, oppfolgingsEnhet, harSendtMelding, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver,
             arbeidsledigSituasjonsbestemt, arbeidsledigSpesieltTilpasset, features} = this.props;
 
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
@@ -92,10 +90,11 @@ class Startside extends React.Component<StartsideProps> {
 
                             <section className="app-content kontakte-nav-container blokk-xl">
                                 {
-                                    ((oppfolging.underOppfolging || oppfolgingsEnhet.enhetId === '0219') &&
-                                        harSendtMelding &&
-                                    featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
-                                    <HarSendtMelding/>
+                                    (oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
+                                        featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
+                                    <div className="har-sendt-melding panel panel--border">
+                                        <HarSendtMelding/>
+                                    </div>
                                 ) : (
                                     <KontakteNAV/>
                                 )}
@@ -123,7 +122,6 @@ class Startside extends React.Component<StartsideProps> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
-    oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
     sykmeldtMedArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
     sykmeldtUtenArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,

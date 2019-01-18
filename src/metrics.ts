@@ -76,6 +76,24 @@ export const klikkPaKontaktNavKontor = (
     }
 };
 
+export const klikkPaKontaktVeileder = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.kontaktveileder`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
+};
+
 export const klikkPaSendMelding = (
     servicegruppekode: SituasjonOption,
     harArbeidsgiverIAktiveSykmeldinger: boolean,

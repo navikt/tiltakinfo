@@ -7,16 +7,19 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
 export const tiltakInfoMeldingBaerum = 'tiltakinfo.melding-til-baerum';
+export const tiltakInfoMeldingDialog = 'tiltakinfo.melding-til-dialog';
 
 export interface ActiveUnleashFeatures {
     [tiltakInfoMeldingBaerum]: boolean;
+    [tiltakInfoMeldingDialog]: boolean;
 }
 
 export type UnleashState = DataElement & ActiveUnleashFeatures;
 
 export const initialState: UnleashState = {
     status: Status.IKKE_STARTET,
-    [tiltakInfoMeldingBaerum]: false
+    [tiltakInfoMeldingBaerum]: false,
+    [tiltakInfoMeldingDialog]: false
 };
 
 //  Reducer
@@ -25,7 +28,8 @@ export default function reducer(state: UnleashState = initialState, action: Hand
         case ActionType.HENT_UNLEASH_OK:
             return {
                 status: Status.OK,
-                [tiltakInfoMeldingBaerum]: action.unleash[tiltakInfoMeldingBaerum]
+                [tiltakInfoMeldingBaerum]: action.unleash[tiltakInfoMeldingBaerum],
+                [tiltakInfoMeldingDialog]: action.unleash[tiltakInfoMeldingDialog]
             };
         case ActionType.HENT_UNLEASH_LASTER:
             return {...state, status: Status.LASTER};
@@ -41,7 +45,7 @@ export default function reducer(state: UnleashState = initialState, action: Hand
 
 export function hentUnleash(): (dispatch: Dispatch) => Promise<void> {
     return fetchThenDispatch<UnleashState>(
-        () => getUnleashFetch([tiltakInfoMeldingBaerum]), {
+        () => getUnleashFetch([tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog]), {
             ok: hentUnleashOK,
             feilet: hentUnleashFEILET,
             pending: hentUnleashLASTER,

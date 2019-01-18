@@ -22,25 +22,25 @@ class HarSendtMelding extends React.Component<StateProps> {
 
     render() {
         const {oppfolging, oppfolgingsEnhet} = this.props;
-        const navKontor = oppfolgingsEnhet.navn || 'ditt Nav-kontor';
+        const navKontor = oppfolgingsEnhet.navn || 'ditt NAV-kontor';
         const tekstIdTarKontakt = oppfolging.underOppfolging
             ? Parser(utledTekst('kontaktenav-veileder-tar-kontakt'))
             : Parser(utledTekst('kontaktenav-kontor-tar-kontakt', [navKontor]));
         return (
-            <div className="har-sendt-melding panel panel--border">
+            <>
                 <div className="har-sendt-melding__ikon">
                     <img src={velgMaalBilde} alt=""/>
                 </div>
                 <Sidetittel tag="h1" className="har-sendt-melding__tittel blokk-s">
-                    {Parser(utledTekst('kontaktenav-beskjed-sendt-nav', [navKontor]))}
+                    {Parser(utledTekst('kontaktenav-beskjed-sendt-nav'))}
                 </Sidetittel>
-                <Normaltekst className="har-sendt-melding__ingress blokk-s">
+                <Normaltekst className="har-sendt-melding__ingress blokk-m">
                     {tekstIdTarKontakt}
                 </Normaltekst>
                 {oppfolging.underOppfolging && (
                     <LenkeAktivitetsplanKnapp/>
                 )}
-            </div>
+            </>
         );
     }
 }

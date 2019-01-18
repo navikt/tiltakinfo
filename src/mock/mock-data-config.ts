@@ -1,5 +1,5 @@
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
-import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
+import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog } from '../unleash/unleash-duck';
 import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
 
 export enum Bruker {
@@ -53,6 +53,7 @@ export interface BrukerMocks {
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -62,14 +63,15 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: ['ARBEIDSLEDIG'],
         [MockConfigPropName.ER_SYKMELDT]: true,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingDialog]: false,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
-            navn: 'mock',
+            navn: 'NAV Bærum',
             enhetId: '0219',
         },
         [MockConfigPropName.HAR_ARBEIDSGIVER]: ['FRILANSER'],
@@ -82,10 +84,11 @@ export const brukerMocks: BrukerMocks = {
             }
         },
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -95,10 +98,11 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -108,10 +112,11 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [tiltakInfoMeldingBaerum]: true,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -121,6 +126,6 @@ export const brukerMocks: BrukerMocks = {
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
         [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
-        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false
+        [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
 };
