@@ -67,7 +67,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: true,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {

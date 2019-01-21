@@ -12,9 +12,9 @@ import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
 import { nullStillStore } from '../../brukerdata/melding-til-veileder-duck';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
-import Parser from 'html-react-parser';
 import Tekst, { utledTekst } from '../../finn-tekst';
 import Feature, { featureErAktivert } from '../../unleash/feature';
+import Parser from 'html-react-parser';
 import Datalaster from '../../api/datalaster';
 import KontakteKontor from './kontakte-kontor';
 import KontakteVeileder from './kontakte-veileder';
@@ -65,6 +65,12 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     render() {
         const {oppfolging, oppfolgingsEnhet, meldingState, features} = this.props;
 
+        const erNavBaerumPilot = oppfolgingsEnhet.enhetId === '0219' && featureErAktivert(tiltakInfoMeldingBaerum, features);
+
+        /*const tekstId = oppfolging.underOppfolging
+            ? 'kontaktenav-takontakt-underoppfolging'
+            : erNavBaerumPilot ? 'kontaktenav-takontakt-ikkeunderoppfolging-navbaerumpilot' : 'kontaktenav-takontakt-ikkeunderoppfolging';
+        */
         const tittelTekstId = (oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features))
             ? Parser(utledTekst('kontaktenav-snakkmednav-ikkeoppfolging'))
             : oppfolging.underOppfolging
