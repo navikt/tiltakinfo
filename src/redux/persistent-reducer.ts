@@ -1,24 +1,21 @@
 import { DemoBrukerState, MaalState } from './generic-reducers';
 
-function read(scope: string) {
-    const content = localStorage.getItem(scope);
+function read(storageKey: string) {
+    const content = localStorage.getItem(storageKey);
     if (!content || content === 'undefined') {
         return undefined;
     }
     return JSON.parse(content);
 }
 
-function write(scope: string, content: any) { // tslint:disable-line
-    return localStorage.setItem(scope, JSON.stringify(content));
-}
-
 type PersistentType = MaalState | DemoBrukerState;
 
-function erBesvarelseEndret(
-    scope: string,
-    initialState: PersistentType
-) {
-    const content = localStorage.getItem(scope);
+function write(storageKey: string, content: any) { // tslint:disable-line:no-any
+    return localStorage.setItem(storageKey, JSON.stringify(content));
+}
+
+function storageStateHasChanged(storageKey: string, initialState: PersistentType) {
+    const content = localStorage.getItem(storageKey);
     if (!content || content === 'undefined') {
         return true;
     }
@@ -31,27 +28,28 @@ function erBesvarelseEndret(
     );
 }
 
-export default (
-    scope: string,
+export default <S>(
+    storageKey: string,
     location: Location,
-    reducer: any, // tslint:disable-line
-    initialState: PersistentType
-) => (state: any, action: any) => { // tslint:disable-line
-    let nState = state;
-    if (
-        erBesvarelseEndret(scope, initialState) ||
-        erBesvarelseEndret(scope, initialState)
-    ) {
-        write(scope, undefined);
+    reducer: any, // tslint:disable-line:no-any
+    initialState: PersistentType,
+    isValid: (storageState: S) => boolean
+) => (state: any, action: any) => { // tslint:disable-line:no-any
+    if (storageStateHasChanged(storageKey, initialState)) {
+        write(storageKey, undefined);
     }
+    let nState = state;
     if (state === undefined) {
-        nState = read(scope);
+        const storageState = read(storageKey);
+        if (isValid(storageState)) {
+            nState = storageState;
+        }
     }
 
     const rState = reducer(nState, action);
 
     if (rState !== nState) {
-        write(scope, rState);
+        write(storageKey, rState);
     }
 
     return rState;
