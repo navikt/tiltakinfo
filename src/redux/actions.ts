@@ -39,7 +39,6 @@ export enum ActionType {
     SEND_MELDING_PENDING = 'SEND_MELDING_PENDING',
     SEND_MELDING_FEILET = 'SEND_MELDING_FEILET',
     SETT_DEMOBRUKER = 'SETT_DEMOBRUKER',
-    NULL_STILL_STORE = 'NULL_STILL_STORE',
 }
 
 export interface TestAction extends Data {
@@ -162,10 +161,6 @@ export interface SendMeldingFEILETAction {
     type: ActionType.SEND_MELDING_FEILET;
 }
 
-export interface NullStillStoreAction {
-    type: ActionType.NULL_STILL_STORE;
-}
-
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -194,5 +189,4 @@ export type Handling =
     | LagreBrukerFEILETAction
     | SendMeldingOKAction
     | SendMeldingPENDINGAction
-    | SendMeldingFEILETAction
-    | NullStillStoreAction;
+    | SendMeldingFEILETAction;

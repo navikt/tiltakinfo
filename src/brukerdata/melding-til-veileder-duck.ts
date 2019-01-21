@@ -4,7 +4,6 @@ import {
     SendMeldingFEILETAction,
     SendMeldingOKAction,
     SendMeldingPENDINGAction,
-    NullStillStoreAction
 } from '../redux/actions';
 import { postMeldingDialogFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
@@ -24,8 +23,6 @@ export default function reducer(state: DataElement = initialMeldingTilDialogStat
             return {...state, status: Status.LASTER};
         case ActionType.SEND_MELDING_FEILET:
             return {...state, status: Status.FEILET};
-        case ActionType.NULL_STILL_STORE:
-            return initialMeldingTilDialogState;
         default:
             return state;
     }
@@ -55,12 +52,6 @@ function sendMeldingFEILET(): SendMeldingFEILETAction {
 function sendMeldingPENDING(): SendMeldingPENDINGAction {
     return {
         type: ActionType.SEND_MELDING_PENDING,
-    };
-}
-
-export function nullStillStore(): NullStillStoreAction {
-    return {
-        type: ActionType.NULL_STILL_STORE
     };
 }
 

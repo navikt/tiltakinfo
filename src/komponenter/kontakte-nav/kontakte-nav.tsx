@@ -5,12 +5,10 @@ import 'nav-frontend-paneler-style';
 import './kontakte-nav.less';
 import { connect } from 'react-redux';
 import { AppState } from '../../redux/reducer';
-import { Dispatch } from '../../redux/dispatch-type';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
 import { tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog, UnleashState } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
-import { nullStillStore } from '../../brukerdata/melding-til-veileder-duck';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst, { utledTekst } from '../../finn-tekst';
 import Feature, { featureErAktivert } from '../../unleash/feature';
@@ -29,15 +27,11 @@ interface StoreProps {
     features: UnleashState;
 }
 
-interface DispatchProps {
-    doNullStillMeldingDialogStore: () => void;
-}
-
 interface ModalState {
     modalIsOpen: boolean;
 }
 
-type KontakteNavProps = StoreProps & DispatchProps;
+type KontakteNavProps = StoreProps;
 
 class KontakteNAV extends React.Component<KontakteNavProps> {
     public state: ModalState;
@@ -57,9 +51,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
     closeModal(): void {
         this.setState({modalIsOpen: false});
-        if (this.props.oppfolging.underOppfolging) {
-            this.props.doNullStillMeldingDialogStore();
-        }
     }
 
     render() {
@@ -133,8 +124,4 @@ const mapStateToProps = (state: AppState): StoreProps => ({
     features: state.unleash,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doNullStillMeldingDialogStore: () => dispatch(nullStillStore()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(KontakteNAV);
+export default connect(mapStateToProps)(KontakteNAV);
