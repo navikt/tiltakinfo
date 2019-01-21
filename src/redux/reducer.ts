@@ -9,6 +9,8 @@ import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duc
 import registreringReducer, { RegistreringState } from '../brukerdata/registrering-duck';
 import oppfolgingsstatusReducer, { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { DataElement } from '../api/datalaster';
+import { MaalOption } from '../komponenter/tiltak/tiltak-map';
+import { Bruker } from '../mock/mock-data-config';
 import {
     brukertypeDuck,
     BrukertypeState,
@@ -36,14 +38,26 @@ export interface AppState {
     brukertype: BrukertypeState;
 }
 
+const verdiErGyldig = (verdi: string, gyldigeVerdier: any) => { // tslint:disable-line:no-any
+    return Object.keys(gyldigeVerdier).map(key => gyldigeVerdier[key]).some(value => value === verdi);
+};
+
+const maalStateIsValid = (storageState: MaalState): boolean => {
+    return storageState && storageState.id && verdiErGyldig(storageState.id, MaalOption);
+};
+
+const demoBrukerStateIsValid = (storageState: DemoBrukerState): boolean => {
+    return storageState && storageState.id && verdiErGyldig(storageState.id, Bruker);
+};
+
 export const reducer = combineReducers<AppState>({
     unleash: unleashReducer,
     oppfolging: oppfolgingReducer,
     oppfolgingsstatus: oppfolgingsstatusReducer,
     syfoSituasjon: syfoReducer,
     registrering: registreringReducer,
-    maal: persistent('maalState', location, maalDuck.reducer, initialMaalState),
-    demobruker: persistent('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState),
+    maal: persistent<MaalState>('maalState', location, maalDuck.reducer, initialMaalState, maalStateIsValid),
+    demobruker: persistent<DemoBrukerState>('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState, demoBrukerStateIsValid),
     brukersNavn,
     tiltak: tiltakDuck.reducer,
     brukertype: brukertypeDuck.reducer,
