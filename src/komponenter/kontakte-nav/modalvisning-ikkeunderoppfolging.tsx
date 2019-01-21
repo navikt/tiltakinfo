@@ -5,19 +5,19 @@ import { Dispatch } from '../../redux/dispatch-type';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { utledTekst } from '../../finn-tekst';
 import Parser from 'html-react-parser';
-import { klikkPaSendMelding } from '../../metrics';
+import { klikkPaSendMeldingNavBaerum } from '../../metrics';
 import { lagreBruker, User } from '../../brukerdata/bruker-duck';
 
-interface StoreProps {
-    fulltNavn?: string;
-    bruker: User;
-    oppfolgingsenhetNavn: string;
-}
-
 interface OwnProps {
+    bruker: User;
     tiltakNavn: string[];
     modalIsOpen: boolean;
     closeModal: () => void;
+}
+
+interface StoreProps {
+    fulltNavn?: string;
+    oppfolgingsenhetNavn: string;
 }
 
 interface DispatchProps {
@@ -31,35 +31,30 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
                                      : ModalvisningProps) => {
 
     const navn = fulltNavn ? fulltNavn : 'Jeg';
-    const tittel = Parser(utledTekst('kontaktenav-kontor', [oppfolgingsenhetNavn]));
-    const ingress = Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'));
-    const meldingsTekst = Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltakNavn)));
-    const NavTarKontaktTekst = Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsenhetNavn]));
-    const subtekst = Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsenhetNavn]));
 
     return (
         <>
             <Sidetittel tag="h1" className="tittel blokk-s">
-                {tittel}
+                {Parser(utledTekst('kontaktenav-kontor', [oppfolgingsenhetNavn]))}
             </Sidetittel>
             <Normaltekst className="ingress blokk-s">
-                {ingress}
+                {Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'))}
             </Normaltekst>
             <Normaltekst className="meldingstekst">
-                {meldingsTekst}
+                {Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltakNavn)))}
             </Normaltekst>
             <Normaltekst className="kontaktinfo blokk-s">
-                {NavTarKontaktTekst}
+                {Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsenhetNavn]))}
             </Normaltekst>
             <Normaltekst className="subtekst blokk-m">
-                {subtekst}
+                {Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsenhetNavn]))}
             </Normaltekst>
             <button
                 className="knapp knapp--hoved blokk-xs"
                 onClick={() => {
                     doLagreBruker(bruker);
                     closeModal();
-                    klikkPaSendMelding(
+                    klikkPaSendMeldingNavBaerum(
                         bruker.servicegruppeKode,
                         bruker.harArbeidsgiver,
                         bruker.erSykmeldt,
@@ -76,22 +71,6 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
 
 const mapStateToProps = (state: AppState): StoreProps => ({
     fulltNavn: state.brukersNavn.data.name,
-    bruker: {
-        erSykmeldt: state.syfoSituasjon.erSykmeldt,
-        harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
-        servicegruppeKode: state.oppfolgingsstatus.situasjon,
-        oppfolgingsEnhetId: state.oppfolgingsstatus.oppfolgingsenhet.enhetId,
-        underOppfolging: state.oppfolging.underOppfolging,
-        maal: state.maal.id,
-        tiltak: [
-            {
-                nokkel: state.tiltak.nokkelEn
-            },
-            {
-                nokkel: state.tiltak.nokkelTo
-            },
-        ]
-    },
     oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

@@ -67,10 +67,6 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
 
         const erNavBaerumPilot = oppfolgingsEnhet.enhetId === '0219' && featureErAktivert(tiltakInfoMeldingBaerum, features);
 
-        /*const tekstId = oppfolging.underOppfolging
-            ? 'kontaktenav-takontakt-underoppfolging'
-            : erNavBaerumPilot ? 'kontaktenav-takontakt-ikkeunderoppfolging-navbaerumpilot' : 'kontaktenav-takontakt-ikkeunderoppfolging';
-        */
         const tittelTekstId = (oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features))
             ? Parser(utledTekst('kontaktenav-snakkmednav-ikkeoppfolging'))
             : oppfolging.underOppfolging
@@ -81,6 +77,8 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             ? Parser(utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert'))
             : oppfolging.underOppfolging
             ? Parser(utledTekst('kontaktenav-takontakt-underoppfolging'))
+            : erNavBaerumPilot
+            ? Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot'))
             : Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging')));
 
         return (

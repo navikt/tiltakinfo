@@ -7,14 +7,14 @@ import Spinner from 'nav-frontend-spinner';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import Parser from 'html-react-parser';
 import Tekst, { utledTekst } from '../../finn-tekst';
-import { klikkPaSendMelding } from '../../metrics';
+import { klikkPaSendMeldingVeileder } from '../../metrics';
 import { User } from '../../brukerdata/bruker-duck';
-import { Melding, nullStillStore, sendMeldingTilDialog } from '../../brukerdata/melding-til-veileder-duck';
+import { Melding, sendMeldingTilDialog } from '../../brukerdata/melding-til-veileder-duck';
 import { Status } from '../../api/datalaster';
-
 import HarSendtMelding from './har-sendt-melding';
 
 interface OwnProps {
+    bruker: User;
     tiltakNavn: string[];
     modalIsOpen: boolean;
     closeModal: () => void;
@@ -22,13 +22,11 @@ interface OwnProps {
 
 interface StoreProps {
     statusSendMeldingTilDialog: Status;
-    bruker: User;
     oppfolgingsenhetNavn: string;
 }
 
 interface DispatchProps {
     doSendMeldingDialog: (melding: Melding) => void;
-    doNullStillStore: () => void;
 }
 
 export type ModalvisningProps = StoreProps & OwnProps & DispatchProps;
@@ -63,8 +61,7 @@ const ModalvisningUnderOppfolging = ({statusSendMeldingTilDialog, bruker, oppfol
                         className="knapp knapp--hoved blokk-xs"
                         onClick={() => {
                             doSendMeldingDialog(melding);
-
-                            klikkPaSendMelding(
+                            klikkPaSendMeldingVeileder(
                                 bruker.servicegruppeKode,
                                 bruker.harArbeidsgiver,
                                 bruker.erSykmeldt,
@@ -99,27 +96,10 @@ const ModalvisningUnderOppfolging = ({statusSendMeldingTilDialog, bruker, oppfol
 
 const mapStateToProps = (state: AppState): StoreProps => ({
     statusSendMeldingTilDialog: state.meldingTilDialog.status,
-    bruker: {
-        erSykmeldt: state.syfoSituasjon.erSykmeldt,
-        harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
-        servicegruppeKode: state.oppfolgingsstatus.situasjon,
-        oppfolgingsEnhetId: state.oppfolgingsstatus.oppfolgingsenhet.enhetId,
-        underOppfolging: state.oppfolging.underOppfolging,
-        maal: state.maal.id,
-        tiltak: [
-            {
-                nokkel: state.tiltak.nokkelEn
-            },
-            {
-                nokkel: state.tiltak.nokkelTo
-            },
-        ]
-    },
     oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     doSendMeldingDialog: (melding: Melding) => sendMeldingTilDialog(melding)(dispatch),
-    doNullStillStore: () => dispatch(nullStillStore()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalvisningUnderOppfolging);

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import NavFrontendModal from 'nav-frontend-modal';
 import { AppState } from '../../redux/reducer';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
-import ModalvisningUnderOppfolging from './modalvisning-underoppfolging';
-import ModalvisningIkkeOppfolging from './modalvisning-ikkeunderoppfolging';
 import { User } from '../../brukerdata/bruker-duck';
 import { utledTekst } from '../../finn-tekst';
 import tiltakConfig from '../tiltak/tiltak-config';
+import ModalvisningUnderOppfolging from './modalvisning-underoppfolging';
+import ModalvisningIkkeOppfolging from './modalvisning-ikkeunderoppfolging';
 
 interface StoreProps {
     bruker: User;
@@ -39,10 +39,10 @@ const KontakteNavModal = ({bruker,  oppfolging, modalIsOpen, closeModal}: Kontak
             bodyOpenClassName="modal__kontakt-nav"
         >
             { oppfolging.underOppfolging && (
-                <ModalvisningUnderOppfolging tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+                <ModalvisningUnderOppfolging bruker={bruker} tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
             )}
             { !oppfolging.underOppfolging && (
-                <ModalvisningIkkeOppfolging tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+                <ModalvisningIkkeOppfolging bruker={bruker} tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
             )}
         </NavFrontendModal>
     );

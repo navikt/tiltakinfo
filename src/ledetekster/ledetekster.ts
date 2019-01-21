@@ -26,6 +26,7 @@ export default {
     'kontaktenav-lenke-underoppfolging': 'Gå til aktivitetsplanen',
     'kontaktenav-snakkmednav-ikkeoppfolging': 'Snakk med oss om muligheter',
     'kontaktenav-snakkmednav-underoppfolging': 'Interessant?',
+    'kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot': 'Ta kontakt direkte med en veileder hos NAV Bærum for å snakke om mulighetene dine.',
     'kontaktenav-takontakt-ikkeoppfolging': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har.',
     'kontaktenav-takontakt-underoppfolging': 'Send en melding <strong>direkte til veilederen din</strong> hvis du vil snakke om mulighetene dine.',
     'kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert': 'Ta gjerne kontakt med NAV-kontoret ditt hvis du vil snakke om hvilke muligheter du har. Du kan også sende en melding til veilederen din når du er inne i aktivitetsplanen din på nav.no.',

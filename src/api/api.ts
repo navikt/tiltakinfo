@@ -45,7 +45,7 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolging/api/oppfolging',
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     postBruker: '/veilarbtiltakinfo/api/bruker',
-    postMeldingDialog: '/https://app-q1.adeo.no/veilarbdialog/api/dialog',
+    postMeldingDialog: '/veilarbdialog/api/dialog',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
     getBrukersNavn: '/innloggingslinje/auth',
