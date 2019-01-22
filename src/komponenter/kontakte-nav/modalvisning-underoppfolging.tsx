@@ -2,16 +2,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../redux/reducer';
 import { Dispatch } from '../../redux/dispatch-type';
-import AlertStripe from 'nav-frontend-alertstriper';
-import Spinner from 'nav-frontend-spinner';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import Parser from 'html-react-parser';
-import Tekst, { utledTekst } from '../../finn-tekst';
+import { utledTekst } from '../../finn-tekst';
 import { klikkPaSendMeldingVeileder } from '../../metrics';
 import { User } from '../../brukerdata/bruker-duck';
 import { Melding, sendMeldingTilDialog } from '../../brukerdata/melding-til-veileder-duck';
-import { Status } from '../../api/datalaster';
+import { DataElement, Status } from '../../api/datalaster';
 import HarSendtMelding from './har-sendt-melding';
+import Datalaster from '../../api/datalaster';
 
 interface OwnProps {
     bruker: User;
@@ -21,7 +20,7 @@ interface OwnProps {
 }
 
 interface StoreProps {
-    statusSendMeldingTilDialog: Status;
+    meldingTilDialog: DataElement;
     oppfolgingsenhetNavn: string;
 }
 
@@ -31,7 +30,7 @@ interface DispatchProps {
 
 export type ModalvisningProps = StoreProps & OwnProps & DispatchProps;
 
-const ModalvisningUnderOppfolging = ({statusSendMeldingTilDialog, bruker, oppfolgingsenhetNavn, tiltakNavn,
+const ModalvisningUnderOppfolging = ({meldingTilDialog, bruker, oppfolgingsenhetNavn, tiltakNavn,
                                              modalIsOpen, closeModal, doSendMeldingDialog}: ModalvisningProps) => {
 
     const meldingsTekst = utledTekst('kontaktenav-interessert-i-muligheter-veileder', tiltakNavn);
@@ -43,7 +42,7 @@ const ModalvisningUnderOppfolging = ({statusSendMeldingTilDialog, bruker, oppfol
 
     return (
         <>
-            { statusSendMeldingTilDialog === Status.IKKE_STARTET && (
+            { meldingTilDialog.status === Status.IKKE_STARTET ?
                 <>
                     <Sidetittel tag="h1" className="tittel blokk-s">
                         {Parser(utledTekst('kontaktenav-veileder'))}
@@ -73,29 +72,20 @@ const ModalvisningUnderOppfolging = ({statusSendMeldingTilDialog, bruker, oppfol
                         {Parser(utledTekst('kontaktenav-send-melding'))}
                     </button>
                 </>
-            )}
+                :
+                <Datalaster avhengigheter={[meldingTilDialog]} feilmeldingId={'feilmelding-tekniskfeil-sende-melding'}>
+                    <div className="har-sendt-melding panel">
+                        <HarSendtMelding/>
+                    </div>
+                </Datalaster>
+            }
 
-            { statusSendMeldingTilDialog === Status.OK && (
-                <div className="har-sendt-melding panel">
-                    <HarSendtMelding/>
-                </div>
-            )}
-
-            { statusSendMeldingTilDialog === Status.LASTER && (
-                <Spinner type="XL"/>
-            )}
-
-            { statusSendMeldingTilDialog === Status.FEILET && (
-                <AlertStripe type="advarsel" className={'feilmelding-container'}>
-                    <Tekst id={'feilmelding-tekniskfeil-sende-melding'}/>
-                </AlertStripe>
-            )}
         </>
     );
 };
 
 const mapStateToProps = (state: AppState): StoreProps => ({
-    statusSendMeldingTilDialog: state.meldingTilDialog.status,
+    meldingTilDialog: state.meldingTilDialog,
     oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({

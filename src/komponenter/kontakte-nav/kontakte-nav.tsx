@@ -11,7 +11,7 @@ import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
 import Tekst, { utledTekst } from '../../finn-tekst';
-import Feature, { featureErAktivert } from '../../unleash/feature';
+import { featureErAktivert } from '../../unleash/feature';
 import Parser from 'html-react-parser';
 import Datalaster from '../../api/datalaster';
 import KontakteKontor from './kontakte-kontor';
@@ -56,21 +56,26 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     render() {
         const {oppfolging, oppfolgingsEnhet, meldingState, features} = this.props;
 
-        const erNavBaerumPilot = oppfolgingsEnhet.enhetId === '0219' && featureErAktivert(tiltakInfoMeldingBaerum, features);
+        const meldingDialogFeature = oppfolging.underOppfolging && featureErAktivert(tiltakInfoMeldingDialog, features);
+        const erNavBaerumFeature = oppfolgingsEnhet.enhetId === '0219' &&
+                                   featureErAktivert(tiltakInfoMeldingBaerum, features) &&
+                                   !oppfolging.underOppfolging;
 
-        const tittelTekstId = (oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features))
-            ? Parser(utledTekst('kontaktenav-snakkmednav-ikkeoppfolging'))
-            : oppfolging.underOppfolging
+        const tittel = meldingDialogFeature
             ? Parser(utledTekst('kontaktenav-snakkmednav-underoppfolging'))
             : Parser(utledTekst('kontaktenav-snakkmednav-ikkeoppfolging'));
 
-        const ingressTekstId = (oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features)
-            ? Parser(utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert'))
-            : oppfolging.underOppfolging
-            ? Parser(utledTekst('kontaktenav-takontakt-underoppfolging'))
-            : erNavBaerumPilot
-            ? Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot'))
-            : Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging')));
+        const finnIngress = () => {
+            if (meldingDialogFeature) {
+                return Parser(utledTekst('kontaktenav-takontakt-underoppfolging'));
+            } else if (erNavBaerumFeature) {
+                return Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot'));
+            } else if (oppfolging.underOppfolging) {
+                Parser(utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert'));
+            } else {
+                return Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging'));
+            }
+        };
 
         return (
             <Datalaster avhengigheter={[oppfolging]}>
@@ -82,32 +87,26 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         </div>
 
                         <div className="kontakte-nav__innhold">
-
                             <Innholdstittel className="blokk-s">
-                                <Tekst id={tittelTekstId}/>
+                                <Tekst id={tittel}/>
                             </Innholdstittel>
 
                             <Normaltekst className="blokk-s">
-                                {ingressTekstId}
+                                {finnIngress()}
                             </Normaltekst>
 
-                            {oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features ) && (
+                            {oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features) &&
                                 <LenkeAktivitetsplanKnapp />
-                            )}
-                            <Feature name={tiltakInfoMeldingDialog}>
-                                <>
-                                    {oppfolging.underOppfolging && (
-                                        <KontakteVeileder openModal={this.openModal} />
-                                    )}
-                                </>
-                            </Feature>
-                            <Feature name={tiltakInfoMeldingBaerum}>
-                                <>
-                                    {(oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging) && !meldingState.harSendtMelding && (
-                                        <KontakteKontor openModal={this.openModal} />
-                                    )}
-                                </>
-                            </Feature>
+                            }
+
+                            {oppfolging.underOppfolging && featureErAktivert(tiltakInfoMeldingDialog, features) &&
+                                <KontakteVeileder openModal={this.openModal} />
+                            }
+
+                            {(oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging) && !meldingState.harSendtMelding &&
+                            featureErAktivert(tiltakInfoMeldingBaerum, features) &&
+                                <KontakteKontor openModal={this.openModal} />
+                            }
                         </div>
                     </div>
                     <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />

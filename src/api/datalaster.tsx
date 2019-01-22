@@ -18,14 +18,15 @@ interface DatalasterProps {
     avhengigheter: DataElement[];
     ventPa?: DataElement[];
     children: React.ReactElement<any>; // tslint:disable-line:no-any
+    feilmeldingId?: string;
 }
 
 const harStatus = (dataElement: DataElement, status: Status): boolean => {
     return dataElement.status === status;
 };
 
-const Datalaster = ({avhengigheter, ventPa, children}: DatalasterProps) => {
-
+const Datalaster = ({avhengigheter, ventPa, children, feilmeldingId}: DatalasterProps) => {
+    const feilmelding = (feilmeldingId !== undefined && feilmeldingId !== '') ? feilmeldingId : 'feilmelding-tekniskfeil';
     if (avhengigheter.every(a => harStatus(a, Status.OK)) &&
         (!ventPa ||
             ventPa.every(a => harStatus(a, Status.OK) || harStatus(a, Status.FEILET)))) {
@@ -33,8 +34,8 @@ const Datalaster = ({avhengigheter, ventPa, children}: DatalasterProps) => {
         return children;
     } else if (avhengigheter.some(a => harStatus(a, Status.FEILET))) {
         return (
-            <AlertStripe type="advarsel" className={'app-content feilmelding-container'}>
-                <Tekst id={'feilmelding-tekniskfeil'}/>
+            <AlertStripe type="advarsel" className={'feilmelding-container'}>
+                <Tekst id={feilmelding}/>
             </AlertStripe>
         );
     }
