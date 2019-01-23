@@ -23,11 +23,8 @@ export interface OppfolgingsstatusFetchState extends JSONObject {
 }
 
 export interface OppfolgingsstatusState extends DataElement {
-    situasjon: SituasjonOption;
-    oppfolgingsenhet: {
-        navn: string;
-        enhetId: string;
-    };
+    situasjon: ServicegruppeKode;
+    oppfolgingsenhet: OppfolgingsEnhet;
 }
 
 export const initialState: OppfolgingsstatusState = {
