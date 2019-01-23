@@ -78,7 +78,7 @@ export default {
     'tiltak-avklaring-lesmer': 'Les mer om avklaring',
     'tiltak-lukk-informasjon': 'Lukk utvidet informasjon',
     'tiltak-avklaring-ekspandertinfo': 'Du kan få veiledning og hjelp til å vurdere om du kan komme tilbake til din nåværende jobb, hvis arbeidssituasjonen og arbeidsoppgavene blir tilpasset dine behov. Eller om du bør se på andre muligheter. Du kan for eksempel få hjelp til å vurdere kompetansen din og hvilke muligheter den gir. Du kan også få hjelp til å vurdere og prøve ut arbeidsevnen din.',
-    'feilmelding-tekniskfeil': 'Det har dessverre oppstått en teknisk feil hos oss. Vi kan derfor ikke foreslå tiltak som kan være aktuelle i din situasjon. Bruk lenken under hvis du vil lese beskrivelser av alle NAV-tiltakene.',
+    'feilmelding-tekniskfeil': 'Det har dessverre oppstått en teknisk feil hos oss. Vi kan derfor ikke foreslå tiltak som kan være aktuelle i din situasjon.',
     'feilmelding-manglendeinfo': 'Vi har ikke nok informasjon om deg. Vi kan derfor ikke foreslå tiltak som kan være aktuelle i din situasjon. Bruk lenken under hvis du vil lese beskrivelser av alle NAV-tiltakene.',
     'feilmelding-tekniskfeil-sende-melding': 'Det har dessverre oppstått en teknisk feil hos oss. Vi kan derfor ikke sende meldingen din akkurat nå. Prøv gjerne igjen litt senere!',
     'demo-tittel': 'Veilederdemo for tiltakinfo',
