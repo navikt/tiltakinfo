@@ -42,7 +42,7 @@ export default {
     'kontaktenav-lukk-modal': 'Lukk',
     'kontaktenav-tester-ny-tjeneste': 'NAV tester ut en ny tjeneste. Meldingen din vil bli delt med {var}, og den vil også bli brukt for å utvikle tjenesten. Meldingen slettes etter testperioden.',
     'kontaktenav-info': 'Etter at meldingen er sendt, kan du gå til aktivitetsplanen og fortsette dialogen.',
-    'kontaktenav-overskrift-melding': 'Snakk om muligheter',
+    'kontaktenav-overskrift-melding': 'Snakke om muligheter',
     'veileder-maal-samme-arbeidsgiver': 'Husk at det er arbeidsgiveren din som har ansvaret for å følge deg opp. Det er derfor viktig at dere tidlig avklarer dine ønsker, muligheter og mål. Hvis du trenger ekstra hjelp, ser du to eksempler på hva NAV kan bistå med under.',
     'veileder-maal-ny-arbeidsgiver': 'Du som er på jakt etter ny jobb kan finne mange ledige stillinger og gode jobbsøkertips på nav.no. Hvis du trenger mer hjelp fra NAV til å skaffe deg jobb, ser du eksempler på hva NAV kan bidra med under.',
     'veileder-maal-usikker': 'Om du er usikker på din fremtidige situasjon, kan du be om et dialogmøte med NAV og arbeidsgiveren din. Sammen kan dere avklare dine ønsker, muligheter og mål. Hvis du ønsker ekstra hjelp til å komme ut i jobb, ser du noen eksempler på hva NAV kan bistå med under.',
