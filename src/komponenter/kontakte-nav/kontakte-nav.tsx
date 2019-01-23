@@ -71,7 +71,7 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
             } else if (erNavBaerumFeature) {
                 return utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot');
             } else if (oppfolging.underOppfolging) {
-                utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert');
+                return utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert');
             } else {
                 return utledTekst('kontaktenav-takontakt-ikkeoppfolging');
             }
