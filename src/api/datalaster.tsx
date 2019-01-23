@@ -26,7 +26,7 @@ const harStatus = (dataElement: DataElement, status: Status): boolean => {
 };
 
 const Datalaster = ({avhengigheter, ventPa, children, feilmeldingId}: DatalasterProps) => {
-    const feilmelding = (feilmeldingId !== undefined && feilmeldingId !== '') ? feilmeldingId : 'feilmelding-tekniskfeil';
+    const feilmelding = feilmeldingId ? feilmeldingId : 'feilmelding-tekniskfeil';
     if (avhengigheter.every(a => harStatus(a, Status.OK)) &&
         (!ventPa ||
             ventPa.every(a => harStatus(a, Status.OK) || harStatus(a, Status.FEILET)))) {

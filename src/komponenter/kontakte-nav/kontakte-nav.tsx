@@ -95,16 +95,15 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                 {finnIngress()}
                             </Normaltekst>
 
-                            {oppfolging.underOppfolging && !featureErAktivert(tiltakInfoMeldingDialog, features) &&
+                            {oppfolging.underOppfolging && !meldingDialogFeature &&
                                 <LenkeAktivitetsplanKnapp />
                             }
 
-                            {oppfolging.underOppfolging && featureErAktivert(tiltakInfoMeldingDialog, features) &&
+                            {meldingDialogFeature &&
                                 <KontakteVeileder openModal={this.openModal} />
                             }
 
-                            {(oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging) && !meldingState.harSendtMelding &&
-                            featureErAktivert(tiltakInfoMeldingBaerum, features) &&
+                            {erNavBaerumFeature && !meldingState.harSendtMelding &&
                                 <KontakteKontor openModal={this.openModal} />
                             }
                         </div>
