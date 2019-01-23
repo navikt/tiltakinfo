@@ -45,10 +45,10 @@ const ModalvisningUnderOppfolging = ({meldingTilDialog, bruker, oppfolgingsenhet
             { meldingTilDialog.status === Status.IKKE_STARTET ?
                 <>
                     <Sidetittel tag="h1" className="tittel blokk-s">
-                        {Parser(utledTekst('kontaktenav-veileder'))}
+                        {utledTekst('kontaktenav-veileder')}
                     </Sidetittel>
                     <Normaltekst className="ingress blokk-s">
-                        {Parser(utledTekst('kontaktenav-meldingen-blir-sendt-veileder'))}
+                        {utledTekst('kontaktenav-meldingen-blir-sendt-veileder')}
                     </Normaltekst>
                     <Normaltekst className="meldingstekst">
                         {meldingsTekst}
@@ -69,7 +69,7 @@ const ModalvisningUnderOppfolging = ({meldingTilDialog, bruker, oppfolgingsenhet
                             );
                         }}
                     >
-                        {Parser(utledTekst('kontaktenav-send-melding'))}
+                        {utledTekst('kontaktenav-send-melding')}
                     </button>
                 </>
                 :

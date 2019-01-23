@@ -35,19 +35,19 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
     return (
         <>
             <Sidetittel tag="h1" className="tittel blokk-s">
-                {Parser(utledTekst('kontaktenav-kontor', [oppfolgingsenhetNavn]))}
+                {utledTekst('kontaktenav-kontor', [oppfolgingsenhetNavn])}
             </Sidetittel>
             <Normaltekst className="ingress blokk-s">
-                {Parser(utledTekst('kontaktenav-meldingen-blir-sendt-kontor'))}
+                {utledTekst('kontaktenav-meldingen-blir-sendt-kontor')}
             </Normaltekst>
             <Normaltekst className="meldingstekst">
                 {Parser(utledTekst('kontaktenav-interessert-i-muligheter-kontor', [navn].concat(tiltakNavn)))}
             </Normaltekst>
             <Normaltekst className="kontaktinfo blokk-s">
-                {Parser(utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsenhetNavn]))}
+                {utledTekst('kontaktenav-tar-kontakt-etter-meldingen-kontor', [oppfolgingsenhetNavn])}
             </Normaltekst>
             <Normaltekst className="subtekst blokk-m">
-                {Parser(utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsenhetNavn]))}
+                {utledTekst('kontaktenav-tester-ny-tjeneste', [oppfolgingsenhetNavn])}
             </Normaltekst>
             <button
                 className="knapp knapp--hoved blokk-xs"
@@ -63,7 +63,7 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
                     );
                 }}
             >
-                {Parser(utledTekst('kontaktenav-send-melding'))}
+                {utledTekst('kontaktenav-send-melding')}
             </button>
         </>
     );

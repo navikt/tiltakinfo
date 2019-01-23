@@ -62,18 +62,18 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                                    !oppfolging.underOppfolging;
 
         const tittel = meldingDialogFeature
-            ? Parser(utledTekst('kontaktenav-snakkmednav-underoppfolging'))
-            : Parser(utledTekst('kontaktenav-snakkmednav-ikkeoppfolging'));
+            ? utledTekst('kontaktenav-snakkmednav-underoppfolging')
+            : utledTekst('kontaktenav-snakkmednav-ikkeoppfolging');
 
         const finnIngress = () => {
             if (meldingDialogFeature) {
                 return Parser(utledTekst('kontaktenav-takontakt-underoppfolging'));
             } else if (erNavBaerumFeature) {
-                return Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot'));
+                return utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot');
             } else if (oppfolging.underOppfolging) {
-                Parser(utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert'));
+                utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert');
             } else {
-                return Parser(utledTekst('kontaktenav-takontakt-ikkeoppfolging'));
+                return utledTekst('kontaktenav-takontakt-ikkeoppfolging');
             }
         };
 

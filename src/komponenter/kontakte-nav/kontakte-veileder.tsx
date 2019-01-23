@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Parser from 'html-react-parser';
 import { utledTekst } from '../../finn-tekst';
 import { klikkPaKontaktVeileder } from '../../metrics';
 import { AppState } from '../../redux/reducer';
@@ -33,7 +32,7 @@ const KontakteVeileder = ({openModal, oppfolgingsstatus, syfoSituasjon}: Kontakt
                 );
             }}
         >
-            {Parser(utledTekst('kontaktenav-send-melding'))}
+            {utledTekst('kontaktenav-send-melding')}
         </button>
     </div>
 );

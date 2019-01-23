@@ -37,7 +37,7 @@ const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteK
                 );
             }}
         >
-            {Parser(utledTekst('kontaktenav-kontor', [oppfolgingsstatus.oppfolgingsenhet.navn]))}
+            {utledTekst('kontaktenav-kontor', [oppfolgingsstatus.oppfolgingsenhet.navn])}
         </button>
     </div>
 );

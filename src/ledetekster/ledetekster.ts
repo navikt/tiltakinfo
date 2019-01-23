@@ -36,7 +36,6 @@ export default {
     'kontaktenav-veileder': 'Melding til veileder',
     'kontaktenav-interessert-i-muligheter-kontor': '<strong>{var}</strong> leste om <strong>{var}</strong> og <strong>{var}</strong> og er interessert i å snakke om muligheter.',
     'kontaktenav-interessert-i-muligheter-veileder': 'Hei! Jeg leste om {var} og {var} og er interessert i å snakke om muligheter.',
-    'kontakt-nav-baerum': 'Kontakt<br/>NAV Bærum',
     'kontaktenav-tar-kontakt-etter-meldingen-kontor': 'Etter at du har sendt meldingen, vil {var} ta kontakt med deg innen et par dager.',
     'kontaktenav-tar-kontakt-etter-meldingen-veileder': 'Etter at meldingen er sendt, kan du gå til aktivitetsplanen og fortsette dialogen.',
     'kontaktenav-send-melding': 'Send melding',
