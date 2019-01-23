@@ -10,7 +10,7 @@ interface StoreProps {
     oppfolgingsenhetId: string;
 }
 
-const KontakteNavKnapp = ({oppfolgingsenhetId}: StoreProps) => (
+const LenkeAktivitetsplanKnapp = ({oppfolgingsenhetId}: StoreProps) => (
     <div className="kontakte-nav__knapp">
         <a
             className="knapp knapp--hoved"
@@ -26,4 +26,4 @@ const mapStateToProps = (state: AppState): StoreProps => ({
     oppfolgingsenhetId: state.oppfolgingsstatus.oppfolgingsenhet.enhetId,
 });
 
-export default connect(mapStateToProps)(KontakteNavKnapp);
+export default connect(mapStateToProps)(LenkeAktivitetsplanKnapp);

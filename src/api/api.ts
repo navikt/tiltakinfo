@@ -7,6 +7,7 @@ import { RegistreringDataState } from '../brukerdata/registrering-duck';
 import { MeldingTilNavKontorFetchState } from '../brukerdata/melding-til-nav-kontor-duck';
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 import { User } from '../brukerdata/bruker-duck';
+import { Melding } from '../brukerdata/melding-til-veileder-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -27,6 +28,7 @@ interface ApiProps {
     getOppfolging: string;
     getOppfolgingsstatus: string;
     postBruker: string;
+    postMeldingDialog: string;
     getSyfo: string;
     getRegistrering: string;
     getBrukersNavn: string;
@@ -43,6 +45,7 @@ export const API: ApiProps = {
     getOppfolging: '/veilarboppfolging/api/oppfolging',
     getOppfolgingsstatus: '/veilarbtiltakinfo/api/oppfolgingsstatus',
     postBruker: '/veilarbtiltakinfo/api/bruker',
+    postMeldingDialog: '/veilarbdialog/api/dialog',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
     getBrukersNavn: '/innloggingslinje/auth',
@@ -65,6 +68,11 @@ export function getOppfolgingsstatusFetch(): Promise<OppfolgingsstatusFetchState
 export function postBrukerFetch(bruker: User): Promise<User> {
     const config = {...requestConfig, method: 'POST', body: JSON.stringify(bruker)};
     return fetchToJson(API.postBruker, config);
+}
+
+export function postMeldingDialogFetch(melding: Melding): Promise<Melding> {
+    const config = {...requestConfig, method: 'POST', body: JSON.stringify(melding)};
+    return fetchToJson(API.postMeldingDialog, config);
 }
 
 export function getSyfoFetch(): Promise<SyfoDataState> {

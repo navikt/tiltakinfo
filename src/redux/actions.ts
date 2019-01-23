@@ -4,6 +4,7 @@ import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
 import { User } from '../brukerdata/bruker-duck';
+import { Melding } from '../brukerdata/melding-til-veileder-duck';
 
 export enum ActionType {
     TEST_ACTION = 'TEST_ACTION',
@@ -34,6 +35,9 @@ export enum ActionType {
     LAGRE_BRUKER_OK = 'LAGRE_BRUKER_OK',
     LAGRE_BRUKER_PENDING = 'LAGRE_BRUKER_PENDING',
     LAGRE_BRUKER_FEILET = 'LAGRE_BRUKER_FEILET',
+    SEND_MELDING_OK = 'SEND_MELDING_OK',
+    SEND_MELDING_PENDING = 'SEND_MELDING_PENDING',
+    SEND_MELDING_FEILET = 'SEND_MELDING_FEILET',
     SETT_DEMOBRUKER = 'SETT_DEMOBRUKER',
 }
 
@@ -144,6 +148,19 @@ export interface LagreBrukerFEILETAction {
     type: ActionType.LAGRE_BRUKER_FEILET;
 }
 
+export interface SendMeldingOKAction {
+    type: ActionType.SEND_MELDING_OK;
+    melding: Melding;
+}
+
+export interface SendMeldingPENDINGAction {
+    type: ActionType.SEND_MELDING_PENDING;
+}
+
+export interface SendMeldingFEILETAction {
+    type: ActionType.SEND_MELDING_FEILET;
+}
+
 export type Handling =
     | TestAction
     | HentUnleashOKAction
@@ -169,4 +186,7 @@ export type Handling =
     | HentMeldingNavKontorFEILETAction
     | LagreBrukerOKAction
     | LagreBrukerPENDINGAction
-    | LagreBrukerFEILETAction;
+    | LagreBrukerFEILETAction
+    | SendMeldingOKAction
+    | SendMeldingPENDINGAction
+    | SendMeldingFEILETAction;

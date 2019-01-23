@@ -2,36 +2,39 @@ import * as React from 'react';
 import 'nav-frontend-lenker-style';
 import 'nav-frontend-knapper-style';
 import 'nav-frontend-paneler-style';
+import './kontakte-nav.less';
 import { connect } from 'react-redux';
-import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
-import Tekst from '../../finn-tekst';
-import Feature, { featureErAktivert } from '../../unleash/feature';
-import Datalaster from '../../api/datalaster';
-import KontakteKontor from './kontakte-kontor';
 import { AppState } from '../../redux/reducer';
-import KontakteNavModal from './kontakte-nav-modal';
-import KontakteNavKnapp from './kontakte-nav-knapp';
 import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
-import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
+import { tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog, UnleashState } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
-
+import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
+import Tekst, { utledTekst } from '../../finn-tekst';
+import { featureErAktivert } from '../../unleash/feature';
+import Parser from 'html-react-parser';
+import Datalaster from '../../api/datalaster';
+import KontakteKontor from './kontakte-kontor';
+import KontakteVeileder from './kontakte-veileder';
+import KontakteNavModal from './kontakte-nav-modal';
+import LenkeAktivitetsplanKnapp from './lenke-aktivitetsplan-knapp';
 import kontakteNavBilde from '../../ikoner/kontakt-oss.svg';
-import './kontakte-nav.less';
 
-interface KontakteNavProps {
+interface StoreProps {
     oppfolging: OppfolgingState;
     oppfolgingsEnhet: OppfolgingsEnhet;
     meldingState: MeldingTilNavKontorState;
     features: UnleashState;
 }
 
-interface StateType {
+interface ModalState {
     modalIsOpen: boolean;
 }
 
+type KontakteNavProps = StoreProps;
+
 class KontakteNAV extends React.Component<KontakteNavProps> {
-    public state: StateType;
+    public state: ModalState;
 
     constructor(props: KontakteNavProps) {
         super(props);
@@ -53,40 +56,56 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     render() {
         const {oppfolging, oppfolgingsEnhet, meldingState, features} = this.props;
 
-        const erNavBaerumPilot = oppfolgingsEnhet.enhetId === '0219' && featureErAktivert(tiltakInfoMeldingBaerum, features);
+        const meldingDialogFeature = oppfolging.underOppfolging && featureErAktivert(tiltakInfoMeldingDialog, features);
+        const erNavBaerumFeature = oppfolgingsEnhet.enhetId === '0219' &&
+                                   featureErAktivert(tiltakInfoMeldingBaerum, features) &&
+                                   !oppfolging.underOppfolging;
 
-        const tekstId = oppfolging.underOppfolging
-            ? 'kontaktenav-takontakt-underoppfolging'
-            : erNavBaerumPilot ? 'kontaktenav-takontakt-ikkeunderoppfolging-navbaerumpilot' : 'kontaktenav-takontakt-ikkeunderoppfolging';
+        const tittel = meldingDialogFeature
+            ? utledTekst('kontaktenav-snakkmednav-underoppfolging')
+            : utledTekst('kontaktenav-snakkmednav-ikkeoppfolging');
+
+        const finnIngress = () => {
+            if (meldingDialogFeature) {
+                return Parser(utledTekst('kontaktenav-takontakt-underoppfolging'));
+            } else if (erNavBaerumFeature) {
+                return utledTekst('kontaktenav-takontakt-ikkeoppfolging-navbaerumpilot');
+            } else if (oppfolging.underOppfolging) {
+                return utledTekst('kontaktenav-takontakt-underoppfolging-toggle-ikkeaktivert');
+            } else {
+                return utledTekst('kontaktenav-takontakt-ikkeoppfolging');
+            }
+        };
 
         return (
             <Datalaster avhengigheter={[oppfolging]}>
                 <>
                     <div className="panel panel--border kontakte-nav__panel">
+
                         <div className="kontakte-nav__bilde">
                             <img src={kontakteNavBilde} alt="" aria-hidden="true"/>
                         </div>
 
                         <div className="kontakte-nav__innhold">
                             <Innholdstittel className="blokk-s">
-                                <Tekst id={'kontaktenav-snakkmednav'}/>
+                                <Tekst id={tittel}/>
                             </Innholdstittel>
+
                             <Normaltekst className="blokk-s">
-                                <Tekst id={tekstId}/>
+                                {finnIngress()}
                             </Normaltekst>
 
-                            {oppfolging.underOppfolging && (
-                                <KontakteNavKnapp />
-                            )}
+                            {oppfolging.underOppfolging && !meldingDialogFeature &&
+                                <LenkeAktivitetsplanKnapp />
+                            }
 
-                            <Feature name={tiltakInfoMeldingBaerum}>
-                                <>
-                                    {oppfolgingsEnhet.enhetId === '0219' && !oppfolging.underOppfolging && meldingState.harSendtMelding === false && (
-                                        <KontakteKontor openModal={this.openModal} />
-                                    )}
-                                </>
-                            </Feature>
+                            {meldingDialogFeature &&
+                                <KontakteVeileder openModal={this.openModal} />
+                            }
 
+                            {erNavBaerumFeature && !meldingState.harSendtMelding &&
+                                <KontakteKontor openModal={this.openModal} />
+                            }
                         </div>
                     </div>
                     <KontakteNavModal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} />
@@ -96,11 +115,11 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
     }
 }
 
-const mapStateToProps = (state: AppState): KontakteNavProps => ({
+const mapStateToProps = (state: AppState): StoreProps => ({
     oppfolging: state.oppfolging,
     oppfolgingsEnhet: state.oppfolgingsstatus.oppfolgingsenhet,
     meldingState: state.harSendtMelding,
-    features: state.unleash
+    features: state.unleash,
 });
 
 export default connect(mapStateToProps)(KontakteNAV);

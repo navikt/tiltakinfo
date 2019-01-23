@@ -1,6 +1,6 @@
 import { API } from '../api/api';
 import { erDemo } from './utils';
-import { tiltakInfoMeldingBaerum } from '../unleash/unleash-duck';
+import { tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog } from '../unleash/unleash-duck';
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { Bruker, brukerMocks, brukerOptionsRekkefolge, MockConfig, MockConfigPropName } from './mock-data-config';
 
@@ -82,7 +82,8 @@ export default () => {
     });
 
     fetchMock.get(API.getUnleash, {
-        [tiltakInfoMeldingBaerum]: mockData[tiltakInfoMeldingBaerum]
+        [tiltakInfoMeldingBaerum]: mockData[tiltakInfoMeldingBaerum],
+        [tiltakInfoMeldingDialog]: mockData[tiltakInfoMeldingDialog]
     });
 
     fetchMock.post(API.postBruker, ({body}) => body);
@@ -90,4 +91,7 @@ export default () => {
     fetchMock.get(API.getHarSendtMeldingNavKontor, {
         brukerHarSendtMeldingTilNavKontor: mockData[MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR],
     });
+
+    fetchMock.post(API.postMeldingDialog, ({body}) => body);
+
 };

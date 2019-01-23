@@ -89,9 +89,12 @@ class Startside extends React.Component<StartsideProps> {
                             </section>
 
                             <section className="app-content kontakte-nav-container blokk-xl">
-                                {(oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
-                                    featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
-                                    <HarSendtMelding/>
+                                {
+                                    (oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
+                                        featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
+                                    <div className="har-sendt-melding panel panel--border">
+                                        <HarSendtMelding/>
+                                    </div>
                                 ) : (
                                     <KontakteNAV/>
                                 )}

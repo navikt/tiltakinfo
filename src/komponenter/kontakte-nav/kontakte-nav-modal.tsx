@@ -1,23 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Parser from 'html-react-parser';
 import NavFrontendModal from 'nav-frontend-modal';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-import { utledTekst } from '../../finn-tekst';
 import { AppState } from '../../redux/reducer';
-import { Dispatch } from '../../redux/dispatch-type';
-import { lagreBruker, User } from '../../brukerdata/bruker-duck';
+import { OppfolgingState } from '../../brukerdata/oppfolging-duck';
+import { User } from '../../brukerdata/bruker-duck';
+import { utledTekst } from '../../finn-tekst';
 import tiltakConfig from '../tiltak/tiltak-config';
-import { klikkPaSendMelding } from '../../metrics';
+import ModalvisningUnderOppfolging from './modalvisning-underoppfolging';
+import ModalvisningIkkeOppfolging from './modalvisning-ikkeunderoppfolging';
 
 interface StoreProps {
-    fulltNavn?: string;
     bruker: User;
-    oppfolgingsenhetNavn: string;
-}
-
-interface DispatchProps {
-    doLagreBruker: (bruker: User) => void;
+    oppfolging: OppfolgingState;
 }
 
 interface OwnProps {
@@ -25,11 +19,11 @@ interface OwnProps {
     closeModal: () => void;
 }
 
-export type KontakteNavModalProps = StoreProps & OwnProps & DispatchProps;
+export type KontakteNavModalProps = StoreProps & OwnProps;
 
-const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeModal, oppfolgingsenhetNavn}: KontakteNavModalProps) => {
-    const navn = fulltNavn ? fulltNavn : 'Jeg';
-    const tiltak = bruker.tiltak
+const KontakteNavModal = ({bruker,  oppfolging, modalIsOpen, closeModal}: KontakteNavModalProps) => {
+
+    const tiltak: string[] = bruker.tiltak
         .map(t => t.nokkel!)
         .map(n => tiltakConfig(n).tittel)
         .map(tittelId => utledTekst(tittelId));
@@ -40,48 +34,22 @@ const KontakteNavModal = ({fulltNavn, bruker, doLagreBruker, modalIsOpen, closeM
             onRequestClose={closeModal}
             closeButton={true}
             contentClass="kontaktModalInnhold"
-            contentLabel="Kontakt NAV Bærum"
+            contentLabel="Kontakt NAV"
             ariaHideApp={false}
             bodyOpenClassName="modal__kontakt-nav"
-
         >
-            <Sidetittel tag="h1" className="blokk-s">
-                {Parser(utledTekst('kontakt-nav-baerum'))}
-            </Sidetittel>
-            <Normaltekst className="blokk-s">
-                {Parser(utledTekst('meldingen-blir-sendt'))}
-            </Normaltekst>
-            <Normaltekst className="sitat">
-                {Parser(utledTekst('interessert-i-muligheter', [navn].concat(tiltak)))}
-            </Normaltekst>
-            <Normaltekst className="blokk-s">
-                {Parser(utledTekst('tar-kontakt-etter-meldingen'))}
-            </Normaltekst>
-            <Normaltekst className="subtekst blokk-m">
-                {Parser(utledTekst('tester-ny-tjeneste'))}
-            </Normaltekst>
-            <button
-                className="knapp knapp--hoved blokk-xs"
-                onClick={() => {
-                    doLagreBruker(bruker);
-                    closeModal();
-                    klikkPaSendMelding(
-                        bruker.servicegruppeKode,
-                        bruker.harArbeidsgiver,
-                        bruker.erSykmeldt,
-                        bruker.oppfolgingsEnhetId,
-                        oppfolgingsenhetNavn,
-                    );
-                }}
-            >
-                {Parser(utledTekst('send-melding'))}
-            </button>
+            { oppfolging.underOppfolging && (
+                <ModalvisningUnderOppfolging bruker={bruker} tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+            )}
+            { !oppfolging.underOppfolging && (
+                <ModalvisningIkkeOppfolging bruker={bruker} tiltakNavn={tiltak} modalIsOpen={modalIsOpen} closeModal={closeModal}/>
+            )}
         </NavFrontendModal>
     );
 };
 
 const mapStateToProps = (state: AppState): StoreProps => ({
-    fulltNavn: state.brukersNavn.data.name,
+    oppfolging: state.oppfolging,
     bruker: {
         erSykmeldt: state.syfoSituasjon.erSykmeldt,
         harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
@@ -98,11 +66,6 @@ const mapStateToProps = (state: AppState): StoreProps => ({
             },
         ]
     },
-    oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-    doLagreBruker: (bruker: User) => lagreBruker(bruker)(dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(KontakteNavModal);
+export default connect(mapStateToProps)(KontakteNavModal);

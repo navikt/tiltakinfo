@@ -76,7 +76,25 @@ export const klikkPaKontaktNavKontor = (
     }
 };
 
-export const klikkPaSendMelding = (
+export const klikkPaKontaktVeileder = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.kontaktveileder`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
+};
+
+export const klikkPaSendMeldingNavBaerum = (
     servicegruppekode: SituasjonOption,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
@@ -85,6 +103,24 @@ export const klikkPaSendMelding = (
 ) => {
     if (!erDemo()) {
         logEvent(`${domene}.sendmelding`, {}, {
+            servicegruppekode,
+            harArbeidsgiverIAktiveSykmeldinger,
+            erTiltakSykmeldteInngangAktiv,
+            oppfolgingsEnhetId,
+            oppfolgingsEnhetNavn,
+        });
+    }
+};
+
+export const klikkPaSendMeldingVeileder = (
+    servicegruppekode: SituasjonOption,
+    harArbeidsgiverIAktiveSykmeldinger: boolean,
+    erTiltakSykmeldteInngangAktiv: boolean,
+    oppfolgingsEnhetId: string,
+    oppfolgingsEnhetNavn: string
+) => {
+    if (!erDemo()) {
+        logEvent(`${domene}.sendmeldingveileder`, {}, {
             servicegruppekode,
             harArbeidsgiverIAktiveSykmeldinger,
             erTiltakSykmeldteInngangAktiv,

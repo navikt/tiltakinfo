@@ -1,8 +1,6 @@
 import * as React from 'react';
-import Parser from 'html-react-parser';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { utledTekst } from '../../finn-tekst';
-import { klikkPaKontaktNavKontor } from '../../metrics';
+import { klikkPaKontaktVeileder } from '../../metrics';
 import { AppState } from '../../redux/reducer';
 import { connect } from 'react-redux';
 import { OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
@@ -17,18 +15,15 @@ interface StoreProps {
     syfoSituasjon: SyfoSituasjonState;
 }
 
-type KontakteKontorProps = OwnProps & StoreProps;
+type KontakteVeilederProps = OwnProps & StoreProps;
 
-const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteKontorProps) => (
+const KontakteVeileder = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteVeilederProps) => (
     <div className="kontakte-kontor">
-        <Normaltekst className="blokk-s">
-            {Parser(utledTekst('tekst-ditt-kontor-er', [oppfolgingsstatus.oppfolgingsenhet.navn]))}
-        </Normaltekst>
         <button
             className="knapp knapp--hoved"
             onClick={() => {
                 openModal();
-                klikkPaKontaktNavKontor(
+                klikkPaKontaktVeileder(
                     oppfolgingsstatus.situasjon,
                     syfoSituasjon.harArbeidsgiver,
                     syfoSituasjon.erSykmeldt,
@@ -37,7 +32,7 @@ const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteK
                 );
             }}
         >
-            {utledTekst('kontaktenav-kontor', [oppfolgingsstatus.oppfolgingsenhet.navn])}
+            {utledTekst('kontaktenav-send-melding')}
         </button>
     </div>
 );
@@ -47,4 +42,4 @@ const mapStateToProps = (state: AppState): StoreProps => ({
     syfoSituasjon: state.syfoSituasjon,
 });
 
-export default connect(mapStateToProps)(KontakteKontor);
+export default connect(mapStateToProps)(KontakteVeileder);
