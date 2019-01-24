@@ -21,7 +21,7 @@ type KontakteKontorProps = OwnProps & StoreProps;
 
 const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteKontorProps) => (
     <div className="kontakte-kontor">
-        <Normaltekst className="blokk-s">
+        <Normaltekst className="kontornavn blokk-xs">
             {Parser(utledTekst('tekst-ditt-kontor-er', [oppfolgingsstatus.oppfolgingsenhet.navn]))}
         </Normaltekst>
         <button
