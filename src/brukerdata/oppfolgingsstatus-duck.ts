@@ -55,9 +55,7 @@ export default function reducer(
             return {
                 ...state,
                 status: Status.OK,
-                servicegruppeKode: servicegruppekode in servicegruppemap
-                    ? servicegruppemap[servicegruppekode]
-                    : ServicegruppeKode.UBESTEMT,
+                servicegruppeKode: servicegruppemap[servicegruppekode] || ServicegruppeKode.UBESTEMT,
                 oppfolgingsenhet: action.data.oppfolgingsenhet,
             };
         case ActionType.HENT_OPPFOLGINGSSTATUS_FEILET:
