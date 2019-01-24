@@ -4,10 +4,10 @@ import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
 import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import { BrukerType, brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
-import { MaalOption, SituasjonOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
+import { brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
+import { BrukerType, MaalFraRegistrering, MaalOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
-import { MaalFraRegistrering, mapTilMaalOption  } from '../brukerdata/registrering-duck';
+import { mapTilMaalOption  } from '../brukerdata/registrering-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any

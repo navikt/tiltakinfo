@@ -6,10 +6,9 @@ import Tekst from '../../finn-tekst';
 import { AppState } from '../../redux/reducer';
 import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MaalOption } from './tiltak-map';
+import { BrukerType, MaalOption } from './tiltak-map';
 import './tiltak.less';
 import veilederBilde from '../../ikoner/veileder-dame.svg';
-import { BrukerType } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;

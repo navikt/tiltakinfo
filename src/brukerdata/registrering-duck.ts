@@ -7,19 +7,9 @@ import {
     HentRegistreringFEILETAction, HentRegistreringLASTERAction, HentRegistreringOKAction
 } from '../redux/actions';
 import { JSONObject } from 'yet-another-fetch-mock';
-import { MaalOption } from '../komponenter/tiltak/tiltak-map';
-
-export enum MaalFraRegistrering {
-    IKKE_VALGT = 'IKKE_VALGT',
-    SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
-    SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
-    NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
-    USIKKER = 'USIKKER',
-    INGEN_PASSER = 'INGEN_PASSER'
-}
+import { MaalFraRegistrering, MaalOption } from '../komponenter/tiltak/tiltak-map';
 
 export function mapTilMaalOption(fremtidigSituasjon: MaalFraRegistrering): MaalOption {
-
     switch (fremtidigSituasjon) {
 
         case MaalFraRegistrering.NY_ARBEIDSGIVER:

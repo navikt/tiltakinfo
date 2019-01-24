@@ -8,6 +8,23 @@ export enum MaalOption {
     USIKKER = 'maal-usikker',
 }
 
+export enum MaalFraRegistrering {
+    IKKE_VALGT = 'IKKE_VALGT',
+    SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
+    SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
+    NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
+    USIKKER = 'USIKKER',
+    INGEN_PASSER = 'INGEN_PASSER'
+}
+
+export enum BrukerType {
+    SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',
+    SYKMELDT_UTEN_ARBEIDSGIVER = 'bruker-sykmeldt-uten-arbeidsgiver',
+    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'bruker-arbeidsledig-situasjonsbestemt',
+    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'bruker-arbeidsledig-spesielt-tilpasset',
+    UTENFOR_MAALGRUPPE = 'bruker-utenfor-maalgruppe',
+}
+
 export const MAAL_OPTIONS_REKKEFOLGE = [
     MaalOption.SAMME_STILLING,
     MaalOption.SAMME_ARBEIDSGIVER,

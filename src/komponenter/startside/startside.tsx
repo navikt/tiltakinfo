@@ -9,14 +9,14 @@ import { Dispatch } from '../../redux/dispatch-type';
 import KontakteNAV from '../kontakte-nav/kontakte-nav';
 import { featureErAktivert } from '../../unleash/feature';
 import { AppState } from '../../redux/reducer';
-import { MaalOption, tiltakMap } from '../tiltak/tiltak-map';
+import { BrukerType, MaalOption, tiltakMap } from '../tiltak/tiltak-map';
 import IngressMedArbeidsgiver from '../ingress/ingress-hararbeidsgiver';
 import IngressUtenArbeidsgiver from '../ingress/ingress-utenarbeidsgiver';
 import { tiltakInfoMeldingBaerum, UnleashState } from '../../unleash/unleash-duck';
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import './startside.less';
 import { TiltakId } from '../tiltak/tiltak-config';
-import { BrukerType, tiltakDuck } from '../../redux/generic-reducers';
+import { tiltakDuck } from '../../redux/generic-reducers';
 import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
 
 interface StateProps {
