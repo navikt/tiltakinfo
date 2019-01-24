@@ -10,7 +10,7 @@ import { tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog, UnleashState } from '
 import { OppfolgingsEnhet } from '../../brukerdata/oppfolgingsstatus-duck';
 import { MeldingTilNavKontorState } from '../../brukerdata/melding-til-nav-kontor-duck';
 import { Normaltekst, Innholdstittel } from 'nav-frontend-typografi';
-import Tekst, { utledTekst } from '../../finn-tekst';
+import { utledTekst } from '../../finn-tekst';
 import { featureErAktivert } from '../../unleash/feature';
 import Parser from 'html-react-parser';
 import Datalaster from '../../api/datalaster';
@@ -87,11 +87,11 @@ class KontakteNAV extends React.Component<KontakteNavProps> {
                         </div>
 
                         <div className="kontakte-nav__innhold">
-                            <Innholdstittel className="blokk-s">
-                                <Tekst id={tittel}/>
+                            <Innholdstittel className=" tittel blokk-xs">
+                                {tittel}
                             </Innholdstittel>
 
-                            <Normaltekst className="blokk-s">
+                            <Normaltekst className="ingress blokk-xs">
                                 {finnIngress()}
                             </Normaltekst>
 
