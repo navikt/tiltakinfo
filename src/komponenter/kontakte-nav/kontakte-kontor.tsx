@@ -29,7 +29,7 @@ const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteK
             onClick={() => {
                 openModal();
                 klikkPaKontaktNavKontor(
-                    oppfolgingsstatus.situasjon,
+                    oppfolgingsstatus.servicegruppeKode,
                     syfoSituasjon.harArbeidsgiver,
                     syfoSituasjon.erSykmeldt,
                     oppfolgingsstatus.oppfolgingsenhet.enhetId,

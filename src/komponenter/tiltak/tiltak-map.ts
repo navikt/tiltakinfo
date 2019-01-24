@@ -32,13 +32,6 @@ export const MAAL_OPTIONS_REKKEFOLGE = [
     MaalOption.USIKKER,
 ];
 
-export enum SituasjonOption {
-    UBESTEMT = 'situasjonoption-ubestemt',
-    SYKMELDT_UTEN_ARBEIDSGIVER = 'situasjonoption-sykmeldt-utenarbeidsgiver',
-    SITUASJONSBESTEMT = 'BFORM',
-    SPESIELT_TILPASSET = 'BATT',
-}
-
 interface TiltakMap {
     // Sykmeldt med arbeidsgiver
     [MaalOption.SAMME_STILLING]: TiltakId[];
@@ -47,11 +40,11 @@ interface TiltakMap {
     [MaalOption.USIKKER]: TiltakId[];
 
     // Sykmeldt uten arbeidsgiver
-    [SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER]: TiltakId[];
+    [BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER]: TiltakId[];
 
     // Ikke sykmeldt
-    [SituasjonOption.SITUASJONSBESTEMT]: TiltakId[];
-    [SituasjonOption.SPESIELT_TILPASSET]: TiltakId[];
+    [BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT]: TiltakId[];
+    [BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET]: TiltakId[];
 }
 
 export const tiltakMap: TiltakMap = {
@@ -62,9 +55,9 @@ export const tiltakMap: TiltakMap = {
     [MaalOption.USIKKER]: [TiltakId.AVKLARING, TiltakId.ARBEIDSRETTET_REHABILITERING],
 
     // Sykmeldt uten arbeidsgiver
-    [SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER]: [TiltakId.LONNSTILSKUDD_SYKMELDT, TiltakId.OPPFOLGING],
+    [BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER]: [TiltakId.LONNSTILSKUDD_SYKMELDT, TiltakId.OPPFOLGING],
 
     // Ikke sykmeldt
-    [SituasjonOption.SITUASJONSBESTEMT]: [TiltakId.LONNSTILSKUDD_ARBEIDSLEDIG, TiltakId.OPPFOLGING],
-    [SituasjonOption.SPESIELT_TILPASSET]: [TiltakId.OPPLAERING_NY_ARBEIDSGIVER, TiltakId.AVKLARING]
+    [BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT]: [TiltakId.LONNSTILSKUDD_ARBEIDSLEDIG, TiltakId.OPPFOLGING],
+    [BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET]: [TiltakId.OPPLAERING_NY_ARBEIDSGIVER, TiltakId.AVKLARING]
 };

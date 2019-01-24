@@ -24,7 +24,7 @@ class Innhold extends React.Component<InnholdProps> {
 
     componentDidMount() {
         brukerMetrikk(
-            this.props.oppfolgingsstatus.situasjon,
+            this.props.oppfolgingsstatus.servicegruppeKode,
             this.props.syfoSituasjon.harArbeidsgiver,
             this.props.syfoSituasjon.erSykmeldt,
             this.props.oppfolging.underOppfolging,

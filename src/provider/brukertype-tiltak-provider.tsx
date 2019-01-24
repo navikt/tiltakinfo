@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
-import { OppfolgingsstatusState } from '../brukerdata/oppfolgingsstatus-duck';
+import { OppfolgingsstatusState, ServicegruppeKode } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
 import { BrukerType, MaalFraRegistrering, MaalOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
@@ -40,7 +40,7 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
         doSettBruker(brukertype);
 
         if (brukertype !== BrukerType.SYKMELDT_MED_ARBEIDSGIVER && brukertype !== BrukerType.UTENFOR_MAALGRUPPE) {
-            const tiltakNokler: TiltakId[] = this.utledTiltak(brukertype);
+            const tiltakNokler: TiltakId[] = tiltakMap[brukertype];
             doSettTiltak(tiltakNokler[0], tiltakNokler[1]);
         } else if (maalId !== MaalOption.IKKE_VALGT) {
             const tiltakNokler: TiltakId[] = tiltakMap[maalId];
@@ -60,28 +60,13 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
             } else {
                 return BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER;
             }
-        } else if (oppfolgingsstatus.situasjon === SituasjonOption.SITUASJONSBESTEMT) {
+        } else if (oppfolgingsstatus.servicegruppeKode === ServicegruppeKode.SITUASJONSBESTEMT) {
             return BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT;
-        } else if (oppfolgingsstatus.situasjon === SituasjonOption.SPESIELT_TILPASSET) {
+        } else if (oppfolgingsstatus.servicegruppeKode === ServicegruppeKode.SPESIELT_TILPASSET) {
             return BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET;
         } else {
             return BrukerType.UTENFOR_MAALGRUPPE;
         }
-    }
-
-    utledTiltak(brukertype: BrukerType): TiltakId[] {
-
-        const finnTiltakMapKey = (b: BrukerType): SituasjonOption => {
-            if (b === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER) {
-                return SituasjonOption.SYKMELDT_UTEN_ARBEIDSGIVER;
-            } else if (b === BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT) {
-                return SituasjonOption.SITUASJONSBESTEMT;
-            } else { // brukertype === BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET
-                return SituasjonOption.SPESIELT_TILPASSET;
-            }
-        };
-
-        return tiltakMap[finnTiltakMapKey(brukertype)];
     }
 
     render() {

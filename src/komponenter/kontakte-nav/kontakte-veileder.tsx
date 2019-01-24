@@ -24,7 +24,7 @@ const KontakteVeileder = ({openModal, oppfolgingsstatus, syfoSituasjon}: Kontakt
             onClick={() => {
                 openModal();
                 klikkPaKontaktVeileder(
-                    oppfolgingsstatus.situasjon,
+                    oppfolgingsstatus.servicegruppeKode,
                     syfoSituasjon.harArbeidsgiver,
                     syfoSituasjon.erSykmeldt,
                     oppfolgingsstatus.oppfolgingsenhet.enhetId,

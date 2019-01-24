@@ -10,7 +10,12 @@ import { Dispatch } from '../redux/dispatch-type';
 import { getOppfolgingsstatusFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
-import { SituasjonOption } from '../komponenter/tiltak/tiltak-map';
+
+export enum ServicegruppeKode {
+    UBESTEMT = 'servicegruppe-ubestemt',
+    SITUASJONSBESTEMT = 'BFORM',
+    SPESIELT_TILPASSET = 'BATT',
+}
 
 export interface OppfolgingsEnhet extends JSONObject {
     navn: string;
@@ -23,12 +28,12 @@ export interface OppfolgingsstatusFetchState extends JSONObject {
 }
 
 export interface OppfolgingsstatusState extends DataElement {
-    situasjon: ServicegruppeKode;
+    servicegruppeKode: ServicegruppeKode;
     oppfolgingsenhet: OppfolgingsEnhet;
 }
 
 export const initialState: OppfolgingsstatusState = {
-    situasjon: SituasjonOption.UBESTEMT,
+    servicegruppeKode: ServicegruppeKode.UBESTEMT,
     oppfolgingsenhet: {
         navn: '',
         enhetId: '',
@@ -42,17 +47,17 @@ export default function reducer(
     switch (action.type) {
         case ActionType.HENT_OPPFOLGINGSSTATUS_OK:
             const servicegruppekode =  action.data.servicegruppe;
-            const situasjonsMap = {
-                'BATT': SituasjonOption.SPESIELT_TILPASSET,
-                'BFORM': SituasjonOption.SITUASJONSBESTEMT,
+            const servicegruppemap = {
+                'BATT': ServicegruppeKode.SPESIELT_TILPASSET,
+                'BFORM': ServicegruppeKode.SITUASJONSBESTEMT,
             };
 
             return {
                 ...state,
                 status: Status.OK,
-                situasjon: servicegruppekode in situasjonsMap
-                    ? situasjonsMap[servicegruppekode]
-                    : SituasjonOption.UBESTEMT,
+                servicegruppeKode: servicegruppekode in servicegruppemap
+                    ? servicegruppemap[servicegruppekode]
+                    : ServicegruppeKode.UBESTEMT,
                 oppfolgingsenhet: action.data.oppfolgingsenhet,
             };
         case ActionType.HENT_OPPFOLGINGSSTATUS_FEILET:
