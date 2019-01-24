@@ -103,8 +103,8 @@ class Startside extends React.Component<StartsideProps> {
                         }
                     </>
                     :
-                    <div className="app-content alert">
-                        <AlertStripe type="advarsel" className="feilmelding-container">
+                    <div className="app-content feilmelding-container">
+                        <AlertStripe type="advarsel">
                             <Tekst id={'feilmelding-manglendeinfo'}/>
                         </AlertStripe>
                     </div>
