@@ -6,16 +6,13 @@ import Tekst from '../../finn-tekst';
 import { AppState } from '../../redux/reducer';
 import TiltakKomponent from './tiltak-komponent';
 import tiltakConfig, { Tiltak, TiltakId } from './tiltak-config';
-import { MaalOption, SituasjonOption } from './tiltak-map';
+import { BrukerType, MaalOption } from './tiltak-map';
 import './tiltak.less';
 import veilederBilde from '../../ikoner/veileder-dame.svg';
-import { BrukerType } from '../../redux/generic-reducers';
 
 interface StateProps {
     maalId: MaalOption;
-    situasjon: SituasjonOption;
     tiltakErBasertPaMaal: boolean;
-    sykmeldt: boolean;
     sykmeldtMedArbeidsgiver: boolean;
     tiltakNokler?: TiltakId[];
 }
@@ -107,11 +104,8 @@ class TiltakContainer extends React.Component<TiltakContainerProps, State> {
 
 const mapStateToProps = (state: AppState): StateProps => ({
     maalId: state.maal.id,
-    situasjon: state.oppfolgingsstatus.situasjon,
     tiltakErBasertPaMaal: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
     sykmeldtMedArbeidsgiver: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER,
-    sykmeldt: state.brukertype.brukerType === BrukerType.SYKMELDT_MED_ARBEIDSGIVER
-        || state.brukertype.brukerType === BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER,
     tiltakNokler: (state.tiltak.nokkelEn && state.tiltak.nokkelTo)
         ? [state.tiltak.nokkelEn, state.tiltak.nokkelTo] : undefined,
 });

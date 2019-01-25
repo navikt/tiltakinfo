@@ -1,6 +1,7 @@
 import { OppfolgingsEnhet } from '../brukerdata/oppfolgingsstatus-duck';
 import { ActiveUnleashFeatures, tiltakInfoMeldingBaerum, tiltakInfoMeldingDialog } from '../unleash/unleash-duck';
-import { MaalFraRegistrering, RegistreringDataState } from '../brukerdata/registrering-duck';
+import { RegistreringDataState } from '../brukerdata/registrering-duck';
+import { MaalFraRegistrering } from '../komponenter/tiltak/tiltak-map';
 
 export enum Bruker {
     DEFAULT_MOCK = 'bruker-default-mock',

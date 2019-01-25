@@ -1,16 +1,8 @@
-import { MaalOption } from '../komponenter/tiltak/tiltak-map';
+import { BrukerType, MaalOption } from '../komponenter/tiltak/tiltak-map';
 import genericDuck from './generic-duck';
 import { ActionType } from './actions';
 import { Bruker } from '../mock/mock-data-config';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
-
-export enum BrukerType {
-    SYKMELDT_MED_ARBEIDSGIVER = 'bruker-sykmeldt-med-arbeidsgiver',
-    SYKMELDT_UTEN_ARBEIDSGIVER = 'bruker-sykmeldt-uten-arbeidsgiver',
-    ARBEIDSLEDIG_SITUASJONSBESTEMT = 'bruker-arbeidsledig-situasjonsbestemt',
-    ARBEIDSLEDIG_SPESIELT_TILPASSET = 'bruker-arbeidsledig-spesielt-tilpasset',
-    UTENFOR_MAALGRUPPE = 'bruker-utenfor-maalgruppe',
-}
 
 export interface BrukertypeState {
     brukerType: BrukerType;
