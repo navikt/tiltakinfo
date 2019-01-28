@@ -18,6 +18,7 @@ import './startside.less';
 import { TiltakId } from '../tiltak/tiltak-config';
 import { tiltakDuck } from '../../redux/generic-reducers';
 import HarSendtMelding from '../kontakte-nav/har-sendt-melding';
+import PanelBase from 'nav-frontend-paneler';
 
 interface StateProps {
     maalId: MaalOption;
@@ -37,13 +38,12 @@ interface DispatchProps {
 type StartsideProps = StateProps & DispatchProps;
 
 class Startside extends React.Component<StartsideProps> {
-
     constructor(props: StartsideProps) {
         super(props);
     }
 
     componentDidUpdate(prevProps: Readonly<StartsideProps>) {
-        const { maalId } = this.props;
+        const {maalId} = this.props;
 
         if (maalId !== prevProps.maalId) {
             this.utledOgSettTiltak(maalId);
@@ -56,15 +56,14 @@ class Startside extends React.Component<StartsideProps> {
     }
 
     render() {
-        const {maalId, oppfolgingsEnhet, harSendtMelding, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver,
-            arbeidsledigSituasjonsbestemt, arbeidsledigSpesieltTilpasset, features} = this.props;
+        const {
+            maalId, oppfolgingsEnhet, harSendtMelding, sykmeldtMedArbeidsgiver, sykmeldtUtenArbeidsgiver,
+            arbeidsledigSituasjonsbestemt, arbeidsledigSpesieltTilpasset, features
+        } = this.props;
 
         const sykmeldt = sykmeldtMedArbeidsgiver || sykmeldtUtenArbeidsgiver;
-
         const arbeidsledig = arbeidsledigSituasjonsbestemt || arbeidsledigSpesieltTilpasset;
-
         const IngressKomponent = sykmeldtMedArbeidsgiver ? IngressMedArbeidsgiver : IngressUtenArbeidsgiver;
-
         const gyldigBrukerSituasjon = arbeidsledig || sykmeldt;
 
         return (
@@ -76,43 +75,53 @@ class Startside extends React.Component<StartsideProps> {
                 />
                 {gyldigBrukerSituasjon ?
                     <>
-                        <section className="app-content ingress-container">
-                            <IngressKomponent/>
+                        <section className="ingress-container">
+                            <div className="limit">
+                                <IngressKomponent/>
+                            </div>
                         </section>
 
                         {((sykmeldtMedArbeidsgiver && maalId !== MaalOption.IKKE_VALGT)
                             || sykmeldtUtenArbeidsgiver
                             || arbeidsledig) &&
                         <>
-                            <section className="app-content tiltak-container">
-                                <Tiltak/>
+                            <section className="tiltak-container">
+                                <div className="limit">
+                                    <Tiltak/>
+                                </div>
                             </section>
 
-                            <section className="app-content kontakte-nav-container blokk-xl">
-                                {
-                                    (oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
-                                        featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
-                                    <div className="har-sendt-melding panel panel--border">
-                                        <HarSendtMelding/>
-                                    </div>
-                                ) : (
-                                    <KontakteNAV/>
-                                )}
+                            <section className="kontakte-nav-container">
+                                <div className="limit">
+                                    {
+                                        (oppfolgingsEnhet.enhetId === '0219' && harSendtMelding &&
+                                            featureErAktivert(tiltakInfoMeldingBaerum, features)) ? (
+                                            <PanelBase border={true} className="har-sendt-melding">
+                                                <HarSendtMelding/>
+                                            </PanelBase>
+                                        ) : (
+                                            <KontakteNAV/>
+                                        )}
+                                </div>
                             </section>
                         </>
                         }
                     </>
                     :
-                    <div className="app-content feilmelding-container">
-                        <AlertStripe type="advarsel">
-                            <Tekst id={'feilmelding-manglendeinfo'}/>
-                        </AlertStripe>
+                    <div className="feilmelding-container">
+                        <div className="limit">
+                            <AlertStripe type="advarsel">
+                                <Tekst id={'feilmelding-manglendeinfo'}/>
+                            </AlertStripe>
+                        </div>
                     </div>
                 }
 
                 {!(sykmeldtMedArbeidsgiver && maalId === MaalOption.IKKE_VALGT) &&
-                <section className="app-content flere-tiltak-container">
-                    <FlereTiltak/>
+                <section className="flere-tiltak-container">
+                    <div className="limit">
+                        <FlereTiltak/>
+                    </div>
                 </section>
                 }
             </>

@@ -24,7 +24,7 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
     render() {
         const lenkeTiltak = 'https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Tiltak+for+a+komme+i+jobb'; // tslint:disable-line
         return (
-            <section className="flere-tiltak">
+            <div className="flere-tiltak">
                 <div className="flere-tiltak__bilde">
                     <img src={flereTiltakBilde} alt="" aria-hidden="true"/>
                 </div>
@@ -50,7 +50,7 @@ class FlereTiltak extends React.Component<FlereTiltakProps> {
                         </a>
                     </Normaltekst>
                 </div>
-            </section>
+            </div>
         );
     }
 }

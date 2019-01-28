@@ -17,16 +17,18 @@ export function StartsideBanner({sykmeldt, arbeidsledig, sykmeldtMedArbeidsgiver
 
     return (
         <section className="startside-banner blokk-m">
-            <div className="brodsmuler-container">
-                <Brodsmuler
-                    sykmeldt={sykmeldt}
-                    arbeidsledig={arbeidsledig}
-                />
-            </div>
-            <div className="banner-tekst">
-                <Sidetittel>
-                    <Tekst id={tekstId}/>
-                </Sidetittel>
+            <div className="limit">
+                <div className="brodsmuler-container">
+                    <Brodsmuler
+                        sykmeldt={sykmeldt}
+                        arbeidsledig={arbeidsledig}
+                    />
+                </div>
+                <div className="banner-tekst">
+                    <Sidetittel>
+                        <Tekst id={tekstId}/>
+                    </Sidetittel>
+                </div>
             </div>
         </section>
     );

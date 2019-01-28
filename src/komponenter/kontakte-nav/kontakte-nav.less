@@ -3,9 +3,9 @@
 
 @har-sendt-width: 600px;
 
-.kontakte-nav-container.app-content {
+.kontakte-nav-container {
     background-color: @navLysGra;
-    padding: 3.5rem 1rem;
+    padding: 3.5rem 0;
 
     .kontakte-nav__panel {
         padding: 2.5rem 1.5rem;
@@ -49,13 +49,8 @@
     .modal {
         min-width: 15rem;
 
-        tittel {
+        .tittel {
             padding-right: 3rem;
-        }
-
-        .app-content {
-            width: 100%;
-            padding: 0;
         }
 
         .feilmelding-container {
@@ -88,7 +83,7 @@
 }
 
 @media (min-width: @screen-sm-min) {
-    .kontakte-nav-container.app-content {
+    .kontakte-nav-container {
         .kontakte-nav__panel, .har-sendt-melding {
             padding: 2.5rem 3rem;
         }
@@ -129,7 +124,7 @@
         .modal {
             width: 23rem;
 
-            tittel {
+            .tittel {
                 padding-right: 3rem;
             }
         }
@@ -137,13 +132,9 @@
 }
 
 @media (min-width: @screen-md) {
-    .kontakte-nav-container .app-content {
+    .kontakte-nav-container {
         width: 100%;
-        padding: 5.5rem 0;
-
-        .kontakte-nav__panel {
-            width: @desktopLimitWidth;
-        }
+        padding: 4.5rem 0;
 
         .har-sendt-melding__tittel {
             text-align: center;

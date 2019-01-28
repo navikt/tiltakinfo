@@ -35,14 +35,12 @@ class Innhold extends React.Component<InnholdProps> {
 
     render() {
         return (
-            <main>
-                <Switch location={this.props.location}>
-                    <Route
-                        path={'/'}
-                        component={Startside}
-                    />
-                </Switch>
-            </main>
+            <Switch location={this.props.location}>
+                <Route
+                    path={'/'}
+                    component={Startside}
+                />
+            </Switch>
         );
     }
 }
