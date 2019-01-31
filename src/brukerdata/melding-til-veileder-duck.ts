@@ -18,7 +18,7 @@ export const initialMeldingTilDialogState: DataElement = {
 export default function reducer(state: DataElement = initialMeldingTilDialogState, action: Handling): DataElement {
     switch (action.type) {
         case ActionType.SEND_MELDING_OK:
-            return {...state, status: Status.OK};
+            return {...state, status: Status.FEILET};
         case ActionType.SEND_MELDING_PENDING:
             return {...state, status: Status.LASTER};
         case ActionType.SEND_MELDING_FEILET:
