@@ -46,7 +46,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
     }
 
     componentDidUpdate () {
-        const tiltakContainer = document.querySelector('.tiltak');
+        const tiltakContainer = document.querySelector('.tiltak-container');
 
         if (tiltakContainer) {
             tiltakContainer.scrollIntoView({
