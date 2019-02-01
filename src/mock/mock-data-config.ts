@@ -54,7 +54,7 @@ export interface BrukerMocks {
 export const brukerMocks: BrukerMocks = {
     [Bruker.SYKMELDT_UTEN_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: false,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDU',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -68,7 +68,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
         [tiltakInfoMeldingBaerum]: false,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'VURDI',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -89,7 +89,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
         [tiltakInfoMeldingBaerum]: false,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BFORM',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -103,7 +103,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
         [tiltakInfoMeldingBaerum]: false,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: true,
         [MockConfigPropName.SERVICEGRUPPE]: 'BATT',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
@@ -117,7 +117,7 @@ export const brukerMocks: BrukerMocks = {
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
         [tiltakInfoMeldingBaerum]: false,
-        [tiltakInfoMeldingDialog]: false,
+        [tiltakInfoMeldingDialog]: true,
         [MockConfigPropName.UNDER_OPPFOLGING]: false,
         [MockConfigPropName.SERVICEGRUPPE]: 'IVURD',
         [MockConfigPropName.OPPFOLGINGSENHET]: {
