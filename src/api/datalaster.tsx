@@ -3,6 +3,8 @@ import Spinner from 'nav-frontend-spinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Tekst from '../finn-tekst';
 
+import './datalaster.less';
+
 export enum Status {
     OK = 'OK',
     LASTER = 'LASTER',
@@ -34,7 +36,7 @@ const Datalaster = ({avhengigheter, ventPa, children, feilmeldingId}: Datalaster
         return children;
     } else if (avhengigheter.some(a => harStatus(a, Status.FEILET))) {
         return (
-            <div className="app-content feilmelding-container">
+            <div className="feilmelding-container">
                 <AlertStripe type="advarsel">
                     <Tekst id={feilmelding}/>
                 </AlertStripe>

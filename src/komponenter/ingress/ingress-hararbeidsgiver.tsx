@@ -10,8 +10,8 @@ import Tekst, { utledTekst } from '../../finn-tekst';
 import { Dispatch } from '../../redux/dispatch-type';
 import { AppState } from '../../redux/reducer';
 import { maalDuck } from '../../redux/generic-reducers';
-import './ingress-hararbeidsgiver.less';
 
+import './ingress-hararbeidsgiver.less';
 const velgMaalBilde = require('../../ikoner/velg-maal.svg');
 
 polyfill();
@@ -33,19 +33,35 @@ interface State {
 class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
 
     static radios = [
-        { label: utledTekst('maal-samme-stilling'), value: MaalOption.SAMME_STILLING, id: MaalOption.SAMME_STILLING },
-        { label: utledTekst('maal-samme-arbeidsgiver'), value: MaalOption.SAMME_ARBEIDSGIVER, id: MaalOption.SAMME_ARBEIDSGIVER }, // tslint:disable-line
-        { label: utledTekst('maal-ny-arbeidsgiver'), value: MaalOption.NY_ARBEIDSGIVER, id: MaalOption.NY_ARBEIDSGIVER }, // tslint:disable-line
-        { label: utledTekst('maal-usikker'), value: MaalOption.USIKKER, id: MaalOption.USIKKER }
+        {
+            label: utledTekst('maal-samme-stilling'),
+            value: MaalOption.SAMME_STILLING,
+            id: MaalOption.SAMME_STILLING
+        },
+        {
+            label: utledTekst('maal-samme-arbeidsgiver'),
+            value: MaalOption.SAMME_ARBEIDSGIVER,
+            id: MaalOption.SAMME_ARBEIDSGIVER
+        }, // tslint:disable-line
+        {
+            label: utledTekst('maal-ny-arbeidsgiver'),
+            value: MaalOption.NY_ARBEIDSGIVER,
+            id: MaalOption.NY_ARBEIDSGIVER
+        }, // tslint:disable-line
+        {
+            label: utledTekst('maal-usikker'),
+            value: MaalOption.USIKKER,
+            id: MaalOption.USIKKER
+        }
     ];
 
     constructor(props: IngressProps) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { checked: this.props.maalId };
+        this.state = {checked: this.props.maalId};
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
         const tiltakContainer = document.querySelector('.tiltak-container');
 
         if (tiltakContainer) {
@@ -57,7 +73,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
     }
 
     handleChange(event: React.ChangeEvent<HTMLInputElement>, value: MaalOption) {
-        this.setState({ checked: value });
+        this.setState({checked: value});
         this.props.doSettMaalId(value);
         klikkPaMaalMetrikk(value);
     }

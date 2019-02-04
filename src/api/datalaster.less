@@ -1,0 +1,21 @@
+@import '../../node_modules/nav-frontend-core/less/_variabler';
+
+.feilmelding-container {
+    padding: 0;
+    margin: -1rem;
+
+    .alertstripe__tekst {
+        margin-right: 2.2rem;
+    }
+}
+
+#app-root > .feilmelding-container {
+    margin: 2rem 1rem;
+}
+
+@media (min-width: @screen-sm-min) {
+    #app-root > .feilmelding-container {
+        width: 40rem;
+        margin: 5rem auto;
+    }
+}
