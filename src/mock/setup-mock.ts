@@ -55,7 +55,7 @@ export default () => {
                 return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
             }
         } else {
-            return brukerMocks[Bruker.SYKMELDT_MED_ARBEIDSGIVER];
+            return brukerMocks[Bruker.UTENFOR_MAALGRUPPE];
         }
     };
 
