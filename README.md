@@ -14,10 +14,12 @@ You can find the developer guide [here](https://github.com/facebookincubator/cre
 
 ### Henvendelser
 
-Spørsmål knyttet til koden kan rettes mot:
+Spørsmål knyttet til koden eller prosjektet kan rettes mot:
  
 * Johan Rusvik, Johan.Rusvik@nav.no
 * Kjell Arne Brødreskift, Kjell.Arne.Brodreskift@nav.no
 * Terese Haug, Terese.Haug@nav.no
 
-For NAV-interne henvendelser kan Slack-kanalen #team-kartlegging benyttes.
+### Interne henvendelser
+
+For interne henvendelser kan Slack-kanalen #fo-warp benyttes.
