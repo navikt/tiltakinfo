@@ -76,7 +76,10 @@ export function postMeldingDialogFetch(melding: Melding): Promise<Melding> {
 }
 
 export function getSyfoFetch(): Promise<SyfoDataState> {
-    return fetchToJson(API.getSyfo, requestConfig);
+    return fetchToJson(API.getSyfo, {
+        ...requestConfig,
+        credentials: 'include'
+    });
 }
 
 export function getRegistrering(): Promise<RegistreringDataState> {
