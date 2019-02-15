@@ -17,3 +17,7 @@ proxy:
 
   - contextPath: /veilarbperson
     baseUrl: http://veilarbproxy
+
+redirect:
+  - from: /syforest
+    to: {{ SYFOREST_URL }}

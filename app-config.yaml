@@ -36,6 +36,8 @@ fasitResources:
     resourceType: credential
   - alias: aad_b2c_discovery
     resourceType: baseurl
+  - alias: syforest
+    resourceType: baseurl
   exposed:
   - alias: tiltakinfoUrl
     resourceType: restservice
