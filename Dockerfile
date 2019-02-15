@@ -15,3 +15,5 @@ COPY --from=builder /source/build /app
 COPY --from=builder /demo /app/demo
 
 ENV OIDC_LOGIN_URL /veilarbstepup/oidc
+
+ADD decorator.yaml /decorator.yaml
