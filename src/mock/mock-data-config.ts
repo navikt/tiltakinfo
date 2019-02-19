@@ -28,7 +28,9 @@ export enum MockConfigPropName {
     HAR_ARBEIDSGIVER = 'arbeidsSituasjonIAktiveSykmeldinger',
     ER_SYKMELDT = 'erTiltakSykmeldteInngangAktiv',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
-    BRUKERNAVN = 'sammensattNavn',
+    ETTERNAVN = 'etternavn',
+    FORNAVN = 'fornavn',
+    MELLOMNAVN = 'mellomnavn',
     HAR_SENDT_MELDING_NAV_KONTOR = 'harSendtMeldingNavKontor',
 }
 
@@ -39,7 +41,9 @@ export interface MockConfig extends ActiveUnleashFeatures {
     [MockConfigPropName.ER_SYKMELDT]: boolean;
     [MockConfigPropName.HAR_ARBEIDSGIVER]: string[];
     [MockConfigPropName.REGISTRERING]?: RegistreringDataState;
-    [MockConfigPropName.BRUKERNAVN]: string;
+    [MockConfigPropName.ETTERNAVN]: string | null;
+    [MockConfigPropName.FORNAVN]: string | null;
+    [MockConfigPropName.MELLOMNAVN]: string | null;
     [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: boolean;
 }
 
@@ -63,7 +67,9 @@ export const brukerMocks: BrukerMocks = {
         },
         [MockConfigPropName.HAR_ARBEIDSGIVER]: ['ARBEIDSLEDIG'],
         [MockConfigPropName.ER_SYKMELDT]: true,
-        [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.ETTERNAVN]: 'Duck',
+        [MockConfigPropName.FORNAVN]: 'Skrue',
+        [MockConfigPropName.MELLOMNAVN]: 'Mc',
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.SYKMELDT_MED_ARBEIDSGIVER]: {
@@ -84,7 +90,9 @@ export const brukerMocks: BrukerMocks = {
                 }
             }
         },
-        [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.ETTERNAVN]: 'Duck',
+        [MockConfigPropName.FORNAVN]: 'Skrue',
+        [MockConfigPropName.MELLOMNAVN]: 'Mc',
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.ARBEIDSLEDIG_SITUASJONSBESTEMT]: {
@@ -98,7 +106,9 @@ export const brukerMocks: BrukerMocks = {
         },
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
-        [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.ETTERNAVN]: 'Duck',
+        [MockConfigPropName.FORNAVN]: 'Skrue',
+        [MockConfigPropName.MELLOMNAVN]: 'Mc',
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.ARBEIDSLEDIG_SPESIELT_TILPASSET]: {
@@ -112,7 +122,9 @@ export const brukerMocks: BrukerMocks = {
         },
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
-        [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.ETTERNAVN]: 'Duck',
+        [MockConfigPropName.FORNAVN]: 'Skrue',
+        [MockConfigPropName.MELLOMNAVN]: 'Mc',
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
     [Bruker.UTENFOR_MAALGRUPPE]: {
@@ -126,7 +138,9 @@ export const brukerMocks: BrukerMocks = {
         },
         [MockConfigPropName.HAR_ARBEIDSGIVER]: [],
         [MockConfigPropName.ER_SYKMELDT]: false,
-        [MockConfigPropName.BRUKERNAVN]: 'Donald Duck',
+        [MockConfigPropName.ETTERNAVN]: 'Duck',
+        [MockConfigPropName.FORNAVN]: 'Skrue',
+        [MockConfigPropName.MELLOMNAVN]: 'Mc',
         [MockConfigPropName.HAR_SENDT_MELDING_NAV_KONTOR]: false,
     },
 };

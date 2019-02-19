@@ -78,7 +78,9 @@ export default () => {
     fetchMock.get(API.getRegistrering, mockData[MockConfigPropName.REGISTRERING]!);
 
     fetchMock.get(API.getBrukersNavn, {
-        [MockConfigPropName.BRUKERNAVN]: mockData[MockConfigPropName.BRUKERNAVN]
+        [MockConfigPropName.ETTERNAVN]: mockData[MockConfigPropName.ETTERNAVN],
+        [MockConfigPropName.FORNAVN]: mockData[MockConfigPropName.FORNAVN],
+        [MockConfigPropName.MELLOMNAVN]: mockData[MockConfigPropName.MELLOMNAVN]
     });
 
     fetchMock.get(API.getUnleash, {
