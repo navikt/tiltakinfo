@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import persistent from './persistent-reducer';
 import unleashReducer, { UnleashState } from '../unleash/unleash-duck';
 import syfoReducer, { SyfoSituasjonState } from '../brukerdata/syfo-duck';
-import brukersNavn, { State as BrukersNavnState } from '../brukerdata/brukernavn-duck';
+import brukersNavnReducer, { BrukersNavnState } from '../brukerdata/brukernavn-duck';
 import meldingTilNavKontorReducer, { MeldingTilNavKontorState } from '../brukerdata/melding-til-nav-kontor-duck';
 import meldingTilDialogReducer from '../brukerdata/melding-til-veileder-duck';
 import oppfolgingReducer, { OppfolgingState } from '../brukerdata/oppfolging-duck';
@@ -58,7 +58,7 @@ export const reducer = combineReducers<AppState>({
     registrering: registreringReducer,
     maal: persistent<MaalState>('maalState', location, maalDuck.reducer, initialMaalState, maalStateIsValid),
     demobruker: persistent<DemoBrukerState>('demoBrukerState', location, demoBrukerDuck.reducer, initialDemoBrukerState, demoBrukerStateIsValid),
-    brukersNavn,
+    brukersNavn: brukersNavnReducer,
     tiltak: tiltakDuck.reducer,
     brukertype: brukertypeDuck.reducer,
     harSendtMelding: meldingTilNavKontorReducer,
