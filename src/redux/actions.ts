@@ -4,6 +4,7 @@ import { SyfoDataState } from '../brukerdata/syfo-duck';
 import { OppfolgingState } from '../brukerdata/oppfolging-duck';
 import { RegistreringDataState } from '../brukerdata/registrering-duck';
 import { User } from '../brukerdata/bruker-duck';
+import { BrukersNavnData } from '../brukerdata/brukernavn-duck';
 import { Melding } from '../brukerdata/melding-til-veileder-duck';
 
 export enum ActionType {
@@ -110,8 +111,8 @@ export interface HentRegistreringFEILETAction {
 }
 
 export interface HentBrukersNavnOKAction {
-    name: string;
     type: ActionType.HENT_BRUKERS_NAVN_OK;
+    brukernavn: BrukersNavnData;
 }
 
 export interface HentBrukersNavnPENDINGAction {

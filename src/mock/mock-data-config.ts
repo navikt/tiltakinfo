@@ -28,7 +28,7 @@ export enum MockConfigPropName {
     HAR_ARBEIDSGIVER = 'arbeidsSituasjonIAktiveSykmeldinger',
     ER_SYKMELDT = 'erTiltakSykmeldteInngangAktiv',
     OPPFOLGINGSENHET = 'oppfolgingsenhet',
-    BRUKERNAVN = 'name',
+    BRUKERNAVN = 'sammensattNavn',
     HAR_SENDT_MELDING_NAV_KONTOR = 'harSendtMeldingNavKontor',
 }
 

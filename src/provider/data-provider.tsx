@@ -8,7 +8,7 @@ import { hentSyfo, SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import Datalaster from '../api/datalaster';
 import { hentRegistrering, RegistreringState } from '../brukerdata/registrering-duck';
 import { hentMeldingNavKontor, MeldingTilNavKontorState } from '../brukerdata/melding-til-nav-kontor-duck';
-import { hentBrukernavn, State as BrukernavnState } from '../brukerdata/brukernavn-duck';
+import { hentBrukernavn, BrukersNavnState } from '../brukerdata/brukernavn-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
@@ -19,7 +19,7 @@ interface StateProps {
     syfoSituasjon: SyfoSituasjonState;
     oppfolging: OppfolgingState;
     registrering: RegistreringState;
-    brukersNavn: BrukernavnState;
+    brukersNavn: BrukersNavnState;
     harSendtMelding: MeldingTilNavKontorState;
 }
 

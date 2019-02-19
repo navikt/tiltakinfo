@@ -16,7 +16,7 @@ interface OwnProps {
 }
 
 interface StoreProps {
-    fulltNavn?: string;
+    fulltNavn: string;
     oppfolgingsenhetNavn: string;
 }
 
@@ -70,7 +70,7 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
 };
 
 const mapStateToProps = (state: AppState): StoreProps => ({
-    fulltNavn: state.brukersNavn.data.name,
+    fulltNavn: state.brukersNavn.fulltNavn,
     oppfolgingsenhetNavn: state.oppfolgingsstatus.oppfolgingsenhet.navn,
 });
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
