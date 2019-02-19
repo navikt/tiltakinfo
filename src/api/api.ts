@@ -48,7 +48,7 @@ export const API: ApiProps = {
     postMeldingDialog: '/veilarbdialog/api/dialog',
     getSyfo: '/syforest/sykeforloep/metadata',
     getRegistrering: '/veilarbregistrering/api/registrering',
-    getBrukersNavn: '/veilarbperson/person/navn',
+    getBrukersNavn: '/veilarbperson/api/person/navn',
     getHarSendtMeldingNavKontor: '/veilarbtiltakinfo/api/bruker/harsendtmeldingtilnavkontor',
 };
 
