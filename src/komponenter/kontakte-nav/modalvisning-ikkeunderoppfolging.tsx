@@ -30,7 +30,7 @@ const ModalvisningIkkeOppfolging = ({fulltNavn, bruker, oppfolgingsenhetNavn,
                                      tiltakNavn, modalIsOpen, closeModal, doLagreBruker}
                                      : ModalvisningProps) => {
 
-    const navn = fulltNavn ? fulltNavn : 'Jeg';
+    const navn = fulltNavn && fulltNavn.trim().length ? fulltNavn : 'Jeg';
 
     return (
         <>

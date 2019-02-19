@@ -6,7 +6,9 @@ import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
 export interface BrukersNavnData {
-    sammensattNavn: string;
+    etternavn: string;
+    fornavn: string;
+    mellomnavn: string;
 }
 
 export interface BrukersNavnState extends DataElement {
@@ -25,10 +27,16 @@ export default function reducer(state: BrukersNavnState = initialState, action: 
         case ActionType.HENT_BRUKERS_NAVN_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_BRUKERS_NAVN_OK: {
+            const fornavn = action.brukernavn.fornavn ? action.brukernavn.fornavn : '';
+            const mellomnavn = action.brukernavn.mellomnavn ? action.brukernavn.mellomnavn : '';
+            const etternavn = action.brukernavn.etternavn ? action.brukernavn.etternavn : '';
+            const navn = fornavn + ' ' + mellomnavn + ' ' + etternavn;
+
             return {
                 ...state,
                 status: Status.OK,
-                fulltNavn: action.brukernavn.sammensattNavn};
+                fulltNavn: navn
+            };
         }
         default:
             return state;
