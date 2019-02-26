@@ -1,7 +1,3 @@
-declare module 'smoothscroll-polyfill' {
-    export function polyfill(): void;
-}
-
 declare module 'html-react-parser';
 
 declare module '*.svg' {

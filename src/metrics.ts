@@ -4,9 +4,7 @@ import { erDemo } from './mock/utils';
 import { ServicegruppeKode } from './brukerdata/oppfolgingsstatus-duck';
 
 const w = (window as any); // tslint:disable-line:no-any
-
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
-
 const domene = 'tiltakinfo';
 
 export const brukerMetrikk = (
@@ -29,7 +27,7 @@ export const brukerMetrikk = (
     }
 };
 
-export const klikkPaMaalMetrikk = (maal: MaalOption) => {
+export const klikkPaMaalMetrikk = (maal: string) => {
     if (!erDemo()) {
         logEvent(`${domene}.maal`, {}, {maal});
     }

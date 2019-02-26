@@ -8,6 +8,7 @@ import { MeldingTilNavKontorFetchState } from '../brukerdata/melding-til-nav-kon
 import { OppfolgingsstatusFetchState } from '../brukerdata/oppfolgingsstatus-duck';
 import { User } from '../brukerdata/bruker-duck';
 import { Melding } from '../brukerdata/melding-til-veileder-duck';
+import { BrukersNavnData } from '../brukerdata/brukernavn-duck';
 
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -83,7 +84,7 @@ export function getRegistrering(): Promise<RegistreringDataState> {
     return fetchToJson(API.getRegistrering, requestConfig);
 }
 
-export function getBrukersNavn() {
+export function getBrukersNavn(): Promise<BrukersNavnData> {
     return fetchToJson(API.getBrukersNavn, requestConfig);
 }
 

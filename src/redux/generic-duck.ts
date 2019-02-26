@@ -7,7 +7,7 @@ interface ActionCreator<A> extends Data {
 }
 
 interface GenericDuck<I, A> {
-    reducer: (state: I, action: ActionCreator<A>) => I;
+    reducer: (state: I | undefined, action: ActionCreator<A>) => I;
     actionCreator: (data: Data) => ActionCreator<A>;
 }
 
@@ -15,7 +15,7 @@ export default function genericDuck<I, A>(initialState: I, actionType: A): Gener
     const reducer = (state: I = initialState, action: ActionCreator<A>): I => {
         switch (action.type) {
             case actionType:
-                const {type, ...data} = action;
+                const {...data} = action;
                 return Object.assign({}, state, data);
             default:
                 return state;
