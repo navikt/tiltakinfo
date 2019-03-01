@@ -15,7 +15,8 @@
     "eject": "react-scripts-ts eject",
     "start-mock": "cross-env REACT_APP_MOCK_FULL=true npm-run-all -p start:*",
     "build": "npm run build:ts",
-    "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js"
+    "build:demo": "node scripts/predemo.js && cross-env REACT_APP_MOCK_FULL=true npm run build:ts && node scripts/postdemo.js",
+    "test:browsers": "node integration/runner.js"
   },
   "dependencies": {
     "ajv": "6.7.0",
@@ -73,15 +74,16 @@
     "@types/prop-types": "15.5.8",
     "@types/query-string": "5.1.0",
     "@types/react": "16.7.21",
-    "@types/react-helmet": "5.0.8",
     "@types/react-collapse": "4.0.2",
     "@types/react-dom": "16.0.11",
+    "@types/react-helmet": "5.0.8",
     "@types/react-modal": "^3.8.0",
     "@types/react-redux": "7.0.1",
     "@types/react-router-dom": "4.3.1",
     "@types/sinon": "7.0.5",
     "file-loader": "3.0.1",
     "sinon": "7.2.3",
+    "testcafe": "^1.1.0",
     "typescript": "3.2.4"
   }
 }
