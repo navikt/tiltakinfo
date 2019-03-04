@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.9",
     "@types/node": "11.9.4",
     "@types/prop-types": "15.5.9",
     "@types/query-string": "5.1.0",
@@ -84,6 +85,7 @@
     "@types/sinon": "7.0.6",
     "file-loader": "3.0.1",
     "sinon": "7.2.4",
+    "tslint": "^5.13.1",
     "typescript": "3.3.3333"
   },
   "browserslist": [
