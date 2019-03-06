@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 
 export function stubFetch(fetchStub: FetchStub) {
     /* tslint:disable-next-line */
-    sinon.stub((global as any), 'fetch').callsFake((url: string) => getPromiseResponse(url, fetchStub));
+    sinon.stub((global as any), 'fetch').callsFake((url: any) => getPromiseResponse(url, fetchStub));
 }
 
 function getPromiseResponse(url: string, fetchStub: FetchStub): Promise<Response> {

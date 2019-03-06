@@ -22,9 +22,7 @@ export function mapTilMaalOption(fremtidigSituasjon: MaalFraRegistrering): MaalO
             return MaalOption.USIKKER;
         default:
             return MaalOption.IKKE_VALGT;
-
     }
-
 }
 
 export interface RegistreringDataState extends JSONObject {

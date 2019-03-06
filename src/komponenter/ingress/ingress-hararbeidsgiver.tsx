@@ -11,23 +11,23 @@ import { Dispatch } from '../../redux/dispatch-type';
 import { AppState } from '../../redux/reducer';
 import { maalDuck } from '../../redux/generic-reducers';
 
-import './ingress-hararbeidsgiver.less';
 const velgMaalBilde = require('../../ikoner/velg-maal.svg');
+import './ingress-hararbeidsgiver.less';
 
 polyfill();
 
 interface StateProps {
-    maalId: MaalOption;
+    maalId: string;
 }
 
 interface DispatchProps {
-    doSettMaalId: (id: MaalOption) => void;
+    doSettMaalId: (id: string) => void;
 }
 
 type IngressProps = StateProps & DispatchProps & RouteComponentProps<any>; // tslint:disable-line:no-any
 
 interface State {
-    checked: MaalOption;
+    checked: string;
 }
 
 class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
@@ -72,7 +72,7 @@ class IngressHarArbeidsgiver extends React.Component<IngressProps, State> {
         }
     }
 
-    handleChange(event: React.ChangeEvent<HTMLInputElement>, value: MaalOption) {
+    handleChange(event: React.SyntheticEvent<EventTarget, Event>, value: string) {
         this.setState({checked: value});
         this.props.doSettMaalId(value);
         klikkPaMaalMetrikk(value);
