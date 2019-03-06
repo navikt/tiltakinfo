@@ -38,10 +38,8 @@ fasitResources:
     resourceType: baseurl
   - alias: syforest
     resourceType: baseurl
-  exposed:
-  - alias: tiltakinfoUrl
-    resourceType: restservice
-    path: /tiltakinfo
+  - alias: veilarbstepup_oidc
+    resourceType: baseurl
 
 webproxy: true
 
