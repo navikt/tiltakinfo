@@ -15,7 +15,7 @@ export default function genericDuck<I, A>(initialState: I, actionType: A): Gener
     const reducer = (state: I = initialState, action: ActionCreator<A>): I => {
         switch (action.type) {
             case actionType:
-                const {...data} = action;
+                const {type, ...data} = action; // type blir tatt ut her fordi vi ikke ønsker å ha dette feltet med videre inn i staten
                 return Object.assign({}, state, data);
             default:
                 return state;
