@@ -38,6 +38,8 @@ fasitResources:
     resourceType: baseurl
   - alias: syforest
     resourceType: baseurl
+  - alias: veilarbstepup_oidc
+    resourceType: baseurl
 
 webproxy: true
 
