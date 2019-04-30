@@ -37,7 +37,7 @@ const Datalaster = ({avhengigheter, ventPa, children, feilmeldingId}: Datalaster
     } else if (avhengigheter.some(a => harStatus(a, Status.FEILET))) {
         return (
             <div className="feilmelding-container">
-                <AlertStripe type="advarsel">
+                <AlertStripe type="feil">
                     <Tekst id={feilmelding}/>
                 </AlertStripe>
             </div>
