@@ -1,3 +1,6 @@
+auth:
+  enforce: true
+  loginUrl: {{ VEILARBSTEPUP_OIDC_URL }}
 
 proxy:
   - contextPath: /veilarbstepup
