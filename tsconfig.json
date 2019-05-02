@@ -28,6 +28,7 @@
     "noEmit": true
   },
   "exclude": [
+    "integration",
     "node_modules",
     "build",
     "scripts",

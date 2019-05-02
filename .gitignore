@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+/integration/screenshots
 
 # production
 /build

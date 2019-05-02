@@ -19,6 +19,7 @@
     "baseUrl": "src"
   },
   "exclude": [
+    "integration",
     "node_modules",
     "build",
     "scripts",
