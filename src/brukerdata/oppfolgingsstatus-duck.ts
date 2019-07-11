@@ -11,29 +11,20 @@ import { getOppfolgingsstatusFetch } from '../api/api';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
-export enum ServicegruppeKode {
-    UBESTEMT = 'servicegruppe-ubestemt',
-    SITUASJONSBESTEMT = 'BFORM',
-    SPESIELT_TILPASSET = 'BATT',
-}
-
 export interface OppfolgingsEnhet extends JSONObject {
     navn: string;
     enhetId: string;
 }
 
 export interface OppfolgingsstatusFetchState extends JSONObject {
-     servicegruppe: string;
      oppfolgingsenhet: OppfolgingsEnhet;
 }
 
 export interface OppfolgingsstatusState extends DataElement {
-    servicegruppeKode: ServicegruppeKode;
     oppfolgingsenhet: OppfolgingsEnhet;
 }
 
 export const initialState: OppfolgingsstatusState = {
-    servicegruppeKode: ServicegruppeKode.UBESTEMT,
     oppfolgingsenhet: {
         navn: '',
         enhetId: '',
@@ -46,16 +37,10 @@ export default function reducer(
     state: OppfolgingsstatusState = initialState, action: Handling): OppfolgingsstatusState {
     switch (action.type) {
         case ActionType.HENT_OPPFOLGINGSSTATUS_OK:
-            const servicegruppekode =  action.data.servicegruppe;
-            const servicegruppemap = {
-                'BATT': ServicegruppeKode.SPESIELT_TILPASSET,
-                'BFORM': ServicegruppeKode.SITUASJONSBESTEMT,
-            };
 
             return {
                 ...state,
                 status: Status.OK,
-                servicegruppeKode: servicegruppemap[servicegruppekode] || ServicegruppeKode.UBESTEMT,
                 oppfolgingsenhet: action.data.oppfolgingsenhet,
             };
         case ActionType.HENT_OPPFOLGINGSSTATUS_FEILET:

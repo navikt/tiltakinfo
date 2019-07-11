@@ -2,19 +2,19 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '../redux/dispatch-type';
 import { AppState } from '../redux/reducer';
-import { OppfolgingsstatusState, ServicegruppeKode } from '../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../brukerdata/syfo-duck';
 import { brukertypeDuck, maalDuck, tiltakDuck } from '../redux/generic-reducers';
 import { BrukerType, MaalFraRegistrering, MaalOption, tiltakMap } from '../komponenter/tiltak/tiltak-map';
 import { TiltakId } from '../komponenter/tiltak/tiltak-config';
-import { mapTilMaalOption  } from '../brukerdata/registrering-duck';
+import { mapTilMaalOption } from '../brukerdata/registrering-duck';
+import { OppfolgingState, Servicegruppe } from '../brukerdata/oppfolging-duck';
 
 interface OwnProps {
     children: React.ReactElement<any>; // tslint:disable-line:no-any
 }
 
 interface StateProps {
-    oppfolgingsstatus: OppfolgingsstatusState;
+    oppfolging: OppfolgingState;
     syfoSituasjon: SyfoSituasjonState;
     maalId: MaalOption;
     maalFraRegistrering: MaalFraRegistrering;
@@ -52,7 +52,7 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
     }
 
     utledBrukertype(): BrukerType {
-        const {oppfolgingsstatus, syfoSituasjon} = this.props;
+        const {oppfolging, syfoSituasjon} = this.props;
 
         if (syfoSituasjon.erSykmeldt) {
             if (syfoSituasjon.harArbeidsgiver) {
@@ -60,9 +60,9 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
             } else {
                 return BrukerType.SYKMELDT_UTEN_ARBEIDSGIVER;
             }
-        } else if (oppfolgingsstatus.servicegruppeKode === ServicegruppeKode.SITUASJONSBESTEMT) {
+        } else if (oppfolging.servicegruppe === Servicegruppe.BFORM) {
             return BrukerType.ARBEIDSLEDIG_SITUASJONSBESTEMT;
-        } else if (oppfolgingsstatus.servicegruppeKode === ServicegruppeKode.SPESIELT_TILPASSET) {
+        } else if (oppfolging.servicegruppe === Servicegruppe.BATT) {
             return BrukerType.ARBEIDSLEDIG_SPESIELT_TILPASSET;
         } else {
             return BrukerType.UTENFOR_MAALGRUPPE;
@@ -75,7 +75,7 @@ class BrukertypeTiltakProvider extends React.Component<BrukerProviderProps> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => ({
-    oppfolgingsstatus: state.oppfolgingsstatus,
+    oppfolging: state.oppfolging,
     syfoSituasjon: state.syfoSituasjon,
     maalId: state.maal.id,
     maalFraRegistrering: state.registrering.maalFraRegistrering,

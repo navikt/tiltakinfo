@@ -1,14 +1,14 @@
 import { MaalOption } from './komponenter/tiltak/tiltak-map';
 import { TiltakId } from './komponenter/tiltak/tiltak-config';
 import { erDemo } from './mock/utils';
-import { ServicegruppeKode } from './brukerdata/oppfolgingsstatus-duck';
+import { ServicegruppeOrNull } from './brukerdata/oppfolging-duck';
 
 const w = (window as any); // tslint:disable-line:no-any
 const logEvent = w.frontendlogger ? w.frontendlogger.event : () => { return; };
 const domene = 'tiltakinfo';
 
 export const brukerMetrikk = (
-    servicegruppekode: ServicegruppeKode,
+    servicegruppekode: ServicegruppeOrNull,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
     underOppfolging: boolean,
@@ -58,7 +58,7 @@ export const klikkPaGaTilAktivitetsplanen = (oppfolgingsEnhetId: string) => {
 };
 
 export const klikkPaKontaktNavKontor = (
-    servicegruppekode: ServicegruppeKode,
+    servicegruppekode: ServicegruppeOrNull,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
     oppfolgingsEnhetId: string,
@@ -76,7 +76,7 @@ export const klikkPaKontaktNavKontor = (
 };
 
 export const klikkPaKontaktVeileder = (
-    servicegruppekode: ServicegruppeKode,
+    servicegruppekode: ServicegruppeOrNull,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
     oppfolgingsEnhetId: string,
@@ -94,7 +94,7 @@ export const klikkPaKontaktVeileder = (
 };
 
 export const klikkPaSendMeldingNavBaerum = (
-    servicegruppekode: ServicegruppeKode,
+    servicegruppekode: ServicegruppeOrNull,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
     oppfolgingsEnhetId: string,
@@ -112,7 +112,7 @@ export const klikkPaSendMeldingNavBaerum = (
 };
 
 export const klikkPaSendMeldingVeileder = (
-    servicegruppekode: ServicegruppeKode,
+    servicegruppekode: ServicegruppeOrNull,
     harArbeidsgiverIAktiveSykmeldinger: boolean,
     erTiltakSykmeldteInngangAktiv: boolean,
     oppfolgingsEnhetId: string,

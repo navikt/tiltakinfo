@@ -10,12 +10,24 @@ import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
+export enum Servicegruppe {
+    IKVAL = 'IKVAL',
+    BATT = 'BATT',
+    BFORM = 'BFORM',
+    VARIG = 'VARIG',
+    IVURD = 'IVURD',
+}
+
+export type ServicegruppeOrNull = Servicegruppe | null;
+
 export interface OppfolgingState extends DataElement {
     underOppfolging: boolean;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 export const initialState: OppfolgingState = {
     underOppfolging: false,
+    servicegruppe: null,
     status: Status.IKKE_STARTET,
 };
 
@@ -23,7 +35,12 @@ export const initialState: OppfolgingState = {
 export default function reducer(state: OppfolgingState = initialState, action: Handling): OppfolgingState {
     switch (action.type) {
         case ActionType.HENT_OPPFOLGING_OK:
-            return {...state, status: Status.OK, underOppfolging: action.oppfolging.underOppfolging};
+            return {
+                ...state,
+                status: Status.OK,
+                underOppfolging: action.oppfolging.underOppfolging,
+                servicegruppe: action.oppfolging.servicegruppe
+            };
         case ActionType.HENT_OPPFOLGING_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_OPPFOLGING_LASTER:

@@ -7,6 +7,7 @@ import { AppState } from '../../redux/reducer';
 import { connect } from 'react-redux';
 import { OppfolgingsstatusState } from '../../brukerdata/oppfolgingsstatus-duck';
 import { SyfoSituasjonState } from '../../brukerdata/syfo-duck';
+import { ServicegruppeOrNull } from '../../brukerdata/oppfolging-duck';
 
 interface OwnProps {
     openModal: Function;
@@ -15,11 +16,12 @@ interface OwnProps {
 interface StoreProps {
     oppfolgingsstatus: OppfolgingsstatusState;
     syfoSituasjon: SyfoSituasjonState;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 type KontakteKontorProps = OwnProps & StoreProps;
 
-const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteKontorProps) => (
+const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon, servicegruppe}: KontakteKontorProps) => (
     <div className="kontakte-kontor">
         <Normaltekst className="kontornavn blokk-xs">
             {Parser(utledTekst('tekst-ditt-kontor-er', [oppfolgingsstatus.oppfolgingsenhet.navn]))}
@@ -29,7 +31,7 @@ const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteK
             onClick={() => {
                 openModal();
                 klikkPaKontaktNavKontor(
-                    oppfolgingsstatus.servicegruppeKode,
+                    servicegruppe,
                     syfoSituasjon.harArbeidsgiver,
                     syfoSituasjon.erSykmeldt,
                     oppfolgingsstatus.oppfolgingsenhet.enhetId,
@@ -45,6 +47,7 @@ const KontakteKontor = ({openModal, oppfolgingsstatus, syfoSituasjon}: KontakteK
 const mapStateToProps = (state: AppState): StoreProps => ({
     oppfolgingsstatus: state.oppfolgingsstatus,
     syfoSituasjon: state.syfoSituasjon,
+    servicegruppe: state.oppfolging.servicegruppe,
 });
 
 export default connect(mapStateToProps)(KontakteKontor);
