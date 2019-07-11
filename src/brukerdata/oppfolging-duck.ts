@@ -10,12 +10,24 @@ import { Dispatch } from '../redux/dispatch-type';
 import { fetchThenDispatch } from '../api/fetch-utils';
 import { DataElement, Status } from '../api/datalaster';
 
+export enum Servicegruppe {
+    IKVAL = 'IKVAL',
+    BATT = 'BATT',
+    BFORM = 'BFORM',
+    VARIG = 'VARIG',
+    IVURD = 'IVURD',
+}
+
+export type ServicegruppeOrNull = Servicegruppe | null;
+
 export interface OppfolgingState extends DataElement {
     underOppfolging: boolean;
+    servicegruppe: ServicegruppeOrNull;
 }
 
 export const initialState: OppfolgingState = {
     underOppfolging: false,
+    servicegruppe: null,
     status: Status.IKKE_STARTET,
 };
 

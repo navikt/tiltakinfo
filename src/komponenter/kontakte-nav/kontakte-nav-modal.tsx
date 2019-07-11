@@ -53,7 +53,7 @@ const mapStateToProps = (state: AppState): StoreProps => ({
     bruker: {
         erSykmeldt: state.syfoSituasjon.erSykmeldt,
         harArbeidsgiver: state.syfoSituasjon.harArbeidsgiver,
-        servicegruppeKode: state.oppfolgingsstatus.servicegruppeKode,
+        servicegruppeKode: state.oppfolging.servicegruppe,
         oppfolgingsEnhetId: state.oppfolgingsstatus.oppfolgingsenhet.enhetId,
         underOppfolging: state.oppfolging.underOppfolging,
         maal: state.maal.id,
