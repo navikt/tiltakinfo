@@ -63,11 +63,11 @@ export default () => {
 
     fetchMock.get(API.getOppfolging, {
         [MockConfigPropName.UNDER_OPPFOLGING]: mockData[MockConfigPropName.UNDER_OPPFOLGING],
+        [MockConfigPropName.SERVICEGRUPPE]: mockData[MockConfigPropName.SERVICEGRUPPE],
     });
 
     fetchMock.get(API.getOppfolgingsstatus, {
         [MockConfigPropName.OPPFOLGINGSENHET]: mockData[MockConfigPropName.OPPFOLGINGSENHET],
-        [MockConfigPropName.SERVICEGRUPPE]: mockData[MockConfigPropName.SERVICEGRUPPE],
     });
 
     fetchMock.get(API.getSyfo, {

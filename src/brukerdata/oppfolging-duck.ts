@@ -35,7 +35,12 @@ export const initialState: OppfolgingState = {
 export default function reducer(state: OppfolgingState = initialState, action: Handling): OppfolgingState {
     switch (action.type) {
         case ActionType.HENT_OPPFOLGING_OK:
-            return {...state, status: Status.OK, underOppfolging: action.oppfolging.underOppfolging};
+            return {
+                ...state,
+                status: Status.OK,
+                underOppfolging: action.oppfolging.underOppfolging,
+                servicegruppe: action.oppfolging.servicegruppe
+            };
         case ActionType.HENT_OPPFOLGING_FEILET:
             return {...state, status: Status.FEILET};
         case ActionType.HENT_OPPFOLGING_LASTER:
